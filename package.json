@@ -18,10 +18,11 @@
   ],
   "scripts": {
     "prepack": "pnpm build",
-    "prepare": "unbuild --stub",
+    "dev:prepare": "pnpm stub",
+    "lint": "pnpm stub && eslint --fix .",
+    "stub": "unbuild --stub",
     "build": "unbuild",
     "clean": "rm -rf dist node_modules",
-    "lint": "eslint --fix .",
     "type-check": "tsc --noEmit"
   },
   "peerDependencies": {
