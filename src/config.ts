@@ -4,11 +4,15 @@ import type {
   PropType,
 } from './types';
 
+import { vueRecommended } from './vue';
+
 import { default as unjsPreset } from 'eslint-config-unjs';
 import stylistic from '@stylistic/eslint-plugin';
 
 export const files = [
-  '**/*.{ts,js,mjs,cjs}',
+  '**/*.{js,mjs,cjs}',
+  '**/*.ts',
+  '**/*.vue',
 ];
 
 export const rules = {
@@ -17,12 +21,30 @@ export const rules = {
   '@stylistic/semi': ['error', 'always'],
 };
 
-export const defineConfig = (mainConfig?: MainConfig, ...userConfigs: TypedFlatConfig[]) => unjsPreset(mainConfig,
-  stylistic.configs['recommended-flat'],
+export const configs:TypedFlatConfig[] = [
   {
-    name: '@poupe/eslint-config',
+    name: 'poupe/vue-ts',
+    languageOptions: {
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+        extraFileExtensions: ['vue'],
+        sourceType: 'module',
+      },
+    },
+  },
+  {
+    name: 'poupe/files',
     files,
+  },
+  {
+    name: 'poupe/rules',
     rules: rules as PropType<TypedFlatConfig, 'rules'>,
   },
+];
+
+export const defineConfig = (mainConfig?: MainConfig, ...userConfigs: TypedFlatConfig[]) => unjsPreset(mainConfig,
+  ...vueRecommended,
+  stylistic.configs['recommended-flat'],
+  ...configs,
   ...userConfigs,
 );
