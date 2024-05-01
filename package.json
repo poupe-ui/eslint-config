@@ -1,6 +1,6 @@
 {
   "name": "@poupe/eslint-config",
-  "version": "0.2.2",
+  "version": "0.2.3-try1",
   "type": "module",
   "description": "",
   "homepage": "https://github.com/poupe-ui/eslint-config",
@@ -17,7 +17,7 @@
     "dist"
   ],
   "scripts": {
-    "postpack": "pnpm build",
+    "prepack": "pnpm build",
     "prepare": "unbuild --stub",
     "build": "unbuild",
     "clean": "rm -rf dist node_modules",
