@@ -16,12 +16,14 @@ export const files = [
 ];
 
 export const rules = {
+  'vue/multi-word-component-names': 'off',
+  '@stylistic/brace-style': ['error', '1tbs'],
   '@stylistic/indent': ['error', 2],
   '@stylistic/quotes': ['error', 'single'],
   '@stylistic/semi': ['error', 'always'],
 };
 
-export const configs:TypedFlatConfig[] = [
+export const configs: TypedFlatConfig[] = [
   {
     name: 'poupe/vue-ts',
     languageOptions: {
