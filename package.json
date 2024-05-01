@@ -17,6 +17,7 @@
     "dist"
   ],
   "scripts": {
+    "postpack": "pnpm build",
     "prepare": "unbuild --stub",
     "build": "unbuild",
     "clean": "rm -rf dist node_modules",
