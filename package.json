@@ -1,0 +1,40 @@
+{
+  "name": "@poupe/eslint-config",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepare": "unbuild --stub",
+    "build": "unbuild",
+    "clean": "rm -rf dist node_modules",
+    "lint": "eslint --fix .",
+    "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "eslint-config-unjs": "0.3.0-rc.7",
+    "@stylistic/eslint-plugin": "^1.8.0",
+    "@vue/eslint-config-typescript": "^13.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.25.0",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "unbuild": "^2.0.0"
+  },
+  "engine": {
+    "node": ">= 20",
+    "pnpm": ">= 9"
+  },
+  "packageManager": "pnpm@9.1.0-0+sha512.568e95e38592215a03fa2cb02a58b67c6452e51b176d9941d546a59a471c42e2b4c2428bf286addcbe4e2dec98e682e2df0fa93a5082cf3493afc496affd8ffb"
+}
