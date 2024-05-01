@@ -3,6 +3,8 @@
   "version": "0.2.0",
   "type": "module",
   "description": "",
+  "homepage": "https://github.com/poupe-ui/eslint-config",
+  "repository": "github:poupe-ui/eslint-config",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
