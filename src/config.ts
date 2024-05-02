@@ -43,9 +43,17 @@ export const configs: TypedFlatConfig[] = [
   },
 ];
 
-export const defineConfig = (mainConfig?: MainConfig, ...userConfigs: TypedFlatConfig[]) => unjsPreset(mainConfig,
-  ...vueRecommended,
-  stylistic.configs['recommended-flat'],
-  ...configs,
-  ...userConfigs,
-);
+export const defineConfig = (mainConfig: MainConfig = {}, ...userConfigs: TypedFlatConfig[]) => {
+  mainConfig.ignores = [
+    '**/dist',
+    '**/node_modules',
+    ...mainConfig.ignores || [],
+  ];
+
+  return unjsPreset(mainConfig,
+    ...vueRecommended,
+    stylistic.configs['recommended-flat'],
+    ...configs,
+    ...userConfigs,
+  );
+};
