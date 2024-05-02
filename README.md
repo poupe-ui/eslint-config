@@ -21,7 +21,7 @@ Sharable ESLint config preset for usage across Poupe UI projects.
 Install dependencies:
 
 ```sh
-npx nypm install -D eslint typescript @poupe/eslint-config
+pnpx install -D eslint typescript @poupe/eslint-config
 ```
 
 Create `eslint.config.mjs` in your project root:
