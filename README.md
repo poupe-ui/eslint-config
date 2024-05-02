@@ -47,7 +47,7 @@ export default defineConfig({
 
 **Tips:**
 
-* You can pass any number of flat configs to defineConfig()
+* You can pass any number of flat configs to `defineConfig()`
 * Types for `rules` are auto generated using [`antfu/eslint-typegen`](https://github.com/antfu/eslint-typegen).
 
 ## License
