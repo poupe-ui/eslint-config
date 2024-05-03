@@ -43,10 +43,15 @@ export const configs: TypedFlatConfig[] = [
 ];
 
 export const defineConfig = (...userConfigs: TypedFlatConfig[]) => {
-  return unjsPreset({},
-    ...vueRecommended,
-    stylistic.configs['recommended-flat'],
-    ...configs,
-    ...userConfigs,
+  return unjsPreset({
+    ignores: [
+      '**/dist',
+      '**/node_modules',
+    ],
+  },
+  ...vueRecommended,
+  stylistic.configs['recommended-flat'],
+  ...configs,
+  ...userConfigs,
   );
 };
