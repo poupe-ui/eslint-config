@@ -31,16 +31,8 @@ Create `eslint.config.mjs` in your project root:
 import { defineConfig } from '@poupe/eslint-config';
 
 export default defineConfig({
-  ignores: [
-    // ignore paths
-  ],
   rules: {
     // rule overrides
-  },
-  markdown: {
-    rules: {
-      // markdown rule overrides
-    },
   },
 });
 ```
@@ -48,7 +40,6 @@ export default defineConfig({
 **Tips:**
 
 * You can pass any number of flat configs to `defineConfig()`
-* Types for `rules` are auto generated using [`antfu/eslint-typegen`](https://github.com/antfu/eslint-typegen).
 
 ## License
 

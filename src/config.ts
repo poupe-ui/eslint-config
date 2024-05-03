@@ -1,5 +1,4 @@
 import type {
-  MainConfig,
   TypedFlatConfig,
   PropType,
 } from './types';
@@ -43,9 +42,11 @@ export const configs: TypedFlatConfig[] = [
   },
 ];
 
-export const defineConfig = (mainConfig?: MainConfig, ...userConfigs: TypedFlatConfig[]) => unjsPreset(mainConfig,
-  ...vueRecommended,
-  stylistic.configs['recommended-flat'],
-  ...configs,
-  ...userConfigs,
-);
+export const defineConfig = (...userConfigs: TypedFlatConfig[]) => {
+  return unjsPreset({},
+    ...vueRecommended,
+    stylistic.configs['recommended-flat'],
+    ...configs,
+    ...userConfigs,
+  );
+};

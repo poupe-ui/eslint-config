@@ -1,5 +1,4 @@
 export type {
-  MainConfig,
   TypedFlatConfig,
 } from 'eslint-config-unjs';
 
