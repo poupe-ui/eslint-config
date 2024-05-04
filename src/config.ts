@@ -6,7 +6,9 @@ import type {
 import { vueRecommended } from './vue';
 
 import { default as unjsPreset } from 'eslint-config-unjs';
-import stylistic from '@stylistic/eslint-plugin';
+import { configs as stylisticConfigs } from '@stylistic/eslint-plugin';
+
+const stylisticRecommended = stylisticConfigs['recommended-flat'];
 
 export const files = [
   '**/*.{js,mjs,cjs}',
@@ -50,7 +52,7 @@ export const defineConfig = (...userConfigs: TypedFlatConfig[]) => {
     ],
   },
   ...vueRecommended,
-  stylistic.configs['recommended-flat'],
+  stylisticRecommended,
   ...configs,
   ...userConfigs,
   );
