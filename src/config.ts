@@ -1,14 +1,8 @@
-import type {
-  TypedFlatConfig,
-  PropType,
-} from './types';
-
-import { vueRecommended } from './vue';
+import type { TypedFlatConfig, Rules } from './types';
 
 import { default as unjsPreset } from 'eslint-config-unjs';
 import { configs as stylisticConfigs } from '@stylistic/eslint-plugin';
-
-const stylisticRecommended = stylisticConfigs['recommended-flat'];
+import { vueConfigs } from './vue';
 
 export const files = [
   '**/*.{js,mjs,cjs}',
@@ -40,7 +34,7 @@ export const configs: TypedFlatConfig[] = [
   },
   {
     name: 'poupe/rules',
-    rules: rules as PropType<TypedFlatConfig, 'rules'>,
+    rules: rules as Rules,
   },
 ];
 
@@ -51,8 +45,8 @@ export const defineConfig = (...userConfigs: TypedFlatConfig[]) => {
       '**/node_modules',
     ],
   },
-  ...vueRecommended,
-  stylisticRecommended,
+  ...vueConfigs['flat/recommended'],
+  stylisticConfigs['recommended-flat'],
   ...configs,
   ...userConfigs,
   );

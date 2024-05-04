@@ -1,3 +1,1 @@
-import vuePlugin from 'eslint-plugin-vue';
-
-export const vueRecommended = vuePlugin.configs['flat/recommended'];
+export { configs as vueConfigs } from 'eslint-plugin-vue';
