@@ -1,6 +1,4 @@
-import type {
-  TypedFlatConfig,
-} from 'eslint-config-unjs';
+import type { TypedFlatConfig } from 'eslint-config-unjs';
 
 export type { TypedFlatConfig } from 'eslint-config-unjs';
 
