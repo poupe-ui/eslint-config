@@ -1,1 +1,3 @@
-export { configs as vueConfigs } from 'eslint-plugin-vue';
+import vuePlugin from 'eslint-plugin-vue';
+
+export const vueConfigs = vuePlugin.configs;
