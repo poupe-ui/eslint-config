@@ -1,6 +1,6 @@
 {
   "name": "@poupe/eslint-config",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "type": "module",
   "description": "",
   "homepage": "https://github.com/poupe-ui/eslint-config",
