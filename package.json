@@ -25,7 +25,7 @@
     "type-check": "tsc --noEmit"
   },
   "peerDependencies": {
-    "eslint-config-unjs": "0.3.0-rc.7",
+    "eslint-config-unjs": "0.4.1",
     "@stylistic/eslint-plugin": "^1.8.0",
     "@vue/eslint-config-typescript": "^13.0.0",
     "eslint": "^8.57.0",
