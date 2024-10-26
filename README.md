@@ -1,4 +1,6 @@
 # `@poupe/eslint-config`
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fpoupe-ui%2Feslint-config.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fpoupe-ui%2Feslint-config?ref=badge_shield)
+
 
 Sharable ESLint config preset for usage across Poupe UI projects.
 
@@ -44,3 +46,6 @@ export default defineConfig({
 ## License
 
 MIT
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fpoupe-ui%2Feslint-config.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fpoupe-ui%2Feslint-config?ref=badge_large)
