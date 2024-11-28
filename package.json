@@ -32,7 +32,7 @@
     "eslint-plugin-vue": "^9.31.0"
   },
   "devDependencies": {
-    "typescript": "~5.5.4",
+    "typescript": "~5.7.0",
     "unbuild": "^2.0.0"
   },
   "engines": {
