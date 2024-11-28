@@ -19,7 +19,7 @@
   "scripts": {
     "prepack": "pnpm build",
     "dev:prepare": "unbuild --stub",
-    "lint": "unbuild --stub && eslint --fix .",
+    "lint": "unbuild --stub && env DEBUG=eslint:eslint eslint --fix .",
     "build": "unbuild",
     "clean": "rm -rf dist node_modules",
     "type-check": "tsc --noEmit"
