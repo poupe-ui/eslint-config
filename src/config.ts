@@ -1,6 +1,7 @@
 import type { TypedFlatConfig, Rules } from './types';
 
 import { default as unjsPreset } from 'eslint-config-unjs';
+
 import { vueConfigs } from './vue';
 import { stylisticConfigs } from './stylistic';
 
@@ -18,7 +19,7 @@ export const rules = {
   'vue/multi-word-component-names': 'off',
 };
 
-export const configs: TypedFlatConfig[] = [
+export const poupeConfigs: TypedFlatConfig[] = [
   {
     name: 'poupe/vue-ts',
     languageOptions: {
@@ -48,7 +49,7 @@ export const defineConfig = (...userConfigs: TypedFlatConfig[]) => {
   },
   ...vueConfigs['flat/recommended'],
   stylisticConfigs['recommended-flat'],
-  ...configs,
+  ...poupeConfigs,
   ...userConfigs,
   );
 };
