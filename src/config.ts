@@ -19,7 +19,7 @@ export const rules = {
   'vue/multi-word-component-names': 'off',
 };
 
-export const configs: TypedFlatConfig[] = [
+export const poupeConfigs: TypedFlatConfig[] = [
   {
     name: 'poupe/vue-ts',
     languageOptions: {
@@ -49,7 +49,7 @@ export const defineConfig = (...userConfigs: TypedFlatConfig[]) => {
   },
   ...vueConfigs['flat/recommended'],
   stylisticConfigs['recommended-flat'],
-  ...configs,
+  ...poupeConfigs,
   ...userConfigs,
   );
 };
