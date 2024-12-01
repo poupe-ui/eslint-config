@@ -1,6 +1,7 @@
 import type { TypedFlatConfig, Rules } from './types';
 
 import { default as unjsPreset } from 'eslint-config-unjs';
+
 import { vueConfigs } from './vue';
 import { stylisticConfigs } from './stylistic';
 
