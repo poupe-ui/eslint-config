@@ -1,1 +1,1 @@
-export type PropType<T, K extends keyof T> = T[K];
+export type PropertyType<T, K extends keyof T> = T[K];
