@@ -6,12 +6,13 @@ import type {
 import stylisticPlugin from '@stylistic/eslint-plugin';
 import vuePlugin from 'eslint-plugin-vue';
 import unicornPlugin from 'eslint-plugin-unicorn';
+import jsPlugin from '@eslint/js';
 
 export const { configs: stylisticConfigs } = stylisticPlugin;
 export const { configs: vueConfigs } = vuePlugin;
 export const { configs: unicornConfigs } = unicornPlugin;
+export const { configs: eslintConfigs } = jsPlugin;
 
-export { configs as eslintConfigs } from '@eslint/js';
 export { configs as tseslintConfigs } from 'typescript-eslint';
 
 // poupeConfigs
