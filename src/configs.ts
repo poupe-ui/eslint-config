@@ -1,21 +1,27 @@
 import type {
-  TypedFlatConfig,
+  Config,
   Rules,
-} from './types';
+} from './core';
 
-import pkg1 from '@stylistic/eslint-plugin';
-import pkg2 from 'eslint-plugin-vue';
+import stylisticPlugin from '@stylistic/eslint-plugin';
+import vuePlugin from 'eslint-plugin-vue';
+import unicornPlugin from 'eslint-plugin-unicorn';
 
-export const { configs: stylisticConfigs } = pkg1;
-export const { configs: vueConfigs } = pkg2;
+export const { configs: stylisticConfigs } = stylisticPlugin;
+export const { configs: vueConfigs } = vuePlugin;
+export const { configs: unicornConfigs } = unicornPlugin;
 
+export { configs as eslintConfigs } from '@eslint/js';
+export { configs as tseslintConfigs } from 'typescript-eslint';
+
+// poupeConfigs
 export const files = [
   '**/*.{js,mjs,cjs}',
   '**/*.ts',
   '**/*.vue',
 ];
 
-export const rules = {
+export const rules: Rules = {
   '@stylistic/brace-style': ['error', '1tbs'],
   '@stylistic/indent': ['error', 2],
   '@stylistic/quotes': ['error', 'single'],
@@ -23,7 +29,7 @@ export const rules = {
   'vue/multi-word-component-names': 'off',
 };
 
-export const poupeConfigs: TypedFlatConfig[] = [
+export const poupeConfigs: Config[] = [
   {
     name: 'poupe/vue-ts',
     languageOptions: {
@@ -40,6 +46,6 @@ export const poupeConfigs: TypedFlatConfig[] = [
   },
   {
     name: 'poupe/rules',
-    rules: rules as Rules,
+    rules: rules,
   },
 ];

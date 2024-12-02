@@ -1,23 +1,29 @@
-import type { TypedFlatConfig } from './types';
-
-import { default as unjsPreset } from 'eslint-config-unjs';
-
 import {
+  eslintConfigs,
   poupeConfigs,
   stylisticConfigs,
+  tseslintConfigs,
+  unicornConfigs,
   vueConfigs,
 } from './configs';
 
-export const defineConfig = (...userConfigs: TypedFlatConfig[]) => {
-  return unjsPreset({
+import {
+  type Config,
+  withConfigs,
+} from './core';
+
+export const defineConfig = (...userConfigs: Config[]): Config[] => withConfigs(
+  {
     ignores: [
       '**/dist',
       '**/node_modules',
     ],
   },
-  ...vueConfigs['flat/recommended'],
+  eslintConfigs.recommended,
+  tseslintConfigs.recommended,
+  unicornConfigs['flat/recommended'],
   stylisticConfigs['recommended-flat'],
-  ...poupeConfigs,
-  ...userConfigs,
-  );
-};
+  vueConfigs['flat/recommended'],
+  poupeConfigs,
+  userConfigs,
+);
