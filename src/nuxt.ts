@@ -1,9 +1,15 @@
 import { Linter } from 'eslint';
-import { files, rules } from './configs';
+
+import {
+  files,
+  rules,
+  tsdocConfigs,
+} from './configs';
 
 type Config = Linter.Config;
 
 const sharedNuxtRules: Config[] = [
+  tsdocConfigs.recommended,
   {
     name: 'poupe/files',
     files,
