@@ -1,5 +1,7 @@
-import type { Config } from './core';
+import { Linter } from 'eslint';
 import { files, rules } from './configs';
+
+type Config = Linter.Config;
 
 export const forNuxt = (): Config[] => [
   {
