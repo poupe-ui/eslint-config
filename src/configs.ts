@@ -44,6 +44,7 @@ export const rules: Rules = {
   '@stylistic/indent': ['error', 2],
   '@stylistic/quotes': ['error', 'single'],
   '@stylistic/semi': ['error', 'always'],
+  'unicorn/no-useless-undefined': 'off',
   'vue/multi-word-component-names': 'off',
 };
 
