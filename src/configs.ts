@@ -70,6 +70,9 @@ export const rules: Rules = {
         opts: {
           options: false,
         },
+        pkg: {
+          package: false,
+        },
         param: {
           parameter: false,
         },
