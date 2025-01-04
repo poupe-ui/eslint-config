@@ -3,15 +3,15 @@ import type {
   Rules,
 } from './core';
 
-import stylisticPlugin from '@stylistic/eslint-plugin';
-import vuePlugin from 'eslint-plugin-vue';
-import unicornPlugin from 'eslint-plugin-unicorn';
 import jsPlugin from '@eslint/js';
+import stylisticPlugin from '@stylistic/eslint-plugin';
+import unicornPlugin from 'eslint-plugin-unicorn';
+import vuePlugin from 'eslint-plugin-vue';
 
-export const { configs: stylisticConfigs } = stylisticPlugin;
-export const { configs: vueConfigs } = vuePlugin;
-export const { configs: unicornConfigs } = unicornPlugin;
 export const { configs: eslintConfigs } = jsPlugin;
+export const { configs: stylisticConfigs } = stylisticPlugin;
+export const { configs: unicornConfigs } = unicornPlugin;
+export const { configs: vueConfigs } = vuePlugin;
 
 export { configs as tseslintConfigs } from 'typescript-eslint';
 
