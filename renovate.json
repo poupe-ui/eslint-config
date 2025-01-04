@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "groupName": "Nuxt.js",
+      "groupSlug": "nuxt",
+      "matchPackageNames": [
+        "@nuxt/**",
+        "@nuxtjs/**",
+        "nuxt",
+        "/^nuxt-.*$/"
+      ]
+    }
+  ],
+  "postUpdateOptions": [
+    "pnpmDedupe"
+  ],
+  "rangeStrategy": "bump"
+}
