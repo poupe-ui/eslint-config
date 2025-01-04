@@ -23,7 +23,7 @@
   "scripts": {
     "prepack": "pnpm build",
     "dev:prepare": "unbuild --stub",
-    "postinstall": "unbuild --stub",
+    "postinstall": "[ -s dist/index.mjs ] || unbuild --stub",
     "lint": "unbuild --stub && env DEBUG=eslint:eslint eslint --fix .",
     "build": "unbuild",
     "clean": "rm -rf dist node_modules",
