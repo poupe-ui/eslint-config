@@ -1,7 +1,9 @@
-import type { Config } from './core';
+import { Linter } from 'eslint';
 import { files, rules } from './configs';
 
-export const forNuxt = (): Config[] => [
+type Config = Linter.Config;
+
+const sharedNuxtRules: Config[] = [
   {
     name: 'poupe/files',
     files,
@@ -10,4 +12,16 @@ export const forNuxt = (): Config[] => [
     name: 'poupe/rules',
     rules,
   },
+];
+
+/** rules for nuxt projects */
+export const forNuxt = (...userConfigs: Config[]) => [
+  ...sharedNuxtRules,
+  ...userConfigs,
+];
+
+/** rules for nuxt modules */
+export const forNuxtModules = (...userConfigs: Config[]) => [
+  ...sharedNuxtRules,
+  ...userConfigs,
 ];
