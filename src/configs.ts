@@ -40,10 +40,12 @@ export const files = [
 ];
 
 export const rules: Rules = {
+  '@stylistic/arrow-parens': 'error',
   '@stylistic/brace-style': ['error', '1tbs'],
   '@stylistic/indent': ['error', 2],
   '@stylistic/quotes': ['error', 'single'],
   '@stylistic/semi': ['error', 'always'],
+  'unicorn/no-array-for-each': 'error',
   'unicorn/no-useless-undefined': 'off',
   'unicorn/prevent-abbreviations': [
     'error',
