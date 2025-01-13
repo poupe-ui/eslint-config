@@ -32,14 +32,14 @@
   "dependencies": {
     "@eslint/js": "^9.18.0",
     "@stylistic/eslint-plugin": "^2.12.1",
-    "@typescript-eslint/parser": "^8.19.1",
+    "@typescript-eslint/parser": "^8.20.0",
     "@vue/eslint-config-typescript": "^14.2.0",
     "eslint": "^9.18.0",
     "eslint-plugin-tsdoc": "^0.4.0",
     "eslint-plugin-unicorn": "^56.0.1",
     "eslint-plugin-vue": "^9.32.0",
     "typescript": "~5.7.3",
-    "typescript-eslint": "^8.19.1"
+    "typescript-eslint": "^8.20.0"
   },
   "devDependencies": {
     "unbuild": "3.2.0"
