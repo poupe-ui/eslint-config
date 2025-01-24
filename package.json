@@ -30,11 +30,11 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@eslint/js": "^9.18.0",
+    "@eslint/js": "^9.19.0",
     "@stylistic/eslint-plugin": "^2.13.0",
     "@typescript-eslint/parser": "^8.20.0",
     "@vue/eslint-config-typescript": "^14.3.0",
-    "eslint": "^9.18.0",
+    "eslint": "^9.19.0",
     "eslint-plugin-tsdoc": "^0.4.0",
     "eslint-plugin-unicorn": "^56.0.1",
     "eslint-plugin-vue": "^9.32.0",
