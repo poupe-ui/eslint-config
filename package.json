@@ -3,6 +3,8 @@
   "version": "0.4.14",
   "type": "module",
   "description": "",
+  "author": "Alejandro Mery <amery@apptly.co>",
+  "license": "MIT",
   "homepage": "https://github.com/poupe-ui/eslint-config",
   "repository": "github:poupe-ui/eslint-config",
   "exports": {
