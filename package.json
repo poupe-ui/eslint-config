@@ -1,6 +1,6 @@
 {
   "name": "@poupe/eslint-config",
-  "version": "0.4.13",
+  "version": "0.4.14",
   "type": "module",
   "description": "",
   "homepage": "https://github.com/poupe-ui/eslint-config",
@@ -30,16 +30,16 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@eslint/js": "^9.18.0",
+    "@eslint/js": "^9.19.0",
     "@stylistic/eslint-plugin": "^2.13.0",
-    "@typescript-eslint/parser": "^8.20.0",
+    "@typescript-eslint/parser": "^8.21.0",
     "@vue/eslint-config-typescript": "^14.3.0",
-    "eslint": "^9.18.0",
+    "eslint": "^9.19.0",
     "eslint-plugin-tsdoc": "^0.4.0",
     "eslint-plugin-unicorn": "^56.0.1",
     "eslint-plugin-vue": "^9.32.0",
     "typescript": "~5.7.3",
-    "typescript-eslint": "^8.20.0"
+    "typescript-eslint": "^8.21.0"
   },
   "devDependencies": {
     "unbuild": "3.3.1"
