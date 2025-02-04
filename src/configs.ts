@@ -51,6 +51,8 @@ export const rules: Rules = {
     'error',
     {
       replacements: {
+        attr: false,
+        attrs: false,
         env: {
           environment: false,
         },
