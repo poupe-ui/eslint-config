@@ -50,48 +50,39 @@ export const rules: Rules = {
   'unicorn/prevent-abbreviations': [
     'error',
     {
+      allowList: {
+        attr: true,
+        attrs: true,
+        env: true,
+        err: true,
+        fn: true,
+        i: true,
+        msg: true,
+        opt: true,
+        opts: true,
+        pkg: true,
+        param: true,
+        params: true,
+        prop: true,
+        props: true,
+        vars: true,
+      },
       replacements: {
         attr: false,
         attrs: false,
-        env: {
-          environment: false,
-        },
-        err: {
-          error: false,
-        },
-        fn: {
-          function: false,
-        },
-        i: {
-          index: false,
-        },
-        msg: {
-          message: false,
-        },
-        opt: {
-          option: false,
-        },
-        opts: {
-          options: false,
-        },
-        pkg: {
-          package: false,
-        },
-        param: {
-          parameter: false,
-        },
-        params: {
-          parameters: false,
-        },
-        prop: {
-          property: false,
-        },
-        props: {
-          properties: false,
-        },
-        vars: {
-          variables: false,
-        },
+        env: false,
+        err: false,
+        fn: false,
+        i: false,
+        msg: false,
+        opt: false,
+        opts: false,
+        pkg: false,
+        param: false,
+        params: false,
+        prop: false,
+        props: false,
+        vars: false,
       },
     },
   ],
