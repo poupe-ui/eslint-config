@@ -48,6 +48,7 @@ export const rules: Rules = {
   '@stylistic/quotes': ['error', 'single'],
   '@stylistic/semi': ['error', 'always'],
   'unicorn/no-array-for-each': 'error',
+  'unicorn/no-named-default': 'off',
   'unicorn/no-useless-undefined': 'off',
   'unicorn/prevent-abbreviations': [
     'error',
