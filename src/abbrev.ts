@@ -13,6 +13,7 @@ const abbreviations = [
   'params',
   'prop',
   'props',
+  'utils',
   'vars',
 ] as const;
 
