@@ -47,6 +47,9 @@ export const rules: Rules = {
   '@stylistic/indent': ['error', 2],
   '@stylistic/quotes': ['error', 'single'],
   '@stylistic/semi': ['error', 'always'],
+  '@stylistic/member-delimiter-style': ['error', {
+    multiline: { delimiter: 'none' },
+  }],
   'unicorn/no-array-for-each': 'error',
   'unicorn/no-named-default': 'off',
   'unicorn/no-useless-undefined': 'off',
