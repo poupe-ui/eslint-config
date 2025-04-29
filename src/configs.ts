@@ -1,4 +1,4 @@
-import { Linter } from 'eslint';
+import { Linter, ESLint } from 'eslint';
 
 import type {
   Config,
@@ -11,7 +11,10 @@ import tsdocPlugin from 'eslint-plugin-tsdoc';
 import unicornPlugin from 'eslint-plugin-unicorn';
 import vuePlugin from 'eslint-plugin-vue';
 
-export const { configs: eslintConfigs } = jsPlugin;
+export const { configs: eslintConfigs } = jsPlugin as { configs: {
+  readonly recommended: Linter.Config }
+};
+
 export const { configs: stylisticConfigs } = stylisticPlugin;
 export const { configs: unicornConfigs } = unicornPlugin;
 export const { configs: vueConfigs } = vuePlugin;
@@ -19,7 +22,7 @@ export const { configs: vueConfigs } = vuePlugin;
 const tsdocRecommended: Linter.Config = {
   name: 'poupe/tsdoc-recommended',
   plugins: {
-    tsdoc: tsdocPlugin,
+    tsdoc: tsdocPlugin as unknown as ESLint.Plugin,
   },
   rules: {
     'tsdoc/syntax': 'error',
