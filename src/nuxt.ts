@@ -3,6 +3,7 @@ import { Linter } from 'eslint';
 import {
   files,
   rules,
+  tailwindConfigs,
   tsdocConfigs,
   unicornConfigs,
 } from './configs';
@@ -10,6 +11,9 @@ import {
 type Config = Linter.Config;
 
 const { plugins: unicornPlugins, ...unicornConfig } = unicornConfigs['flat/recommended'];
+const tailwindConfig = tailwindConfigs['flat/recommended'];
+
+console.log(tailwindConfig)
 
 const sharedNuxtRules: Config[] = [
   tsdocConfigs.recommended,

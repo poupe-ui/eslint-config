@@ -2,6 +2,7 @@ import {
   eslintConfigs,
   poupeConfigs,
   stylisticConfigs,
+  tailwindConfigs,
   tsdocConfigs,
   tseslintConfigs,
   unicornConfigs,
@@ -26,6 +27,7 @@ export const defineConfig = (...userConfigs: Config[]): Config[] => withConfigs(
   unicornConfigs.recommended,
   stylisticConfigs.recommended,
   ...vueConfigs['flat/recommended'],
+  ...tailwindConfigs['flat/recommended'],
   ...poupeConfigs,
   ...userConfigs,
 );

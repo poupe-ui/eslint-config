@@ -6,6 +6,7 @@ Sharable ESLint config preset for usage across Poupe UI projects.
 
 * [eslint recommended rules](https://eslint.org/docs/latest/rules/)
 * [stylistic recommended formatting rules](https://eslint.style/packages/default) ❤️
+* [tailwindcss rules](https://github.com/francoismassart/eslint-plugin-tailwindcss)
 * [typescript-eslint integration](https://typescript-eslint.io/)
 * [unicorn rules](https://github.com/sindresorhus/eslint-plugin-unicorn)
 * [vue recommended rules](https://eslint.vuejs.org/rules/) with _typescript_ support.
