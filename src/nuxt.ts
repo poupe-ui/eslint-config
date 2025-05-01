@@ -9,11 +9,10 @@ import {
 
 type Config = Linter.Config;
 
-const { plugins: unicornPlugins, ...unicornConfig } = unicornConfigs['flat/recommended'];
+const { plugins: unicornPlugins, ...unicornConfig } = unicornConfigs.recommended;
 
 const sharedNuxtRules: Config[] = [
   tsdocConfigs.recommended,
-  unicornConfig,
   {
     name: 'poupe/files',
     files,
@@ -29,6 +28,7 @@ export const forNuxt = (...userConfigs: Config[]) => [
   {
     plugins: unicornPlugins,
   },
+  unicornConfig,
   ...sharedNuxtRules,
   ...userConfigs,
 ];
