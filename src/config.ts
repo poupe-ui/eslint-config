@@ -1,17 +1,16 @@
 import {
-  eslintConfigs,
+  type Config,
   poupeConfigs,
-  stylisticConfigs,
-  tsdocConfigs,
-  tseslintConfigs,
-  unicornConfigs,
-  vueConfigs,
+
+  eslintRecommended,
+  stylisticRecommended,
+  tsdocRecommended,
+  tseslintRecommended,
+  unicornRecommended,
+  vueRecommended,
 } from './configs';
 
-import {
-  type Config,
-  withConfigs,
-} from './core';
+import { config as withConfigs } from 'typescript-eslint';
 
 export const defineConfig = (...userConfigs: Config[]): Config[] => withConfigs(
   {
@@ -20,12 +19,12 @@ export const defineConfig = (...userConfigs: Config[]): Config[] => withConfigs(
       '**/node_modules',
     ],
   },
-  eslintConfigs.recommended,
-  ...tseslintConfigs.recommended,
-  tsdocConfigs.recommended,
-  unicornConfigs.recommended,
-  stylisticConfigs.recommended,
-  ...vueConfigs['flat/recommended'],
+  eslintRecommended,
+  tseslintRecommended,
+  tsdocRecommended,
+  unicornRecommended,
+  stylisticRecommended,
+  ...vueRecommended,
   ...poupeConfigs,
   ...userConfigs,
 );

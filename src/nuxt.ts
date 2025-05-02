@@ -1,18 +1,20 @@
-import { Linter } from 'eslint';
+import {
+  type Config,
+  withoutRules,
+} from './core/index';
 
 import {
   files,
   rules,
-  tsdocConfigs,
-  unicornConfigs,
+  tsdocRecommended,
+  unicornRecommended,
 } from './configs';
 
-type Config = Linter.Config;
-
-const { plugins: unicornPlugins, ...unicornConfig } = unicornConfigs.recommended;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { plugins: _unicornPlugins, ...unicornConfig } = unicornRecommended;
 
 const sharedNuxtRules: Config[] = [
-  tsdocConfigs.recommended,
+  tsdocRecommended,
   {
     name: 'poupe/files',
     files,
@@ -24,17 +26,23 @@ const sharedNuxtRules: Config[] = [
 ];
 
 /** rules for nuxt projects */
-export const forNuxt = (...userConfigs: Config[]) => [
-  {
-    plugins: unicornPlugins,
-  },
-  unicornConfig,
+export const forNuxt = (...userConfigs: Config[]): Config[] => [
+  unicornRecommended,
   ...sharedNuxtRules,
   ...userConfigs,
 ];
 
 /** rules for nuxt modules */
-export const forNuxtModules = (...userConfigs: Config[]) => [
+const rulesForModules = withoutRules(unicornConfig.rules,
+  /** disabled because it's not supported by the version of the unicorn plugin already loaded */
+  'unicorn/no-unnecessary-array-flat-depth',
+);
+
+export const forNuxtModules = (...userConfigs: Config[]): Config[] => [
+  {
+    ...unicornConfig,
+    rules: rulesForModules,
+  },
   ...sharedNuxtRules,
   ...userConfigs,
 ];
