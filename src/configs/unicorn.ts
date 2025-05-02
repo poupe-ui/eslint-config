@@ -50,4 +50,5 @@ export const poupeUnicornRules: Rules = {
       replacements,
     },
   ],
+  'unicorn/switch-case-braces': 'off',
 };
