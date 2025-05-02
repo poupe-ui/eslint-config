@@ -1,18 +1,16 @@
-import { Linter } from 'eslint';
-
 import {
+  type Config,
+
   files,
   rules,
-  tsdocConfigs,
-  unicornConfigs,
+  tsdocRecommended,
+  unicornRecommended,
 } from './configs';
 
-type Config = Linter.Config;
-
-const { plugins: unicornPlugins, ...unicornConfig } = unicornConfigs.recommended;
+const { plugins: unicornPlugins, ...unicornConfig } = unicornRecommended;
 
 const sharedNuxtRules: Config[] = [
-  tsdocConfigs.recommended,
+  tsdocRecommended,
   {
     name: 'poupe/files',
     files,
@@ -24,7 +22,7 @@ const sharedNuxtRules: Config[] = [
 ];
 
 /** rules for nuxt projects */
-export const forNuxt = (...userConfigs: Config[]) => [
+export const forNuxt = (...userConfigs: Config[]): Config[] => [
   {
     plugins: unicornPlugins,
   },
@@ -34,7 +32,7 @@ export const forNuxt = (...userConfigs: Config[]) => [
 ];
 
 /** rules for nuxt modules */
-export const forNuxtModules = (...userConfigs: Config[]) => [
+export const forNuxtModules = (...userConfigs: Config[]): Config[] => [
   ...sharedNuxtRules,
   ...userConfigs,
 ];
