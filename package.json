@@ -1,6 +1,6 @@
 {
   "name": "@poupe/eslint-config",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "type": "module",
   "description": "",
   "author": "Alejandro Mery <amery@apptly.co>",
@@ -43,6 +43,7 @@
     "typescript-eslint": "^8.31.1"
   },
   "devDependencies": {
+    "eslint-flat-config-utils": "^2.0.1",
     "pkg-pr-new": "^0.0.43",
     "typescript": "~5.8.3",
     "unbuild": "3.5.0"
