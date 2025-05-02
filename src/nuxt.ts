@@ -1,7 +1,11 @@
 import {
-  type Config,
+  type Linter,
   withoutRules,
 } from './core/index';
+
+import {
+  type ResolvableFlatConfig,
+} from 'eslint-flat-config-utils';
 
 import {
   files,
@@ -13,7 +17,7 @@ import {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { plugins: _unicornPlugins, ...unicornConfig } = unicornRecommended;
 
-const sharedNuxtRules: Config[] = [
+const sharedNuxtRules: Linter.Config[] = [
   tsdocRecommended,
   {
     name: 'poupe/files',
@@ -26,7 +30,7 @@ const sharedNuxtRules: Config[] = [
 ];
 
 /** rules for nuxt projects */
-export const forNuxt = (...userConfigs: Config[]): Config[] => [
+export const forNuxt = (...userConfigs: Linter.Config[]): Linter.Config[] => [
   unicornRecommended,
   ...sharedNuxtRules,
   ...userConfigs,
@@ -41,7 +45,7 @@ const rulesForModules = withoutRules(unicornConfig.rules,
   'unicorn/prefer-single-call',
 );
 
-export const forNuxtModules = (...userConfigs: Config[]): Config[] => [
+export const forNuxtModules = (...userConfigs: ResolvableFlatConfig[]): ResolvableFlatConfig[] => [
   {
     ...unicornConfig,
     rules: rulesForModules,
