@@ -1,6 +1,6 @@
 {
   "name": "@poupe/eslint-config",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "type": "module",
   "description": "",
   "author": "Alejandro Mery <amery@apptly.co>",
