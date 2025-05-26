@@ -10,6 +10,7 @@ import {
 import {
   files,
   rules,
+  cssRecommended,
   tsdocRecommended,
   unicornRecommended,
 } from './configs';
@@ -18,6 +19,7 @@ import {
 const { plugins: _unicornPlugins, ...unicornConfig } = unicornRecommended;
 
 const sharedNuxtRules: Linter.Config[] = [
+  cssRecommended as Linter.Config,
   tsdocRecommended,
   {
     name: 'poupe/files',

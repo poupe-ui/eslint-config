@@ -2,6 +2,7 @@ import {
   type Config,
   poupeConfigs,
 
+  cssRecommended,
   eslintRecommended,
   stylisticRecommended,
   tsdocRecommended,
@@ -19,6 +20,7 @@ export const defineConfig = (...userConfigs: Config[]): Config[] => withConfigs(
       '**/node_modules',
     ],
   },
+  cssRecommended,
   eslintRecommended,
   tseslintRecommended,
   tsdocRecommended,
