@@ -40,8 +40,8 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1
       pkg-pr-new:
-        specifier: ^0.0.43
-        version: 0.0.43
+        specifier: ^0.0.50
+        version: 0.0.50
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -1370,8 +1370,8 @@ packages:
     resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==}
     engines: {node: '>=12'}
 
-  pkg-pr-new@0.0.43:
-    resolution: {integrity: sha512-BxadQyJbbt7BtInyg82I73ztPOftPmDF1ttpTiJ1FpCp4p3zt5sXvDLm3V1GA8ukxa8MSvsI1+BJmsR54FLBpg==}
+  pkg-pr-new@0.0.50:
+    resolution: {integrity: sha512-wwIE4s+M39AcAnls7N1xxJyw7uYw15pzF94i54byvfSL6OOQjhyo9MAsSCUfcZZXplNKpYy70qW7rDXtOW35zw==}
     hasBin: true
 
   pkg-types@1.3.1:
@@ -3023,7 +3023,7 @@ snapshots:
 
   picomatch@4.0.2: {}
 
-  pkg-pr-new@0.0.43:
+  pkg-pr-new@0.0.50:
     dependencies:
       '@jsdevtools/ez-spawn': 3.0.4
       '@octokit/action': 6.1.0
