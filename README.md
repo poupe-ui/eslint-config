@@ -59,6 +59,11 @@ export default defineConfig({
 });
 ```
 
+## Development
+
+For AI assistants working with this codebase, refer to [AGENT.md](./AGENT.md)
+for detailed guidance and conventions.
+
 ## License
 
 MIT
