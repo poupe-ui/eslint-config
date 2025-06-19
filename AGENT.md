@@ -81,7 +81,7 @@ Follow these conventions (enforced by .editorconfig and ESLint):
 - **Trailing Whitespace**: Always trim (except in Markdown files)
 - **Default Indentation**: 8-space tabs for most files
 - **Special Indentation**:
-  - 2 spaces for: `.json`, `.yaml`, `.yml`, `.js`, `.cjs`, `.mjs`, `.ts`,
+  - 2 spaces for `.json`, `.yaml`, `.yml`, `.js`, `.cjs`, `.mjs`, `.ts`,
     `.vue`, `.css`, `.md`
 
 ### ESLint Enforced Rules
@@ -147,6 +147,22 @@ export default [
 ];
 ```
 
+## Git Workflow
+
+### Commit Guidelines
+- Always use `-s` flag for signed commits
+- Never use `-m` flag
+- Use `-F` flag with a commit message file
+- Create unique commit message files: `.commit-msg-<timestamp>` in CWD
+- Delete commit message files after use to avoid conflicts
+- Always specify explicit file names in the commit command
+- Use the Write tool to create commit message files (avoid echo/heredoc to
+  prevent shell expansion issues)
+- Example workflow:
+  1. Use Write tool to create `.commit-msg-<timestamp>`
+  2. Run: `git commit -s -F .commit-msg-<timestamp> file1 file2`
+  3. Delete the commit message file after use
+
 ## Development Practices
 
 ### DO:
@@ -155,6 +171,7 @@ export default [
 - Follow existing patterns when adding new configurations
 - Use semantic versioning for releases
 - Follow the .editorconfig rules for consistent formatting
+- Use atomic commits with explicit file lists
 
 ### DON'T:
 - Create files unless necessary - prefer editing existing configurations
@@ -162,3 +179,5 @@ export default [
 - Ignore TypeScript errors or ESLint warnings
 - Mix different configuration styles (stick to flat config format)
 - Mix tabs and spaces - follow the .editorconfig rules for each file type
+- Use `git commit -m` (use `-F` with a file instead)
+- Rely on staged files - always specify files explicitly in commits
