@@ -23,7 +23,7 @@
     "dist"
   ],
   "scripts": {
-    "prepack": "pnpm build",
+    "prepack": "run-s lint type-check test build publint",
     "dev:prepare": "unbuild --stub",
     "postinstall": "[ -s dist/index.mjs ] || unbuild --stub",
     "lint": "unbuild --stub && env DEBUG=eslint:eslint eslint --fix .",
@@ -31,7 +31,8 @@
     "clean": "rm -rf dist node_modules",
     "type-check": "tsc --noEmit",
     "test": "echo 'No tests configured'",
-    "precommit": "run-s lint type-check test build"
+    "precommit": "run-s lint type-check test build",
+    "publint": "publint"
   },
   "dependencies": {
     "@eslint/js": "^9.27.0",
@@ -48,6 +49,7 @@
     "eslint-flat-config-utils": "^2.1.0",
     "npm-run-all2": "^8.0.0",
     "pkg-pr-new": "^0.0.50",
+    "publint": "^0.3.0",
     "typescript": "~5.8.3",
     "unbuild": "3.5.0"
   },
