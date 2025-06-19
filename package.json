@@ -29,7 +29,9 @@
     "lint": "unbuild --stub && env DEBUG=eslint:eslint eslint --fix .",
     "build": "unbuild",
     "clean": "rm -rf dist node_modules",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test": "echo 'No tests configured'",
+    "precommit": "run-s lint type-check test build"
   },
   "dependencies": {
     "@eslint/js": "^9.27.0",
@@ -44,6 +46,7 @@
   },
   "devDependencies": {
     "eslint-flat-config-utils": "^2.1.0",
+    "npm-run-all2": "^8.0.0",
     "pkg-pr-new": "^0.0.50",
     "typescript": "~5.8.3",
     "unbuild": "3.5.0"
