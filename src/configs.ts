@@ -12,6 +12,7 @@ export {
   type Rules,
 
   eslintRecommended,
+  markdownlintRecommended,
   tseslintRecommended,
   tsdocRecommended,
   stylisticRecommended,
