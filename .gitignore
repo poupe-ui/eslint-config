@@ -7,3 +7,9 @@ node_modules/
 
 # Generated output
 dist
+
+# Temporary test playground
+playground/
+
+# Development planning (never commit)
+PLAN.md

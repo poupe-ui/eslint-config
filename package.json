@@ -29,7 +29,13 @@
     "lint": "unbuild --stub && env DEBUG=eslint:eslint eslint --fix .",
     "build": "unbuild",
     "clean": "rm -rf dist node_modules",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test:standard": "unbuild --stub && cd playground-standard && eslint .",
+    "test:nuxt": "unbuild --stub && cd playground-nuxt && eslint .",
+    "test:nuxt-module": "unbuild --stub && cd playground-nuxt-module && eslint .",
+    "fix:standard": "unbuild --stub && cd playground-standard && eslint . --fix",
+    "fix:nuxt": "unbuild --stub && cd playground-nuxt && eslint . --fix",
+    "fix:nuxt-module": "unbuild --stub && cd playground-nuxt-module && eslint . --fix"
   },
   "dependencies": {
     "@eslint/js": "^9.27.0",
