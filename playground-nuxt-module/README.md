@@ -1,19 +1,16 @@
-# Test Nuxt Module
+# Playground Nuxt Module
 
-This is a test README for the Nuxt module playground.
+This is a test Nuxt module to verify ESLint configuration.
 
-## Installation
+## Development
 
 ```bash
-npm install test-module
-```
+# Install dependencies
+pnpm install
 
-## Usage
+# Generate type stubs
+pnpm dev:prepare
 
-Add to your `nuxt.config.ts`:
-
-```typescript
-export default defineNuxtConfig({
-  modules: ['test-module']
-})
+# Develop with the playground
+pnpm dev
 ```

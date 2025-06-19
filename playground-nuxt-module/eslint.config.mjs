@@ -1,13 +1,13 @@
 // @ts-check
-// Nuxt module test
+import { createConfigForNuxt } from '@nuxt/eslint-config/flat';
 import { forNuxtModules } from '../dist/nuxt.mjs';
 
-// Mock createConfigForNuxt since we don't have @nuxt/eslint-config
-const createConfigForNuxt = (options, ...configs) => configs;
-
+// Run `pnpx @eslint/config-inspector` to inspect the resolved config interactively
 export default createConfigForNuxt({
   features: {
+    // Rules for module authors
     tooling: true,
+    // Rules for formatting
     stylistic: true,
   },
   dirs: {
