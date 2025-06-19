@@ -1,11 +1,12 @@
 # AGENT.md
 
-This file provides guidance to AI assistants when working with code in this
-repository.
+This file provides guidance to AI assistants when working with code in
+this repository.
 
 ## Commands
 
 ### Development Commands
+
 - `pnpm build` - Build the package using unbuild (required before testing
   changes)
 - `pnpm lint` - Run ESLint with auto-fix enabled
@@ -15,10 +16,13 @@ repository.
 - `pnpm prepack` - Full validation (lint, type-check, build)
 
 ### Debugging
+
 - `DEBUG=eslint:eslint pnpm lint` - Debug ESLint configuration issues
 
 ### Testing Changes
+
 To test ESLint configuration changes:
+
 1. Make changes to configuration files in `src/configs/`
 2. Run `pnpm build` to compile the package
 3. Run `pnpm lint` to test the configuration on this codebase itself
@@ -31,6 +35,7 @@ linting rules for Poupe UI projects. It uses ESLint's flat configuration
 format and is written in TypeScript.
 
 ### Key Concepts
+
 1. **Flat Config Format**: Uses ESLint's modern flat configuration system
    (not legacy .eslintrc)
 2. **Configuration Composition**: The package combines multiple ESLint plugins
@@ -44,7 +49,8 @@ format and is written in TypeScript.
    validation
 
 ### Configuration Structure
-```
+
+```text
 src/
 ├── configs/          # Individual ESLint rule configurations
 │   ├── eslint.ts     # Core ESLint JavaScript rules
@@ -63,6 +69,7 @@ src/
 ```
 
 ### ESLint Plugins Included
+
 - **@eslint/js**: Core JavaScript linting rules
 - **@stylistic/eslint-plugin**: Code formatting and style consistency
 - **typescript-eslint**: TypeScript-specific linting and type checking
@@ -75,16 +82,18 @@ src/
 Follow these conventions (enforced by .editorconfig and ESLint):
 
 ### EditorConfig Rules
+
 - **Charset**: UTF-8
 - **Line Endings**: Unix (LF)
 - **Final Newline**: Always insert
 - **Trailing Whitespace**: Always trim (except in Markdown files)
 - **Default Indentation**: 8-space tabs for most files
 - **Special Indentation**:
-  - 2 spaces for `.json`, `.yaml`, `.yml`, `.js`, `.cjs`, `.mjs`, `.ts`,
+    - 2 spaces for `.json`, `.yaml`, `.yml`, `.js`, `.cjs`, `.mjs`, `.ts`,
     `.vue`, `.css`, `.md`
 
 ### ESLint Enforced Rules
+
 - **Quotes**: Single quotes for strings
 - **Semicolons**: Always use semicolons
 - **Brace Style**: 1tbs (one true brace style)
@@ -94,23 +103,28 @@ Follow these conventions (enforced by .editorconfig and ESLint):
 ## Common Tasks
 
 ### Adding or Modifying Rules
+
 1. Locate the appropriate config file in `src/configs/` (e.g., `eslint.ts`
    for JavaScript rules)
 2. Modify the rules object within the configuration
 3. Run `pnpm build` then `pnpm lint` to test your changes
 
 ### Creating New Configuration Preset
+
 1. Add new configuration to `src/configs.ts`
 2. Export from appropriate entry point files
 3. Build and test with `pnpm build` and `pnpm lint`
 
 ### Testing in Consuming Projects
+
 1. Run `pnpm dev:prepare` for a stub build (faster than full build)
 2. Link or install in consuming project
 3. Test the configuration changes
 
 ## Build Process
+
 The package uses `unbuild` which:
+
 - Compiles TypeScript to both ESM (.mjs) and CommonJS (.cjs)
 - Generates TypeScript declaration files
 - Creates stub builds for faster development iteration
@@ -120,6 +134,7 @@ The package uses `unbuild` which:
   `dist/nuxt.cjs`
 
 ## Usage Examples
+
 ```typescript
 // Basic usage
 import poupeConfig from '@poupe/eslint-config';
@@ -150,6 +165,7 @@ export default [
 ## Git Workflow
 
 ### Commit Guidelines
+
 - Always use `-s` flag for signed commits
 - Never use `-m` flag
 - Use `-F` flag with a commit message file
@@ -165,7 +181,8 @@ export default [
 
 ## Development Practices
 
-### DO:
+### DO
+
 - Run `pnpm lint` and `pnpm type-check` before committing
 - Test configuration changes by running lint on this codebase
 - Follow existing patterns when adding new configurations
@@ -173,7 +190,8 @@ export default [
 - Follow the .editorconfig rules for consistent formatting
 - Use atomic commits with explicit file lists
 
-### DON'T:
+### DON'T
+
 - Create files unless necessary - prefer editing existing configurations
 - Add external dependencies without careful consideration
 - Ignore TypeScript errors or ESLint warnings
