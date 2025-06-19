@@ -3,6 +3,7 @@ import {
   poupeConfigs,
 
   eslintRecommended,
+  markdownlintRecommended,
   stylisticRecommended,
   tsdocRecommended,
   tseslintRecommended,
@@ -24,6 +25,7 @@ export const defineConfig = (...userConfigs: Config[]): Config[] => withConfigs(
   tsdocRecommended,
   unicornRecommended,
   stylisticRecommended,
+  markdownlintRecommended,
   ...vueRecommended,
   ...poupeConfigs,
   ...userConfigs,
