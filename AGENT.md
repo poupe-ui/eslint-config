@@ -48,6 +48,7 @@ format and is written in TypeScript.
 src/
 ├── configs/          # Individual ESLint rule configurations
 │   ├── eslint.ts     # Core ESLint JavaScript rules
+│   ├── markdown.ts   # Markdown linting rules (markdownlint)
 │   ├── stylistic.ts  # Code style and formatting rules (@stylistic)
 │   ├── tsdoc.ts      # TypeScript documentation rules
 │   ├── tseslint.ts   # TypeScript-specific ESLint rules
@@ -69,6 +70,7 @@ src/
 - **eslint-plugin-vue**: Vue.js template and script linting
 - **eslint-plugin-unicorn**: Modern JavaScript best practices
 - **eslint-plugin-tsdoc**: TypeScript documentation standards
+- **eslint-plugin-markdownlint**: Markdown file linting (MD001-MD050 rules)
 
 ## Code Style Guidelines
 
@@ -95,7 +97,7 @@ Follow these conventions (enforced by .editorconfig and ESLint):
 
 ### Adding or Modifying Rules
 1. Locate the appropriate config file in `src/configs/` (e.g., `eslint.ts`
-   for JavaScript rules)
+   for JavaScript rules, `markdown.ts` for Markdown rules)
 2. Modify the rules object within the configuration
 3. Run `pnpm build` then `pnpm lint` to test your changes
 
