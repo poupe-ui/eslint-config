@@ -7,6 +7,8 @@
   "license": "MIT",
   "homepage": "https://github.com/poupe-ui/eslint-config",
   "repository": "github:poupe-ui/eslint-config",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
@@ -17,8 +19,6 @@
       "require": "./dist/nuxt.cjs"
     }
   },
-  "main": "./dist/index.cjs",
-  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
