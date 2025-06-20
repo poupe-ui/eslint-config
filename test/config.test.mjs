@@ -182,6 +182,33 @@ function testJsonRules(exampleName) {
   return errors;
 }
 
+// Test CSS-specific rules
+function testCssRules(exampleName) {
+  console.log('\n  Testing CSS configuration...');
+
+  // Skip CSS tests for Nuxt workspaces due to issue #138
+  if (exampleName.includes('nuxt')) {
+    console.log('  ⏭️  CSS tests skipped for Nuxt workspace (see issue #138)');
+    return [];
+  }
+
+  const errors = [];
+
+  try {
+    const cssConfig = getESLintConfig(exampleName, 'test.css');
+
+    if (cssConfig.rules['css/no-invalid-at-rules'] === undefined) {
+      errors.push('CSS linting is not configured for .css files');
+    } else {
+      console.log('  ✅ CSS linting is configured for .css files');
+    }
+  } catch (error) {
+    errors.push(`Failed to get CSS config: ${error.message}`);
+  }
+
+  return errors;
+}
+
 function testExample(exampleName) {
   console.log(`\nTesting ${exampleName}...`);
 
@@ -203,6 +230,10 @@ function testExample(exampleName) {
   // Test JSON-specific configuration
   const jsonErrors = testJsonRules(exampleName);
   errors.push(...jsonErrors.map(error => `  ❌ ${error}`));
+
+  // Test CSS-specific configuration
+  const cssErrors = testCssRules(exampleName);
+  errors.push(...cssErrors.map(error => `  ❌ ${error}`));
 
   return errors;
 }

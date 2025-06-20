@@ -10,7 +10,7 @@ import {
 import {
   files,
   rules,
-  cssRecommended,
+  // cssRecommended, // TODO: CSS support disabled - see sharedNuxtRules comment
   jsoncRecommended,
   markdownlintRecommended,
   tsdocRecommended,
@@ -21,7 +21,13 @@ import {
 const { plugins: _unicornPlugins, ...unicornConfig } = unicornRecommended;
 
 const sharedNuxtRules: Linter.Config[] = [
-  cssRecommended,
+  // TODO: CSS support is temporarily disabled for Nuxt configurations
+  // @nuxt/eslint-config (used by @nuxt/eslint) applies JavaScript/TypeScript
+  // rules globally without file restrictions. Their regexp and @stylistic
+  // plugin rules attempt to parse CSS files as JavaScript, causing TypeScript
+  // AST errors. This needs to be fixed upstream in @nuxt/eslint-config/flat.
+  // See: https://github.com/poupe-ui/eslint-config/issues/138
+  // cssRecommended,
   tsdocRecommended,
   markdownlintRecommended,
   {
