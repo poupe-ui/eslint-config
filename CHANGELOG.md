@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.3] - 2025-06-20
+
+### Added
+
+- **CSS support**: Added `@eslint/css` plugin for linting CSS files with
+    Tailwind CSS syntax support
+- **File type documentation**: Added supported file types section to AGENT.md
+- **Renovate labels**: Configure Renovate to automatically add "dependencies"
+    label to all dependency update PRs
+
+### Fixed
+
+- **File pattern restrictions**: Added file pattern restrictions to JavaScript
+    and TypeScript rules to prevent them from being applied to CSS files
+- **Example workspaces**: Fixed missing newlines and JSON key ordering in
+    playground example files
+- **Dependencies**: Updated multiple dependencies to their latest versions:
+  - `@eslint/js` and `eslint` to ^9.29.0
+  - `typescript-eslint` monorepo to ^8.34.1
+  - `eslint-plugin-vue` to ^10.2.0
+  - `@stylistic/eslint-plugin` to ^4.4.1
+  - `@vue/eslint-config-typescript` to ^14.5.1
+
+### Chores
+
+- **Development dependencies**: Updated build and test tools:
+  - `pkg-pr-new` to ^0.0.51
+  - `publint` to ^0.3.12
+  - `npm-run-all2` to ^8.0.4
+
 ## [0.7.2] - 2025-06-20
 
 ### Added
