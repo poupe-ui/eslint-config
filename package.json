@@ -1,12 +1,14 @@
 {
   "name": "@poupe/eslint-config",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "type": "module",
   "description": "",
   "author": "Alejandro Mery <amery@apptly.co>",
   "license": "MIT",
   "homepage": "https://github.com/poupe-ui/eslint-config",
   "repository": "github:poupe-ui/eslint-config",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
@@ -17,13 +19,11 @@
       "require": "./dist/nuxt.cjs"
     }
   },
-  "main": "./dist/index.cjs",
-  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "prepack": "run-s lint type-check test build publint",
+    "prepack": "run-s lint type-check test:all build publint",
     "dev:prepare": "unbuild --stub",
     "postinstall": "[ -s dist/index.mjs ] || unbuild --stub",
     "lint": "unbuild --stub && env DEBUG=eslint:eslint eslint --fix .",
@@ -33,29 +33,37 @@
     "clean": "rm -rf dist node_modules && pnpm -r --filter \"./examples/*\" clean",
     "type-check": "tsc --noEmit",
     "test": "pnpm -r dev:prepare && node test/config.test.mjs",
-    "precommit": "run-s lint:all type-check test build",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest watch",
+    "test:all": "run-s test:unit test",
+    "precommit": "run-s lint:all type-check test:all build",
     "publint": "publint"
   },
   "dependencies": {
     "@eslint/js": "^9.27.0",
+    "@humanwhocodes/momoa": "^3.3.8",
     "@stylistic/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^8.32.1",
     "@vue/eslint-config-typescript": "^14.5.0",
     "eslint": "^9.27.0",
+    "eslint-plugin-jsonc": "^2.20.1",
     "eslint-plugin-markdownlint": "^0.9.0",
     "eslint-plugin-tsdoc": "^0.4.0",
     "eslint-plugin-unicorn": "^59.0.1",
     "eslint-plugin-vue": "^10.1.0",
+    "jsonc-eslint-parser": "^2.4.0",
     "typescript-eslint": "^8.32.1"
   },
   "devDependencies": {
+    "@vitest/ui": "^3.2.4",
     "eslint-flat-config-utils": "^2.1.0",
     "globals": "^16.2.0",
     "npm-run-all2": "^8.0.0",
     "pkg-pr-new": "^0.0.50",
     "publint": "^0.3.0",
     "typescript": "~5.8.3",
-    "unbuild": "3.5.0"
+    "unbuild": "3.5.0",
+    "vitest": "^3.2.4"
   },
   "engines": {
     "node": ">= 18.20.8",

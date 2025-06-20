@@ -1,0 +1,14 @@
+{
+  "name": "test-json-nuxt",
+  "version": "1.0.0",
+  "description": "Test JSON file for Nuxt linting",
+  "keywords": [
+    "test",
+    "json",
+    "nuxt"
+  ],
+  "config": {
+    "port": 3000,
+    "host": "localhost"
+  }
+}

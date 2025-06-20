@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.2] - 2025-06-20
+
+### Added
+
+- **JSON support**: Added `eslint-plugin-jsonc` for linting JSON and JSONC
+    files with specific formatting rules
+- **Package.json sorting**: Enforced standard key ordering and alphabetical
+    dependency sorting for package.json files
+- **JSON test files**: Added example JSON files to all test workspaces
+
+### Improved
+
+- **Documentation**: Updated AGENT.md to include JSON linting configuration
+    details
+
 ## [0.7.1] - 2025-06-20
 
 ### Fixed

@@ -56,6 +56,7 @@ format and is written in TypeScript.
 ├── src/              # Source code
 │   ├── configs/      # Individual ESLint rule configurations
 │   │   ├── eslint.ts     # Core ESLint JavaScript rules
+│   │   ├── json.ts       # JSON and package.json linting rules
 │   │   ├── markdown.ts   # Markdown linting rules (markdownlint)
 │   │   ├── stylistic.ts  # Code style and formatting rules (@stylistic)
 │   │   ├── tsdoc.ts      # TypeScript documentation rules
@@ -86,6 +87,7 @@ format and is written in TypeScript.
 - **eslint-plugin-unicorn**: Modern JavaScript best practices
 - **eslint-plugin-tsdoc**: TypeScript documentation standards
 - **eslint-plugin-markdownlint**: Markdown file linting (MD001-MD050 rules)
+- **eslint-plugin-jsonc**: JSON and JSONC file linting with package.json sorting
 
 ## Code Style Guidelines
 
@@ -117,6 +119,14 @@ Custom markdownlint rules enforced:
 - **MD007**: 4-space indentation for nested lists
 - **MD013**: 80-character line length limit
 - **MD041**: Disabled (first line heading requirement)
+
+### JSON Linting Rules
+
+JSON files are linted with specific formatting rules:
+
+- **General JSON files**: 2-space indentation, no trailing commas, no comments
+- **package.json files**: Additionally enforces standard key ordering and
+  alphabetical dependency sorting
 
 ## Common Tasks
 

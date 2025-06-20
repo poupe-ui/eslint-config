@@ -12,6 +12,7 @@ export {
   type Rules,
 
   eslintRecommended,
+  jsoncRecommended,
   markdownlintRecommended,
   tseslintRecommended,
   tsdocRecommended,
