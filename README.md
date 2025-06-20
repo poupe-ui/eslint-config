@@ -12,6 +12,7 @@ Sharable ESLint config preset for usage across Poupe UI projects.
 * [tsdoc rules][tsdoc] for TypeScript documentation
 * [markdownlint rules][markdownlint] for Markdown files
 * [jsonc rules][jsonc] for JSON and package.json files
+* [css rules][css] for CSS files with Tailwind CSS support
 * Poupe UI recommended rules
 
 ## Getting started
@@ -106,4 +107,5 @@ MIT
 [tsdoc]: https://github.com/microsoft/tsdoc/tree/main/eslint-plugin
 [markdownlint]: https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
 [jsonc]: https://github.com/ota-meshi/eslint-plugin-jsonc
+[css]: https://github.com/eslint/css
 [flat-config]: https://eslint.org/docs/latest/use/configure/configuration-files

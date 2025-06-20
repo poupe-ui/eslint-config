@@ -11,6 +11,7 @@ export {
   type Config,
   type Rules,
 
+  cssRecommended,
   eslintRecommended,
   jsoncRecommended,
   markdownlintRecommended,

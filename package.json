@@ -1,6 +1,6 @@
 {
   "name": "@poupe/eslint-config",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "type": "module",
   "description": "",
   "author": "Alejandro Mery <amery@apptly.co>",
@@ -40,6 +40,7 @@
     "publint": "publint"
   },
   "dependencies": {
+    "@eslint/css": "^0.8.1",
     "@eslint/js": "^9.29.0",
     "@humanwhocodes/momoa": "^3.3.8",
     "@stylistic/eslint-plugin": "^4.4.1",
