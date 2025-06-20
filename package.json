@@ -58,7 +58,7 @@
     "@vitest/ui": "^3.2.4",
     "eslint-flat-config-utils": "^2.1.0",
     "globals": "^16.2.0",
-    "npm-run-all2": "^8.0.0",
+    "npm-run-all2": "^8.0.4",
     "pkg-pr-new": "^0.0.50",
     "publint": "^0.3.12",
     "typescript": "~5.8.3",

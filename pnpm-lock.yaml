@@ -58,7 +58,7 @@ importers:
         specifier: ^16.2.0
         version: 16.2.0
       npm-run-all2:
-        specifier: ^8.0.0
+        specifier: ^8.0.4
         version: 8.0.4
       pkg-pr-new:
         specifier: ^0.0.50
