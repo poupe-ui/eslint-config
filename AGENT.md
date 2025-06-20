@@ -114,7 +114,7 @@ Follow these conventions (enforced by .editorconfig and ESLint):
 - **Trailing Whitespace**: Always trim (except in Markdown files)
 - **Default Indentation**: 8-space tabs for most files
 - **Special Indentation**:
-    - 2 spaces for `.json`, `.yaml`, `.yml`, `.js`, `.cjs`, `.mjs`, `.ts`,
+  - 2 spaces for `.json`, `.yaml`, `.yml`, `.js`, `.cjs`, `.mjs`, `.ts`,
     `.vue`, `.css`, `.md`
 
 ### ESLint Enforced Rules
@@ -129,7 +129,6 @@ Follow these conventions (enforced by .editorconfig and ESLint):
 
 Custom markdownlint rules enforced:
 
-- **MD007**: 4-space indentation for nested lists
 - **MD013**: 80-character line length limit
 - **MD041**: Disabled (first line heading requirement)
 
