@@ -1,0 +1,9 @@
+{
+  "name": "test-json-module",
+  "version": "1.0.0",
+  "description": "Test JSON file for module linting",
+  "exports": {
+    ".": "./dist/index.js",
+    "./types": "./dist/types.d.ts"
+  }
+}

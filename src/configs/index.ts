@@ -4,6 +4,7 @@ export type {
 } from '../core/types';
 
 export * from './eslint';
+export * from './json';
 export * from './markdown';
 export * from './stylistic';
 export * from './tseslint';

@@ -150,6 +150,38 @@ function testMarkdownRules(exampleName) {
   }
 }
 
+// Test JSON-specific rules
+function testJsonRules(exampleName) {
+  console.log('\n  Testing JSON configuration...');
+  const errors = [];
+
+  // Test general JSON file configuration
+  const jsonConfig = getESLintConfig(exampleName, 'test.json');
+
+  if (jsonConfig.rules['jsonc/indent']) {
+    console.log('  ✅ JSON linting is configured for .json files');
+  } else {
+    errors.push('JSON linting is not configured for .json files');
+  }
+
+  // Test package.json specific configuration
+  const packageJsonConfig = getESLintConfig(exampleName, 'package.json');
+
+  if (packageJsonConfig.rules['jsonc/indent']) {
+    console.log('  ✅ Package.json has JSON linting rules applied');
+  } else {
+    errors.push('Package.json is not being linted');
+  }
+
+  if (packageJsonConfig.rules['jsonc/sort-keys']) {
+    console.log('  ✅ Package.json sorting is configured');
+  } else {
+    errors.push('Package.json sorting is not configured');
+  }
+
+  return errors;
+}
+
 function testExample(exampleName) {
   console.log(`\nTesting ${exampleName}...`);
 
@@ -167,6 +199,10 @@ function testExample(exampleName) {
   // Test markdown-specific configuration
   const mdErrors = testMarkdownRules(exampleName);
   errors.push(...mdErrors.map(error => `  ❌ ${error}`));
+
+  // Test JSON-specific configuration
+  const jsonErrors = testJsonRules(exampleName);
+  errors.push(...jsonErrors.map(error => `  ❌ ${error}`));
 
   return errors;
 }

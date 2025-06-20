@@ -10,6 +10,7 @@ import {
 import {
   files,
   rules,
+  jsoncRecommended,
   markdownlintRecommended,
   tsdocRecommended,
   unicornRecommended,
@@ -29,6 +30,7 @@ const sharedNuxtRules: Linter.Config[] = [
     name: 'poupe/rules',
     rules,
   },
+  ...jsoncRecommended, // Move JSON config after others to ensure it takes precedence
 ];
 
 /** rules for nuxt projects */

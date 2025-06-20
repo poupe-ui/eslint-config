@@ -3,6 +3,7 @@ import {
   poupeConfigs,
 
   eslintRecommended,
+  jsoncRecommended,
   markdownlintRecommended,
   stylisticRecommended,
   tsdocRecommended,
@@ -28,5 +29,6 @@ export const defineConfig = (...userConfigs: Config[]): Config[] => withConfigs(
   markdownlintRecommended,
   ...vueRecommended,
   ...poupeConfigs,
+  ...jsoncRecommended, // Move JSON config after others to ensure it takes precedence
   ...userConfigs,
 );

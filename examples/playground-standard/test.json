@@ -1,0 +1,16 @@
+{
+  "name": "test-json",
+  "version": "1.0.0",
+  "description": "Test JSON file for linting",
+  "keywords": [
+    "test",
+    "json",
+    "linting"
+  ],
+  "author": "Test Author",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/test/repo"
+  }
+}
