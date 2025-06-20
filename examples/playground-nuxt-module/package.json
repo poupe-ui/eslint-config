@@ -1,0 +1,38 @@
+{
+  "name": "playground-nuxt-module",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepack": "nuxt-module-build build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "lint": "eslint .",
+    "clean": "rm -rf node_modules dist .nuxt playground/.nuxt playground/.output"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.17.5"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@nuxt/eslint": "^1.4.1",
+    "@nuxt/eslint-config": "^1.4.1",
+    "@nuxt/module-builder": "latest",
+    "@nuxt/test-utils": "latest",
+    "@poupe/eslint-config": "workspace:*",
+    "nuxt": "latest"
+  }
+}

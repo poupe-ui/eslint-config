@@ -28,7 +28,7 @@
     "postinstall": "[ -s dist/index.mjs ] || unbuild --stub",
     "lint": "unbuild --stub && env DEBUG=eslint:eslint eslint --fix .",
     "build": "unbuild",
-    "clean": "rm -rf dist node_modules",
+    "clean": "rm -rf dist node_modules && pnpm -r --filter \"./examples/*\" clean",
     "type-check": "tsc --noEmit",
     "test": "echo 'No tests configured'",
     "precommit": "run-s lint type-check test build",
