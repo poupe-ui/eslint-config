@@ -1,5 +1,5 @@
 import type {
-  Config,
+  Linter,
   Rules,
 } from '../core/types';
 
@@ -15,7 +15,7 @@ export const poupeMarkdownRules: Rules = {
   'markdownlint/md041': 'off', // First line in file should be a top level heading - disabled for flexibility
 };
 
-export const markdownlintRecommended: Config = {
+export const markdownlintRecommended: Linter.Config = {
   name: 'markdownlint/recommended',
   files: ['**/*.md'],
   plugins: {
