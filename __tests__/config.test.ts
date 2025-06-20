@@ -1,0 +1,24 @@
+import { describe, it, expect } from 'vitest';
+import { defineConfig } from '../src/config';
+
+describe('ESLint Configuration', () => {
+  it('should export defineConfig function', () => {
+    expect(defineConfig).toBeDefined();
+    expect(typeof defineConfig).toBe('function');
+  });
+
+  it('should return an array of configurations', () => {
+    const config = defineConfig();
+    expect(Array.isArray(config)).toBe(true);
+    expect(config.length).toBeGreaterThan(0);
+  });
+
+  it('should include base configurations', () => {
+    const config = defineConfig();
+    const configNames = config.map(c => c.name).filter(Boolean);
+
+    // Check for some expected configurations
+    expect(configNames).toContain('poupe/files');
+    expect(configNames).toContain('poupe/rules');
+  });
+});
