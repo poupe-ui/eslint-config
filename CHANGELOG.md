@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.5] - 2025-06-20
+
+### Added
+
+- **poupeCssRules export**: New rules configuration specifically for CSS files
+  with Tailwind CSS v4 compatibility
+- **Smart CSS rule filtering**: Implemented intelligent filtering system that
+  scans all plugin rules (not just configured ones) to properly categorize
+  which rules apply to CSS files
+- **VSCode JSON comments**: Allow comments in VSCode configuration files
+  (`**/.vscode/*.json`) while maintaining strict no-comment rules for regular
+  JSON files
+
+### Fixed
+
+- **CSS rule application**: Fixed issue where `unicorn/filename-case` was
+  incorrectly disabled for CSS files
+- **Complete rule coverage**: Now properly disables ~280 JavaScript-specific
+  rules for CSS files by scanning plugin rules directly
+- **Stylistic rules for CSS**: Correctly keeps formatting rules like `eol-last`,
+  `no-trailing-spaces`, and `spaced-comment` that work with CSS files
+- **Markdown indentation**: Set explicit 2-space indentation for MD007 rule
+  (unordered list indentation) to ensure consistent formatting
+
+### Changed
+
+- **CSS configuration architecture**: Replaced hardcoded plugin lists with a
+  flexible configuration system supporting per-plugin rule sets and patterns
+
 ## [0.7.4] - 2025-06-20
 
 ### Added
