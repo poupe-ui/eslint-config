@@ -1,12 +1,13 @@
 import type {
   Rules,
+  Linter,
 } from '../core/types';
 
 import unicornPlugin from 'eslint-plugin-unicorn';
 
 const { configs: unicornConfigs } = unicornPlugin;
 
-export const unicornRecommended = unicornConfigs.recommended;
+export const unicornRecommended: Linter.Config = unicornConfigs.recommended;
 
 // unicorn/prevent-abbreviations
 const abbreviations = [
