@@ -40,6 +40,17 @@ const replacements = Object.fromEntries(
 
 // Poupe Rules
 export const poupeUnicornRules: Rules = {
+  'unicorn/filename-case': [
+    'error',
+    {
+      case: 'kebabCase',
+      ignore: [
+        // Allow all-caps .md files with - and _ delimiters
+        // (README.md, AGENT.md, PLAN.md, CODE_OF_CONDUCT.md, etc.)
+        String.raw`^[A-Z][A-Z\-_]*\.md$`,
+      ],
+    },
+  ],
   'unicorn/no-array-for-each': 'error',
   'unicorn/no-named-default': 'off',
   'unicorn/no-useless-undefined': 'off',
