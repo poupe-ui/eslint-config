@@ -1,0 +1,45 @@
+/* Tailwind CSS v4 for Nuxt Module Playground */
+@import "tailwindcss";
+
+/* Module development theme */
+@theme {
+  --color-module-primary: #8b5cf6;
+  --color-module-accent: #ec4899;
+  --shadow-module: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --radius-lg: 0.5rem;
+}
+
+/* Module demo styles */
+.module-demo-wrapper {
+  @apply min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 p-8 dark:from-gray-900 dark:to-gray-800;
+}
+
+.module-header {
+  @apply mb-12 text-center;
+}
+
+.module-title {
+  @apply mb-4 bg-gradient-to-r from-[--color-module-primary] to-[--color-module-accent] bg-clip-text text-6xl font-extrabold text-transparent;
+}
+
+/* Module component examples */
+.example-section {
+  @apply mx-auto max-w-2xl space-y-8;
+}
+
+.example-card {
+  @apply rounded-[--radius-lg] bg-white p-8 shadow-[--shadow-module] dark:bg-gray-800;
+}
+
+.example-code {
+  @apply rounded-md bg-gray-100 p-4 font-mono text-sm dark:bg-gray-900;
+}
+
+/* Interactive elements */
+.module-button {
+  @apply rounded-full bg-gradient-to-r from-[--color-module-primary] to-[--color-module-accent] px-6 py-3 font-semibold text-white transition-transform hover:scale-105;
+}
+
+.module-input {
+  @apply w-full rounded-[--radius-lg] border border-gray-300 px-4 py-2 focus:border-[--color-module-primary] focus:outline-none focus:ring-2 focus:ring-[--color-module-primary]/20 dark:border-gray-600 dark:bg-gray-800;
+}

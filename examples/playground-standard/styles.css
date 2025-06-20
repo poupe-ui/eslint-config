@@ -1,0 +1,35 @@
+/* Tailwind CSS v4 syntax example */
+@import "tailwindcss";
+
+/* Custom utilities using Tailwind CSS v4 syntax */
+@theme {
+  --color-primary: #3b82f6;
+  --color-secondary: #10b981;
+  --spacing-card: 1.5rem;
+}
+
+/* Component styles */
+.card {
+  @apply rounded-lg bg-white p-[--spacing-card] shadow-md;
+}
+
+.button {
+  @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors;
+}
+
+.button-primary {
+  @apply button bg-[--color-primary] text-white hover:bg-blue-600;
+}
+
+.button-secondary {
+  @apply button bg-[--color-secondary] text-white hover:bg-green-600;
+}
+
+/* Layout utilities */
+.container {
+  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.grid-responsive {
+  @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3;
+}

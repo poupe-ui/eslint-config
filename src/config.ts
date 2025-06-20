@@ -22,7 +22,6 @@ export const defineConfig = (...userConfigs: Config[]): Config[] => withConfigs(
       '**/node_modules',
     ],
   },
-  cssRecommended,
   eslintRecommended,
   tseslintRecommended,
   tsdocRecommended,
@@ -31,6 +30,7 @@ export const defineConfig = (...userConfigs: Config[]): Config[] => withConfigs(
   markdownlintRecommended,
   ...vueRecommended,
   ...poupeConfigs,
+  ...cssRecommended, // CSS configs need to come after JS configs to override rules
   ...jsoncRecommended, // Move JSON config after others to ensure it takes precedence
   ...userConfigs,
 );
