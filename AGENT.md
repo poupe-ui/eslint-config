@@ -55,6 +55,7 @@ format and is written in TypeScript.
 .
 ├── src/              # Source code
 │   ├── configs/      # Individual ESLint rule configurations
+│   │   ├── css.ts        # CSS linting rules with Tailwind CSS support
 │   │   ├── eslint.ts     # Core ESLint JavaScript rules
 │   │   ├── json.ts       # JSON and package.json linting rules
 │   │   ├── markdown.ts   # Markdown linting rules (markdownlint)
@@ -81,6 +82,7 @@ format and is written in TypeScript.
 ### ESLint Plugins Included
 
 - **@eslint/js**: Core JavaScript linting rules
+- **@eslint/css**: CSS linting with Tailwind CSS syntax support
 - **@stylistic/eslint-plugin**: Code formatting and style consistency
 - **typescript-eslint**: TypeScript-specific linting and type checking
 - **eslint-plugin-vue**: Vue.js template and script linting
@@ -88,6 +90,17 @@ format and is written in TypeScript.
 - **eslint-plugin-tsdoc**: TypeScript documentation standards
 - **eslint-plugin-markdownlint**: Markdown file linting (MD001-MD050 rules)
 - **eslint-plugin-jsonc**: JSON and JSONC file linting with package.json sorting
+
+### Supported File Types
+
+The configuration automatically lints the following file types:
+
+- **JavaScript**: `.js`, `.mjs`, `.cjs`
+- **TypeScript**: `.ts`, `.tsx`
+- **Vue.js**: `.vue` (SFC)
+- **JSON/JSONC**: `.json`, `.jsonc`, `package.json`
+- **Markdown**: `.md`
+- **CSS**: `.css` (with Tailwind CSS syntax support)
 
 ## Code Style Guidelines
 
