@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.4] - 2025-06-20
+
+### Added
+
+- **Tailwind CSS v4 support**: Full syntax support for all Tailwind CSS v4
+  directives including @theme, @source, @utility, @variant, @custom-variant,
+  @reference, and @layer
+- **CSS example files**: Added Tailwind CSS v4 example files to all playground
+  projects demonstrating modifiers and directives
+
+### Fixed
+
+- **File restrictions**: Added proper file restrictions to eslint, stylistic,
+  tsdoc, and unicorn configurations to prevent JS/TS rules from being applied
+  to non-JS files
+- **Vue rules**: Fixed Vue rules to only apply to .vue files
+- **Nuxt CSS support**: Temporarily disabled CSS support for Nuxt configurations
+  due to upstream conflicts with @nuxt/eslint-config (see issue #138)
+
 ## [0.7.3] - 2025-06-20
 
 ### Added
