@@ -27,6 +27,7 @@ To test ESLint configuration changes:
 2. Run `pnpm build` to compile the package
 3. Run `pnpm lint` to test the configuration on this codebase itself
    (self-linting)
+4. Test in example workspaces: `pnpm -r --filter "./examples/*" lint`
 
 ## Architecture
 
@@ -48,25 +49,32 @@ format and is written in TypeScript.
 5. **Self-Dogfooding**: Package uses its own ESLint configuration for
    validation
 
-### Configuration Structure
+### Project Structure
 
 ```text
-src/
-├── configs/          # Individual ESLint rule configurations
-│   ├── eslint.ts     # Core ESLint JavaScript rules
-│   ├── markdown.ts   # Markdown linting rules (markdownlint)
-│   ├── stylistic.ts  # Code style and formatting rules (@stylistic)
-│   ├── tsdoc.ts      # TypeScript documentation rules
-│   ├── tseslint.ts   # TypeScript-specific ESLint rules
-│   ├── unicorn.ts    # Modern JavaScript best practices
-│   └── vue.ts        # Vue.js framework rules
-├── core/             # Core configuration utilities
-│   ├── types.ts      # TypeScript type definitions
-│   └── utils.ts      # Configuration helper functions
-├── config.ts         # Main configuration builder (defineConfig)
-├── configs.ts        # Configuration presets and exports
-├── index.ts          # Main entry point (re-exports)
-└── nuxt.ts           # Nuxt.js-specific configuration
+.
+├── src/              # Source code
+│   ├── configs/      # Individual ESLint rule configurations
+│   │   ├── eslint.ts     # Core ESLint JavaScript rules
+│   │   ├── markdown.ts   # Markdown linting rules (markdownlint)
+│   │   ├── stylistic.ts  # Code style and formatting rules (@stylistic)
+│   │   ├── tsdoc.ts      # TypeScript documentation rules
+│   │   ├── tseslint.ts   # TypeScript-specific ESLint rules
+│   │   ├── unicorn.ts    # Modern JavaScript best practices
+│   │   └── vue.ts        # Vue.js framework rules
+│   ├── core/         # Core configuration utilities
+│   │   ├── types.ts      # TypeScript type definitions
+│   │   └── utils.ts      # Configuration helper functions
+│   ├── config.ts     # Main configuration builder (defineConfig)
+│   ├── configs.ts    # Configuration presets and exports
+│   ├── index.ts      # Main entry point (re-exports)
+│   └── nuxt.ts       # Nuxt.js-specific configuration
+├── examples/         # Example implementations
+│   ├── playground-standard/     # Basic JS/TS example
+│   ├── playground-nuxt/         # Nuxt.js application example
+│   └── playground-nuxt-module/  # Nuxt module development example
+├── test/             # Test files
+└── pnpm-workspace.yaml         # Workspace configuration
 ```
 
 ### ESLint Plugins Included
@@ -118,6 +126,7 @@ Custom markdownlint rules enforced:
    for JavaScript rules, `markdown.ts` for Markdown rules)
 2. Modify the rules object within the configuration
 3. Run `pnpm build` then `pnpm lint` to test your changes
+4. Test in all example workspaces: `pnpm -r --filter "./examples/*" lint`
 
 ### Creating New Configuration Preset
 
@@ -125,7 +134,32 @@ Custom markdownlint rules enforced:
 2. Export from appropriate entry point files
 3. Build and test with `pnpm build` and `pnpm lint`
 
-### Testing in Consuming Projects
+### Testing in Example Workspaces
+
+The project includes example workspaces in the `examples/` directory for
+testing different usage scenarios:
+
+1. **playground-standard**: Basic JavaScript/TypeScript project
+2. **playground-nuxt**: Nuxt.js application using `@nuxt/eslint`
+3. **playground-nuxt-module**: Nuxt module development setup
+
+To test changes:
+
+```bash
+# Build the package
+pnpm build
+
+# Lint all examples
+pnpm -r --filter "./examples/*" lint
+
+# Fix issues in all examples
+pnpm -r --filter "./examples/*" lint:fix
+
+# Run specific example
+pnpm --filter "@poupe/eslint-config-playground-nuxt" lint
+```
+
+### Testing in External Projects
 
 1. Run `pnpm dev:prepare` for a stub build (faster than full build)
 2. Link or install in consuming project

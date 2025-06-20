@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.1] - 2025-06-20
+
+### Fixed
+
+- **Nuxt configurations**: Added missing markdown support to `forNuxt` and
+    `forNuxtModules` configurations to ensure consistent markdown linting
+    across all project types
+
+### Added
+
+- **Example workspaces**: Added comprehensive test examples for standard,
+    Nuxt, and Nuxt module projects to verify ESLint configuration behavior
+- **Configuration tests**: Added automated tests to ensure rules work
+    consistently across all project types
+
+### Improved
+
+- **Test infrastructure**: Enhanced test script to properly prepare all
+    workspaces before running tests
+- **Clean script**: Extended to clean example workspace build artifacts
+
 ## [0.7.0] - 2025-06-19
 
 ### Added

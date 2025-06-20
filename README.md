@@ -60,6 +60,34 @@ export default defineConfig({
 });
 ```
 
+## Examples
+
+The `examples/` directory contains working examples demonstrating how to use
+this ESLint configuration in different scenarios:
+
+* **[playground-standard](./examples/playground-standard)** - Basic
+  JavaScript/TypeScript projects
+* **[playground-nuxt](./examples/playground-nuxt)** - Nuxt.js applications
+* **[playground-nuxt-module](./examples/playground-nuxt-module)** - Nuxt module development
+
+### Running Examples
+
+This project uses pnpm workspaces. You can run commands on all examples:
+
+```sh
+# Install dependencies for all workspaces
+pnpm install
+
+# Lint all examples
+pnpm -r --filter "./examples/*" lint
+
+# Fix lint issues in all examples
+pnpm -r --filter "./examples/*" lint:fix
+
+# Run a specific example
+pnpm --filter "@poupe/eslint-config-playground-standard" lint
+```
+
 ## Development
 
 For AI assistants working with this codebase, refer to [AGENT.md](./AGENT.md)
