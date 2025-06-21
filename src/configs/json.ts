@@ -98,4 +98,12 @@ export const jsoncRecommended: Linter.Config[] = [
       ...poupePackageJsonRules,
     },
   },
+  {
+    name: 'jsonc/allow-comments',
+    files: ['**/.vscode/*.json'],
+    rules: {
+      // Allow comments in VSCode configuration files
+      'jsonc/no-comments': 'off',
+    },
+  },
 ];
