@@ -111,6 +111,11 @@ const KNOWN_PLUGINS = new Map<string, PluginRuleConfig>([
       'no-abusive-eslint-disable', // ESLint directives work differently in CSS
       'prefer-at', // Array.at() method - JS only
       'prefer-event-target', // EventTarget API - JS only
+      'better-regex', // RegExp optimization - JS only
+      'no-keyword-prefix', // JS keyword prefixing - JS only
+      'no-unused-properties', // Object property detection - JS only
+      'string-content', // String content patterns - JS only
+      'no-length-as-slice-end', // Array slice method - JS only
     ],
     undefined, // No keep patterns
     [
@@ -215,6 +220,16 @@ const KNOWN_PLUGINS = new Map<string, PluginRuleConfig>([
     [
       'max-len', // CSS can have long lines (selectors, Tailwind classes)
       'no-multi-spaces', // CSS often aligns property values
+      'func-call-spacing', // JS function call spacing - not for CSS functions
+      'implicit-arrow-linebreak', // Arrow function formatting - JS only
+      'line-comment-position', // JS line comments - CSS uses block comments
+      'linebreak-style', // Line endings - handled by .editorconfig
+      'newline-per-chained-call', // Method chaining - JS only
+      'no-confusing-arrow', // Arrow function clarity - JS only
+      'nonblock-statement-body-position', // Control flow formatting - JS only
+      'one-var-declaration-per-line', // JS variable declarations - not CSS vars
+      'padding-line-between-statements', // JS statement padding - not CSS rules
+      'switch-colon-spacing', // Switch statements - JS only
     ],
     undefined, // No keep patterns
     [
