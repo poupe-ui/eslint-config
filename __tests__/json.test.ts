@@ -6,11 +6,11 @@ describe('JSON Configuration', () => {
   describe('jsoncRecommended', () => {
     it('should export an array of configurations', () => {
       expect(Array.isArray(jsoncRecommended)).toBe(true);
-      expect(jsoncRecommended).toHaveLength(2);
+      expect(jsoncRecommended).toHaveLength(3);
     });
 
-    it('should have separate configs for general JSON and package.json', () => {
-      const [generalConfig, packageJsonConfig] = jsoncRecommended;
+    it('should have separate configs for general JSON, package.json, and VSCode', () => {
+      const [generalConfig, packageJsonConfig, vscodeConfig] = jsoncRecommended;
 
       expect(generalConfig.name).toBe('jsonc/json');
       expect(generalConfig.files).toContain('**/*.json');
@@ -18,12 +18,21 @@ describe('JSON Configuration', () => {
 
       expect(packageJsonConfig.name).toBe('jsonc/package-json');
       expect(packageJsonConfig.files).toContain('**/package.json');
+
+      expect(vscodeConfig.name).toBe('jsonc/allow-comments');
+      expect(vscodeConfig.files).toContain('**/.vscode/*.json');
     });
 
     it('should include jsonc plugin and parser', () => {
       for (const config of jsoncRecommended) {
-        expect(config.plugins).toHaveProperty('jsonc');
-        expect(config.languageOptions?.parser).toBeDefined();
+        // VSCode config only has rule overrides, no plugin/parser
+        if (config.name === 'jsonc/allow-comments') {
+          expect(config.plugins).toBeUndefined();
+          expect(config.languageOptions).toBeUndefined();
+        } else {
+          expect(config.plugins).toHaveProperty('jsonc');
+          expect(config.languageOptions?.parser).toBeDefined();
+        }
       }
     });
   });

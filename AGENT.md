@@ -102,6 +102,42 @@ The configuration automatically lints the following file types:
 - **Markdown**: `.md`
 - **CSS**: `.css` (with Tailwind CSS syntax support)
 
+### CSS Configuration System
+
+The CSS configuration (`src/configs/css.ts`) uses a sophisticated filtering
+system to apply appropriate rules to CSS files:
+
+#### Rule Filtering Architecture
+
+1. **ALWAYS_KEEP_PLUGINS**: Plugins where all rules work with CSS files
+   - `css`, `jsonc`, `markdown`
+
+2. **ALWAYS_DISABLE_PLUGINS**: Plugins where no rules work with CSS files
+   - Core ESLint rules (`''`), `@typescript-eslint`, `vue`, `tsdoc`
+
+3. **KNOWN_PLUGINS**: Plugins requiring fine-grained rule control
+   - Each plugin has a `PluginRuleConfig` with:
+     - `alwaysKeepRules`: Specific rules to keep for CSS files
+     - `alwaysDisableRules`: Specific rules to disable for CSS files
+     - `alwaysKeepPatterns`: RegExp patterns for rules to keep
+     - `alwaysDisablePatterns`: RegExp patterns for rules to disable
+
+4. **Dynamic Detection**: Unknown plugins/rules are automatically handled
+   - Unknown plugin → Warning + add to ALWAYS_DISABLE_PLUGINS
+   - Unknown rule in known plugin → Warning + add to alwaysDisableRules
+
+#### Adding CSS Support for New Plugins
+
+When adding a new ESLint plugin that might have CSS-relevant rules:
+
+1. Analyze which rules make sense for CSS files
+2. Add the plugin to the appropriate category:
+   - If all rules work with CSS → ALWAYS_KEEP_PLUGINS
+   - If no rules work with CSS → ALWAYS_DISABLE_PLUGINS
+   - If mixed → Add to KNOWN_PLUGINS with detailed configuration
+3. Run `pnpm lint` to see warnings for uncategorized rules
+4. Use the warnings to populate your rule sets
+
 ## Code Style Guidelines
 
 Follow these conventions (enforced by .editorconfig and ESLint):

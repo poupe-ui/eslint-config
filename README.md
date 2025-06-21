@@ -62,6 +62,20 @@ export default defineConfig({
 });
 ```
 
+## CSS Support
+
+This configuration includes advanced CSS linting with Tailwind CSS v4 syntax
+support. The CSS configuration uses an intelligent filtering system that:
+
+* Applies CSS-specific rules from `@eslint/css`
+* Supports Tailwind CSS v4 syntax including theme functions and modifiers
+* Automatically disables JavaScript-specific rules for CSS files
+* Keeps relevant cross-language rules (like `filename-case` from unicorn)
+
+The filtering system categorizes plugins and rules to ensure only appropriate
+rules apply to CSS files. See [AGENT.md](./AGENT.md#css-configuration-system)
+for implementation details.
+
 ## Examples
 
 The `examples/` directory contains working examples demonstrating how to use
