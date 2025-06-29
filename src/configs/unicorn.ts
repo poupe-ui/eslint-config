@@ -46,9 +46,9 @@ export const poupeUnicornRules: Rules = {
     {
       case: 'kebabCase',
       ignore: [
-        // Allow all-caps .md files with - and _ delimiters
-        // (README.md, AGENT.md, PLAN.md, CODE_OF_CONDUCT.md, etc.)
-        String.raw`^[A-Z][A-Z\-_]*\.md$`,
+        // Allow all-caps .md files with numbers, - and _ delimiters
+        // (README.md, AGENT.md, PLAN.md, CODE_OF_CONDUCT.md, MD5.md, etc.)
+        String.raw`^[A-Z][A-Z0-9\-_]*\.md$`,
       ],
     },
   ],
