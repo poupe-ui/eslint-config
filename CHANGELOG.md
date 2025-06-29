@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.6] - 2025-06-29
+
+### Changed
+
+- **unicorn/filename-case**: Updated regex pattern to allow numbers in all-caps
+  markdown filenames (e.g., MD5.md, SHA256.md, RFC2119.md)
+
 ## [0.7.5] - 2025-06-20
 
 ### Added
