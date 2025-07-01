@@ -100,10 +100,6 @@ importers:
       '@poupe/eslint-config':
         specifier: workspace:*
         version: link:../..
-    optionalDependencies:
-      '@oxc-parser/binding-wasm32-wasi':
-        specifier: 0.75.0
-        version: 0.75.0
 
   examples/playground-nuxt-module:
     dependencies:
@@ -907,11 +903,6 @@ packages:
 
   '@oxc-parser/binding-wasm32-wasi@0.72.3':
     resolution: {integrity: sha512-x0Ojn/jyRUk6MllvVB/puSvI2tczZBIYweKVYHNv1nBatjPRiqo+6/uXiKrZwSfGLkGARrKkTuHSa5RdZBMOdA==}
-    engines: {node: '>=14.0.0'}
-    cpu: [wasm32]
-
-  '@oxc-parser/binding-wasm32-wasi@0.75.0':
-    resolution: {integrity: sha512-SPXt1nYkmjuGDh7ZfnfarObQq8AnnvA+m+hmcOqXVSxLJWZQhXDF6AHaS0dzKhpIDHWjScbTp5c9eqINLbPh7g==}
     engines: {node: '>=14.0.0'}
     cpu: [wasm32]
 
@@ -5980,11 +5971,6 @@ snapshots:
     optional: true
 
   '@oxc-parser/binding-wasm32-wasi@0.72.3':
-    dependencies:
-      '@napi-rs/wasm-runtime': 0.2.11
-    optional: true
-
-  '@oxc-parser/binding-wasm32-wasi@0.75.0':
     dependencies:
       '@napi-rs/wasm-runtime': 0.2.11
     optional: true

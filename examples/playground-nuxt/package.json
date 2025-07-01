@@ -19,8 +19,5 @@
   "devDependencies": {
     "@nuxt/eslint": "^1.4.1",
     "@poupe/eslint-config": "workspace:*"
-  },
-  "optionalDependencies": {
-    "@oxc-parser/binding-wasm32-wasi": "0.75.0"
   }
 }
