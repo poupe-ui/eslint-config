@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.8] - 2025-07-01
+
+### Added
+
+- **withoutPlugin utility**: New helper function to remove plugins from configs
+  while preserving all other settings, useful for Nuxt module configurations
+
+### Changed
+
+- **CSS rule filtering**: Refactored CSS disable rules logic into a separate
+  `processCSSConfigs` helper function for better maintainability
+- **Nuxt module config**: Replaced manual plugin destructuring with the new
+  `withoutPlugin` utility for cleaner code
+
+### Fixed
+
+- **Test organization**: Migrated test files to proper `src/` subdirectories
+  to align with modern project structure
+
+### Updated
+
+- Updated typescript-eslint monorepo to ^8.35.1
+- Updated globals to ^16.3.0
+
 ## [0.7.7] - 2025-07-01
 
 ### Changed
