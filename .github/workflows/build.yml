@@ -21,7 +21,6 @@ jobs:
         with:
           run_install: |
             - recursive: true
-              args: [--no-optional]
       - name: Lint
         run: pnpm lint
       - name: build
