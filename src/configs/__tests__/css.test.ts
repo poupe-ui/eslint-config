@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { ESLint } from 'eslint';
-import { defineConfig } from '../src/index';
+import { defineConfig } from '../../index';
 
 describe('CSS Configuration', () => {
   let eslint: ESLint;
@@ -8,7 +8,8 @@ describe('CSS Configuration', () => {
   beforeEach(() => {
     eslint = new ESLint({
       overrideConfigFile: true,
-      baseConfig: defineConfig(),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      baseConfig: defineConfig() as any,
     });
   });
 

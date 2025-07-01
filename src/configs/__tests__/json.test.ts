@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { jsoncRecommended, poupeJsonRules, poupePackageJsonRules } from '../src/configs/json';
-import type { Linter } from '../src/core/types';
+import { jsoncRecommended, poupeJsonRules, poupePackageJsonRules } from '../json';
 
 describe('JSON Configuration', () => {
   describe('jsoncRecommended', () => {
@@ -59,12 +58,16 @@ describe('JSON Configuration', () => {
 
     it('should define sort-keys rule for package.json', () => {
       const sortKeysRule = poupePackageJsonRules['jsonc/sort-keys'];
+      expect(sortKeysRule).toBeDefined();
       expect(Array.isArray(sortKeysRule)).toBe(true);
-      expect(sortKeysRule[0]).toBe('error');
 
-      // Check that we have multiple pattern configurations
-      const ruleArguments = sortKeysRule.slice(1);
-      expect(ruleArguments).toHaveLength(2);
+      if (Array.isArray(sortKeysRule)) {
+        expect(sortKeysRule[0]).toBe('error');
+
+        // Check that we have multiple pattern configurations
+        const ruleArguments = sortKeysRule.slice(1);
+        expect(ruleArguments).toHaveLength(2);
+      }
     });
 
     it('should sort root level package.json fields', () => {
@@ -91,25 +94,26 @@ describe('JSON Configuration', () => {
   describe('Configuration Integration', () => {
     it('should apply correct rules to JSON files', () => {
       const [generalConfig] = jsoncRecommended;
-      const rules = generalConfig.rules as Linter.RulesRecord;
+      const rules = generalConfig.rules;
 
       // Check that recommended rules are included
-      expect(Object.keys(rules).some(key => key.startsWith('jsonc/'))).toBe(true);
+      expect(rules).toBeDefined();
+      expect(Object.keys(rules!).some(key => key.startsWith('jsonc/'))).toBe(true);
 
       // Check that our custom rules override the defaults
-      expect(rules['jsonc/indent']).toEqual(['error', 2]);
-      expect(rules['jsonc/no-comments']).toBe('error');
+      expect(rules!['jsonc/indent']).toEqual(['error', 2]);
+      expect(rules!['jsonc/no-comments']).toBe('error');
     });
 
     it('should apply correct rules to package.json files', () => {
       const [, packageJsonConfig] = jsoncRecommended;
-      const rules = packageJsonConfig.rules as Linter.RulesRecord;
+      const rules = packageJsonConfig.rules;
 
       // Check that JSON rules are applied to package.json
-      expect(rules['jsonc/indent']).toEqual(['error', 2]);
-      expect(rules['jsonc/no-comments']).toBe('error');
+      expect(rules?.['jsonc/indent']).toEqual(['error', 2]);
+      expect(rules?.['jsonc/no-comments']).toBe('error');
 
-      expect(rules['jsonc/sort-keys']).toBeDefined();
+      expect(rules?.['jsonc/sort-keys']).toBeDefined();
     });
   });
 });

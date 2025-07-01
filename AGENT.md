@@ -65,19 +65,27 @@ format and is written in TypeScript.
 │   │   ├── tsdoc.ts      # TypeScript documentation rules
 │   │   ├── tseslint.ts   # TypeScript-specific ESLint rules
 │   │   ├── unicorn.ts    # Modern JavaScript best practices
-│   │   └── vue.ts        # Vue.js framework rules
+│   │   ├── vue.ts        # Vue.js framework rules
+│   │   └── __tests__/    # Tests for config modules
+│   │       ├── css.test.ts   # CSS configuration tests
+│   │       └── json.test.ts  # JSON configuration tests
 │   ├── core/         # Core configuration utilities
 │   │   ├── config.ts     # TypeScript type definitions and withConfig export
-│   │   └── utils.ts      # Configuration helper functions
+│   │   ├── utils.ts      # Configuration helper functions
+│   │   ├── css-filter.ts # CSS rule filtering logic
+│   │   └── __tests__/    # Tests for core utilities
+│   │       └── without-plugin.test.ts  # Tests for withoutPlugin helper
 │   ├── config.ts     # Main configuration builder (defineConfig)
 │   ├── configs.ts    # Configuration presets and exports
 │   ├── index.ts      # Main entry point (re-exports)
-│   └── nuxt.ts       # Nuxt.js-specific configuration
+│   ├── nuxt.ts       # Nuxt.js-specific configuration
+│   └── __tests__/    # Tests for main modules
+│       └── config.test.ts  # Tests for defineConfig
 ├── examples/         # Example implementations
 │   ├── playground-standard/     # Basic JS/TS example
 │   ├── playground-nuxt/         # Nuxt.js application example
 │   └── playground-nuxt-module/  # Nuxt module development example
-├── test/             # Test files
+├── test/             # Integration test files
 └── pnpm-workspace.yaml         # Workspace configuration
 ```
 

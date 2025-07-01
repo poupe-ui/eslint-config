@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { defineConfig } from '../src/config';
+import { defineConfig } from '../config';
 
 describe('ESLint Configuration', () => {
   it('should export defineConfig function', () => {
