@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     # Pull requests from the same repository won't trigger this checks as they were already triggered by the push
     if: (github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository)
+    env:
+      NAPI_RS_FORCE_WASI: 1
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
