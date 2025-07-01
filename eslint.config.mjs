@@ -1,6 +1,7 @@
+import globals from 'globals';
+
 // @ts-check
 import { defineConfig } from './dist/index.mjs';
-import globals from 'globals';
 
 export default defineConfig(
   {

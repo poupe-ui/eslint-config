@@ -1,8 +1,9 @@
-import type { Config, Rules } from '../core';
-import { withConfig } from '../core';
-
 import jsoncPlugin from 'eslint-plugin-jsonc';
 import * as jsoncParser from 'jsonc-eslint-parser';
+
+import type { Config, Rules } from '../core';
+
+import { withConfig } from '../core';
 
 const jsoncRecommendedRules = jsoncPlugin.configs['recommended-with-json'].rules as Rules;
 

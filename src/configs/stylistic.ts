@@ -1,8 +1,8 @@
+import stylisticPlugin from '@stylistic/eslint-plugin';
+
 import type {
   Rules,
 } from '../core';
-
-import stylisticPlugin from '@stylistic/eslint-plugin';
 
 export const stylisticRecommended = stylisticPlugin.configs.recommended;
 
