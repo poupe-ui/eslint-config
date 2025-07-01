@@ -1,10 +1,10 @@
-import unicornPlugin from 'eslint-plugin-unicorn';
 import stylisticPlugin from '@stylistic/eslint-plugin';
+import unicornPlugin from 'eslint-plugin-unicorn';
 
 import { type Config, Linter } from '../core/config';
 import { eslintRecommended } from './eslint';
-import { unicornRecommended, poupeUnicornRules } from './unicorn';
-import { stylisticRecommended, poupeStylisticRules } from './stylistic';
+import { poupeStylisticRules, stylisticRecommended } from './stylistic';
+import { poupeUnicornRules, unicornRecommended } from './unicorn';
 
 // Helper function for safe console warnings
 function warn(message: string): void {

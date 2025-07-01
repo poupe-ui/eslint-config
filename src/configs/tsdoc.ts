@@ -1,6 +1,6 @@
-import type { Config, ESLint } from '../core';
-
 import tsdocPlugin from 'eslint-plugin-tsdoc';
+
+import type { Config, ESLint } from '../core';
 
 export const tsdocRecommended: Config = {
   name: 'poupe/tsdoc-recommended',

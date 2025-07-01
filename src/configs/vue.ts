@@ -1,11 +1,11 @@
+import vuePlugin from 'eslint-plugin-vue';
+
 import {
-  type Rules,
   type Config,
+  type Rules,
 
   withConfig,
 } from '../core';
-
-import vuePlugin from 'eslint-plugin-vue';
 
 const { configs: vueConfigs } = vuePlugin;
 

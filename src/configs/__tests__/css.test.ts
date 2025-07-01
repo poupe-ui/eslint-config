@@ -1,5 +1,6 @@
-import { describe, it, expect, beforeEach } from 'vitest';
 import { ESLint } from 'eslint';
+import { beforeEach, describe, expect, it } from 'vitest';
+
 import { defineConfig } from '../../index';
 
 describe('CSS Configuration', () => {
