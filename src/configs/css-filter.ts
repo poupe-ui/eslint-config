@@ -358,3 +358,15 @@ export function getJavaScriptRulesToDisable(): Record<string, 'off'> {
 
   return result;
 }
+
+// Process configs to add CSS-specific rule disabling
+export function processCSSConfigs(configs: Config[]): Config[] {
+  return [
+    ...configs,
+    {
+      name: 'poupe/css-disable-js-rules',
+      files: ['**/*.css'],
+      rules: getJavaScriptRulesToDisable(),
+    },
+  ];
+}

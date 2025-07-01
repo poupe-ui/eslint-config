@@ -19,10 +19,12 @@ import {
   vueRecommended,
 } from './configs';
 
+import { processCSSConfigs } from './configs/css-filter';
+
 export { withConfig } from './core';
 
 export function defineConfig(...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] {
-  return withConfig(
+  const configs = withConfig(
     {
       ignores: [
         '**/dist',
@@ -41,4 +43,6 @@ export function defineConfig(...userConfigs: InfiniteDepthConfigWithExtends[]): 
     jsoncRecommended, // Move JSON config after others to ensure it takes precedence
     userConfigs,
   );
+
+  return processCSSConfigs(configs);
 }
