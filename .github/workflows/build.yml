@@ -18,11 +18,10 @@ jobs:
         with:
           node-version: 18
       - uses: pnpm/action-setup@v4
-        env:
-          NAPI_RS_FORCE_WASI: 1
         with:
           run_install: |
             - recursive: true
+              args: [--no-optional]
       - name: Lint
         run: pnpm lint
       - name: build
