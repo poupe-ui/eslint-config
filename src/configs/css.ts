@@ -1,17 +1,22 @@
-import css from '@eslint/css';
+import css, { type CSSLanguageOptions } from '@eslint/css';
+
 import { tailwindSyntax } from '@eslint/css/syntax';
 import unicornPlugin from 'eslint-plugin-unicorn';
 import stylisticPlugin from '@stylistic/eslint-plugin';
 
-import type {
+import {
+  type Config,
+  type Rules,
   Linter,
-  Rules,
-} from '../core/types';
+  withConfig,
+} from '../core';
 
 import { tailwindV4Syntax } from './tailwind-v4-syntax';
 import { eslintRecommended } from './eslint';
 import { unicornRecommended, poupeUnicornRules } from './unicorn';
 import { stylisticRecommended, poupeStylisticRules } from './stylistic';
+
+type SyntaxConfig = NonNullable<CSSLanguageOptions['customSyntax']>;
 
 const { configs: cssConfigs } = css;
 
@@ -276,7 +281,7 @@ const KNOWN_PLUGINS = new Map<string, PluginRuleConfig>([
 
 // Analyze a config and process rules for CSS files
 function analyzeConfigForCSSRules(
-  config: Linter.Config | Record<string, unknown>,
+  config: Linter.Config | Config | Record<string, unknown>,
   rulesToDisable: Set<string>,
 ): void {
   const rules = 'rules' in config ? config.rules : config;
@@ -385,7 +390,7 @@ function getJavaScriptRulesToDisable(): Record<string, 'off'> {
 }
 
 // Merge the base tailwindSyntax with our v4 extensions
-const extendedTailwindSyntax = {
+const extendedTailwindSyntax: Partial<SyntaxConfig> = {
   ...tailwindSyntax,
   atrules: {
     ...tailwindSyntax.atrules,
@@ -393,7 +398,12 @@ const extendedTailwindSyntax = {
   },
 };
 
-export const cssRecommended: Linter.Config[] = [
+const languageOptions = {
+  tolerant: true, // Enable tolerant mode for Tailwind CSS compatibility
+  customSyntax: extendedTailwindSyntax,
+};
+
+export const cssRecommended: Config[] = withConfig(
   {
     name: 'poupe/css',
     files: ['**/*.css'],
@@ -401,13 +411,7 @@ export const cssRecommended: Linter.Config[] = [
       css,
     },
     language: 'css/css',
-    languageOptions: {
-      // Set tolerant mode to allow recoverable parsing errors
-      tolerant: true,
-      parserOptions: {
-        customSyntax: extendedTailwindSyntax,
-      },
-    },
+    languageOptions: languageOptions as Config['languageOptions'],
     rules: {
       ...cssConfigs.recommended.rules,
       ...poupeCssRules,
@@ -420,4 +424,4 @@ export const cssRecommended: Linter.Config[] = [
     files: ['**/*.css'],
     rules: getJavaScriptRulesToDisable(),
   },
-];
+);

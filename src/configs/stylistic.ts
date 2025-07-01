@@ -1,6 +1,6 @@
 import type {
   Rules,
-} from '../core/types';
+} from '../core';
 
 import stylisticPlugin from '@stylistic/eslint-plugin';
 

@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.7] - 2025-07-01
+
+### Changed
+
+- **Architecture refactor**: Migrated from `Linter.Config` to typescript-eslint's
+  `Config` type pattern with `withConfig()` helper for better type safety and
+  automatic config flattening
+- **CSS tolerant mode**: Enabled tolerant parsing mode for CSS files to support
+  Tailwind CSS v4 extended syntax without parsing errors
+
+### Updated
+
+- Updated @stylistic/eslint-plugin to v5
+- Updated @eslint/css to ^0.9.0
+- Updated typescript-eslint monorepo to ^8.35.0
+- Updated eslint monorepo to ^9.30.0
+- Updated pkg-pr-new to ^0.0.54
+
 ## [0.7.6] - 2025-06-29
 
 ### Changed

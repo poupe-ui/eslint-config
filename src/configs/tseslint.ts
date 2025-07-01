@@ -1,4 +1,4 @@
-import { Config } from '../core/types';
+import { Config } from '../core';
 
 import { configs } from 'typescript-eslint';
 

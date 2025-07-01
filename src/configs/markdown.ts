@@ -1,7 +1,7 @@
 import type {
-  Linter,
+  Config,
   Rules,
-} from '../core/types';
+} from '../core';
 
 // @ts-expect-error - no types available
 import markdownlintPlugin from 'eslint-plugin-markdownlint';
@@ -15,7 +15,7 @@ export const poupeMarkdownRules: Rules = {
   'markdownlint/md041': 'off', // First line in file should be a top level heading - disabled for flexibility
 };
 
-export const markdownlintRecommended: Linter.Config = {
+export const markdownlintRecommended: Config = {
   name: 'markdownlint/recommended',
   files: ['**/*.md'],
   plugins: {

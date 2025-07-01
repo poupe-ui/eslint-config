@@ -1,4 +1,4 @@
-import { type Rules } from './types';
+import { type Rules } from './config';
 
 /**
  * Creates a new object by removing specified keys from the input object.
