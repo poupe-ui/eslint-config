@@ -66,6 +66,11 @@
     "unbuild": "3.5.0",
     "vitest": "^3.2.4"
   },
+  "pnpm": {
+    "overrides": {
+      "oxc-parser": "0.72.3"
+    }
+  },
   "engines": {
     "node": ">= 18.20.8",
     "pnpm": ">= 10.10.0"
