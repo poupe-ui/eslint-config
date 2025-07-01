@@ -3,6 +3,7 @@ import {
   type InfiniteDepthConfigWithExtends,
 
   withConfig,
+  withoutPlugin,
   withoutRules,
 } from './core/index';
 
@@ -16,9 +17,6 @@ import {
   tsdocRecommended,
   unicornRecommended,
 } from './configs';
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { plugins: _unicornPlugins, ...unicornConfig } = unicornRecommended;
 
 const sharedNuxtRules: InfiniteDepthConfigWithExtends = [
   // TODO: CSS support is temporarily disabled for Nuxt configurations
@@ -49,6 +47,8 @@ export const forNuxt = (...userConfigs: InfiniteDepthConfigWithExtends[]): Confi
 );
 
 /** rules for nuxt modules */
+const [unicornConfig] = withoutPlugin('unicorn', unicornRecommended);
+
 const rulesForModules = withoutRules(unicornConfig.rules,
   /** disabled because they are not supported by the version of the unicorn plugin already loaded */
   'unicorn/no-unnecessary-array-flat-depth',
