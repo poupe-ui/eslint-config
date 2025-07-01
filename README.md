@@ -104,6 +104,14 @@ pnpm -r --filter "./examples/*" lint:fix
 pnpm --filter "@poupe/eslint-config-playground-standard" lint
 ```
 
+## Known Issues
+
+### CSS Support in Nuxt Projects
+
+CSS linting in Nuxt projects requires [@nuxt/eslint PR #584](https://github.com/nuxt/eslint/pull/584)
+to be merged. Without this fix, JavaScript/TypeScript rules from @nuxt/eslint-config
+may be incorrectly applied to CSS files, causing parsing errors.
+
 ## Development
 
 For AI assistants working with this codebase, refer to [AGENT.md](./AGENT.md)

@@ -186,12 +186,6 @@ function testJsonRules(exampleName) {
 function testCssRules(exampleName) {
   console.log('\n  Testing CSS configuration...');
 
-  // Skip CSS tests for Nuxt workspaces due to issue #138
-  if (exampleName.includes('nuxt')) {
-    console.log('  ⏭️  CSS tests skipped for Nuxt workspace (see issue #138)');
-    return [];
-  }
-
   const errors = [];
 
   try {

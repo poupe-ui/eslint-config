@@ -11,21 +11,17 @@ import {
   files,
   rules,
 
-  // cssRecommended, // TODO: CSS support disabled - see sharedNuxtRules comment
+  cssRecommended,
   jsoncRecommended,
   markdownlintRecommended,
   tsdocRecommended,
   unicornRecommended,
 } from './configs';
 
+import { processCSSConfigs } from './configs/css-filter';
+
 const sharedNuxtRules: InfiniteDepthConfigWithExtends = [
-  // TODO: CSS support is temporarily disabled for Nuxt configurations
-  // @nuxt/eslint-config (used by @nuxt/eslint) applies JavaScript/TypeScript
-  // rules globally without file restrictions. Their regexp and @stylistic
-  // plugin rules attempt to parse CSS files as JavaScript, causing TypeScript
-  // AST errors. This needs to be fixed upstream in @nuxt/eslint-config/flat.
-  // See: https://github.com/poupe-ui/eslint-config/issues/138
-  // cssRecommended,
+  cssRecommended,
   tsdocRecommended,
   markdownlintRecommended,
   {
@@ -40,11 +36,15 @@ const sharedNuxtRules: InfiniteDepthConfigWithExtends = [
 ];
 
 /** rules for nuxt projects */
-export const forNuxt = (...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] => withConfig(
-  unicornRecommended,
-  sharedNuxtRules,
-  userConfigs,
-);
+export const forNuxt = (...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] => {
+  const configs = withConfig(
+    unicornRecommended,
+    sharedNuxtRules,
+    userConfigs,
+  );
+
+  return processCSSConfigs(configs);
+};
 
 /** rules for nuxt modules */
 const [unicornConfig] = withoutPlugin('unicorn', unicornRecommended);
@@ -57,11 +57,15 @@ const rulesForModules = withoutRules(unicornConfig.rules,
   'unicorn/prefer-single-call',
 );
 
-export const forNuxtModules = (...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] => withConfig(
-  {
-    ...unicornConfig,
-    rules: rulesForModules,
-  },
-  sharedNuxtRules,
-  userConfigs,
-);
+export const forNuxtModules = (...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] => {
+  const configs = withConfig(
+    {
+      ...unicornConfig,
+      rules: rulesForModules,
+    },
+    sharedNuxtRules,
+    userConfigs,
+  );
+
+  return processCSSConfigs(configs);
+};

@@ -8,7 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "clean": "rm -rf node_modules .nuxt .output"
+    "clean": "rm -rf node_modules .nuxt .output",
+    "lint": "eslint ."
   },
   "dependencies": {
     "nuxt": "^3.17.5",

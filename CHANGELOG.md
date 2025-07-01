@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+
+- **CSS support for Nuxt configurations**: Re-enabled CSS linting in `forNuxt()`
+  and `forNuxtModules()` functions with dynamic rule filtering
+  (requires @nuxt/eslint PR #584 to be merged)
+
+### Changed
+
+- **Test suite**: Updated to test CSS linting in Nuxt workspaces
+
 ## [0.7.8] - 2025-07-01
 
 ### Added
