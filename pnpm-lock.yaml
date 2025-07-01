@@ -97,6 +97,10 @@ importers:
       '@poupe/eslint-config':
         specifier: workspace:*
         version: link:../..
+    optionalDependencies:
+      '@oxc-parser/binding-wasm32-wasi':
+        specifier: 0.75.0
+        version: 0.75.0
 
   examples/playground-nuxt-module:
     dependencies:
