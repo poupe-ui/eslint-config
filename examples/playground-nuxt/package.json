@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "playground-nuxt",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,7 +8,9 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "clean": "rm -rf node_modules .nuxt .output"
+    "clean": "rm -rf node_modules .nuxt .output",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "nuxt": "^3.17.5",
