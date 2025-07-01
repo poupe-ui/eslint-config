@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+
+- **Import/Export sorting**: Added `eslint-plugin-perfectionist` for automatic
+  organization of imports and exports with natural alphabetical ordering,
+  grouped imports, and consistent formatting
+
 ## [0.7.8] - 2025-07-01
 
 ### Added

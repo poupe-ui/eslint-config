@@ -1,22 +1,22 @@
 import {
-  type Config,
-  type Rules,
-} from './core';
-
-import {
   poupeStylisticRules,
   poupeUnicornRules,
   poupeVueRules,
 } from './configs/index';
+import {
+  type Config,
+  type Rules,
+} from './core';
 
 export {
   cssRecommended,
   eslintRecommended,
   jsoncRecommended,
   markdownlintRecommended,
-  tseslintRecommended,
-  tsdocRecommended,
+  perfectionistRecommended,
   stylisticRecommended,
+  tsdocRecommended,
+  tseslintRecommended,
   unicornRecommended,
   vueRecommended,
 } from './configs/index';

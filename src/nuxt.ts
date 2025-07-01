@@ -1,4 +1,15 @@
 import {
+  files,
+  // cssRecommended, // TODO: CSS support disabled - see sharedNuxtRules comment
+  jsoncRecommended,
+
+  markdownlintRecommended,
+  perfectionistRecommended,
+  rules,
+  tsdocRecommended,
+  unicornRecommended,
+} from './configs';
+import {
   type Config,
   type InfiniteDepthConfigWithExtends,
 
@@ -6,17 +17,6 @@ import {
   withoutPlugin,
   withoutRules,
 } from './core/index';
-
-import {
-  files,
-  rules,
-
-  // cssRecommended, // TODO: CSS support disabled - see sharedNuxtRules comment
-  jsoncRecommended,
-  markdownlintRecommended,
-  tsdocRecommended,
-  unicornRecommended,
-} from './configs';
 
 const sharedNuxtRules: InfiniteDepthConfigWithExtends = [
   // TODO: CSS support is temporarily disabled for Nuxt configurations
@@ -26,6 +26,7 @@ const sharedNuxtRules: InfiniteDepthConfigWithExtends = [
   // AST errors. This needs to be fixed upstream in @nuxt/eslint-config/flat.
   // See: https://github.com/poupe-ui/eslint-config/issues/138
   // cssRecommended,
+  perfectionistRecommended,
   tsdocRecommended,
   markdownlintRecommended,
   {
