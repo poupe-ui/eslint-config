@@ -1,7 +1,9 @@
-import type {
-  Rules,
-  Config,
-} from '../core/types';
+import {
+  type Rules,
+  type Config,
+
+  withConfig,
+} from '../core';
 
 import vuePlugin from 'eslint-plugin-vue';
 
@@ -25,7 +27,9 @@ function restrictVueRulesToVueFiles(config: Config): Config {
   };
 }
 
-export const vueRecommended: Config[] = vueConfigs['flat/recommended'].map(config => restrictVueRulesToVueFiles(config));
+export const vueRecommended: Config[] = withConfig(
+  vueConfigs['flat/recommended'].map(config => restrictVueRulesToVueFiles(config)),
+);
 
 export const poupeVueRules: Rules = {
   'vue/multi-word-component-names': 'off',

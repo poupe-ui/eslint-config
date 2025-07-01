@@ -1,15 +1,15 @@
 import {
-  type Linter,
+  type Config,
+  type InfiniteDepthConfigWithExtends,
+
+  withConfig,
   withoutRules,
 } from './core/index';
 
 import {
-  type ResolvableFlatConfig,
-} from 'eslint-flat-config-utils';
-
-import {
   files,
   rules,
+
   // cssRecommended, // TODO: CSS support disabled - see sharedNuxtRules comment
   jsoncRecommended,
   markdownlintRecommended,
@@ -20,7 +20,7 @@ import {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { plugins: _unicornPlugins, ...unicornConfig } = unicornRecommended;
 
-const sharedNuxtRules: Linter.Config[] = [
+const sharedNuxtRules: InfiniteDepthConfigWithExtends = [
   // TODO: CSS support is temporarily disabled for Nuxt configurations
   // @nuxt/eslint-config (used by @nuxt/eslint) applies JavaScript/TypeScript
   // rules globally without file restrictions. Their regexp and @stylistic
@@ -38,15 +38,15 @@ const sharedNuxtRules: Linter.Config[] = [
     name: 'poupe/rules',
     rules,
   },
-  ...jsoncRecommended, // Move JSON config after others to ensure it takes precedence
+  jsoncRecommended, // Move JSON config after others to ensure it takes precedence
 ];
 
 /** rules for nuxt projects */
-export const forNuxt = (...userConfigs: Linter.Config[]): Linter.Config[] => [
+export const forNuxt = (...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] => withConfig(
   unicornRecommended,
-  ...sharedNuxtRules,
-  ...userConfigs,
-];
+  sharedNuxtRules,
+  userConfigs,
+);
 
 /** rules for nuxt modules */
 const rulesForModules = withoutRules(unicornConfig.rules,
@@ -57,11 +57,11 @@ const rulesForModules = withoutRules(unicornConfig.rules,
   'unicorn/prefer-single-call',
 );
 
-export const forNuxtModules = (...userConfigs: ResolvableFlatConfig[]): ResolvableFlatConfig[] => [
+export const forNuxtModules = (...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] => withConfig(
   {
     ...unicornConfig,
     rules: rulesForModules,
   },
-  ...sharedNuxtRules,
-  ...userConfigs,
-];
+  sharedNuxtRules,
+  userConfigs,
+);

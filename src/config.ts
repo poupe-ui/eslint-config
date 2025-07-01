@@ -1,5 +1,11 @@
 import {
   type Config,
+  type InfiniteDepthConfigWithExtends,
+
+  withConfig,
+} from './core';
+
+import {
   poupeConfigs,
 
   cssRecommended,
@@ -13,24 +19,26 @@ import {
   vueRecommended,
 } from './configs';
 
-import { config as withConfigs } from 'typescript-eslint';
+export { withConfig } from './core';
 
-export const defineConfig = (...userConfigs: Config[]): Config[] => withConfigs(
-  {
-    ignores: [
-      '**/dist',
-      '**/node_modules',
-    ],
-  },
-  eslintRecommended,
-  tseslintRecommended,
-  tsdocRecommended,
-  unicornRecommended,
-  stylisticRecommended,
-  markdownlintRecommended,
-  ...vueRecommended,
-  ...poupeConfigs,
-  ...cssRecommended, // CSS configs need to come after JS configs to override rules
-  ...jsoncRecommended, // Move JSON config after others to ensure it takes precedence
-  ...userConfigs,
-);
+export function defineConfig(...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] {
+  return withConfig(
+    {
+      ignores: [
+        '**/dist',
+        '**/node_modules',
+      ],
+    },
+    eslintRecommended,
+    tseslintRecommended,
+    tsdocRecommended,
+    unicornRecommended,
+    stylisticRecommended,
+    markdownlintRecommended,
+    vueRecommended,
+    poupeConfigs,
+    cssRecommended, // CSS configs need to come after JS configs to override rules
+    jsoncRecommended, // Move JSON config after others to ensure it takes precedence
+    userConfigs,
+  );
+}

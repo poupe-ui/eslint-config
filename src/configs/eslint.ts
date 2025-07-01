@@ -1,5 +1,5 @@
-import { Linter } from '../core/types';
+import { type Config } from '../core';
 
 import jsPlugin from '@eslint/js';
 
-export const eslintRecommended: Linter.Config = jsPlugin.configs.recommended;
+export const eslintRecommended: Config = jsPlugin.configs.recommended;

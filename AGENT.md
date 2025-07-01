@@ -45,8 +45,10 @@ format and is written in TypeScript.
    - Main: `@poupe/eslint-config` for standard projects
    - Nuxt: `@poupe/eslint-config/nuxt` for Nuxt.js projects
 4. **Type Safety**: Full TypeScript support with proper type definitions
-   exported from `src/core/types.ts`
-5. **Self-Dogfooding**: Package uses its own ESLint configuration for
+   exported from `src/core/config.ts`
+5. **Config Factory Pattern**: Uses typescript-eslint's `withConfig()` helper
+   for proper config flattening and extends resolution
+6. **Self-Dogfooding**: Package uses its own ESLint configuration for
    validation
 
 ### Project Structure
@@ -65,7 +67,7 @@ format and is written in TypeScript.
 │   │   ├── unicorn.ts    # Modern JavaScript best practices
 │   │   └── vue.ts        # Vue.js framework rules
 │   ├── core/         # Core configuration utilities
-│   │   ├── types.ts      # TypeScript type definitions
+│   │   ├── config.ts     # TypeScript type definitions and withConfig export
 │   │   └── utils.ts      # Configuration helper functions
 │   ├── config.ts     # Main configuration builder (defineConfig)
 │   ├── configs.ts    # Configuration presets and exports
@@ -106,6 +108,19 @@ The configuration automatically lints the following file types:
 
 The CSS configuration (`src/configs/css.ts`) uses a sophisticated filtering
 system to apply appropriate rules to CSS files:
+
+#### CSS Language Options
+
+The CSS configuration uses `tolerant: true` mode for parsing, which allows
+the parser to handle recoverable errors that browsers would automatically fix.
+This is particularly important for Tailwind CSS's extended syntax.
+
+```typescript
+languageOptions: {
+  tolerant: true, // Enable tolerant mode for Tailwind CSS compatibility
+  customSyntax: tailwindSyntax,
+}
+```
 
 #### Rule Filtering Architecture
 
@@ -230,10 +245,20 @@ The package uses `unbuild` which:
 - Compiles TypeScript to both ESM (.mjs) and CommonJS (.cjs)
 - Generates TypeScript declaration files
 - Creates stub builds for faster development iteration
-- The `eslint-flat-config-utils` package is marked as external in
-  `build.config.ts`
 - Outputs: `dist/index.mjs`, `dist/index.cjs`, `dist/nuxt.mjs`,
   `dist/nuxt.cjs`
+
+## Type System
+
+The package uses typescript-eslint's `Config` type throughout, providing better
+type safety and integration with the typescript-eslint ecosystem. Key types:
+
+- `Config`: The main configuration type from typescript-eslint
+- `Rules`: Type-safe rule definitions
+- `withConfig()`: Helper function that flattens configs and resolves extends
+
+All configuration modules return `Config[]` arrays, which are automatically
+flattened by `withConfig()`.
 
 ## Usage Examples
 
@@ -255,13 +280,13 @@ import { forNuxt } from '@poupe/eslint-config/nuxt';
 import withNuxt from './.nuxt/eslint.config.mjs';
 export default withNuxt(...forNuxt());
 
-// Custom composition
-import { configs } from '@poupe/eslint-config';
-export default [
-  ...configs.javascript,
-  ...configs.typescript,
-  ...configs.stylistic,
-];
+// Custom composition with withConfig
+import { configs, withConfig } from '@poupe/eslint-config';
+export default withConfig(
+  configs.javascript,
+  configs.typescript,
+  configs.stylistic,
+);
 ```
 
 ## Git Workflow

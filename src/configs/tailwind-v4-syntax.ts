@@ -1,3 +1,7 @@
+import { type CSSLanguageOptions } from '@eslint/css';
+
+type SyntaxConfig = NonNullable<CSSLanguageOptions['customSyntax']>;
+
 /**
  * Extended Tailwind CSS v4 syntax for \@eslint/css
  *
@@ -9,7 +13,8 @@
  * - Custom variants created with \@custom-variant
  * - All Tailwind directives (\@theme, \@source, \@utility, etc.)
  */
-export const tailwindV4Syntax = {
+/* eslint-disable unicorn/no-null */
+export const tailwindV4Syntax: Partial<SyntaxConfig> = {
   atrules: {
     // @apply with support for any Tailwind utility including arbitrary variants
     'apply': {
@@ -22,7 +27,7 @@ export const tailwindV4Syntax = {
     },
     // @theme for defining design tokens
     'theme': {
-      prelude: undefined,
+      prelude: null,
       descriptors: {
         // CSS custom properties for design tokens
         '--*': '<any-value>',
@@ -71,3 +76,4 @@ export const tailwindV4Syntax = {
   // The properties option doesn't need to duplicate @apply
   // since it's already defined in atrules
 };
+/* eslint-enable unicorn/no-null */

@@ -1,7 +1,5 @@
-import type {
-  Linter,
-  Rules,
-} from '../core/types';
+import type { Config, Rules } from '../core';
+import { withConfig } from '../core';
 
 import jsoncPlugin from 'eslint-plugin-jsonc';
 import * as jsoncParser from 'jsonc-eslint-parser';
@@ -66,14 +64,13 @@ export const poupePackageJsonRules: Rules = {
   ],
 };
 
-export const jsoncRecommended: Linter.Config[] = [
+export const jsoncRecommended: Config[] = withConfig(
   {
     name: 'jsonc/json',
     files: ['**/*.json'],
     ignores: ['**/package.json'],
     plugins: {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      jsonc: jsoncPlugin as any,
+      jsonc: jsoncPlugin,
     },
     languageOptions: {
       parser: jsoncParser,
@@ -87,8 +84,7 @@ export const jsoncRecommended: Linter.Config[] = [
     name: 'jsonc/package-json',
     files: ['**/package.json'],
     plugins: {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      jsonc: jsoncPlugin as any,
+      jsonc: jsoncPlugin,
     },
     languageOptions: {
       parser: jsoncParser,
@@ -106,4 +102,4 @@ export const jsoncRecommended: Linter.Config[] = [
       'jsonc/no-comments': 'off',
     },
   },
-];
+);
