@@ -253,7 +253,7 @@ const KNOWN_PLUGINS = new Map<string, PluginRuleConfig>([
 
 // Analyze a config and process rules for CSS files
 function analyzeConfigForCSSRules(
-  config: Linter.Config | Config | Record<string, unknown>,
+  config: Config | Linter.Config | Record<string, unknown>,
   rulesToDisable: Set<string>,
 ): void {
   const rules = 'rules' in config ? config.rules : config;
