@@ -375,17 +375,15 @@ const PLUGIN_MAP: Record<string, NonNullable<Config['plugins']>[string]> = {
   'tsdoc': tsdocPlugin,
   'vue': vuePlugin,
   'markdownlint': markdownlintPlugin,
+  // Note: 'regexp' plugin from Nuxt is not included here since we don't have it as a dependency
   // Add more plugins as needed when Nuxt or other integrations use them
 };
 
-// Process configs to add CSS-specific rule disabling
-export function processCSSConfigs(configs: Config[]): Config[] {
-  // 1. Analyze all configs to find existing plugins and rules to disable
+// Collect existing plugins from configs
+function collectExistingPlugins(configs: Config[]): Map<string, NonNullable<Config['plugins']>[string]> {
   const existingPlugins = new Map<string, NonNullable<Config['plugins']>[string]>();
-  const rulesToDisable = new Set<string>();
 
   for (const config of configs) {
-    // Collect existing plugin instances from configs
     if (config.plugins) {
       for (const [pluginName, pluginInstance] of Object.entries(config.plugins)) {
         if (!existingPlugins.has(pluginName)) {
@@ -393,14 +391,30 @@ export function processCSSConfigs(configs: Config[]): Config[] {
         }
       }
     }
+  }
 
+  return existingPlugins;
+}
+
+// Analyze configs to find rules that should be disabled for CSS
+function analyzeConfigs(configs: Config[]): Set<string> {
+  const rulesToDisable = new Set<string>();
+
+  for (const config of configs) {
     analyzeConfigForCSSRules(config, rulesToDisable);
   }
 
-  // 2. Build plugins object for CSS config reusing existing instances or loading new ones
+  return rulesToDisable;
+}
+
+// Build plugins for CSS configs based on referenced rules
+function buildCSSPlugins(
+  rulesToDisable: Set<string>,
+  existingPlugins: Map<string, NonNullable<Config['plugins']>[string]>,
+): NonNullable<Config['plugins']> {
   const cssPlugins: NonNullable<Config['plugins']> = {};
 
-  // First, check which plugins are referenced in rules
+  // Find which plugins are referenced in rules
   const referencedPlugins = new Set<string>();
   for (const ruleName of rulesToDisable) {
     const { pluginName } = splitRuleName(ruleName);
@@ -409,30 +423,74 @@ export function processCSSConfigs(configs: Config[]): Config[] {
     }
   }
 
-  // Use existing plugin instances when available, fallback to our map
+  // Add plugins
   for (const pluginName of referencedPlugins) {
     if (existingPlugins.has(pluginName)) {
-      // Reuse existing plugin instance to avoid conflicts
       cssPlugins[pluginName] = existingPlugins.get(pluginName)!;
     } else if (PLUGIN_MAP[pluginName]) {
-      // Load from our map if not already loaded
       cssPlugins[pluginName] = PLUGIN_MAP[pluginName];
     } else if (!ALWAYS_KEEP_PLUGINS.has(pluginName) && !ALWAYS_DISABLE_PLUGINS.has(pluginName)) {
-      // Warn about unknown plugins that we can't load
       warn(`Plugin '${pluginName}' is referenced in rules but not available for CSS configs. Rules using this plugin will be disabled.`);
     }
   }
 
-  // 3. Create CSS-specific config with only disabled rules (no plugins to avoid conflicts)
+  return cssPlugins;
+}
+
+// Create Nuxt-specific CSS plugins config
+function createNuxtCSSPluginsConfig(): Config {
+  // From experimentation, we know Nuxt doesn't load these plugins for CSS files:
+  // - @stylistic
+  // - unicorn
+  return {
+    name: 'poupe/css-nuxt-plugins',
+    files: ['**/*.css'],
+    plugins: {
+      '@stylistic': PLUGIN_MAP['@stylistic'],
+      'unicorn': PLUGIN_MAP['unicorn'],
+    },
+  };
+}
+
+// Create config to disable JS rules for CSS files
+function createDisableJSRulesConfig(rulesToDisable: Set<string>): Config {
+  return {
+    name: 'poupe/css-disable-js-rules',
+    files: ['**/*.css'],
+    rules: Object.fromEntries(
+      [...rulesToDisable].map(rule => [rule, 'off']),
+    ),
+  };
+}
+
+// Process configs to add CSS-specific rule disabling
+export function processCSSConfigs(configs: Config[], context?: 'nuxt' | 'nuxt-module'): Config[] {
+  // Analyze configs
+  const existingPlugins = collectExistingPlugins(configs);
+  const rulesToDisable = analyzeConfigs(configs);
+
+  // Create disable rules config
+  const disableJsRulesConfig = createDisableJSRulesConfig(rulesToDisable);
+
+  // Handle Nuxt contexts
+  if (context === 'nuxt' || context === 'nuxt-module') {
+    const cssPluginsConfig = createNuxtCSSPluginsConfig();
+
+    return [
+      cssPluginsConfig, // First: ensure plugins are available
+      ...configs, // Then: our configs
+      disableJsRulesConfig, // Last: disable JS rules
+    ];
+  }
+
+  // Default behavior: add plugins only for referenced rules
+  const cssPlugins = buildCSSPlugins(rulesToDisable, existingPlugins);
+
   return [
     ...configs,
     {
-      name: 'poupe/css-disable-js-rules',
-      files: ['**/*.css'],
-      // Don't include plugins here - they're already loaded in previous configs
-      rules: Object.fromEntries(
-        [...rulesToDisable].map(rule => [rule, 'off']),
-      ),
+      ...disableJsRulesConfig,
+      plugins: cssPlugins,
     },
   ];
 }

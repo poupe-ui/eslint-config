@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@nuxt/eslint": "^1.4.1",
+    "@nuxt/eslint": "^1.5.0",
     "@nuxt/eslint-config": "^1.5.0",
     "@nuxt/module-builder": "latest",
     "@nuxt/test-utils": "latest",
