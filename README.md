@@ -36,7 +36,7 @@ import poupeConfig from '@poupe/eslint-config';
 export default poupeConfig;
 ```
 
-For Nuxt.js projects (with @nuxt/eslint module):
+For Nuxt.js applications (with @nuxt/eslint):
 
 ```js
 // @ts-check
@@ -48,6 +48,21 @@ export default withNuxt(...forNuxt({
     // custom rule overrides
   },
 }));
+```
+
+For Nuxt modules (with @nuxt/eslint-config):
+
+```js
+// @ts-check
+import { createConfigForNuxt } from '@nuxt/eslint-config/flat';
+import { forNuxtModules } from '@poupe/eslint-config/nuxt';
+
+export default createConfigForNuxt({
+  features: {
+    tooling: true,    // Enables rules for module authors
+    stylistic: true,  // Enables formatting rules
+  },
+}, ...forNuxtModules());
 ```
 
 Custom configuration:

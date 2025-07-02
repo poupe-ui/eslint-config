@@ -300,6 +300,16 @@ import { forNuxt } from '@poupe/eslint-config/nuxt';
 import withNuxt from './.nuxt/eslint.config.mjs';
 export default withNuxt(...forNuxt());
 
+// Nuxt Module usage
+import { createConfigForNuxt } from '@nuxt/eslint-config/flat';
+import { forNuxtModules } from '@poupe/eslint-config/nuxt';
+export default createConfigForNuxt({
+  features: {
+    tooling: true,
+    stylistic: true,
+  }
+}, ...forNuxtModules());
+
 // Custom composition with withConfig
 import { configs, withConfig } from '@poupe/eslint-config';
 export default withConfig(
@@ -308,6 +318,47 @@ export default withConfig(
   configs.stylistic,
 );
 ```
+
+## Nuxt Configuration Complexity
+
+### Why Different Configs for Nuxt Apps vs Modules?
+
+Nuxt applications and Nuxt modules have different ESLint setups:
+
+1. **Nuxt Applications** use `@nuxt/eslint` which generates a config at
+   `.nuxt/eslint.config.mjs`. This is integrated with the Nuxt build process.
+
+2. **Nuxt Modules** use `@nuxt/eslint-config/flat` directly with
+   `createConfigForNuxt`. The `tooling` feature enables module-author-specific
+   rules including their own version of unicorn rules.
+
+### The Unicorn Plugin Conflict
+
+The issue with unicorn rules stems from:
+
+1. **Plugin Instance Conflicts**: When both our config and Nuxt's tooling config
+   try to load the unicorn plugin, ESLint detects different instances and throws
+   an error: "Different instances of plugin 'unicorn' found"
+
+2. **Version Mismatches**: Historically, Nuxt tooling used an older version of
+   unicorn that didn't include these rules:
+   - `unicorn/no-unnecessary-array-flat-depth`
+   - `unicorn/no-unnecessary-array-splice-count`
+   - `unicorn/no-unnecessary-slice-end`
+   - `unicorn/prefer-single-call`
+
+3. **Current Solution**: For Nuxt modules, we:
+   - Remove the unicorn plugin using `withoutPlugin('unicorn', ...)`
+   - Filter out rules that might not exist using `withoutRules(...)`
+   - This allows Nuxt's tooling to provide its own unicorn configuration
+
+### Future Considerations
+
+- The version mismatch may no longer exist if Nuxt has updated their unicorn
+  dependency
+- The filtered rules should be periodically reviewed to check if they're still
+  necessary
+- Consider using feature detection instead of hardcoding rule names
 
 ## Git Workflow
 
