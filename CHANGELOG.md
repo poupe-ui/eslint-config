@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.7.12] - 2025-07-02
+
+### Fixed
+
+- **examples**: Use cross-platform compatible commands in playground scripts
+  - Replace Unix-specific `rm -rf` with `rimraf` for file deletion
+  - Replace Unix-specific `env` with `cross-env` for environment variables
+  - Ensures examples work correctly on Windows, macOS, and Linux
+
 ## [0.7.11] - 2025-07-02
 
 ### Changed
