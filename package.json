@@ -24,12 +24,12 @@
   ],
   "scripts": {
     "build": "unbuild",
-    "clean": "rm -rf dist node_modules && pnpm -r --filter \"./examples/*\" clean",
+    "clean": "rimraf dist node_modules && pnpm -r --filter \"./examples/*\" clean",
     "dev:prepare": "unbuild --stub",
-    "lint": "unbuild --stub && env DEBUG=eslint:eslint eslint --fix .",
+    "lint": "unbuild --stub && cross-env DEBUG=eslint:eslint eslint --fix .",
     "lint:all": "run-s lint lint:examples",
     "lint:examples": "pnpm -r --filter \"playground-*\" lint:fix",
-    "postinstall": "[ -s dist/index.mjs ] || unbuild --stub",
+    "postinstall": "node -e \"require('fs').existsSync('dist/index.mjs') || process.exit(1)\" || unbuild --stub",
     "precommit": "run-s lint:all type-check test:all build",
     "prepack": "run-s lint type-check test:all build publint",
     "publint": "publint",
@@ -58,10 +58,12 @@
   },
   "devDependencies": {
     "@vitest/ui": "^3.2.4",
+    "cross-env": "^7.0.3",
     "globals": "^16.3.0",
     "npm-run-all2": "^8.0.4",
     "pkg-pr-new": "^0.0.54",
     "publint": "^0.3.12",
+    "rimraf": "^6.0.1",
     "typescript": "~5.8.3",
     "unbuild": "3.5.0",
     "vitest": "^3.2.4"
