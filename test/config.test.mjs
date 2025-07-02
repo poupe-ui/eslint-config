@@ -59,8 +59,8 @@ const expectedRules = {
       if (!Array.isArray(config)) return false;
       const [, options] = config;
       // Check if our custom abbreviations are allowed
-      return options?.allowList?.env === true
-        && options?.allowList?.props === true;
+      return options?.allowList?.env === true &&
+        options?.allowList?.props === true;
     },
     description: 'should allow our custom abbreviations',
   },
