@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.7.10] - 2025-07-02
+
+### Documentation
+
+- Enhanced README with comprehensive documentation including supported file types,
+  advanced configuration examples, migration guide, and troubleshooting section
+- Added package.json description field for better npm registry visibility
+
+### Fixed
+
+- Removed redundant export in index.ts that was duplicating configs exports
+
 ## [0.7.9] - 2025-07-01
 
 ### Added

@@ -1,8 +1,8 @@
 {
   "name": "@poupe/eslint-config",
-  "version": "0.7.9",
+  "version": "0.7.10",
   "type": "module",
-  "description": "",
+  "description": "Sharable ESLint configuration preset for Poupe UI projects with TypeScript, Vue.js, and Tailwind CSS support",
   "author": "Alejandro Mery <amery@apptly.co>",
   "license": "MIT",
   "homepage": "https://github.com/poupe-ui/eslint-config",
@@ -24,12 +24,12 @@
   ],
   "scripts": {
     "build": "unbuild",
-    "clean": "rm -rf dist node_modules && pnpm -r --filter \"./examples/*\" clean",
+    "clean": "rimraf dist node_modules && pnpm -r --filter \"./examples/*\" clean",
     "dev:prepare": "unbuild --stub",
-    "lint": "unbuild --stub && env DEBUG=eslint:eslint eslint --fix .",
+    "lint": "unbuild --stub && cross-env DEBUG=eslint:eslint eslint --fix .",
     "lint:all": "run-s lint lint:examples",
     "lint:examples": "pnpm -r --filter \"playground-*\" lint:fix",
-    "postinstall": "[ -s dist/index.mjs ] || unbuild --stub",
+    "postinstall": "node -e \"require('fs').existsSync('dist/index.mjs') || process.exit(1)\" || unbuild --stub",
     "precommit": "run-s lint:all type-check test:all build",
     "prepack": "run-s lint type-check test:all build publint",
     "publint": "publint",
@@ -58,10 +58,12 @@
   },
   "devDependencies": {
     "@vitest/ui": "^3.2.4",
+    "cross-env": "^7.0.3",
     "globals": "^16.3.0",
     "npm-run-all2": "^8.0.4",
     "pkg-pr-new": "^0.0.54",
     "publint": "^0.3.12",
+    "rimraf": "^6.0.1",
     "typescript": "~5.8.3",
     "unbuild": "3.5.0",
     "vitest": "^3.2.4"
@@ -72,7 +74,7 @@
     }
   },
   "engines": {
-    "node": ">= 18.20.8",
+    "node": ">= 18.20.0",
     "pnpm": ">= 10.10.0"
   },
   "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
