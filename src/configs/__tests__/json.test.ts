@@ -8,8 +8,8 @@ describe('JSON Configuration', () => {
     });
 
     it('should have correct configuration names', () => {
-      expect(jsoncRecommended[0].name).toBe('jsonc/json');
-      expect(jsoncRecommended[1].name).toBe('jsonc/package-json');
+      expect(jsoncRecommended[0].name).toBe('poupe/json');
+      expect(jsoncRecommended[1].name).toBe('poupe/package-json');
       expect(jsoncRecommended[2].name).toBe('poupe/allow-json-comments');
     });
 
@@ -75,13 +75,13 @@ describe('JSON Configuration', () => {
 
         // Check that we have multiple pattern configurations
         const ruleArguments = sortKeysRule.slice(1);
-        expect(ruleArguments).toHaveLength(2);
+        expect(ruleArguments).toHaveLength(3);
       }
     });
 
     it('should sort root level package.json fields', () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const sortKeysRule = poupePackageJsonRules['jsonc/sort-keys'] as [string, any, any];
+      const sortKeysRule = poupePackageJsonRules['jsonc/sort-keys'] as [string, any, any, any];
       const rootPattern = sortKeysRule[1];
 
       expect(rootPattern.pathPattern).toBe('^$');
@@ -92,11 +92,20 @@ describe('JSON Configuration', () => {
 
     it('should sort dependencies alphabetically', () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const sortKeysRule = poupePackageJsonRules['jsonc/sort-keys'] as [string, any, any];
+      const sortKeysRule = poupePackageJsonRules['jsonc/sort-keys'] as [string, any, any, any];
       const depsPattern = sortKeysRule[2];
 
       expect(depsPattern.pathPattern).toBe('^(dependencies|devDependencies|peerDependencies|optionalDependencies)$');
       expect(depsPattern.order).toEqual({ type: 'asc' });
+    });
+
+    it('should sort other second-level objects alphabetically', () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const sortKeysRule = poupePackageJsonRules['jsonc/sort-keys'] as [string, any, any, any];
+      const secondLevelPattern = sortKeysRule[3];
+
+      expect(secondLevelPattern.pathPattern).toBe('^(scripts|pnpm|exports|publishConfig)$');
+      expect(secondLevelPattern.order).toEqual({ type: 'asc' });
     });
   });
 

@@ -67,12 +67,17 @@ export const poupePackageJsonRules: Rules = {
       pathPattern: '^(dependencies|devDependencies|peerDependencies|optionalDependencies)$',
       order: { type: 'asc' },
     },
+    {
+      // Sort other second-level objects alphabetically (scripts, etc.)
+      pathPattern: '^(scripts|pnpm|exports|publishConfig)$',
+      order: { type: 'asc' },
+    },
   ],
 };
 
 export const jsoncRecommended: Config[] = withConfig(
   {
-    name: 'jsonc/json',
+    name: 'poupe/json',
     files: ['**/*.json'],
     ignores: ['**/package.json'],
     plugins: {
@@ -87,7 +92,7 @@ export const jsoncRecommended: Config[] = withConfig(
     },
   },
   {
-    name: 'jsonc/package-json',
+    name: 'poupe/package-json',
     files: ['**/package.json'],
     plugins: {
       jsonc: jsoncPlugin,
