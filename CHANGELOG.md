@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- **Import/Export sorting**: Added `eslint-plugin-perfectionist` for automatic
+  organization of imports and exports with natural alphabetical ordering,
+  grouped imports, and consistent formatting
 - **package.json sorting**: Alphabetical sorting for second-level objects
   (scripts, pnpm, exports, publishConfig) in package.json files
 

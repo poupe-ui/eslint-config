@@ -69,6 +69,7 @@ const ALWAYS_DISABLE_PLUGINS = new Set([
   '@typescript-eslint',
   'vue',
   'tsdoc',
+  'perfectionist',
 ]);
 
 // 3. Known plugins with complex rule configurations

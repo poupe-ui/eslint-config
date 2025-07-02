@@ -1,25 +1,24 @@
 import {
-  type Config,
-  type InfiniteDepthConfigWithExtends,
-
-  withConfig,
-} from './core';
-
-import {
-  poupeConfigs,
-
   cssRecommended,
+
   eslintRecommended,
   jsoncRecommended,
   markdownlintRecommended,
+  perfectionistRecommended,
+  poupeConfigs,
   stylisticRecommended,
   tsdocRecommended,
   tseslintRecommended,
   unicornRecommended,
   vueRecommended,
 } from './configs';
-
 import { processCSSConfigs } from './configs/css-filter';
+import {
+  type Config,
+  type InfiniteDepthConfigWithExtends,
+
+  withConfig,
+} from './core';
 
 export { withConfig } from './core';
 
@@ -35,6 +34,7 @@ export function defineConfig(...userConfigs: InfiniteDepthConfigWithExtends[]): 
     tseslintRecommended,
     tsdocRecommended,
     unicornRecommended,
+    perfectionistRecommended,
     stylisticRecommended,
     markdownlintRecommended,
     vueRecommended,
