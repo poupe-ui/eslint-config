@@ -17,6 +17,8 @@ const abbreviations = [
   'err',
   'fn',
   'i',
+  'j',
+  'k',
   'msg',
   'opt',
   'opts',
@@ -29,7 +31,7 @@ const abbreviations = [
   'vars',
 ] as const;
 
-const omitReplacementList = new Set(['i']);
+const omitReplacementList = new Set(['i', 'j', 'k']);
 
 const allowList = Object.fromEntries(
   abbreviations.map(s => [s, true]),

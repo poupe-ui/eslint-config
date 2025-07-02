@@ -227,6 +227,7 @@ custom rules:
 ### General JavaScript Rules
 
 * Enforces camelCase naming convention
+* Allows `i`, `j`, `k` as loop counters and array indices
 * Requires explicit radix in `parseInt`
 * Prevents console statements in production code
 
