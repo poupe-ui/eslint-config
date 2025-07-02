@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "clean": "rm -rf node_modules"
+    "clean": "rm -rf node_modules",
+    "lint": "env DEBUG=eslint:eslint eslint .",
+    "lint:fix": "env DEBUG=eslint:eslint eslint --fix ."
   },
   "devDependencies": {
     "@poupe/eslint-config": "workspace:*",

@@ -23,21 +23,21 @@
     "dist"
   ],
   "scripts": {
-    "prepack": "run-s lint type-check test:all build publint",
-    "dev:prepare": "unbuild --stub",
-    "postinstall": "[ -s dist/index.mjs ] || unbuild --stub",
-    "lint": "unbuild --stub && env DEBUG=eslint:eslint eslint --fix .",
-    "lint:examples": "pnpm -r --filter \"./examples/*\" lint",
-    "lint:all": "run-s lint lint:examples",
     "build": "unbuild",
     "clean": "rm -rf dist node_modules && pnpm -r --filter \"./examples/*\" clean",
-    "type-check": "tsc --noEmit",
+    "dev:prepare": "unbuild --stub",
+    "lint": "unbuild --stub && env DEBUG=eslint:eslint eslint --fix .",
+    "lint:all": "run-s lint lint:examples",
+    "lint:examples": "pnpm -r --filter \"playground-*\" lint:fix",
+    "postinstall": "[ -s dist/index.mjs ] || unbuild --stub",
+    "precommit": "run-s lint:all type-check test:all build",
+    "prepack": "run-s lint type-check test:all build publint",
+    "publint": "publint",
     "test": "pnpm -r dev:prepare && node test/config.test.mjs",
+    "test:all": "run-s test:unit test",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest watch",
-    "test:all": "run-s test:unit test",
-    "precommit": "run-s lint:all type-check test:all build",
-    "publint": "publint"
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@eslint/css": "^0.9.0",

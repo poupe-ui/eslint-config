@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- **package.json sorting**: Alphabetical sorting for second-level objects
+  (scripts, pnpm, exports, publishConfig) in package.json files
+
 ### Fixed
 
 - **JSON config**: Allow comments in tsconfig.json and tsconfig.*.json files by
@@ -11,6 +16,8 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- **JSON configs**: Renamed to use `poupe/` prefix: `poupe/json` and
+  `poupe/package-json` for better namespace organization
 - **JSON tests**: Refactor tests for better clarity and more specific assertions
 
 ## [0.7.8] - 2025-07-01

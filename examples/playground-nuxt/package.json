@@ -4,13 +4,13 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "clean": "rm -rf node_modules .nuxt .output",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "lint": "env DEBUG=eslint:eslint eslint .",
+    "lint:fix": "env DEBUG=eslint:eslint eslint --fix .",
     "postinstall": "nuxt prepare",
-    "clean": "rm -rf node_modules .nuxt .output",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "preview": "nuxt preview"
   },
   "dependencies": {
     "nuxt": "^3.17.5",

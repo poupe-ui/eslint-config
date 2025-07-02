@@ -197,8 +197,9 @@ JSON files are linted with specific formatting rules:
 
 - **General JSON files**: 2-space indentation, no trailing commas, no comments
   (except tsconfig.json and .vscode/*.json which allow comments)
-- **package.json files**: Additionally enforces standard key ordering and
-  alphabetical dependency sorting
+- **package.json files**: Additionally enforces standard key ordering,
+  alphabetical dependency sorting, and alphabetical sorting of second-level
+  objects (scripts, pnpm, exports, publishConfig)
 
 ## Common Tasks
 
