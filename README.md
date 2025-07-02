@@ -1,6 +1,7 @@
 # `@poupe/eslint-config`
 
-Sharable ESLint config preset for usage across Poupe UI projects.
+Sharable ESLint configuration preset for Poupe UI projects with TypeScript,
+Vue.js, and Tailwind CSS support.
 
 ✅ Includes:
 
@@ -19,7 +20,8 @@ Sharable ESLint config preset for usage across Poupe UI projects.
 ## Getting started
 
 > [!NOTE]
-> This preset uses the new [ESLint flat config][flat-config].
+> This preset uses the new [ESLint flat config][flat-config] format and
+> requires ESLint v9+ and Node.js v18.20.8+.
 
 Install dependencies:
 
@@ -92,7 +94,23 @@ The filtering system categorizes plugins and rules to ensure only appropriate
 rules apply to CSS files. See [AGENT.md](./AGENT.md#css-configuration-system)
 for implementation details.
 
+## Supported File Types
+
+This configuration automatically lints the following file types:
+
+* **JavaScript**: `.js`, `.mjs`, `.cjs`
+* **TypeScript**: `.ts`, `.tsx`
+* **Vue.js**: `.vue` (Single File Components)
+* **JSON/JSONC**: `.json`, `.jsonc`, `package.json`
+* **Markdown**: `.md`
+* **CSS**: `.css` (with Tailwind CSS v4 syntax support)
+
 ## Features
+
+### Self-Dogfooding
+
+This package uses its own ESLint configuration for validation, ensuring
+quality and serving as a real-world test case.
 
 ### Automatic Import/Export Sorting
 
@@ -146,6 +164,114 @@ type Status =
   | 'success';
 ```
 
+## Advanced Configuration
+
+### Custom Rule Overrides
+
+```js
+// @ts-check
+import { defineConfig } from '@poupe/eslint-config';
+
+export default defineConfig({
+  rules: {
+    // Disable specific rules
+    'unicorn/filename-case': 'off',
+
+    // Customize rule severity and options
+    '@typescript-eslint/no-unused-vars': ['warn', {
+      argsIgnorePattern: '^_',
+      varsIgnorePattern: '^_',
+    }],
+  },
+});
+```
+
+### Selective Configuration Import
+
+```js
+// @ts-check
+import { configs, withConfig } from '@poupe/eslint-config';
+
+// Import only specific configurations
+export default withConfig(
+  configs.javascript,
+  configs.typescript,
+  configs.stylistic,
+  configs.vue,
+  // Add custom overrides
+  {
+    rules: {
+      'vue/multi-word-component-names': 'off',
+    },
+  },
+);
+```
+
+## Poupe UI Recommended Rules
+
+In addition to the rules from included plugins, this configuration adds these
+custom rules:
+
+### TypeScript Rules
+
+* Enforces explicit return types on exported functions
+* Requires consistent type imports (`import type`)
+* Disables `@ts-` comment directives
+
+### Vue.js Rules
+
+* Enforces multi-word component names
+* Requires `defineEmits` and `defineProps` type declarations
+* Ensures proper `v-model` usage patterns
+
+### General JavaScript Rules
+
+* Enforces camelCase naming convention
+* Requires explicit radix in `parseInt`
+* Prevents console statements in production code
+
+### Stylistic Rules
+
+* Single quotes for strings
+* Semicolons required
+* 1tbs (one true brace style)
+* 2-space indentation for web files
+* 80-character line limit for Markdown
+
+## Migration Guide
+
+### From Legacy ESLint Config
+
+If you're migrating from a legacy `.eslintrc` configuration:
+
+1. **Remove old config files**: Delete `.eslintrc`, `.eslintrc.js`,
+   `.eslintrc.json`, etc.
+
+2. **Update dependencies**:
+
+   ```sh
+   pnpm remove eslint-config-* eslint-plugin-*
+   pnpm install -D eslint@^9 typescript @poupe/eslint-config
+   ```
+
+3. **Create new config**: Add `eslint.config.mjs` as shown in Getting Started
+
+4. **Update scripts**: ESLint v9 automatically finds `eslint.config.mjs`
+
+   ```json
+   {
+     "scripts": {
+       "lint": "eslint .",
+       "lint:fix": "eslint . --fix"
+     }
+   }
+   ```
+
+5. **Handle breaking changes**:
+   * Some rules have been renamed or moved to different plugins
+   * The flat config uses different property names (`files` instead of `overrides`)
+   * Plugin names are now used as object keys instead of strings
+
 ## Examples
 
 The `examples/` directory contains working examples demonstrating how to use
@@ -174,10 +300,73 @@ pnpm -r --filter "./examples/*" lint:fix
 pnpm --filter "@poupe/eslint-config-playground-standard" lint
 ```
 
+## Troubleshooting
+
+### Common Issues
+
+#### "Cannot find module '@poupe/eslint-config'"
+
+Ensure you've installed the package and are using the correct import path:
+
+```sh
+pnpm install -D @poupe/eslint-config
+```
+
+#### "Plugin conflict" errors with Nuxt
+
+For Nuxt applications, make sure to use the appropriate helper:
+
+* Use `forNuxt()` for Nuxt applications
+* Use `forNuxtModules()` for Nuxt module development
+
+#### CSS rules applying to JavaScript files
+
+This should not happen with the default configuration. If it does, ensure
+you're using the latest version and report an issue.
+
+#### "Unknown rule" warnings
+
+These warnings help the CSS filtering system learn about new rules. They're
+informational and don't affect functionality.
+
+### Debugging
+
+To debug ESLint configuration issues:
+
+```sh
+# Show resolved configuration for a specific file
+eslint --print-config path/to/file.js
+
+# Enable ESLint debug output
+DEBUG=eslint:* eslint .
+
+# Debug specific aspects
+DEBUG=eslint:eslint eslint .
+```
+
 ## Development
 
 For AI assistants working with this codebase, refer to [AGENT.md](./AGENT.md)
 for detailed guidance and conventions.
+
+### Project Structure
+
+```text
+src/
+├── configs/        # Individual ESLint rule configurations
+├── core/           # Core utilities and type definitions
+├── config.ts       # Main configuration builder
+├── configs.ts      # Configuration presets
+├── index.ts        # Main entry point
+└── nuxt.ts         # Nuxt-specific configurations
+```
+
+### Contributing
+
+1. Make changes to configuration files in `src/configs/`
+2. Run `pnpm build` to compile the package
+3. Test with `pnpm lint` (self-linting)
+4. Test in examples: `pnpm -r --filter "./examples/*" lint`
 
 ## License
 
