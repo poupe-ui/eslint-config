@@ -1,5 +1,10 @@
 import stylisticPlugin from '@stylistic/eslint-plugin';
+// @ts-expect-error - no types available
+import markdownlintPlugin from 'eslint-plugin-markdownlint';
+import perfectionistPlugin from 'eslint-plugin-perfectionist';
+import tsdocPlugin from 'eslint-plugin-tsdoc';
 import unicornPlugin from 'eslint-plugin-unicorn';
+import vuePlugin from 'eslint-plugin-vue';
 
 import { type Config, Linter } from '../core/config';
 import { eslintRecommended } from './eslint';
@@ -70,6 +75,8 @@ const ALWAYS_DISABLE_PLUGINS = new Set([
   'vue',
   'tsdoc',
   'perfectionist',
+  'markdownlint',
+  'regexp', // Regexp plugin from Nuxt
 ]);
 
 // 3. Known plugins with complex rule configurations
@@ -360,14 +367,72 @@ export function getJavaScriptRulesToDisable(): Record<string, 'off'> {
   return result;
 }
 
+// Map of known plugins that might be referenced in configs
+const PLUGIN_MAP: Record<string, NonNullable<Config['plugins']>[string]> = {
+  '@stylistic': stylisticPlugin,
+  'unicorn': unicornPlugin,
+  'perfectionist': perfectionistPlugin,
+  'tsdoc': tsdocPlugin,
+  'vue': vuePlugin,
+  'markdownlint': markdownlintPlugin,
+  // Add more plugins as needed when Nuxt or other integrations use them
+};
+
 // Process configs to add CSS-specific rule disabling
 export function processCSSConfigs(configs: Config[]): Config[] {
+  // 1. Analyze all configs to find existing plugins and rules to disable
+  const existingPlugins = new Map<string, NonNullable<Config['plugins']>[string]>();
+  const rulesToDisable = new Set<string>();
+
+  for (const config of configs) {
+    // Collect existing plugin instances from configs
+    if (config.plugins) {
+      for (const [pluginName, pluginInstance] of Object.entries(config.plugins)) {
+        if (!existingPlugins.has(pluginName)) {
+          existingPlugins.set(pluginName, pluginInstance);
+        }
+      }
+    }
+
+    analyzeConfigForCSSRules(config, rulesToDisable);
+  }
+
+  // 2. Build plugins object for CSS config reusing existing instances or loading new ones
+  const cssPlugins: NonNullable<Config['plugins']> = {};
+
+  // First, check which plugins are referenced in rules
+  const referencedPlugins = new Set<string>();
+  for (const ruleName of rulesToDisable) {
+    const { pluginName } = splitRuleName(ruleName);
+    if (pluginName) {
+      referencedPlugins.add(pluginName);
+    }
+  }
+
+  // Use existing plugin instances when available, fallback to our map
+  for (const pluginName of referencedPlugins) {
+    if (existingPlugins.has(pluginName)) {
+      // Reuse existing plugin instance to avoid conflicts
+      cssPlugins[pluginName] = existingPlugins.get(pluginName)!;
+    } else if (PLUGIN_MAP[pluginName]) {
+      // Load from our map if not already loaded
+      cssPlugins[pluginName] = PLUGIN_MAP[pluginName];
+    } else if (!ALWAYS_KEEP_PLUGINS.has(pluginName) && !ALWAYS_DISABLE_PLUGINS.has(pluginName)) {
+      // Warn about unknown plugins that we can't load
+      warn(`Plugin '${pluginName}' is referenced in rules but not available for CSS configs. Rules using this plugin will be disabled.`);
+    }
+  }
+
+  // 3. Create CSS-specific config with only disabled rules (no plugins to avoid conflicts)
   return [
     ...configs,
     {
       name: 'poupe/css-disable-js-rules',
       files: ['**/*.css'],
-      rules: getJavaScriptRulesToDisable(),
+      // Don't include plugins here - they're already loaded in previous configs
+      rules: Object.fromEntries(
+        [...rulesToDisable].map(rule => [rule, 'off']),
+      ),
     },
   ];
 }

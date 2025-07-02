@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Improved
+
+- **CSS filter system**: Enhanced CSS rule filtering for better Nuxt compatibility
+  by adding support for disabling JavaScript-specific rules in CSS files
+- **CSS plugin support**: Added `markdownlint` and `regexp` plugins to the CSS
+  filter configuration system to properly handle their rules in CSS contexts
+- **Nuxt CSS integration**: Improved CSS configuration handling in Nuxt projects
+  by ensuring JavaScript-only rules are properly disabled for CSS files
+
 ## [0.7.12] - 2025-07-02
 
 ### Fixed

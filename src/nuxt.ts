@@ -1,6 +1,6 @@
 import {
+  cssRecommended, // Testing with @nuxt/eslint v1.5.0
   files,
-  // cssRecommended, // TODO: CSS support disabled - see sharedNuxtRules comment
   jsoncRecommended,
 
   markdownlintRecommended,
@@ -19,13 +19,8 @@ import {
 } from './core/index';
 
 const sharedNuxtRules: InfiniteDepthConfigWithExtends = [
-  // TODO: CSS support is temporarily disabled for Nuxt configurations
-  // @nuxt/eslint-config (used by @nuxt/eslint) applies JavaScript/TypeScript
-  // rules globally without file restrictions. Their regexp and @stylistic
-  // plugin rules attempt to parse CSS files as JavaScript, causing TypeScript
-  // AST errors. This needs to be fixed upstream in @nuxt/eslint-config/flat.
-  // See: https://github.com/poupe-ui/eslint-config/issues/138
-  // cssRecommended,
+  // Testing CSS support with @nuxt/eslint v1.5.0
+  cssRecommended,
   perfectionistRecommended,
   tsdocRecommended,
   markdownlintRecommended,

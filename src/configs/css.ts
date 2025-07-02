@@ -6,6 +6,7 @@ import {
   type Rules,
   withConfig,
 } from '../core';
+import { getJavaScriptRulesToDisable } from './css-filter';
 import { tailwindV4Syntax } from './tailwind-v4-syntax';
 
 type SyntaxConfig = NonNullable<CSSLanguageOptions['customSyntax']>;
@@ -54,5 +55,10 @@ export const cssRecommended: Config[] = withConfig(
       ...cssConfigs.recommended.rules,
       ...poupeCssRules,
     },
+  },
+  {
+    name: 'poupe/css-disable-js-rules',
+    files: ['**/*.css'],
+    rules: getJavaScriptRulesToDisable(),
   },
 );
