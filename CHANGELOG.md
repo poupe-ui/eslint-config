@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Fixed
+
+- **JSON config**: Allow comments in tsconfig.json and tsconfig.*.json files by
+  adding them to JSONC_ALLOW_COMMENTS_FILES exception list
+
+### Changed
+
+- **JSON tests**: Refactor tests for better clarity and more specific assertions
+
 ## [0.7.8] - 2025-07-01
 
 ### Added
