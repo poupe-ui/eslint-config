@@ -2,7 +2,7 @@
   "name": "@poupe/eslint-config",
   "version": "0.7.9",
   "type": "module",
-  "description": "",
+  "description": "Sharable ESLint configuration preset for Poupe UI projects with TypeScript, Vue.js, and Tailwind CSS support",
   "author": "Alejandro Mery <amery@apptly.co>",
   "license": "MIT",
   "homepage": "https://github.com/poupe-ui/eslint-config",
