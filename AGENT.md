@@ -184,6 +184,8 @@ Follow these conventions (enforced by .editorconfig and ESLint):
 - **Brace Style**: 1tbs (one true brace style)
 - **Naming**: camelCase for variables/functions, PascalCase for
   types/interfaces
+- **Operator Line Breaks**: Operators placed after line breaks in multi-line
+  statements
 - **Import/Export Sorting**: Automatic import organization with:
   - Natural alphabetical ordering
   - Groups: types, builtin/external, internal, parent/sibling/index

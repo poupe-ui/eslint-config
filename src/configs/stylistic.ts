@@ -15,4 +15,7 @@ export const poupeStylisticRules: Rules = {
   '@stylistic/member-delimiter-style': ['error', {
     multiline: { delimiter: 'none' },
   }],
+  '@stylistic/operator-linebreak': ['error', 'after', {
+    overrides: {},
+  }],
 };

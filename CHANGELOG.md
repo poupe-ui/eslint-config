@@ -11,6 +11,8 @@ All notable changes to this project will be documented in this file.
   grouped imports, and consistent formatting
 - **package.json sorting**: Alphabetical sorting for second-level objects
   (scripts, pnpm, exports, publishConfig) in package.json files
+- **Operator line breaks**: Added `@stylistic/operator-linebreak` rule to enforce
+  placing operators after line breaks in multi-line statements
 
 ### Fixed
 
