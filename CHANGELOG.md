@@ -13,6 +13,8 @@ All notable changes to this project will be documented in this file.
   (scripts, pnpm, exports, publishConfig) in package.json files
 - **Operator line breaks**: Added `@stylistic/operator-linebreak` rule to enforce
   placing operators after line breaks in multi-line statements
+- **Union type sorting**: Added `perfectionist/sort-union-types` rule for automatic
+  sorting of TypeScript union type members with comment-based grouping support
 
 ### Fixed
 

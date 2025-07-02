@@ -8,7 +8,7 @@ Sharable ESLint config preset for usage across Poupe UI projects.
 * [stylistic recommended formatting rules][stylistic]
 * [typescript-eslint integration][typescript-eslint]
 * [unicorn rules][unicorn]
-* [perfectionist rules][perfectionist] for import/export sorting
+* [perfectionist rules][perfectionist] for import/export and union type sorting
 * [vue recommended rules][vue-rules] with TypeScript support
 * [tsdoc rules][tsdoc] for TypeScript documentation
 * [markdownlint rules][markdownlint] for Markdown files
@@ -105,6 +105,30 @@ import { z } from 'zod';
 import { config } from './config';
 import { Button } from './components/Button';
 import { useEffect, useState } from 'react';
+```
+
+### Union Type Sorting
+
+The configuration also includes automatic sorting of TypeScript union types with
+`perfectionist/sort-union-types`. Union members are sorted in natural order,
+and you can use comments to create logical groups:
+
+```ts
+// Before
+type Status = 'error' | 'loading' | 'success' | 'idle';
+
+// After (automatically fixed by ESLint)
+type Status = 'error' | 'idle' | 'loading' | 'success';
+
+// With comment-based grouping
+type Status =
+  // Active states
+  | 'loading'
+  | 'processing'
+  // Inactive states
+  | 'error'
+  | 'idle'
+  | 'success';
 ```
 
 ## Examples

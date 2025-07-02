@@ -68,6 +68,17 @@ export const poupePerfectionistRules: Rules = {
       groupKind: 'mixed',
     },
   ],
+  'perfectionist/sort-union-types': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+      specialCharacters: 'keep',
+      partitionByComment: true,
+      partitionByNewLine: false,
+    },
+  ],
 };
 
 export const perfectionistRecommended: Config[] = withConfig({
