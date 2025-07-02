@@ -1,5 +1,5 @@
 import { configs } from 'typescript-eslint';
 
-import { Config } from '../core';
+import type { Config } from '../core';
 
 export const tseslintRecommended: Config[] = configs.recommended;
