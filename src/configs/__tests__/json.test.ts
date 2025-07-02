@@ -3,29 +3,31 @@ import { jsoncRecommended, poupeJsonRules, poupePackageJsonRules } from '../json
 
 describe('JSON Configuration', () => {
   describe('jsoncRecommended', () => {
-    it('should export an array of configurations', () => {
-      expect(Array.isArray(jsoncRecommended)).toBe(true);
+    it('should have 3 configurations', () => {
       expect(jsoncRecommended).toHaveLength(3);
     });
 
-    it('should have separate configs for general JSON, package.json, and VSCode', () => {
-      const [generalConfig, packageJsonConfig, vscodeConfig] = jsoncRecommended;
-
-      expect(generalConfig.name).toBe('jsonc/json');
-      expect(generalConfig.files).toContain('**/*.json');
-      expect(generalConfig.ignores).toContain('**/package.json');
-
-      expect(packageJsonConfig.name).toBe('jsonc/package-json');
-      expect(packageJsonConfig.files).toContain('**/package.json');
-
-      expect(vscodeConfig.name).toBe('jsonc/allow-comments');
-      expect(vscodeConfig.files).toContain('**/.vscode/*.json');
+    it('should have correct configuration names', () => {
+      expect(jsoncRecommended[0].name).toBe('jsonc/json');
+      expect(jsoncRecommended[1].name).toBe('jsonc/package-json');
+      expect(jsoncRecommended[2].name).toBe('poupe/allow-json-comments');
     });
 
-    it('should include jsonc plugin and parser', () => {
+    it('should apply to correct file patterns', () => {
+      expect(jsoncRecommended[0].files).toEqual(['**/*.json']);
+      expect(jsoncRecommended[0].ignores).toEqual(['**/package.json']);
+      expect(jsoncRecommended[1].files).toEqual(['**/package.json']);
+      expect(jsoncRecommended[2].files).toEqual([
+        '**/.vscode/*.json',
+        '**/tsconfig.json',
+        '**/tsconfig.*.json',
+      ]);
+    });
+
+    it('should include jsonc plugin and parser for JSON configs', () => {
       for (const config of jsoncRecommended) {
-        // VSCode config only has rule overrides, no plugin/parser
-        if (config.name === 'jsonc/allow-comments') {
+        // Allow-comments config only has rule overrides, no plugin/parser
+        if (config.name === 'poupe/allow-json-comments') {
           expect(config.plugins).toBeUndefined();
           expect(config.languageOptions).toBeUndefined();
         } else {
@@ -33,6 +35,13 @@ describe('JSON Configuration', () => {
           expect(config.languageOptions?.parser).toBeDefined();
         }
       }
+    });
+
+    it('should disable comments rule for specific files', () => {
+      const allowCommentsConfig = jsoncRecommended[2];
+      expect(allowCommentsConfig.rules).toEqual({
+        'jsonc/no-comments': 'off',
+      });
     });
   });
 
@@ -92,28 +101,43 @@ describe('JSON Configuration', () => {
   });
 
   describe('Configuration Integration', () => {
-    it('should apply correct rules to JSON files', () => {
+    it('should apply Poupe rules to JSON files', () => {
       const [generalConfig] = jsoncRecommended;
       const rules = generalConfig.rules;
 
-      // Check that recommended rules are included
+      // Check that Poupe's custom rules are applied
       expect(rules).toBeDefined();
-      expect(Object.keys(rules!).some(key => key.startsWith('jsonc/'))).toBe(true);
-
-      // Check that our custom rules override the defaults
       expect(rules!['jsonc/indent']).toEqual(['error', 2]);
       expect(rules!['jsonc/no-comments']).toBe('error');
+      expect(rules!['jsonc/comma-dangle']).toEqual(['error', 'never']);
+      expect(rules!['jsonc/object-curly-spacing']).toEqual(['error', 'always']);
     });
 
-    it('should apply correct rules to package.json files', () => {
+    it('should apply Poupe rules to package.json files', () => {
       const [, packageJsonConfig] = jsoncRecommended;
       const rules = packageJsonConfig.rules;
 
-      // Check that JSON rules are applied to package.json
+      // Check that Poupe's JSON rules are applied to package.json
       expect(rules?.['jsonc/indent']).toEqual(['error', 2]);
       expect(rules?.['jsonc/no-comments']).toBe('error');
+      expect(rules?.['jsonc/comma-dangle']).toEqual(['error', 'never']);
 
+      // Check that package.json specific sort-keys rule is applied
       expect(rules?.['jsonc/sort-keys']).toBeDefined();
+      expect(Array.isArray(rules?.['jsonc/sort-keys'])).toBe(true);
+    });
+
+    it('should merge third-party recommended rules with Poupe rules', () => {
+      const [generalConfig] = jsoncRecommended;
+      const rules = generalConfig.rules;
+
+      // Should have both third-party rules (check by presence of many jsonc/ rules)
+      const jsoncRules = Object.keys(rules!).filter(key => key.startsWith('jsonc/'));
+      expect(jsoncRules.length).toBeGreaterThan(10); // Third-party provides many rules
+
+      // And should have Poupe's specific overrides
+      expect(rules!['jsonc/indent']).toEqual(['error', 2]); // Poupe override
+      expect(rules!['jsonc/no-comments']).toBe('error'); // Poupe override
     });
   });
 });

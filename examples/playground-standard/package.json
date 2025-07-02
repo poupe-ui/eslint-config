@@ -1,5 +1,5 @@
 {
-  "name": "@poupe/eslint-config-playground-standard",
+  "name": "playground-standard",
   "version": "0.0.0",
   "private": true,
   "type": "module",

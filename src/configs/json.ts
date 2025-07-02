@@ -6,6 +6,12 @@ import * as jsoncParser from 'jsonc-eslint-parser';
 
 const jsoncRecommendedRules = jsoncPlugin.configs['recommended-with-json'].rules as Rules;
 
+const JSONC_ALLOW_COMMENTS_FILES = [
+  '**/.vscode/*.json',
+  '**/tsconfig.json',
+  '**/tsconfig.*.json',
+];
+
 export const poupeJsonRules: Rules = {
   // Consistent formatting
   'jsonc/indent': ['error', 2],
@@ -95,10 +101,9 @@ export const jsoncRecommended: Config[] = withConfig(
     },
   },
   {
-    name: 'jsonc/allow-comments',
-    files: ['**/.vscode/*.json'],
+    name: 'poupe/allow-json-comments',
+    files: JSONC_ALLOW_COMMENTS_FILES,
     rules: {
-      // Allow comments in VSCode configuration files
       'jsonc/no-comments': 'off',
     },
   },
