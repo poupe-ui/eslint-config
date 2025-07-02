@@ -4,11 +4,11 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "clean": "rm -rf node_modules .nuxt .output",
+    "clean": "rimraf node_modules .nuxt .output",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "lint": "env DEBUG=eslint:eslint eslint .",
-    "lint:fix": "env DEBUG=eslint:eslint eslint --fix .",
+    "lint": "cross-env DEBUG=eslint:eslint eslint .",
+    "lint:fix": "cross-env DEBUG=eslint:eslint eslint --fix .",
     "postinstall": "nuxt prepare",
     "preview": "nuxt preview"
   },
@@ -19,6 +19,8 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.4.1",
-    "@poupe/eslint-config": "workspace:*"
+    "@poupe/eslint-config": "workspace:*",
+    "cross-env": "^7.0.3",
+    "rimraf": "^6.0.1"
   }
 }
