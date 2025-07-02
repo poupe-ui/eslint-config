@@ -1,6 +1,6 @@
 {
   "name": "@poupe/eslint-config",
-  "version": "0.7.8",
+  "version": "0.7.9",
   "type": "module",
   "description": "",
   "author": "Alejandro Mery <amery@apptly.co>",
@@ -49,6 +49,7 @@
     "eslint": "^9.30.0",
     "eslint-plugin-jsonc": "^2.20.1",
     "eslint-plugin-markdownlint": "^0.9.0",
+    "eslint-plugin-perfectionist": "^4.15.0",
     "eslint-plugin-tsdoc": "^0.4.0",
     "eslint-plugin-unicorn": "^59.0.1",
     "eslint-plugin-vue": "^10.2.0",
@@ -64,6 +65,11 @@
     "typescript": "~5.8.3",
     "unbuild": "3.5.0",
     "vitest": "^3.2.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "oxc-parser": "0.72.3"
+    }
   },
   "engines": {
     "node": ">= 18.20.8",

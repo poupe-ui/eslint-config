@@ -1,5 +1,4 @@
 import css, { type CSSLanguageOptions } from '@eslint/css';
-
 import { tailwindSyntax } from '@eslint/css/syntax';
 
 import {
@@ -7,7 +6,6 @@ import {
   type Rules,
   withConfig,
 } from '../core';
-
 import { tailwindV4Syntax } from './tailwind-v4-syntax';
 
 type SyntaxConfig = NonNullable<CSSLanguageOptions['customSyntax']>;

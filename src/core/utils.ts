@@ -82,9 +82,9 @@ const removePluginsFromConfig = (config: Config, pluginsToRemove?: string[]): Co
  */
 export const withoutPlugin = (pluginNames?: string | string[], ...configs: Config[]): Config[] => {
   // Normalize plugin names to array or undefined
-  const pluginsToRemove = pluginNames
-    ? (Array.isArray(pluginNames) ? pluginNames : [pluginNames])
-    : undefined;
+  const pluginsToRemove = pluginNames ?
+    (Array.isArray(pluginNames) ? pluginNames : [pluginNames]) :
+    undefined;
 
   return configs.map(config => removePluginsFromConfig(config, pluginsToRemove));
 };

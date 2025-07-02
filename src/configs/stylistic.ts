@@ -1,8 +1,8 @@
+import stylisticPlugin from '@stylistic/eslint-plugin';
+
 import type {
   Rules,
 } from '../core';
-
-import stylisticPlugin from '@stylistic/eslint-plugin';
 
 export const stylisticRecommended = stylisticPlugin.configs.recommended;
 
@@ -14,5 +14,8 @@ export const poupeStylisticRules: Rules = {
   '@stylistic/semi': ['error', 'always'],
   '@stylistic/member-delimiter-style': ['error', {
     multiline: { delimiter: 'none' },
+  }],
+  '@stylistic/operator-linebreak': ['error', 'after', {
+    overrides: {},
   }],
 };

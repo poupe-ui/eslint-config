@@ -1,7 +1,7 @@
 /* eslint-env node */
 import { execSync } from 'node:child_process';
-import path from 'node:path';
 import { existsSync } from 'node:fs';
+import path from 'node:path';
 
 const examples = [
   'playground-standard',
@@ -59,8 +59,8 @@ const expectedRules = {
       if (!Array.isArray(config)) return false;
       const [, options] = config;
       // Check if our custom abbreviations are allowed
-      return options?.allowList?.env === true
-        && options?.allowList?.props === true;
+      return options?.allowList?.env === true &&
+        options?.allowList?.props === true;
     },
     description: 'should allow our custom abbreviations',
   },

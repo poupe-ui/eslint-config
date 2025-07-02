@@ -1,9 +1,9 @@
+import unicornPlugin from 'eslint-plugin-unicorn';
+
 import type {
   Config,
   Rules,
 } from '../core';
-
-import unicornPlugin from 'eslint-plugin-unicorn';
 
 const { configs: unicornConfigs } = unicornPlugin;
 

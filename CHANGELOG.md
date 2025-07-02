@@ -4,10 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.7.9] - 2025-07-01
+
 ### Added
 
+- **Import/Export sorting**: Added `eslint-plugin-perfectionist` for automatic
+  organization of imports and exports with natural alphabetical ordering,
+  grouped imports, and consistent formatting
 - **package.json sorting**: Alphabetical sorting for second-level objects
   (scripts, pnpm, exports, publishConfig) in package.json files
+- **Operator line breaks**: Added `@stylistic/operator-linebreak` rule to enforce
+  placing operators after line breaks in multi-line statements
+- **Union type sorting**: Added `perfectionist/sort-union-types` rule for automatic
+  sorting of TypeScript union type members with comment-based grouping support
 
 ### Fixed
 

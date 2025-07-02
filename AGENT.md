@@ -97,6 +97,7 @@ format and is written in TypeScript.
 - **typescript-eslint**: TypeScript-specific linting and type checking
 - **eslint-plugin-vue**: Vue.js template and script linting
 - **eslint-plugin-unicorn**: Modern JavaScript best practices
+- **eslint-plugin-perfectionist**: Import/export and union type sorting
 - **eslint-plugin-tsdoc**: TypeScript documentation standards
 - **eslint-plugin-markdownlint**: Markdown file linting (MD001-MD050 rules)
 - **eslint-plugin-jsonc**: JSON and JSONC file linting with package.json sorting
@@ -183,6 +184,15 @@ Follow these conventions (enforced by .editorconfig and ESLint):
 - **Brace Style**: 1tbs (one true brace style)
 - **Naming**: camelCase for variables/functions, PascalCase for
   types/interfaces
+- **Operator Line Breaks**: Operators placed after line breaks in multi-line
+  statements
+- **Import/Export Sorting**: Automatic import organization with:
+  - Natural alphabetical ordering
+  - Groups: types, builtin/external, internal, parent/sibling/index
+  - Newlines between import groups
+  - Sorted named imports and exports
+- **Union Type Sorting**: Automatic sorting of TypeScript union types with
+  comment-based grouping support
 
 ### Markdown Linting Rules
 

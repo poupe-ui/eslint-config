@@ -1,10 +1,10 @@
-import unicornPlugin from 'eslint-plugin-unicorn';
 import stylisticPlugin from '@stylistic/eslint-plugin';
+import unicornPlugin from 'eslint-plugin-unicorn';
 
 import { type Config, Linter } from '../core/config';
 import { eslintRecommended } from './eslint';
-import { unicornRecommended, poupeUnicornRules } from './unicorn';
-import { stylisticRecommended, poupeStylisticRules } from './stylistic';
+import { poupeStylisticRules, stylisticRecommended } from './stylistic';
+import { poupeUnicornRules, unicornRecommended } from './unicorn';
 
 // Helper function for safe console warnings
 function warn(message: string): void {
@@ -69,6 +69,7 @@ const ALWAYS_DISABLE_PLUGINS = new Set([
   '@typescript-eslint',
   'vue',
   'tsdoc',
+  'perfectionist',
 ]);
 
 // 3. Known plugins with complex rule configurations
@@ -252,7 +253,7 @@ const KNOWN_PLUGINS = new Map<string, PluginRuleConfig>([
 
 // Analyze a config and process rules for CSS files
 function analyzeConfigForCSSRules(
-  config: Linter.Config | Config | Record<string, unknown>,
+  config: Config | Linter.Config | Record<string, unknown>,
   rulesToDisable: Set<string>,
 ): void {
   const rules = 'rules' in config ? config.rules : config;
