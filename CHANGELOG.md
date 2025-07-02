@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.7.11] - 2025-07-02
+
 ### Changed
 
 - **unicorn/prevent-abbreviations**: Allow `i`, `j`, `k` as idiomatic variable names
