@@ -16,12 +16,12 @@
     "dist"
   ],
   "scripts": {
-    "clean": "rm -rf node_modules dist .nuxt playground/.nuxt playground/.output",
+    "clean": "rimraf node_modules dist .nuxt playground/.nuxt playground/.output",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-    "lint": "env DEBUG=eslint:eslint eslint .",
-    "lint:fix": "env DEBUG=eslint:eslint eslint --fix .",
+    "lint": "cross-env DEBUG=eslint:eslint eslint .",
+    "lint:fix": "cross-env DEBUG=eslint:eslint eslint --fix .",
     "prepack": "nuxt-module-build build"
   },
   "dependencies": {
@@ -34,6 +34,8 @@
     "@nuxt/module-builder": "latest",
     "@nuxt/test-utils": "latest",
     "@poupe/eslint-config": "workspace:*",
-    "nuxt": "latest"
+    "cross-env": "^7.0.3",
+    "nuxt": "latest",
+    "rimraf": "^6.0.1"
   }
 }
