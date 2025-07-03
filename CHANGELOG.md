@@ -4,6 +4,44 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.7.13] - 2025-07-03
+
+### Added
+
+- **core/globs**: New module exporting common file pattern constants
+  (`GLOB_CSS`, `GLOB_SRC`, `GLOB_VUE`, etc.)
+- **unicorn**: Split into `poupeUnicornConfigs` array with separate filename
+  and general rules
+- **unicorn**: Added `unicornSetupConfig` export for bare plugin setup without
+  rules
+- **vue**: Added `vueSetupConfig` for Vue TypeScript parser configuration
+
+### Fixed
+
+- **nuxt**: Fixed unicorn plugin resolution for Nuxt modules by adding
+  `unicornSetupConfig` to ensure plugin availability when rules are referenced
+
+### Internal
+
+- Refactored test files to work with new config structure
+- Simplified `forNuxtModules` to map over `forNuxt` results instead of
+  duplicating logic
+- Updated `@nuxt/eslint` to v1.5.1 in playground examples
+- Updated `@vue/eslint-config-typescript` to v14.6.0
+
+### Changed
+
+- **perfectionist**: Enhanced import sorting configuration
+  - Enabled `partitionByNewLine` for `sort-imports` and `sort-named-imports`
+  - Changed `newlinesBetween` from 'always' to 'ignore' to avoid conflicts
+  - Empty lines now act as block separators, allowing logical grouping of imports
+- **configs**: Restructured configuration exports from rule-only exports to
+  complete ESLint config objects
+  - Each config now includes its own file patterns for better modularity
+  - Renamed exports for clarity (e.g., `cssRecommended` → `poupeCSSConfig`)
+  - Added centralized glob constants in `core/globs.ts`
+- **stylistic**: Extended stylistic rules to apply to Vue files
+
 ## [0.7.12] - 2025-07-02
 
 ### Fixed

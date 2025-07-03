@@ -1,56 +1,33 @@
 import {
-  poupeStylisticRules,
-  poupeUnicornRules,
-  poupeVueRules,
+  poupeJsonConfigs,
+  poupePerfectionistConfig,
+  poupeStylisticConfig,
+  poupeUnicornConfigs,
+  poupeVueConfig,
 } from './configs/index';
 import {
   type Config,
-  type Rules,
 } from './core';
 
 export {
-  cssRecommended,
   eslintRecommended,
-  jsoncRecommended,
   markdownlintRecommended,
-  perfectionistRecommended,
+  poupeCSSConfig,
   stylisticRecommended,
   tsdocRecommended,
   tseslintRecommended,
   unicornRecommended,
+  unicornSetupConfig,
+
   vueRecommended,
+  vueSetupConfig,
 } from './configs/index';
 
 // poupeConfigs
-export const files: string[] = [
-  '**/*.{js,mjs,cjs}',
-  '**/*.ts',
-  '**/*.vue',
-];
-
-export const rules: Rules = {
-  ...poupeStylisticRules,
-  ...poupeUnicornRules,
-  ...poupeVueRules,
-};
-
 export const poupeConfigs: Config[] = [
-  {
-    name: 'poupe/vue-ts',
-    languageOptions: {
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-        extraFileExtensions: ['vue'],
-        sourceType: 'module',
-      },
-    },
-  },
-  {
-    name: 'poupe/files',
-    files,
-  },
-  {
-    name: 'poupe/rules',
-    rules: rules,
-  },
+  ...poupeJsonConfigs,
+  poupePerfectionistConfig,
+  poupeStylisticConfig,
+  ...poupeUnicornConfigs,
+  poupeVueConfig,
 ];

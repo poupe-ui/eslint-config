@@ -1,13 +1,24 @@
 import unicornPlugin from 'eslint-plugin-unicorn';
 
-import type {
-  Config,
-  Rules,
+import {
+  type Config,
+  type Rules,
+
+  GLOB_SRC,
+  GLOB_VUE,
 } from '../core';
 
 const { configs: unicornConfigs } = unicornPlugin;
 
 export const unicornRecommended: Config = unicornConfigs.recommended;
+
+/** Bare unicorn plugin setup (just the plugin, no rules) */
+export const unicornSetupConfig: Config = {
+  name: 'poupe/unicorn-setup',
+  plugins: {
+    unicorn: unicornPlugin,
+  },
+};
 
 // unicorn/prevent-abbreviations
 const abbreviations = [
@@ -42,7 +53,7 @@ const replacements = Object.fromEntries(
 );
 
 // Poupe Rules
-export const poupeUnicornRules: Rules = {
+const poupeUnicornFilenameRules: Rules = {
   'unicorn/filename-case': [
     'error',
     {
@@ -54,6 +65,9 @@ export const poupeUnicornRules: Rules = {
       ],
     },
   ],
+};
+
+const poupeUnicornRules: Rules = {
   'unicorn/no-array-for-each': 'error',
   'unicorn/no-named-default': 'off',
   'unicorn/no-useless-undefined': 'off',
@@ -66,3 +80,14 @@ export const poupeUnicornRules: Rules = {
   ],
   'unicorn/switch-case-braces': 'off',
 };
+
+export const poupeUnicornConfigs: Config[] = [
+  {
+    name: 'poupe/unicorn-filename',
+    rules: poupeUnicornFilenameRules,
+  }, {
+    name: 'poupe/unicorn',
+    files: [GLOB_SRC, GLOB_VUE],
+    rules: poupeUnicornRules,
+  },
+];

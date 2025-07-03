@@ -336,9 +336,11 @@ Nuxt applications and Nuxt modules have different ESLint setups:
 
 The issue with unicorn rules stems from:
 
-1. **Plugin Instance Conflicts**: When both our config and Nuxt's tooling config
-   try to load the unicorn plugin, ESLint detects different instances and throws
-   an error: "Different instances of plugin 'unicorn' found"
+1. **Plugin Instance Conflicts**: `@nuxt/eslint` includes its own unicorn plugin
+   instance in the `nuxt/tooling/unicorn` config. When we also include our
+   unicorn plugin, ESLint detects different instances and throws an error:
+   "Different instances of plugin 'unicorn' found in multiple configs:
+   nuxt/tooling/unicorn, unicorn/recommended"
 
 2. **Version Mismatches**: Historically, Nuxt tooling used an older version of
    unicorn that didn't include these rules:
@@ -348,9 +350,36 @@ The issue with unicorn rules stems from:
    - `unicorn/prefer-single-call`
 
 3. **Current Solution**: For Nuxt modules, we:
-   - Remove the unicorn plugin using `withoutPlugin('unicorn', ...)`
+   - Remove the unicorn plugin using `withoutPlugin('unicorn', ...)` to avoid
+     conflicts with `@nuxt/eslint`'s instance
+   - Add `unicornSetupConfig` (bare plugin without rules) to ensure the plugin
+     is available for our own rule references
    - Filter out rules that might not exist using `withoutRules(...)`
-   - This allows Nuxt's tooling to provide its own unicorn configuration
+   - This allows `@nuxt/eslint` to use its own unicorn configuration while
+     preventing "Could not find plugin 'unicorn'" errors for our rules
+
+### Implementation Pattern
+
+When removing a plugin with `withoutPlugin()` but still having rules that
+reference it:
+
+1. Create a setup config that provides just the plugin without rules
+2. Add this setup config BEFORE the filtered configs
+3. This ensures ESLint can resolve rule references without conflicts
+
+Example:
+
+```typescript
+// In unicorn.ts
+export const unicornSetupConfig: Config = {
+  name: 'poupe/unicorn-setup',
+  plugins: { unicorn: unicornPlugin },
+};
+
+// In nuxt.ts
+const configs = withoutPlugin('unicorn', ...forNuxt(...userConfigs));
+return [unicornSetupConfig, ...configs.map(c => removeUnsupportedRules(c))];
+```
 
 ### Future Considerations
 
@@ -359,6 +388,9 @@ The issue with unicorn rules stems from:
 - The filtered rules should be periodically reviewed to check if they're still
   necessary
 - Consider using feature detection instead of hardcoding rule names
+- With `@nuxt/eslint` v1.5.0+ adding file restrictions to configs (limiting
+  rules to `GLOB_SRC` and `GLOB_VUE`), the plugin conflict issues should be
+  reduced
 
 ## Git Workflow
 

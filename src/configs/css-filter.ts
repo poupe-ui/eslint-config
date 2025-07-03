@@ -3,8 +3,8 @@ import unicornPlugin from 'eslint-plugin-unicorn';
 
 import { type Config, Linter } from '../core/config';
 import { eslintRecommended } from './eslint';
-import { poupeStylisticRules, stylisticRecommended } from './stylistic';
-import { poupeUnicornRules, unicornRecommended } from './unicorn';
+import { poupeStylisticConfig } from './stylistic';
+import { poupeUnicornConfigs } from './unicorn';
 
 // Helper function for safe console warnings
 function warn(message: string): void {
@@ -339,12 +339,10 @@ export function getJavaScriptRulesToDisable(): Record<string, 'off'> {
   }
 
   // 2. Also analyze actual configs to catch core ESLint rules and any custom rules
-  const configs = [
+  const configs: Config[] = [
     eslintRecommended,
-    unicornRecommended,
-    stylisticRecommended,
-    poupeUnicornRules,
-    poupeStylisticRules,
+    ...poupeUnicornConfigs,
+    poupeStylisticConfig,
   ];
 
   for (const config of configs) {

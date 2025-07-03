@@ -1,13 +1,11 @@
 import {
-  files,
-  // cssRecommended, // TODO: CSS support disabled - see sharedNuxtRules comment
-  jsoncRecommended,
-
   markdownlintRecommended,
-  perfectionistRecommended,
-  rules,
+  // poupeCSSConfig, // TODO: CSS support disabled - see sharedNuxtRules comment
+
+  poupeConfigs,
   tsdocRecommended,
   unicornRecommended,
+  unicornSetupConfig,
 } from './configs';
 import {
   type Config,
@@ -16,53 +14,54 @@ import {
   withConfig,
   withoutPlugin,
   withoutRules,
-} from './core/index';
+} from './core';
 
-const sharedNuxtRules: InfiniteDepthConfigWithExtends = [
+const sharedNuxtConfigs: InfiniteDepthConfigWithExtends = [
   // TODO: CSS support is temporarily disabled for Nuxt configurations
-  // @nuxt/eslint-config (used by @nuxt/eslint) applies JavaScript/TypeScript
-  // rules globally without file restrictions. Their regexp and @stylistic
-  // plugin rules attempt to parse CSS files as JavaScript, causing TypeScript
-  // AST errors. This needs to be fixed upstream in @nuxt/eslint-config/flat.
+  // While `@nuxt/eslint` v1.5.0+ adds file restrictions to its configs, there
+  // may still be edge cases where JavaScript/TypeScript rules leak to CSS files.
+  // Re-enable once we confirm all CSS parsing issues are resolved.
   // See: https://github.com/poupe-ui/eslint-config/issues/138
-  // cssRecommended,
-  perfectionistRecommended,
+  // poupeCSSConfig,
+
+  unicornRecommended,
   tsdocRecommended,
   markdownlintRecommended,
-  {
-    name: 'poupe/files',
-    files,
-  },
-  {
-    name: 'poupe/rules',
-    rules,
-  },
-  jsoncRecommended, // Move JSON config after others to ensure it takes precedence
+
+  poupeConfigs,
 ];
 
 /** rules for nuxt projects */
 export const forNuxt = (...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] => withConfig(
-  unicornRecommended,
-  sharedNuxtRules,
-  userConfigs,
+  sharedNuxtConfigs,
+  ...userConfigs,
 );
 
-/** rules for nuxt modules */
-const [unicornConfig] = withoutPlugin('unicorn', unicornRecommended);
-
-const rulesForModules = withoutRules(unicornConfig.rules,
+/** rules not for nuxt modules */
+const rulesNotForModules = new Set([
   /** disabled because they are not supported by the version of the unicorn plugin already loaded */
   'unicorn/no-unnecessary-array-flat-depth',
   'unicorn/no-unnecessary-array-splice-count',
   'unicorn/no-unnecessary-slice-end',
   'unicorn/prefer-single-call',
-);
+]);
 
-export const forNuxtModules = (...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] => withConfig(
-  {
-    ...unicornConfig,
-    rules: rulesForModules,
-  },
-  sharedNuxtRules,
-  userConfigs,
-);
+const removeUnsupportedRulesForModules = (c: Config): Config => {
+  if ('rules' in c && c.rules) {
+    return {
+      ...c,
+      rules: withoutRules(c.rules, ...rulesNotForModules),
+    };
+  }
+
+  return c;
+};
+
+export const forNuxtModules = (...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] => {
+  // Remove unicorn plugin to avoid conflicts with `@nuxt/eslint`'s own unicorn instance
+  const configs = withoutPlugin('unicorn', ...forNuxt(...userConfigs));
+
+  // Add bare unicorn plugin setup to ensure our rules can still reference it
+  // This prevents "Could not find plugin 'unicorn'" errors while avoiding conflicts
+  return [unicornSetupConfig, ...configs.map(c => removeUnsupportedRulesForModules(c))];
+};
