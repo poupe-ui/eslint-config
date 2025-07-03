@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.7.13] - 2025-07-03
+
 ### Added
 
 - **core/globs**: New module exporting common file pattern constants
