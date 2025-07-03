@@ -364,18 +364,61 @@ The issue with unicorn rules stems from:
 
 ### Commit Guidelines
 
+#### CRITICAL: THINK BEFORE YOU COMMIT - READ THIS SECTION TWICE
+
+##### Pre-commit Checklist (MANDATORY)
+
+1. Run `git status` and READ every file listed
+2. Ask yourself: "Do ALL these files belong in this commit?"
+3. If working on feature X, do NOT include unrelated feature Y files
+4. NEVER stage files in bulk with `git add -A` or `git add .`
+5. Check if your changes require updates to:
+   - **CHANGELOG.md** - for any user-facing changes or fixes
+   - **README.md** - for new features, API changes, or usage examples
+   - **AGENT.md** - for new development guidelines or workflow changes
+
+##### Commit Rules (STRICT ENFORCEMENT)
+
 - Always use `-s` flag for signed commits
 - Never use `-m` flag
 - Use `-F` flag with a commit message file
-- Create unique commit message files: `.commit-msg-<timestamp>` in CWD
+- Create unique commit message files: `.commit-msg-<descriptive-slug>` in CWD
 - Delete commit message files after use to avoid conflicts
-- Always specify explicit file names in the commit command
+- **ALWAYS specify explicit file names in EVERY git command** — for example:
+  - `git commit` - list every file
+  - `git commit --amend` - list every file being added
+  - `git add` - list specific files, never use `-A` or `.`
 - Use the Write tool to create commit message files (avoid echo/heredoc to
   prevent shell expansion issues)
-- Example workflow:
-  1. Use Write tool to create `.commit-msg-<timestamp>`
-  2. Run: `git commit -s -F .commit-msg-<timestamp> file1 file2`
-  3. Delete the commit message file after use
+- When editing PRs with `gh pr edit`, use `--body-file` with a file created
+  by the Write tool to avoid shell expansion issues
+
+##### Example workflow (FOLLOW EXACTLY)
+
+1. Run `git status` and identify files for THIS commit only
+2. Stage files individually: `git add src/file1.ts src/file2.ts`
+3. Use Write tool to create `.commit-msg-<descriptive-slug>`
+4. Run: `git commit -s -F .commit-msg-<descriptive-slug> src/file1.ts src/file2.ts`
+5. Delete the commit message file after use
+6. If you need to amend:
+
+   ```bash
+   git commit --amend -F .commit-msg-<descriptive-slug> \
+     src/file1.ts src/file2.ts src/file3.ts
+   ```
+
+##### Common Mistakes That Waste Credits
+
+- Committing unrelated work (e.g., CSS fixes + future migration plans)
+- Using `git add -A` or `git add .`
+- Not reading `git status` output before committing
+- Using `--amend` without explicit file lists
+- Rushing commits without thoughtful review
+- Including package.json/pnpm-lock.yaml updates without thinking if they belong
+- Mixing example updates with core library changes
+- Forgetting to delete commit message files after use
+- Using `cd` in bash commands instead of absolute paths
+- Committing generated files (.nuxt/, dist/) or editor files (.vscode/)
 
 ## Development Practices
 
@@ -387,6 +430,9 @@ The issue with unicorn rules stems from:
 - Use semantic versioning for releases
 - Follow the .editorconfig rules for consistent formatting
 - Use atomic commits with explicit file lists
+- Update CHANGELOG.md for user-facing changes
+- Update README.md when adding features or changing APIs
+- Update AGENT.md when changing development workflows
 
 ### DON'T
 
@@ -397,3 +443,35 @@ The issue with unicorn rules stems from:
 - Mix tabs and spaces - follow the .editorconfig rules for each file type
 - Use `git commit -m` (use `-F` with a file instead)
 - Rely on staged files - always specify files explicitly in commits
+- Use `cd` in bash commands - use absolute paths or `pnpm --filter`
+- Delete files without explicit permission
+
+## Agent-Specific Instructions
+
+### Claude Code-Specific Instructions
+
+- Use the TodoWrite tool for complex multi-step tasks
+- **CRITICAL: Always enumerate files explicitly in git commit commands**
+- **NEVER use bare `git commit` without file arguments**
+- Fix issues immediately without commentary
+- Stay focused on the task at hand
+
+### Universal Agent Guidelines
+
+- Test changes thoroughly before considering tasks complete
+- Follow the pre-commit checklist strictly
+- Use Write tool for commit messages, not echo, -m, or heredocs
+- Create commit message files with descriptive slugs: `.commit-msg-<descriptive-slug>`
+- NEVER USE `cd` IN BASH COMMANDS - use absolute paths
+- When testing examples, use `pnpm --filter` instead of changing directories
+
+## Debugging Tips
+
+1. **Build Issues**: Run `pnpm clean` then `pnpm build`
+2. **Type Errors**: Check `tsconfig.json` and ensure all imports have types
+3. **ESLint Not Working**: Use `DEBUG=eslint:eslint pnpm lint` for verbose output
+4. **Test Failures**: Check if config changes affect self-linting
+5. **Example Issues**: Each example has its own dependencies - check
+   package.json
+6. **Plugin Conflicts**: Different plugin instances = check version consistency
+7. **CSS Rule Errors**: Rules meant for JS don't work on CSS files
