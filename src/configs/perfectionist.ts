@@ -3,11 +3,12 @@ import perfectionist from 'eslint-plugin-perfectionist';
 import {
   type Config,
   type Rules,
-  withConfig,
+
+  GLOB_SRC,
+  GLOB_VUE,
 } from '../core';
 
-// Perfectionist rules for import/export sorting
-export const poupePerfectionistRules: Rules = {
+const poupePerfectionistRules: Rules = {
   'perfectionist/sort-imports': [
     'error',
     {
@@ -83,11 +84,11 @@ export const poupePerfectionistRules: Rules = {
   ],
 };
 
-export const perfectionistRecommended: Config[] = withConfig({
+export const poupePerfectionistConfig: Config = {
   name: 'poupe/perfectionist',
-  files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx,vue}'],
+  files: [GLOB_SRC, GLOB_VUE],
   plugins: {
     perfectionist,
   },
   rules: poupePerfectionistRules,
-});
+};

@@ -4,8 +4,10 @@ import { tailwindSyntax } from '@eslint/css/syntax';
 import {
   type Config,
   type Rules,
-  withConfig,
+
+  GLOB_CSS,
 } from '../core';
+
 import { tailwindV4Syntax } from './tailwind-v4-syntax';
 
 type SyntaxConfig = NonNullable<CSSLanguageOptions['customSyntax']>;
@@ -36,23 +38,21 @@ const extendedTailwindSyntax: Partial<SyntaxConfig> = {
   },
 };
 
-const languageOptions = {
+const languageOptions: CSSLanguageOptions = {
   tolerant: true, // Enable tolerant mode for Tailwind CSS compatibility
-  customSyntax: extendedTailwindSyntax,
+  customSyntax: extendedTailwindSyntax as SyntaxConfig,
 };
 
-export const cssRecommended: Config[] = withConfig(
-  {
-    name: 'poupe/css',
-    files: ['**/*.css'],
-    plugins: {
-      css,
-    },
-    language: 'css/css',
-    languageOptions: languageOptions as Config['languageOptions'],
-    rules: {
-      ...cssConfigs.recommended.rules,
-      ...poupeCssRules,
-    },
+export const poupeCSSConfig: Config = {
+  name: 'poupe/css',
+  files: [GLOB_CSS],
+  plugins: {
+    css,
   },
-);
+  language: 'css/css',
+  languageOptions: languageOptions as Config['languageOptions'],
+  rules: {
+    ...cssConfigs.recommended.rules,
+    ...poupeCssRules,
+  },
+};

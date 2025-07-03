@@ -1,18 +1,19 @@
 import {
-  cssRecommended,
-
   eslintRecommended,
-  jsoncRecommended,
   markdownlintRecommended,
-  perfectionistRecommended,
   poupeConfigs,
+  poupeCSSConfig,
   stylisticRecommended,
   tsdocRecommended,
   tseslintRecommended,
+
   unicornRecommended,
   vueRecommended,
+  vueSetupConfig,
 } from './configs';
-import { processCSSConfigs } from './configs/css-filter';
+import {
+  processCSSConfigs,
+} from './configs/css-filter';
 import {
   type Config,
   type InfiniteDepthConfigWithExtends,
@@ -30,17 +31,20 @@ export function defineConfig(...userConfigs: InfiniteDepthConfigWithExtends[]): 
         '**/node_modules',
       ],
     },
+
     eslintRecommended,
     tseslintRecommended,
+
+    markdownlintRecommended,
+    stylisticRecommended,
     tsdocRecommended,
     unicornRecommended,
-    perfectionistRecommended,
-    stylisticRecommended,
-    markdownlintRecommended,
     vueRecommended,
+
+    vueSetupConfig,
+
     poupeConfigs,
-    cssRecommended, // CSS configs need to come after JS configs to override rules
-    jsoncRecommended, // Move JSON config after others to ensure it takes precedence
+    poupeCSSConfig,
     userConfigs,
   );
 

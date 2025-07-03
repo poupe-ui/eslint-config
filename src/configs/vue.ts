@@ -2,7 +2,8 @@ import vuePlugin from 'eslint-plugin-vue';
 
 import {
   type Config,
-  type Rules,
+
+  GLOB_VUE,
 
   withConfig,
 } from '../core';
@@ -23,14 +24,30 @@ function restrictVueRulesToVueFiles(config: Config): Config {
   // Add .vue file pattern to configs without file restrictions
   return {
     ...config,
-    files: ['*.vue', '**/*.vue'],
+    files: [GLOB_VUE],
   };
 }
+
+export const vueSetupConfig: Config = {
+  name: 'poupe/vue-setup',
+  files: [GLOB_VUE],
+  languageOptions: {
+    parserOptions: {
+      parser: '@typescript-eslint/parser',
+      extraFileExtensions: ['vue'],
+      sourceType: 'module',
+    },
+  },
+};
 
 export const vueRecommended: Config[] = withConfig(
   vueConfigs['flat/recommended'].map(config => restrictVueRulesToVueFiles(config)),
 );
 
-export const poupeVueRules: Rules = {
-  'vue/multi-word-component-names': 'off',
+export const poupeVueConfig: Config = {
+  name: 'poupe/vue',
+  files: [GLOB_VUE],
+  rules: {
+    'vue/multi-word-component-names': 'off',
+  },
 };
