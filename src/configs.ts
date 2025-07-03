@@ -17,6 +17,7 @@ export {
   tsdocRecommended,
   tseslintRecommended,
   unicornRecommended,
+  unicornSetupConfig,
 
   vueRecommended,
   vueSetupConfig,

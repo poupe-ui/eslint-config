@@ -12,6 +12,14 @@ const { configs: unicornConfigs } = unicornPlugin;
 
 export const unicornRecommended: Config = unicornConfigs.recommended;
 
+/** Bare unicorn plugin setup (just the plugin, no rules) */
+export const unicornSetupConfig: Config = {
+  name: 'poupe/unicorn-setup',
+  plugins: {
+    unicorn: unicornPlugin,
+  },
+};
+
 // unicorn/prevent-abbreviations
 const abbreviations = [
   'attr',

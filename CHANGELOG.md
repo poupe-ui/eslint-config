@@ -10,13 +10,22 @@ All notable changes to this project will be documented in this file.
   (`GLOB_CSS`, `GLOB_SRC`, `GLOB_VUE`, etc.)
 - **unicorn**: Split into `poupeUnicornConfigs` array with separate filename
   and general rules
+- **unicorn**: Added `unicornSetupConfig` export for bare plugin setup without
+  rules
 - **vue**: Added `vueSetupConfig` for Vue TypeScript parser configuration
+
+### Fixed
+
+- **nuxt**: Fixed unicorn plugin resolution for Nuxt modules by adding
+  `unicornSetupConfig` to ensure plugin availability when rules are referenced
 
 ### Internal
 
 - Refactored test files to work with new config structure
 - Simplified `forNuxtModules` to map over `forNuxt` results instead of
   duplicating logic
+- Updated `@nuxt/eslint` to v1.5.1 in playground examples
+- Updated `@vue/eslint-config-typescript` to v14.6.0
 
 ### Changed
 
