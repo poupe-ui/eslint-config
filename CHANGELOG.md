@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- **core/globs**: New module exporting common file pattern constants
+  (`GLOB_CSS`, `GLOB_SRC`, `GLOB_VUE`, etc.)
+
 ### Changed
 
 - **CI**: Pinned Node.js to 20.19.0 in build and renovate workflows
