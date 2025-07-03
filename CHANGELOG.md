@@ -8,6 +8,9 @@ All notable changes to this project will be documented in this file.
 
 - **core/globs**: New module exporting common file pattern constants
   (`GLOB_CSS`, `GLOB_SRC`, `GLOB_VUE`, etc.)
+- **unicorn**: Split into `poupeUnicornConfigs` array with separate filename
+  and general rules
+- **vue**: Added `vueSetupConfig` for Vue TypeScript parser configuration
 
 ### Changed
 
@@ -17,6 +20,14 @@ All notable changes to this project will be documented in this file.
   - Enabled `partitionByNewLine` for `sort-imports` and `sort-named-imports`
   - Changed `newlinesBetween` from 'always' to 'ignore' to avoid conflicts
   - Empty lines now act as block separators, allowing logical grouping of imports
+- **configs**: Restructured configuration exports from rule-only exports to
+  complete ESLint config objects
+  - Each config now includes its own file patterns for better modularity
+  - Renamed exports for clarity (e.g., `cssRecommended` → `poupeCSSConfigs`)
+  - Added centralised glob constants in `core/globs.ts`
+- **stylistic**: Extended stylistic rules to apply to Vue files
+- **nuxt**: Simplified `forNuxtModules` to delegate to `forNuxt` results
+  instead of duplicating config assembly
 
 ### Fixed
 
@@ -26,6 +37,11 @@ All notable changes to this project will be documented in this file.
   dedupe across transitive dependencies
 - **deps**: Updated `unbuild` from 3.5.0 to ~3.6.1 to align with
   `@nuxt/module-builder` and eliminate duplicate instances
+
+### Internal
+
+- Added shared `mustConfigByName` test utility for fail-fast config lookups
+- Refactored test files to work with new config structure
 
 ## [0.7.13] - 2026-03-02
 

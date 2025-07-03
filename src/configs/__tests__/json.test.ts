@@ -1,99 +1,103 @@
 import { describe, expect, it } from 'vitest';
 
-import { jsoncRecommended, poupeJsonRules, poupePackageJsonRules } from '../json';
+import { poupeJsonConfigs } from '../json';
+import { mustConfigByName } from './test-utils';
+
+const findConfig = (name: string) => mustConfigByName(poupeJsonConfigs, name);
 
 describe('JSON Configuration', () => {
-  describe('jsoncRecommended', () => {
+  describe('poupeJsonConfigs', () => {
     it('should have 3 configurations', () => {
-      expect(jsoncRecommended).toHaveLength(3);
+      expect(poupeJsonConfigs).toHaveLength(3);
     });
 
     it('should have correct configuration names', () => {
-      expect(jsoncRecommended[0].name).toBe('poupe/json');
-      expect(jsoncRecommended[1].name).toBe('poupe/package-json');
-      expect(jsoncRecommended[2].name).toBe('poupe/allow-json-comments');
+      expect(findConfig('poupe/json')).toBeDefined();
+      expect(findConfig('poupe/package-json')).toBeDefined();
+      expect(findConfig('poupe/jsonc')).toBeDefined();
     });
 
     it('should apply to correct file patterns', () => {
-      expect(jsoncRecommended[0].files).toEqual(['**/*.json']);
-      expect(jsoncRecommended[0].ignores).toEqual(['**/package.json']);
-      expect(jsoncRecommended[1].files).toEqual(['**/package.json']);
-      expect(jsoncRecommended[2].files).toEqual([
-        '**/.vscode/*.json',
-        '**/tsconfig.json',
-        '**/tsconfig.*.json',
-      ]);
+      const jsonConfig = findConfig('poupe/json');
+      const packageJsonConfig = findConfig('poupe/package-json');
+      const jsoncConfig = findConfig('poupe/jsonc');
+
+      expect(jsonConfig.files).toEqual(['**/*.json']);
+      expect(jsonConfig.ignores).toEqual(['**/package.json']);
+      expect(packageJsonConfig.files).toEqual(['**/package.json']);
+      expect(jsoncConfig.files).toContain('**/*.jsonc');
+      expect(jsoncConfig.files).toContain('**/.vscode/*.json');
+      expect(jsoncConfig.files).toContain('**/tsconfig.json');
     });
 
-    it('should include jsonc plugin and language for JSON configs', () => {
-      for (const config of jsoncRecommended) {
-        // Allow-comments config only has rule overrides, no plugin/language
-        if (config.name === 'poupe/allow-json-comments') {
-          expect(config.plugins).toBeUndefined();
-          expect(config.language).toBeUndefined();
-        } else {
-          expect(config.plugins).toHaveProperty('jsonc');
-          expect(config.language).toBe('jsonc/json');
-        }
+    it('should include jsonc plugin and language for all configs', () => {
+      for (const config of poupeJsonConfigs) {
+        expect(config.plugins).toHaveProperty('jsonc');
+        expect(config.language).toBe('jsonc/json');
       }
     });
 
-    it('should disable comments rule for specific files', () => {
-      const allowCommentsConfig = jsoncRecommended[2];
-      expect(allowCommentsConfig.rules).toEqual({
-        'jsonc/no-comments': 'off',
-      });
+    it('should disable comments rule for JSONC files', () => {
+      const jsoncConfig = findConfig('poupe/jsonc');
+      expect(jsoncConfig.rules?.['jsonc/no-comments']).toBe('off');
     });
   });
 
-  describe('poupeJsonRules', () => {
+  describe('poupeJsonRules in JSON config', () => {
+    const jsonConfig = findConfig('poupe/json');
+    const rules = jsonConfig.rules || {};
+
     it('should define formatting rules', () => {
-      expect(poupeJsonRules['jsonc/indent']).toEqual(['error', 2]);
-      expect(poupeJsonRules['jsonc/comma-dangle']).toEqual(['error', 'never']);
-      expect(poupeJsonRules['jsonc/comma-style']).toEqual(['error', 'last']);
-      expect(poupeJsonRules['jsonc/object-curly-spacing']).toEqual(['error', 'always']);
+      expect(rules['jsonc/indent']).toEqual(['error', 2]);
+      expect(rules['jsonc/comma-dangle']).toEqual(['error', 'never']);
+      expect(rules['jsonc/comma-style']).toEqual(['error', 'last']);
+      expect(rules['jsonc/object-curly-spacing']).toEqual(['error', 'always']);
     });
 
     it('should disallow comments in JSON files', () => {
-      expect(poupeJsonRules['jsonc/no-comments']).toBe('error');
+      expect(rules['jsonc/no-comments']).toBe('error');
     });
   });
 
-  describe('poupePackageJsonRules', () => {
+  describe('poupePackageJsonRules in package.json config', () => {
+    const packageJsonConfig = findConfig('poupe/package-json');
+    const jsonConfig = findConfig('poupe/json');
+    const packageRules = packageJsonConfig.rules || {};
+    const jsonRules = jsonConfig.rules || {};
+
+    type SortKeysPattern = { pathPattern: string; order: string[] | { type: string } };
+    const sortKeysRule = packageRules['jsonc/sort-keys'] as [string, SortKeysPattern, SortKeysPattern, SortKeysPattern];
+
     it('should include all general JSON rules', () => {
-      for (const rule of Object.keys(poupeJsonRules)) {
-        expect(poupePackageJsonRules).toHaveProperty(rule);
+      const jsonFormattingRules = ['jsonc/indent', 'jsonc/comma-dangle', 'jsonc/comma-style', 'jsonc/object-curly-spacing', 'jsonc/no-comments'];
+      for (const rule of jsonFormattingRules) {
+        expect(packageRules).toHaveProperty(rule);
+        expect(packageRules[rule]).toEqual(jsonRules[rule]);
       }
     });
 
     it('should define sort-keys rule for package.json', () => {
-      const sortKeysRule = poupePackageJsonRules['jsonc/sort-keys'];
       expect(sortKeysRule).toBeDefined();
       expect(Array.isArray(sortKeysRule)).toBe(true);
+      expect(sortKeysRule[0]).toBe('error');
 
-      if (Array.isArray(sortKeysRule)) {
-        expect(sortKeysRule[0]).toBe('error');
-
-        // Check that we have multiple pattern configurations
-        const ruleArguments = sortKeysRule.slice(1);
-        expect(ruleArguments).toHaveLength(3);
-      }
+      // Check that we have multiple pattern configurations
+      const ruleArguments = sortKeysRule.slice(1);
+      expect(ruleArguments).toHaveLength(3);
     });
 
     it('should sort root level package.json fields', () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const sortKeysRule = poupePackageJsonRules['jsonc/sort-keys'] as [string, any, any, any];
-      const rootPattern = sortKeysRule[1];
+      const [, rootPattern] = sortKeysRule;
 
       expect(rootPattern.pathPattern).toBe('^$');
       expect(Array.isArray(rootPattern.order)).toBe(true);
-      expect(rootPattern.order[0]).toBe('name');
-      expect(rootPattern.order[1]).toBe('version');
+
+      const order = rootPattern.order as string[];
+      expect(order[0]).toBe('name');
+      expect(order[1]).toBe('version');
     });
 
     it('should sort dependencies alphabetically', () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const sortKeysRule = poupePackageJsonRules['jsonc/sort-keys'] as [string, any, any, any];
       const depsPattern = sortKeysRule[2];
 
       expect(depsPattern.pathPattern).toBe('^(dependencies|devDependencies|peerDependencies|optionalDependencies)$');
@@ -101,8 +105,6 @@ describe('JSON Configuration', () => {
     });
 
     it('should sort other second-level objects alphabetically', () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const sortKeysRule = poupePackageJsonRules['jsonc/sort-keys'] as [string, any, any, any];
       const secondLevelPattern = sortKeysRule[3];
 
       expect(secondLevelPattern.pathPattern).toBe('^(scripts|pnpm|exports|publishConfig)$');
@@ -112,8 +114,7 @@ describe('JSON Configuration', () => {
 
   describe('Configuration Integration', () => {
     it('should apply Poupe rules to JSON files', () => {
-      const [generalConfig] = jsoncRecommended;
-      const rules = generalConfig.rules;
+      const rules = findConfig('poupe/json').rules;
 
       // Check that Poupe's custom rules are applied
       expect(rules).toBeDefined();
@@ -124,8 +125,7 @@ describe('JSON Configuration', () => {
     });
 
     it('should apply Poupe rules to package.json files', () => {
-      const [, packageJsonConfig] = jsoncRecommended;
-      const rules = packageJsonConfig.rules;
+      const rules = findConfig('poupe/package-json').rules;
 
       // Check that Poupe's JSON rules are applied to package.json
       expect(rules?.['jsonc/indent']).toEqual(['error', 2]);
@@ -138,8 +138,7 @@ describe('JSON Configuration', () => {
     });
 
     it('should merge third-party recommended rules with Poupe rules', () => {
-      const [generalConfig] = jsoncRecommended;
-      const rules = generalConfig.rules;
+      const rules = findConfig('poupe/json').rules;
 
       // Should have both third-party rules (check by presence of many jsonc/ rules)
       const jsoncRules = Object.keys(rules!).filter(key => key.startsWith('jsonc/'));

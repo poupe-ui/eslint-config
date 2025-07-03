@@ -1,20 +1,27 @@
 import jsoncPlugin from 'eslint-plugin-jsonc';
 
-import type { Config, Rules } from '../core';
+import {
+  type Config,
+  type Rules,
 
-import { withConfig } from '../core';
+  GLOB_JSON,
+  GLOB_JSONC,
+} from '../core';
 
 // v3: configs['recommended-with-json'] returns [plugins, language+files, rules]
 const jsoncRecommendedConfigs = jsoncPlugin.configs['recommended-with-json'];
 const jsoncRecommendedRules = jsoncRecommendedConfigs[2].rules as Rules;
 
-const JSONC_ALLOW_COMMENTS_FILES = [
+const GLOB_PACKAGE_JSON = '**/package.json';
+
+const JSONC_FILES = [
+  GLOB_JSONC,
   '**/.vscode/*.json',
   '**/tsconfig.json',
   '**/tsconfig.*.json',
 ];
 
-export const poupeJsonRules: Rules = {
+const poupeJsonRules: Rules = {
   // Consistent formatting
   'jsonc/indent': ['error', 2],
   'jsonc/comma-dangle': ['error', 'never'],
@@ -29,7 +36,12 @@ export const poupeJsonRules: Rules = {
   'jsonc/no-comments': 'error',
 };
 
-export const poupePackageJsonRules: Rules = {
+const poupeJsoncRules: Rules = {
+  ...poupeJsonRules,
+  'jsonc/no-comments': 'off',
+};
+
+const poupePackageJsonRules: Rules = {
   ...poupeJsonRules,
   // Sort package.json keys in standard order
   'jsonc/sort-keys': [
@@ -77,11 +89,11 @@ export const poupePackageJsonRules: Rules = {
   ],
 };
 
-export const jsoncRecommended: Config[] = withConfig(
+export const poupeJsonConfigs: Config[] = [
   {
     name: 'poupe/json',
-    files: ['**/*.json'],
-    ignores: ['**/package.json'],
+    files: [GLOB_JSON],
+    ignores: [GLOB_PACKAGE_JSON],
     plugins: {
       jsonc: jsoncPlugin,
     },
@@ -93,7 +105,7 @@ export const jsoncRecommended: Config[] = withConfig(
   },
   {
     name: 'poupe/package-json',
-    files: ['**/package.json'],
+    files: [GLOB_PACKAGE_JSON],
     plugins: {
       jsonc: jsoncPlugin,
     },
@@ -104,10 +116,15 @@ export const jsoncRecommended: Config[] = withConfig(
     },
   },
   {
-    name: 'poupe/allow-json-comments',
-    files: JSONC_ALLOW_COMMENTS_FILES,
+    name: 'poupe/jsonc',
+    files: JSONC_FILES,
+    plugins: {
+      jsonc: jsoncPlugin,
+    },
+    language: 'jsonc/json',
     rules: {
-      'jsonc/no-comments': 'off',
+      ...jsoncRecommendedRules,
+      ...poupeJsoncRules,
     },
   },
-);
+];

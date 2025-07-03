@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { poupeUnicornRules } from '../unicorn';
+import { poupeUnicornConfigs } from '../unicorn';
+import { mustConfigByName } from './test-utils';
 
 interface PreventAbbreviationsOptions {
   allowList: Record<string, boolean>
@@ -13,9 +14,12 @@ interface FilenameCaseOptions {
 }
 
 describe('unicorn configuration', () => {
+  const unicornRules = mustConfigByName(poupeUnicornConfigs, 'poupe/unicorn').rules!;
+  const filenameRules = mustConfigByName(poupeUnicornConfigs, 'poupe/unicorn-filename').rules!;
+
   describe('prevent-abbreviations rule', () => {
     it('should have correct configuration', () => {
-      const rule = poupeUnicornRules['unicorn/prevent-abbreviations'];
+      const rule = unicornRules['unicorn/prevent-abbreviations'];
       expect(rule).toBeDefined();
       expect(Array.isArray(rule)).toBe(true);
       if (Array.isArray(rule)) {
@@ -24,7 +28,7 @@ describe('unicorn configuration', () => {
     });
 
     it('should allow i, j, k as variable names', () => {
-      const rule = poupeUnicornRules['unicorn/prevent-abbreviations'];
+      const rule = unicornRules['unicorn/prevent-abbreviations'];
       expect(Array.isArray(rule)).toBe(true);
       if (Array.isArray(rule) && rule.length > 1) {
         const options = rule[1] as PreventAbbreviationsOptions;
@@ -36,7 +40,7 @@ describe('unicorn configuration', () => {
     });
 
     it('should not suggest replacements for i, j, k', () => {
-      const rule = poupeUnicornRules['unicorn/prevent-abbreviations'];
+      const rule = unicornRules['unicorn/prevent-abbreviations'];
       expect(Array.isArray(rule)).toBe(true);
       if (Array.isArray(rule) && rule.length > 1) {
         const options = rule[1] as PreventAbbreviationsOptions;
@@ -49,7 +53,7 @@ describe('unicorn configuration', () => {
     });
 
     it('should allow other common abbreviations', () => {
-      const rule = poupeUnicornRules['unicorn/prevent-abbreviations'];
+      const rule = unicornRules['unicorn/prevent-abbreviations'];
       expect(Array.isArray(rule)).toBe(true);
       if (Array.isArray(rule) && rule.length > 1) {
         const options = rule[1] as PreventAbbreviationsOptions;
@@ -64,7 +68,7 @@ describe('unicorn configuration', () => {
 
   describe('filename-case rule', () => {
     it('should enforce kebab-case with exceptions for uppercase .md and .txt files', () => {
-      const rule = poupeUnicornRules['unicorn/filename-case'];
+      const rule = filenameRules['unicorn/filename-case'];
       expect(rule).toBeDefined();
       expect(Array.isArray(rule)).toBe(true);
 
