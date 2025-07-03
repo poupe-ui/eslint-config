@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- **core/globs**: New module exporting common file pattern constants
+  (`GLOB_CSS`, `GLOB_SRC`, `GLOB_VUE`, etc.)
+
 ### Changed
 
 - **perfectionist**: Enhanced import sorting configuration
