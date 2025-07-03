@@ -15,8 +15,9 @@ export const poupePerfectionistRules: Rules = {
       order: 'asc',
       ignoreCase: true,
       internalPattern: ['^~/.+', '^@/.+', String.raw`^\.\./.+`, String.raw`^\./.+`],
-      newlinesBetween: 'always',
+      newlinesBetween: 'ignore',
       maxLineLength: undefined,
+      partitionByNewLine: true,
       groups: [
         'type',
         ['builtin', 'external'],
@@ -57,6 +58,7 @@ export const poupePerfectionistRules: Rules = {
       ignoreAlias: false,
       specialCharacters: 'keep',
       groupKind: 'mixed',
+      partitionByNewLine: true,
     },
   ],
   'perfectionist/sort-named-exports': [

@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file.
 
 - **CI**: Pinned Node.js to 20.19.0 in build and renovate workflows
   to match engines.node requirement
+- **perfectionist**: Enhanced import sorting configuration
+  - Enabled `partitionByNewLine` for `sort-imports` and `sort-named-imports`
+  - Changed `newlinesBetween` from 'always' to 'ignore' to avoid conflicts
+  - Empty lines now act as block separators, allowing logical grouping of imports
 
 ### Fixed
 

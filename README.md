@@ -140,6 +140,28 @@ import { Button } from './components/Button';
 import { useEffect, useState } from 'react';
 ```
 
+#### Import Grouping with Empty Lines
+
+The configuration respects empty lines as block separators, allowing you to
+organize imports into logical groups:
+
+```js
+// Core React imports
+import React from 'react';
+import { useState, useEffect } from 'react';
+
+// External libraries
+import axios from 'axios';
+import { z } from 'zod';
+
+// Internal modules
+import { config } from './config';
+import { Button } from './components/Button';
+```
+
+Each group separated by empty lines is sorted independently, preserving your
+intended organization while maintaining consistent ordering within each group.
+
 ### Union Type Sorting
 
 The configuration also includes automatic sorting of TypeScript union types with
