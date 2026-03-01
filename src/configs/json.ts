@@ -1,11 +1,12 @@
 import jsoncPlugin from 'eslint-plugin-jsonc';
-import * as jsoncParser from 'jsonc-eslint-parser';
 
 import type { Config, Rules } from '../core';
 
 import { withConfig } from '../core';
 
-const jsoncRecommendedRules = jsoncPlugin.configs['recommended-with-json'].rules as Rules;
+// v3: configs['recommended-with-json'] returns [plugins, language+files, rules]
+const jsoncRecommendedConfigs = jsoncPlugin.configs['recommended-with-json'];
+const jsoncRecommendedRules = jsoncRecommendedConfigs[2].rules as Rules;
 
 const JSONC_ALLOW_COMMENTS_FILES = [
   '**/.vscode/*.json',
@@ -84,9 +85,7 @@ export const jsoncRecommended: Config[] = withConfig(
     plugins: {
       jsonc: jsoncPlugin,
     },
-    languageOptions: {
-      parser: jsoncParser,
-    },
+    language: 'jsonc/json',
     rules: {
       ...jsoncRecommendedRules,
       ...poupeJsonRules,
@@ -98,9 +97,7 @@ export const jsoncRecommended: Config[] = withConfig(
     plugins: {
       jsonc: jsoncPlugin,
     },
-    languageOptions: {
-      parser: jsoncParser,
-    },
+    language: 'jsonc/json',
     rules: {
       ...jsoncRecommendedRules,
       ...poupePackageJsonRules,
