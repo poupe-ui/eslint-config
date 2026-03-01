@@ -91,7 +91,7 @@ support. The CSS configuration uses an intelligent filtering system that:
 * Keeps relevant cross-language rules (like `filename-case` from unicorn)
 
 The filtering system categorizes plugins and rules to ensure only appropriate
-rules apply to CSS files. See [AGENT.md](./AGENT.md#css-configuration-system)
+rules apply to CSS files. See [AGENTS.md](./AGENTS.md#css-configuration-system)
 for implementation details.
 
 ## Supported File Types
@@ -347,7 +347,7 @@ DEBUG=eslint:eslint eslint .
 
 ## Development
 
-For AI assistants working with this codebase, refer to [AGENT.md](./AGENT.md)
+For AI assistants working with this codebase, refer to [AGENTS.md](./AGENTS.md)
 for detailed guidance and conventions.
 
 ### Project Structure
