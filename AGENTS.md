@@ -1,4 +1,4 @@
-# AGENT.md
+# AGENTS.md
 
 This file provides guidance to AI assistants when working with code in
 this repository.
@@ -375,7 +375,7 @@ The issue with unicorn rules stems from:
 5. Check if your changes require updates to:
    - **CHANGELOG.md** - for any user-facing changes or fixes
    - **README.md** - for new features, API changes, or usage examples
-   - **AGENT.md** - for new development guidelines or workflow changes
+   - **AGENTS.md** - for new development guidelines or workflow changes
 
 ##### Commit Rules (STRICT ENFORCEMENT)
 
@@ -432,7 +432,7 @@ The issue with unicorn rules stems from:
 - Use atomic commits with explicit file lists
 - Update CHANGELOG.md for user-facing changes
 - Update README.md when adding features or changing APIs
-- Update AGENT.md when changing development workflows
+- Update AGENTS.md when changing development workflows
 
 ### DON'T
 
