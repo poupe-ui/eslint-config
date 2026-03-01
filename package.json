@@ -62,7 +62,7 @@
     "globals": "^16.5.0",
     "npm-run-all2": "^8.0.4",
     "pkg-pr-new": "^0.0.54",
-    "publint": "^0.3.12",
+    "publint": "^0.3.18",
     "rimraf": "^6.0.1",
     "typescript": "~5.8.3",
     "unbuild": "3.5.0",
