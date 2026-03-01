@@ -25,15 +25,15 @@ describe('JSON Configuration', () => {
       ]);
     });
 
-    it('should include jsonc plugin and parser for JSON configs', () => {
+    it('should include jsonc plugin and language for JSON configs', () => {
       for (const config of jsoncRecommended) {
-        // Allow-comments config only has rule overrides, no plugin/parser
+        // Allow-comments config only has rule overrides, no plugin/language
         if (config.name === 'poupe/allow-json-comments') {
           expect(config.plugins).toBeUndefined();
-          expect(config.languageOptions).toBeUndefined();
+          expect(config.language).toBeUndefined();
         } else {
           expect(config.plugins).toHaveProperty('jsonc');
-          expect(config.languageOptions?.parser).toBeDefined();
+          expect(config.language).toBe('jsonc/json');
         }
       }
     });
