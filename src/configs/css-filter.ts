@@ -237,6 +237,7 @@ const KNOWN_PLUGINS = new Map<string, PluginRuleConfig>([
       /^template-/, // Template literal formatting
       /^type-/, // TypeScript type formatting
       /^wrap-/, // Wrapping rules
+      /^exp-/, // Experimental rules (JS/JSX-specific)
       /^yield-/, // Yield formatting
       /indent/, // Indentation (too JS-specific)
       /bracket/, // Bracket formatting
