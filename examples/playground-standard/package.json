@@ -12,6 +12,6 @@
     "@poupe/eslint-config": "workspace:*",
     "cross-env": "^7.0.3",
     "eslint": "^9.39.3",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.1.3"
   }
 }

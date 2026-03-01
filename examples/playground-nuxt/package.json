@@ -21,6 +21,6 @@
     "@nuxt/eslint": "~1.4.1",
     "@poupe/eslint-config": "workspace:*",
     "cross-env": "^7.0.3",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.1.3"
   }
 }
