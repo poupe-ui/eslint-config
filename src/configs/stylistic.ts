@@ -1,10 +1,11 @@
 import stylisticPlugin from '@stylistic/eslint-plugin';
 
 import type {
+  Config,
   Rules,
 } from '../core';
 
-export const stylisticRecommended = stylisticPlugin.configs.recommended;
+export const stylisticRecommended: Config = stylisticPlugin.configs.recommended;
 
 export const poupeStylisticRules: Rules = {
   '@stylistic/arrow-parens': 'error',
