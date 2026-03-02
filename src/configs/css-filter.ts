@@ -93,6 +93,9 @@ const KNOWN_PLUGINS = new Map<string, PluginRuleConfig>([
       'no-unused-properties', // Object property detection - JS only
       'string-content', // String content patterns - JS only
       'no-length-as-slice-end', // Array slice method - JS only
+      'no-immediate-mutation', // Variable mutation detection - JS only
+      'prefer-bigint-literals', // BigInt constructor preference - JS only
+      'prefer-response-static-json', // Response.json() preference - JS only
     ],
     undefined, // No keep patterns
     [

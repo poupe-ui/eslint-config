@@ -11,16 +11,13 @@ import {
   type InfiniteDepthConfigWithExtends,
 
   withConfig,
-  withoutPlugin,
-  withoutRules,
 } from './core';
 
 const sharedNuxtConfigs: InfiniteDepthConfigWithExtends = [
   // TODO: CSS support is temporarily disabled for Nuxt configurations
-  // @nuxt/eslint-config (used by @nuxt/eslint) applies JavaScript/TypeScript
-  // rules globally without file restrictions. Their regexp and @stylistic
-  // plugin rules attempt to parse CSS files as JavaScript, causing TypeScript
-  // AST errors. This needs to be fixed upstream in @nuxt/eslint-config/flat.
+  // While `@nuxt/eslint` v1.5.0+ adds file restrictions to its configs, there
+  // may still be edge cases where JavaScript/TypeScript rules leak to CSS files.
+  // Re-enable once we confirm all CSS parsing issues are resolved.
   // See: https://github.com/poupe-ui/eslint-config/issues/138
   // poupeCSSConfigs,
 
@@ -37,27 +34,5 @@ export const forNuxt = (...userConfigs: InfiniteDepthConfigWithExtends[]): Confi
   ...userConfigs,
 );
 
-/** rules not for nuxt modules */
-const rulesNotForModules = new Set([
-  /** disabled because they are not supported by the version of the unicorn plugin already loaded */
-  'unicorn/no-unnecessary-array-flat-depth',
-  'unicorn/no-unnecessary-array-splice-count',
-  'unicorn/no-unnecessary-slice-end',
-  'unicorn/prefer-single-call',
-]);
-
-const removeUnsupportedRulesForModules = (c: Config): Config => {
-  if ('rules' in c && c.rules) {
-    return {
-      ...c,
-      rules: withoutRules(c.rules, ...rulesNotForModules),
-    };
-  }
-
-  return c;
-};
-
-export const forNuxtModules = (...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] => {
-  const configs = withoutPlugin('unicorn', ...forNuxt(...userConfigs));
-  return configs.map(c => removeUnsupportedRulesForModules(c));
-};
+/** rules for nuxt modules */
+export const forNuxtModules = forNuxt;

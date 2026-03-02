@@ -26,8 +26,9 @@ All notable changes to this project will be documented in this file.
   - Renamed exports for clarity (e.g., `cssRecommended` → `poupeCSSConfigs`)
   - Added centralised glob constants in `core/globs.ts`
 - **stylistic**: Extended stylistic rules to apply to Vue files
-- **nuxt**: Simplified `forNuxtModules` to delegate to `forNuxt` results
-  instead of duplicating config assembly
+- **nuxt**: `forNuxtModules` is now an alias of `forNuxt` — the
+  `withoutPlugin('unicorn')` workaround and `rulesNotForModules` filter
+  are no longer needed with `@nuxt/eslint` ~1.15.2 aligning plugin instances
 
 ### Removed
 
@@ -43,9 +44,20 @@ All notable changes to this project will be documented in this file.
 - `globals` ^16.5.0 → ~17.4.0
 - `pkg-pr-new` ^0.0.54 → ~0.0.65
 - `packageManager` pnpm 10.10.0 → 10.30.3
+- `eslint-plugin-unicorn` ^59.0.1 → ^63.0.0 — 12 new recommended rules:
+  `prefer-class-fields`, `no-array-reverse`, `require-module-specifiers`,
+  `no-useless-error-capture-stack-trace`, `prefer-bigint-literals`,
+  `prefer-classlist-toggle`, `require-module-attributes`, `no-array-sort`,
+  `no-immediate-mutation`, `no-useless-collection-argument`,
+  `prefer-response-static-json`, `isolated-functions`
+- `@nuxt/eslint` ~1.4.1 → ~1.15.2
+- `@nuxt/eslint-config` ~1.4.1 → ~1.15.2
 
 ### Fixed
 
+- **CSS filter**: Added 3 new unicorn rules (`no-immediate-mutation`,
+  `prefer-bigint-literals`, `prefer-response-static-json`) to the
+  explicit disable list for CSS files
 - **examples**: Added `playground/node_modules` to nuxt-module clean script
 - **examples**: Changed `playground-nuxt` nuxt dependency from `^3.17.5`
   to `latest` to match `playground-nuxt-module` and stabilise lockfile
