@@ -63,7 +63,7 @@ describe('unicorn configuration', () => {
   });
 
   describe('filename-case rule', () => {
-    it('should enforce kebab-case with exceptions for uppercase markdown files', () => {
+    it('should enforce kebab-case with exceptions for uppercase .md and .txt files', () => {
       const rule = poupeUnicornRules['unicorn/filename-case'];
       expect(rule).toBeDefined();
       expect(Array.isArray(rule)).toBe(true);
@@ -74,7 +74,7 @@ describe('unicorn configuration', () => {
         expect(severity).toBe('error');
         expect(options.case).toBe('kebabCase');
         expect(options.ignore).toBeDefined();
-        expect(options.ignore?.[0]).toBe(String.raw`^[A-Z][A-Z0-9\-_]*\.md$`);
+        expect(options.ignore?.[0]).toBe(String.raw`^[A-Z][A-Z0-9\-_]*\.(md|txt)$`);
       }
     });
   });

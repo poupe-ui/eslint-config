@@ -35,19 +35,19 @@ function getRuleSeverity(ruleConfig) {
 }
 
 // Check if our filename-case ignore pattern is present
-function hasUppercaseMdIgnorePattern(config) {
+function hasUppercaseFileIgnorePattern(config) {
   if (!Array.isArray(config)) return false;
   const [, options] = config;
   return options?.ignore?.some(pattern =>
-    pattern.includes('[A-Z]') && pattern.includes('.md'),
+    pattern.includes('[A-Z]') && pattern.includes('md') && pattern.includes('txt'),
   );
 }
 
 // Rules we expect to be configured
 const expectedRules = {
   'unicorn/filename-case': {
-    test: config => hasUppercaseMdIgnorePattern(config),
-    description: 'should have ignore pattern for uppercase .md files',
+    test: config => hasUppercaseFileIgnorePattern(config),
+    description: 'should have ignore pattern for uppercase .md and .txt files',
   },
   'unicorn/no-array-for-each': {
     severity: SEVERITY.ERROR,
