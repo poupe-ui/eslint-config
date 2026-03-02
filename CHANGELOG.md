@@ -12,6 +12,11 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 - **examples**: Added `playground/node_modules` to nuxt-module clean script
+- **examples**: Changed `playground-nuxt` nuxt dependency from `^3.17.5`
+  to `latest` to match `playground-nuxt-module` and stabilise lockfile
+  dedupe across transitive dependencies
+- **deps**: Updated `unbuild` from 3.5.0 to ~3.6.1 to align with
+  `@nuxt/module-builder` and eliminate duplicate instances
 
 ## [0.7.13] - 2026-03-02
 
