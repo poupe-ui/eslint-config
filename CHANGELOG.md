@@ -46,6 +46,8 @@ All notable changes to this project will be documented in this file.
 ### Internal
 
 - Added shared `mustConfigByName` test utility for fail-fast config lookups
+- Removed `eslint-disable` comment from `css.test.ts`: narrow
+  `as any` to `as Linter.Config[]`
 - Refactored test files to work with new config structure
 
 ## [0.7.13] - 2026-03-02
