@@ -4,7 +4,6 @@
   "private": true,
   "type": "module",
   "main": "./dist/module.cjs",
-  "types": "./dist/types.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types.d.ts",

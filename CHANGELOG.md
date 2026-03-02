@@ -37,6 +37,8 @@ All notable changes to this project will be documented in this file.
   dedupe across transitive dependencies
 - **deps**: Updated `unbuild` from 3.5.0 to ~3.6.1 to align with
   `@nuxt/module-builder` and eliminate duplicate instances
+- **examples**: Removed redundant top-level `types` field from nuxt-module
+  package.json (already declared in exports map)
 
 ### Internal
 
