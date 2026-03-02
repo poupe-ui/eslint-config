@@ -371,7 +371,7 @@ src/
 
 ## License
 
-MIT
+[MIT](LICENCE.txt)
 
 [eslint-rules]: https://eslint.org/docs/latest/rules/
 [stylistic]: https://eslint.style/packages/default
