@@ -49,5 +49,9 @@ export const poupeVueConfigs: Config[] = [{
   files: [GLOB_VUE],
   rules: {
     'vue/multi-word-component-names': 'off',
+    // Fix deprecated allowMultiplePropertiesPerLine set by @nuxt/eslint-config
+    'vue/object-property-newline': ['error', {
+      allowAllPropertiesOnSameLine: true,
+    }],
   },
 }];

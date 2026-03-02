@@ -39,6 +39,9 @@ All notable changes to this project will be documented in this file.
   `@nuxt/module-builder` and eliminate duplicate instances
 - **examples**: Removed redundant top-level `types` field from nuxt-module
   package.json (already declared in exports map)
+- **vue**: Override deprecated `allowMultiplePropertiesPerLine` option on
+  `vue/object-property-newline` set by `@nuxt/eslint-config@1.4.1`,
+  which `eslint-plugin-vue@10.8.0` no longer accepts
 
 ### Internal
 
