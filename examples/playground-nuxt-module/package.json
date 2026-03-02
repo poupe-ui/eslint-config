@@ -16,7 +16,7 @@
     "dist"
   ],
   "scripts": {
-    "clean": "rimraf node_modules dist .nuxt playground/.nuxt playground/.output",
+    "clean": "rimraf node_modules dist .nuxt playground/.nuxt playground/.output playground/node_modules",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",

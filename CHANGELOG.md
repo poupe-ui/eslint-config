@@ -9,6 +9,10 @@ All notable changes to this project will be documented in this file.
 - **CI**: Pinned Node.js to 20.19.0 in build and renovate workflows
   to match engines.node requirement
 
+### Fixed
+
+- **examples**: Added `playground/node_modules` to nuxt-module clean script
+
 ## [0.7.13] - 2026-03-02
 
 ### Changed
