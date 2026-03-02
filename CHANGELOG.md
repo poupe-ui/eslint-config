@@ -4,6 +4,44 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.7.13] - 2026-03-02
+
+### Changed
+
+- **eslint-plugin-jsonc**: Migrated from v2 to v3 — replaced
+  `jsonc-eslint-parser` with built-in `language: 'jsonc/json'` plugin
+- **engines.node**: Bumped minimum Node.js from >= 18.20.0 to >= 20.19.0
+- **CSS filter**: Added `/^exp-/` pattern to disable `@stylistic`
+  experimental rules for CSS files
+- **CI**: Run full prepack pipeline in build workflow instead of
+  only lint and build
+- **licence**: Updated copyright to 2024-2026 Apptly Software Ltd,
+  renamed LICENSE to LICENCE.txt
+
+### Updated
+
+- `eslint` ^9.30.1 → ^9.39.3
+- `typescript-eslint` ^8.35.1 → ^8.56.1
+- `@stylistic/eslint-plugin` ^5.1.0 → ^5.9.0
+- `eslint-plugin-jsonc` ^2.20.1 → ^3.1.1 (removed `jsonc-eslint-parser`)
+- `eslint-plugin-perfectionist` ^4.15.0 → ^4.15.1
+- `@vue/eslint-config-typescript` ^14.5.1 → ^14.7.0
+- `eslint-plugin-vue` ^10.2.0 → ^10.8.0
+- `publint` ^0.3.12 → ^0.3.18
+- `rimraf` ^6.0.1 → ^6.1.3
+- `oxc-parser` override 0.72.3 → 0.116.0
+
+### Fixed
+
+- **clean script**: Reordered to clean example workspaces before root
+  `node_modules`, preventing rimraf not-found errors
+- **CSS tests**: Added `trim()` helper to avoid `@stylistic/no-trailing-spaces`
+  false positives in template literals
+- **examples**: Pinned `@nuxt/eslint` to `~1.4.x` to avoid upstream
+  compatibility issues
+- **unicorn/filename-case**: Extended exception pattern to cover
+  uppercase `.txt` files (e.g. LICENCE.txt) alongside `.md` files
+
 ## [0.7.12] - 2025-07-02
 
 ### Fixed
