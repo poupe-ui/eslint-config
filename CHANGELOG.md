@@ -69,6 +69,8 @@ All notable changes to this project will be documented in this file.
 - **vue**: Override deprecated `allowMultiplePropertiesPerLine` option on
   `vue/object-property-newline` set by `@nuxt/eslint-config@1.4.1`,
   which `eslint-plugin-vue@10.8.0` no longer accepts
+- **README**: Corrected Node.js version requirement from v18.20.8+
+  to v20.19.0+
 
 ### Internal
 
