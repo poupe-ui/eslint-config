@@ -4,6 +4,79 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-03-02
+
+### Added
+
+- **core/globs**: New module exporting common file pattern constants
+  (`GLOB_CSS`, `GLOB_SRC`, `GLOB_VUE`, etc.)
+- **unicorn**: Split into `poupeUnicornConfigs` array with separate filename
+  and general rules
+- **vue**: Added `vueSetupConfig` for Vue TypeScript parser configuration
+
+### Changed
+
+- **CI**: Pinned Node.js to 20.19.0 in build and renovate workflows
+  to match engines.node requirement
+- **perfectionist**: Enhanced import sorting configuration
+  - Enabled `partitionByNewLine` for `sort-imports` and `sort-named-imports`
+  - Changed `newlinesBetween` from 'always' to 'ignore' to avoid conflicts
+  - Empty lines now act as block separators, allowing logical grouping of imports
+- **configs**: Restructured configuration exports from rule-only exports to
+  complete ESLint config objects
+  - Each config now includes its own file patterns for better modularity
+  - Renamed exports for clarity (e.g., `cssRecommended` → `poupeCSSConfigs`)
+  - Added centralised glob constants in `core/globs.ts`
+- **stylistic**: Extended stylistic rules to apply to Vue files
+- **nuxt**: `forNuxtModules` is now an alias of `forNuxt` — the
+  `withoutPlugin('unicorn')` workaround and `rulesNotForModules` filter
+  are no longer needed with `@nuxt/eslint` ~1.15.2 aligning plugin instances
+
+### Removed
+
+- **deps**: Removed unused `@humanwhocodes/momoa` direct dependency
+
+### Updated
+
+- `typescript` ~5.8.3 → ~5.9.3
+- `unbuild` 3.5.0 → ~3.6.1
+- `vitest` ^3.2.4 → ~4.0.18
+- `@vitest/ui` ^3.2.4 → ~4.0.18
+- `cross-env` ^7.0.3 → ~10.1.0
+- `globals` ^16.5.0 → ~17.4.0
+- `pkg-pr-new` ^0.0.54 → ~0.0.65
+- `packageManager` pnpm 10.10.0 → 10.30.3
+- `eslint-plugin-unicorn` ^59.0.1 → ^63.0.0 — 12 new recommended rules:
+  `prefer-class-fields`, `no-array-reverse`, `require-module-specifiers`,
+  `no-useless-error-capture-stack-trace`, `prefer-bigint-literals`,
+  `prefer-classlist-toggle`, `require-module-attributes`, `no-array-sort`,
+  `no-immediate-mutation`, `no-useless-collection-argument`,
+  `prefer-response-static-json`, `isolated-functions`
+- `@nuxt/eslint` ~1.4.1 → ~1.15.2
+- `@nuxt/eslint-config` ~1.4.1 → ~1.15.2
+
+### Fixed
+
+- **CSS filter**: Added 3 new unicorn rules (`no-immediate-mutation`,
+  `prefer-bigint-literals`, `prefer-response-static-json`) to the
+  explicit disable list for CSS files
+- **examples**: Added `playground/node_modules` to nuxt-module clean script
+- **examples**: Changed `playground-nuxt` nuxt dependency from `^3.17.5`
+  to `latest` to match `playground-nuxt-module` and stabilise lockfile
+  dedupe across transitive dependencies
+- **examples**: Removed redundant top-level `types` field from nuxt-module
+  package.json (already declared in exports map)
+- **vue**: Override deprecated `allowMultiplePropertiesPerLine` option on
+  `vue/object-property-newline` set by `@nuxt/eslint-config@1.4.1`,
+  which `eslint-plugin-vue@10.8.0` no longer accepts
+
+### Internal
+
+- Added shared `mustConfigByName` test utility for fail-fast config lookups
+- Removed `eslint-disable` comment from `css.test.ts`: narrow
+  `as any` to `as Linter.Config[]`
+- Refactored test files to work with new config structure
+
 ## [0.7.13] - 2026-03-02
 
 ### Changed

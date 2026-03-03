@@ -3,8 +3,8 @@ import unicornPlugin from 'eslint-plugin-unicorn';
 
 import { type Config, Linter } from '../core/config';
 import { eslintRecommended } from './eslint';
-import { poupeStylisticRules, stylisticRecommended } from './stylistic';
-import { poupeUnicornRules, unicornRecommended } from './unicorn';
+import { poupeStylisticConfigs } from './stylistic';
+import { poupeUnicornConfigs } from './unicorn';
 
 // Helper function for safe console warnings
 function warn(message: string): void {
@@ -37,8 +37,8 @@ function createPluginConfig(
 ): PluginRuleConfig {
   return {
     pluginName,
-    alwaysKeepRules: new Set(keepRules ?? []),
-    alwaysDisableRules: new Set(disableRules ?? []),
+    alwaysKeepRules: new Set(keepRules),
+    alwaysDisableRules: new Set(disableRules),
     alwaysKeepPatterns: keepPatterns ?? [],
     alwaysDisablePatterns: disablePatterns ?? [],
   };
@@ -93,6 +93,9 @@ const KNOWN_PLUGINS = new Map<string, PluginRuleConfig>([
       'no-unused-properties', // Object property detection - JS only
       'string-content', // String content patterns - JS only
       'no-length-as-slice-end', // Array slice method - JS only
+      'no-immediate-mutation', // Variable mutation detection - JS only
+      'prefer-bigint-literals', // BigInt constructor preference - JS only
+      'prefer-response-static-json', // Response.json() preference - JS only
     ],
     undefined, // No keep patterns
     [
@@ -340,12 +343,10 @@ export function getJavaScriptRulesToDisable(): Record<string, 'off'> {
   }
 
   // 2. Also analyze actual configs to catch core ESLint rules and any custom rules
-  const configs = [
+  const configs: Config[] = [
     eslintRecommended,
-    unicornRecommended,
-    stylisticRecommended,
-    poupeUnicornRules,
-    poupeStylisticRules,
+    ...poupeUnicornConfigs,
+    ...poupeStylisticConfigs,
   ];
 
   for (const config of configs) {

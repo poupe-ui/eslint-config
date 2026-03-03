@@ -19,7 +19,11 @@ describe('ESLint Configuration', () => {
     const configNames = config.map(c => c.name).filter(Boolean);
 
     // Check for some expected configurations
-    expect(configNames).toContain('poupe/files');
-    expect(configNames).toContain('poupe/rules');
+    expect(configNames).toContain('poupe/json');
+    expect(configNames).toContain('poupe/perfectionist');
+    expect(configNames).toContain('poupe/stylistic');
+    expect(configNames).toContain('poupe/unicorn');
+    expect(configNames).toContain('poupe/unicorn-filename');
+    expect(configNames).toContain('poupe/vue');
   });
 });

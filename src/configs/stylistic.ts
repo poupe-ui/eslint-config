@@ -1,13 +1,16 @@
 import stylisticPlugin from '@stylistic/eslint-plugin';
 
-import type {
-  Config,
-  Rules,
+import {
+  type Config,
+  type Rules,
+
+  GLOB_SRC,
+  GLOB_VUE,
 } from '../core';
 
 export const stylisticRecommended: Config = stylisticPlugin.configs.recommended;
 
-export const poupeStylisticRules: Rules = {
+const poupeStylisticRules: Rules = {
   '@stylistic/arrow-parens': 'error',
   '@stylistic/brace-style': ['error', '1tbs'],
   '@stylistic/indent': ['error', 2],
@@ -20,3 +23,9 @@ export const poupeStylisticRules: Rules = {
     overrides: {},
   }],
 };
+
+export const poupeStylisticConfigs: Config[] = [{
+  name: 'poupe/stylistic',
+  files: [GLOB_SRC, GLOB_VUE],
+  rules: poupeStylisticRules,
+}];

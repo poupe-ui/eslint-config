@@ -21,7 +21,7 @@ Vue.js, and Tailwind CSS support.
 
 > [!NOTE]
 > This preset uses the new [ESLint flat config][flat-config] format and
-> requires ESLint v9+ and Node.js v18.20.8+.
+> requires ESLint v9+ and Node.js v20.19.0+.
 
 Install dependencies:
 
@@ -139,6 +139,28 @@ import { config } from './config';
 import { Button } from './components/Button';
 import { useEffect, useState } from 'react';
 ```
+
+#### Import Grouping with Empty Lines
+
+The configuration respects empty lines as block separators, allowing you to
+organize imports into logical groups:
+
+```js
+// Core React imports
+import React from 'react';
+import { useState, useEffect } from 'react';
+
+// External libraries
+import axios from 'axios';
+import { z } from 'zod';
+
+// Internal modules
+import { config } from './config';
+import { Button } from './components/Button';
+```
+
+Each group separated by empty lines is sorted independently, preserving your
+intended organization while maintaining consistent ordering within each group.
 
 ### Union Type Sorting
 

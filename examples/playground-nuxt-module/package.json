@@ -4,7 +4,6 @@
   "private": true,
   "type": "module",
   "main": "./dist/module.cjs",
-  "types": "./dist/types.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types.d.ts",
@@ -16,7 +15,7 @@
     "dist"
   ],
   "scripts": {
-    "clean": "rimraf node_modules dist .nuxt playground/.nuxt playground/.output",
+    "clean": "rimraf node_modules dist .nuxt playground/.nuxt playground/.output playground/node_modules",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
@@ -29,8 +28,8 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@nuxt/eslint": "~1.4.1",
-    "@nuxt/eslint-config": "~1.4.1",
+    "@nuxt/eslint": "~1.15.2",
+    "@nuxt/eslint-config": "~1.15.2",
     "@nuxt/module-builder": "latest",
     "@nuxt/test-utils": "latest",
     "@poupe/eslint-config": "workspace:*",

@@ -1,4 +1,4 @@
-import { ESLint } from 'eslint';
+import { ESLint, type Linter } from 'eslint';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { defineConfig } from '../../index';
@@ -15,8 +15,7 @@ describe('CSS Configuration', () => {
   beforeEach(() => {
     eslint = new ESLint({
       overrideConfigFile: true,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      baseConfig: defineConfig() as any,
+      baseConfig: defineConfig() as Linter.Config[],
     });
   });
 

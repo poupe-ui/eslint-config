@@ -8,20 +8,20 @@ type Plugins = NonNullable<Config['plugins']>;
  * @remarks
  * This function performs a shallow copy; nested objects are not cloned.
  *
- * @typeParam K - The type union of literal string keys to be removed. Must extend `string`.
- * @typeParam T - The type of the input object. Must be a record where keys are of type `K`.
+ * @typeParam T - The type of the input object. Must extend `object`.
+ * @typeParam K - The type union of literal string keys to be removed. Must be a string key of `T`.
  *
  * @param object - The source object to remove keys from. Its type is `T`.
  * @param keys - A rest parameter array of keys to be removed from the object. Each key must be of type `K`.
  * @returns A new object of type `Omit<T, K>` with the specified keys omitted.
  */
-export const without = <K extends string, T extends Record<K, unknown>>(
+export const without = <T extends object, K extends keyof T & string>(
   object: T,
   ...keys: K[]
 ): Omit<T, K> => {
-  const keysToRemove = new Set(keys);
+  const keysToRemove = new Set<string>(keys);
   return Object.fromEntries(
-    Object.entries(object).filter(([key]) => !keysToRemove.has(key as K)),
+    Object.entries(object).filter(([key]) => !keysToRemove.has(key)),
   ) as Omit<T, K>;
 };
 
@@ -45,9 +45,7 @@ const removePluginsFromConfig = (config: Config, pluginsToRemove?: string[]): Co
 
   // If no plugins specified or empty array, remove all plugins
   if (!pluginsToRemove || pluginsToRemove.length === 0) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { plugins: _plugins, ...configWithoutPlugins } = config;
-    return configWithoutPlugins;
+    return without(config, 'plugins');
   }
 
   // Create a new plugins object without the specified plugins
@@ -60,9 +58,7 @@ const removePluginsFromConfig = (config: Config, pluginsToRemove?: string[]): Co
 
   // If no plugins remain, omit the plugins property entirely
   if (Object.keys(remainingPlugins).length === 0) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { plugins: _allPlugins, ...configWithoutPlugins } = config;
-    return configWithoutPlugins;
+    return without(config, 'plugins');
   }
 
   // Return config with remaining plugins
