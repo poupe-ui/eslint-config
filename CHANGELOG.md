@@ -29,14 +29,27 @@ All notable changes to this project will be documented in this file.
 - **nuxt**: Simplified `forNuxtModules` to delegate to `forNuxt` results
   instead of duplicating config assembly
 
+### Removed
+
+- **deps**: Removed unused `@humanwhocodes/momoa` direct dependency
+
+### Updated
+
+- `typescript` ~5.8.3 → ~5.9.3
+- `unbuild` 3.5.0 → ~3.6.1
+- `vitest` ^3.2.4 → ~4.0.18
+- `@vitest/ui` ^3.2.4 → ~4.0.18
+- `cross-env` ^7.0.3 → ~10.1.0
+- `globals` ^16.5.0 → ~17.4.0
+- `pkg-pr-new` ^0.0.54 → ~0.0.65
+- `packageManager` pnpm 10.10.0 → 10.30.3
+
 ### Fixed
 
 - **examples**: Added `playground/node_modules` to nuxt-module clean script
 - **examples**: Changed `playground-nuxt` nuxt dependency from `^3.17.5`
   to `latest` to match `playground-nuxt-module` and stabilise lockfile
   dedupe across transitive dependencies
-- **deps**: Updated `unbuild` from 3.5.0 to ~3.6.1 to align with
-  `@nuxt/module-builder` and eliminate duplicate instances
 - **examples**: Removed redundant top-level `types` field from nuxt-module
   package.json (already declared in exports map)
 - **vue**: Override deprecated `allowMultiplePropertiesPerLine` option on
