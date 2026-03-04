@@ -177,8 +177,9 @@ describe('CSS Configuration', () => {
     it('should parse @layer utilities', async () => {
       const code = trim(`
         @layer utilities {
-          .content-auto {
-            content-visibility: auto;
+          .sr-only {
+            position: absolute;
+            overflow: hidden;
           }
         }
       `);
@@ -243,25 +244,25 @@ describe('CSS Configuration', () => {
 
   describe('@tailwind directive', () => {
     it('should parse @tailwind base', async () => {
-      const code = '@tailwind base;';
+      const code = '@tailwind base;\n';
       const results = await eslint.lintText(code, { filePath: 'test.css' });
       expect(results[0].errorCount).toBe(0);
     });
 
     it('should parse @tailwind components', async () => {
-      const code = '@tailwind components;';
+      const code = '@tailwind components;\n';
       const results = await eslint.lintText(code, { filePath: 'test.css' });
       expect(results[0].errorCount).toBe(0);
     });
 
     it('should parse @tailwind utilities', async () => {
-      const code = '@tailwind utilities;';
+      const code = '@tailwind utilities;\n';
       const results = await eslint.lintText(code, { filePath: 'test.css' });
       expect(results[0].errorCount).toBe(0);
     });
 
     it('should parse @tailwind variants', async () => {
-      const code = '@tailwind variants;';
+      const code = '@tailwind variants;\n';
       const results = await eslint.lintText(code, { filePath: 'test.css' });
       expect(results[0].errorCount).toBe(0);
     });
@@ -269,13 +270,13 @@ describe('CSS Configuration', () => {
 
   describe('@config directive', () => {
     it('should parse @config with relative path', async () => {
-      const code = '@config "./tailwind.config.js";';
+      const code = '@config "./tailwind.config.js";\n';
       const results = await eslint.lintText(code, { filePath: 'test.css' });
       expect(results[0].errorCount).toBe(0);
     });
 
     it('should parse @config with absolute path', async () => {
-      const code = '@config "../../../tailwind.config.ts";';
+      const code = '@config "../../../tailwind.config.ts";\n';
       const results = await eslint.lintText(code, { filePath: 'test.css' });
       expect(results[0].errorCount).toBe(0);
     });
@@ -453,7 +454,7 @@ describe('CSS Configuration', () => {
 
   describe('Tailwind v4 directives', () => {
     it('should parse @source directive', async () => {
-      const code = '@source "./src/**/*.{html,js}";';
+      const code = '@source "./src/**/*.{html,js}";\n';
       const results = await eslint.lintText(code, { filePath: 'test.css' });
       expect(results[0].errorCount).toBe(0);
     });
@@ -494,13 +495,13 @@ describe('CSS Configuration', () => {
     });
 
     it('should parse @reference directive', async () => {
-      const code = '@reference "./tokens.css";';
+      const code = '@reference "./tokens.css";\n';
       const results = await eslint.lintText(code, { filePath: 'test.css' });
       expect(results[0].errorCount).toBe(0);
     });
 
     it('should parse @plugin directive', async () => {
-      const code = '@plugin "./custom-plugin.js";';
+      const code = '@plugin "./custom-plugin.js";\n';
       const results = await eslint.lintText(code, { filePath: 'test.css' });
       expect(results[0].errorCount).toBe(0);
     });

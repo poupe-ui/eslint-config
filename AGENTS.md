@@ -13,7 +13,8 @@ this repository.
 - `pnpm type-check` - Check TypeScript types without emitting files
 - `pnpm dev:prepare` - Create a fast stub build for development
 - `pnpm clean` - Remove dist folder and node_modules
-- `pnpm prepack` - Full validation (lint, type-check, build)
+- `pnpm prepack` - Full validation
+  (lint, type-check, test:all, build, publint)
 
 ### Debugging
 
@@ -65,7 +66,6 @@ format and is written in TypeScript.
 │   │   ├── markdown.ts   # Markdown linting rules (markdownlint)
 │   │   ├── perfectionist.ts  # Import/export sorting rules
 │   │   ├── stylistic.ts  # Code style and formatting rules (@stylistic)
-│   │   ├── tailwind-v4-syntax.ts  # Tailwind CSS v4 at-rule definitions
 │   │   ├── tsdoc.ts      # TypeScript documentation rules
 │   │   ├── tseslint.ts   # TypeScript-specific ESLint rules
 │   │   ├── unicorn.ts    # Modern JavaScript best practices
@@ -135,7 +135,7 @@ This is particularly important for Tailwind CSS's extended syntax.
 ```typescript
 languageOptions: {
   tolerant: true, // Enable tolerant mode for Tailwind CSS compatibility
-  customSyntax: tailwindSyntax,
+  customSyntax: customSyntax as SyntaxConfig, // tailwind-csstree + @tailwind
 }
 ```
 
@@ -440,7 +440,7 @@ dedupe resolves both dependencies to the same plugin instance, so
 
 ### Claude Code-Specific Instructions
 
-- Use the TodoWrite tool for complex multi-step tasks
+- Use the TaskCreate tool for complex multi-step tasks
 - **CRITICAL: Always enumerate files explicitly in git commit commands**
 - **NEVER use bare `git commit` without file arguments**
 - Fix issues immediately without commentary

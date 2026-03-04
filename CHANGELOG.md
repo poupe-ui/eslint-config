@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- **deps**: `@eslint/css` `^0.9.0` → `~0.14.1` (5 new recommended rules,
+  `css/no-parsing-errors` removed)
+- **deps**: Added `tailwind-csstree` `~0.1.4` for Tailwind v4 syntax
+  definitions (replaces local `tailwind-v4-syntax.ts`)
+- **css**: `css/use-baseline` set to
+  `['error', { allowSelectors: ['nesting'] }]` — CSS nesting is widely
+  supported across all major browsers
+- **css**: Removed `css/no-parsing-errors: 'off'` (rule removed in
+  `@eslint/css` 0.14.x)
+- **css**: Removed speculative "future rules" comments
+
+### Removed
+
+- **css**: Deleted `tailwind-v4-syntax.ts` — all Tailwind v4 at-rules
+  now provided by `tailwind-csstree`. Only `@tailwind` (legacy v3)
+  remains as a local extension in `css.ts`.
+
+### Fixed
+
+- **tests**: Added trailing newlines to 9 single-line CSS test strings
+  to satisfy `@stylistic/eol-last` with the stricter 0.14.x parser
+- **tests**: Replaced `content-visibility: auto` with baseline-safe
+  properties in `@layer utilities` test fixture
+
 ## [0.8.0] - 2026-03-02
 
 ### Added
