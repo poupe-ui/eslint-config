@@ -1,11 +1,14 @@
 import {
   markdownlintRecommended,
-  // poupeCSSConfigs, // TODO: CSS support disabled - see sharedNuxtConfigs comment
+  poupeCSSConfigs,
 
   poupeConfigs,
   tsdocRecommended,
   unicornRecommended,
 } from './configs';
+import {
+  processCSSConfigs,
+} from './configs/css-filter';
 import {
   type Config,
   type InfiniteDepthConfigWithExtends,
@@ -14,12 +17,7 @@ import {
 } from './core';
 
 const sharedNuxtConfigs: InfiniteDepthConfigWithExtends = [
-  // TODO: CSS support is temporarily disabled for Nuxt configurations
-  // While `@nuxt/eslint` v1.5.0+ adds file restrictions to its configs, there
-  // may still be edge cases where JavaScript/TypeScript rules leak to CSS files.
-  // Re-enable once we confirm all CSS parsing issues are resolved.
-  // See: https://github.com/poupe-ui/eslint-config/issues/138
-  // poupeCSSConfigs,
+  poupeCSSConfigs,
 
   unicornRecommended,
   tsdocRecommended,
@@ -29,10 +27,14 @@ const sharedNuxtConfigs: InfiniteDepthConfigWithExtends = [
 ];
 
 /** rules for nuxt projects */
-export const forNuxt = (...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] => withConfig(
-  sharedNuxtConfigs,
-  ...userConfigs,
-);
+export const forNuxt = (...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] => {
+  const configs = withConfig(
+    sharedNuxtConfigs,
+    ...userConfigs,
+  );
+
+  return processCSSConfigs(configs);
+};
 
 /** rules for nuxt modules */
 export const forNuxtModules = forNuxt;

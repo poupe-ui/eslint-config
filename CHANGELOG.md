@@ -16,6 +16,8 @@ All notable changes to this project will be documented in this file.
 - **css**: Removed `css/no-parsing-errors: 'off'` (rule removed in
   `@eslint/css` 0.14.x)
 - **css**: Removed speculative "future rules" comments
+- **nuxt**: Re-enabled CSS linting — disabled since v0.7.4, now safe
+  with `@nuxt/eslint` v1.15.2 scoping tooling plugins to JS/TS/Vue
 
 ### Removed
 

@@ -100,7 +100,8 @@ format and is written in TypeScript.
 ### ESLint Plugins Included
 
 - **@eslint/js**: Core JavaScript linting rules
-- **@eslint/css**: CSS linting with Tailwind CSS syntax support
+- **@eslint/css**: CSS linting with Tailwind CSS v4 syntax
+  via `tailwind-csstree`
 - **@stylistic/eslint-plugin**: Code formatting and style consistency
 - **typescript-eslint**: TypeScript-specific linting and type checking
 - **eslint-plugin-vue**: Vue.js template and script linting
@@ -339,6 +340,16 @@ Nuxt applications and Nuxt modules have different ESLint setups:
 2. **Nuxt Modules** use `@nuxt/eslint-config/flat` directly with
    `createConfigForNuxt`. The `tooling` feature enables module-author-specific
    rules including their own version of unicorn rules.
+
+### CSS Support in Nuxt
+
+CSS linting is enabled for Nuxt configurations. The `forNuxt()` function
+includes `poupeCSSConfigs` and applies `processCSSConfigs()` to disable
+JS-specific rules for CSS files.
+
+This was disabled from v0.7.4 to v0.8.1 because `@nuxt/eslint-config`
+applied JS/TS-specific rules globally. With `@nuxt/eslint` v1.15.2,
+all tooling plugins are scoped to JS/TS/Vue files.
 
 ### Unicorn Plugin Resolution (Historical)
 
