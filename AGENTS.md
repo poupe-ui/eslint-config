@@ -13,7 +13,8 @@ this repository.
 - `pnpm type-check` - Check TypeScript types without emitting files
 - `pnpm dev:prepare` - Create a fast stub build for development
 - `pnpm clean` - Remove dist folder and node_modules
-- `pnpm prepack` - Full validation (lint, type-check, build)
+- `pnpm prepack` - Full validation
+  (lint, type-check, test:all, build, publint)
 
 ### Debugging
 
@@ -31,7 +32,7 @@ To test ESLint configuration changes:
 
 ## Architecture
 
-This is a shareable ESLint configuration package that provides standardized
+This is a shareable ESLint configuration package that provides standardised
 linting rules for Poupe UI projects. It uses ESLint's flat configuration
 format and is written in TypeScript.
 
@@ -57,30 +58,37 @@ format and is written in TypeScript.
 .
 ├── src/              # Source code
 │   ├── configs/      # Individual ESLint rule configurations
+│   │   ├── index.ts      # Barrel re-exports
 │   │   ├── css.ts        # CSS linting rules with Tailwind CSS support
+│   │   ├── css-filter.ts # CSS rule filtering logic
 │   │   ├── eslint.ts     # Core ESLint JavaScript rules
 │   │   ├── json.ts       # JSON and package.json linting rules
 │   │   ├── markdown.ts   # Markdown linting rules (markdownlint)
+│   │   ├── perfectionist.ts  # Import/export sorting rules
 │   │   ├── stylistic.ts  # Code style and formatting rules (@stylistic)
 │   │   ├── tsdoc.ts      # TypeScript documentation rules
 │   │   ├── tseslint.ts   # TypeScript-specific ESLint rules
 │   │   ├── unicorn.ts    # Modern JavaScript best practices
 │   │   ├── vue.ts        # Vue.js framework rules
 │   │   └── __tests__/    # Tests for config modules
-│   │       ├── css.test.ts   # CSS configuration tests
-│   │       └── json.test.ts  # JSON configuration tests
+│   │       ├── css.test.ts      # CSS configuration tests
+│   │       ├── json.test.ts     # JSON configuration tests
+│   │       ├── test-utils.ts    # Re-exports shared test utilities
+│   │       └── unicorn.test.ts  # Unicorn configuration tests
 │   ├── core/         # Core configuration utilities
-│   │   ├── config.ts     # TypeScript type definitions and withConfig export
-│   │   ├── utils.ts      # Configuration helper functions
-│   │   ├── css-filter.ts # CSS rule filtering logic
-│   │   └── __tests__/    # Tests for core utilities
+│   │   ├── index.ts     # Barrel re-exports
+│   │   ├── config.ts    # TypeScript type definitions and withConfig export
+│   │   ├── globs.ts     # Centralised file pattern constants
+│   │   ├── utils.ts     # Configuration helper functions
+│   │   └── __tests__/   # Tests for core utilities
 │   │       └── without-plugin.test.ts  # Tests for withoutPlugin helper
 │   ├── config.ts     # Main configuration builder (defineConfig)
 │   ├── configs.ts    # Configuration presets and exports
 │   ├── index.ts      # Main entry point (re-exports)
 │   ├── nuxt.ts       # Nuxt.js-specific configuration
 │   └── __tests__/    # Tests for main modules
-│       └── config.test.ts  # Tests for defineConfig
+│       ├── config.test.ts    # Tests for defineConfig
+│       └── test-utils.ts     # Shared test utilities (mustConfigByName)
 ├── examples/         # Example implementations
 │   ├── playground-standard/     # Basic JS/TS example
 │   ├── playground-nuxt/         # Nuxt.js application example
@@ -92,7 +100,8 @@ format and is written in TypeScript.
 ### ESLint Plugins Included
 
 - **@eslint/js**: Core JavaScript linting rules
-- **@eslint/css**: CSS linting with Tailwind CSS syntax support
+- **@eslint/css**: CSS linting with Tailwind CSS v4 syntax
+  via `tailwind-csstree`
 - **@stylistic/eslint-plugin**: Code formatting and style consistency
 - **typescript-eslint**: TypeScript-specific linting and type checking
 - **eslint-plugin-vue**: Vue.js template and script linting
@@ -127,7 +136,7 @@ This is particularly important for Tailwind CSS's extended syntax.
 ```typescript
 languageOptions: {
   tolerant: true, // Enable tolerant mode for Tailwind CSS compatibility
-  customSyntax: tailwindSyntax,
+  customSyntax: customSyntax as SyntaxConfig, // tailwind-csstree + @tailwind
 }
 ```
 
@@ -332,33 +341,25 @@ Nuxt applications and Nuxt modules have different ESLint setups:
    `createConfigForNuxt`. The `tooling` feature enables module-author-specific
    rules including their own version of unicorn rules.
 
-### The Unicorn Plugin Conflict
+### CSS Support in Nuxt
 
-The issue with unicorn rules stems from:
+CSS linting is enabled for Nuxt configurations. The `forNuxt()` function
+includes `poupeCSSConfigs` and applies `processCSSConfigs()` to disable
+JS-specific rules for CSS files.
 
-1. **Plugin Instance Conflicts**: When both our config and Nuxt's tooling config
-   try to load the unicorn plugin, ESLint detects different instances and throws
-   an error: "Different instances of plugin 'unicorn' found"
+This was disabled from v0.7.4 to v0.8.1 because `@nuxt/eslint-config`
+applied JS/TS-specific rules globally. With `@nuxt/eslint` v1.15.2,
+all tooling plugins are scoped to JS/TS/Vue files.
 
-2. **Version Mismatches**: Historically, Nuxt tooling used an older version of
-   unicorn that didn't include these rules:
-   - `unicorn/no-unnecessary-array-flat-depth`
-   - `unicorn/no-unnecessary-array-splice-count`
-   - `unicorn/no-unnecessary-slice-end`
-   - `unicorn/prefer-single-call`
+### Unicorn Plugin Resolution (Historical)
 
-3. **Current Solution**: For Nuxt modules, we:
-   - Remove the unicorn plugin using `withoutPlugin('unicorn', ...)`
-   - Filter out rules that might not exist using `withoutRules(...)`
-   - This allows Nuxt's tooling to provide its own unicorn configuration
+Earlier versions of `@nuxt/eslint-config` (~1.4.1) loaded a different
+unicorn plugin instance, causing FlatConfigComposer identity conflicts.
+The workaround was `withoutPlugin('unicorn')` in `forNuxtModules`.
 
-### Future Considerations
-
-- The version mismatch may no longer exist if Nuxt has updated their unicorn
-  dependency
-- The filtered rules should be periodically reviewed to check if they're still
-  necessary
-- Consider using feature detection instead of hardcoding rule names
+With `@nuxt/eslint` ~1.15.2 and `eslint-plugin-unicorn` ^63.0.0, pnpm
+dedupe resolves both dependencies to the same plugin instance, so
+`forNuxtModules` is now a direct alias of `forNuxt`.
 
 ## Git Workflow
 
@@ -450,7 +451,7 @@ The issue with unicorn rules stems from:
 
 ### Claude Code-Specific Instructions
 
-- Use the TodoWrite tool for complex multi-step tasks
+- Use the TaskCreate tool for complex multi-step tasks
 - **CRITICAL: Always enumerate files explicitly in git commit commands**
 - **NEVER use bare `git commit` without file arguments**
 - Fix issues immediately without commentary

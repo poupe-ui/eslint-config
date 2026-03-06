@@ -185,18 +185,12 @@ function testJsonRules(exampleName) {
 function testCssRules(exampleName) {
   console.log('\n  Testing CSS configuration...');
 
-  // Skip CSS tests for Nuxt workspaces due to issue #138
-  if (exampleName.includes('nuxt')) {
-    console.log('  ⏭️  CSS tests skipped for Nuxt workspace (see issue #138)');
-    return [];
-  }
-
   const errors = [];
 
   try {
     const cssConfig = getESLintConfig(exampleName, 'test.css');
 
-    if (cssConfig.rules['css/no-invalid-at-rules'] === undefined) {
+    if (cssConfig.rules['css/no-empty-blocks'] === undefined) {
       errors.push('CSS linting is not configured for .css files');
     } else {
       console.log('  ✅ CSS linting is configured for .css files');

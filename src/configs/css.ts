@@ -1,5 +1,5 @@
 import css, { type CSSLanguageOptions } from '@eslint/css';
-import { tailwindSyntax } from '@eslint/css/syntax';
+import { tailwind4 } from 'tailwind-csstree';
 
 import {
   type Config,
@@ -8,39 +8,38 @@ import {
   GLOB_CSS,
 } from '../core';
 
-import { tailwindV4Syntax } from './tailwind-v4-syntax';
-
 type SyntaxConfig = NonNullable<CSSLanguageOptions['customSyntax']>;
 
 const { configs: cssConfigs } = css;
 
 // Poupe-specific CSS rules
 export const poupeCssRules: Rules = {
-  // Tailwind CSS v4 compatibility
-  'css/no-invalid-at-rules': 'off', // Allow Tailwind @ rules
-  'css/no-parsing-errors': 'off', // Allow Tailwind modifiers syntax
+  // Tailwind CSS v4: customSyntax covers at-rule names but prelude
+  // validation still rejects complex patterns (modifiers, arbitrary values)
+  'css/no-invalid-at-rules': 'off',
 
-  // CSS best practices (when @eslint/css adds more rules)
-  // Future rules could include:
-  // - 'css/color-format': ['error', 'lowercase'] // Enforce lowercase hex
-  // - 'css/property-order': ['error', 'alphabetical'] // Property ordering
-  // - 'css/quote-style': ['error', 'double'] // Prefer double quotes in CSS
-  // - 'css/unit-no-unknown': 'error' // Disallow unknown units
-  // - 'css/declaration-block-no-duplicate-properties': 'error'
+  // CSS nesting (&) is widely supported across all major browsers
+  'css/use-baseline': ['error', { allowSelectors: ['nesting'] }],
 };
 
-// Merge the base tailwindSyntax with our v4 extensions
-const extendedTailwindSyntax: Partial<SyntaxConfig> = {
-  ...tailwindSyntax,
+// tailwind-csstree covers all Tailwind v4 at-rules:
+//   @apply, @import, @config, @theme, @source,
+//   @utility, @variant, @custom-variant, @plugin, @reference
+//
+// We extend with @tailwind for legacy v3 compatibility
+const customSyntax: Partial<SyntaxConfig> = {
+  ...tailwind4,
   atrules: {
-    ...tailwindSyntax.atrules,
-    ...tailwindV4Syntax.atrules,
+    ...tailwind4.atrules,
+    tailwind: {
+      prelude: 'base | components | utilities | variants',
+    },
   },
 };
 
 const languageOptions: CSSLanguageOptions = {
   tolerant: true, // Enable tolerant mode for Tailwind CSS compatibility
-  customSyntax: extendedTailwindSyntax as SyntaxConfig,
+  customSyntax: customSyntax as SyntaxConfig,
 };
 
 export const poupeCSSConfigs: Config[] = [{
