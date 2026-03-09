@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.2] - 2026-03-09
+
 ### Fixed
 
 - **json**: Use `jsonc/jsonc` language for JSONC config — the `poupe/jsonc`
