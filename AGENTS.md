@@ -207,7 +207,9 @@ Follow these conventions (enforced by .editorconfig and ESLint):
 
 Custom markdownlint rules enforced:
 
-- **MD013**: 80-character line length limit
+- **MD007**: 2-space unordered list indentation
+- **MD013**: 80-character line length limit (tables exempt)
+- **MD024**: No duplicate headings (siblings only)
 - **MD041**: Disabled (first line heading requirement)
 
 ### JSON Linting Rules

@@ -11,7 +11,8 @@ import type {
 export const poupeMarkdownRules: Rules = {
   // Enforce stricter markdown formatting standards
   'markdownlint/md007': ['error', { indent: 2 }], // Unordered list indentation - 2 spaces
-  'markdownlint/md013': ['error', { line_length: 80 }], // Line length - 80 chars
+  'markdownlint/md013': ['error', { line_length: 80, tables: false }], // Line length - 80 chars, exempt tables
+  'markdownlint/md024': ['error', { siblings_only: true }], // Allow duplicate headings under different parents
   'markdownlint/md041': 'off', // First line in file should be a top level heading - disabled for flexibility
 };
 

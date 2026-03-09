@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
   patterns — these use the same comment-supporting format as `tsconfig.json`
 - **json**: Exported `GLOB_JSONC_FILES` from `@poupe/eslint-config` for
   consumers who need to reference or extend the JSONC file pattern list
+- **markdown**: `md013` now exempts tables (`tables: false`) — table
+  rows often exceed 80 characters and can't be wrapped
+- **markdown**: `md024` set to `siblings_only: true` — allows reusing
+  heading names like "Usage" or "Examples" under different parents
 
 ## [0.8.1] - 2026-03-05
 
