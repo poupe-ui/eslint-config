@@ -86,7 +86,7 @@ export const poupeJsonConfigs: Config[] = [
   {
     name: 'poupe/json',
     files: [GLOB_JSON],
-    ignores: [GLOB_PACKAGE_JSON],
+    ignores: [GLOB_PACKAGE_JSON, ...GLOB_JSONC_FILES],
     plugins: {
       jsonc: jsoncPlugin,
     },

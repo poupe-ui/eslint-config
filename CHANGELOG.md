@@ -17,8 +17,9 @@ All notable changes to this project will be documented in this file.
 
 - **json**: Added `jsconfig.json` and `jsconfig.*.json` to JSONC file
   patterns — these use the same comment-supporting format as `tsconfig.json`
-- **json**: Exported `GLOB_JSONC_FILES` from `@poupe/eslint-config` for
-  consumers who need to reference or extend the JSONC file pattern list
+- **core**: Exported all `GLOB_*` file pattern constants (`GLOB_CSS`,
+  `GLOB_JSON`, `GLOB_JSONC`, `GLOB_JSONC_FILES`, `GLOB_SRC`, `GLOB_VUE`)
+  from `@poupe/eslint-config` for consumers composing custom configs
 - **markdown**: `md013` now exempts tables (`tables: false`) — table
   rows often exceed 80 characters and can't be wrapped
 - **markdown**: `md024` set to `siblings_only: true` — allows reusing

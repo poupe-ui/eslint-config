@@ -22,6 +22,7 @@ import {
 } from './core';
 
 export { withConfig } from './core';
+export * from './core/globs';
 
 export function defineConfig(...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] {
   const configs = withConfig(

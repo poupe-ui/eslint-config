@@ -23,7 +23,10 @@ describe('JSON Configuration', () => {
       const jsoncConfig = findConfig('poupe/jsonc');
 
       expect(jsonConfig.files).toEqual(['**/*.json']);
-      expect(jsonConfig.ignores).toEqual(['**/package.json']);
+      expect(jsonConfig.ignores).toContain('**/package.json');
+      expect(jsonConfig.ignores).toContain('**/tsconfig.json');
+      expect(jsonConfig.ignores).toContain('**/jsconfig.json');
+      expect(jsonConfig.ignores).toContain('**/.vscode/*.json');
       expect(packageJsonConfig.files).toEqual(['**/package.json']);
       expect(jsoncConfig.files).toContain('**/*.jsonc');
       expect(jsoncConfig.files).toContain('**/.vscode/*.json');
