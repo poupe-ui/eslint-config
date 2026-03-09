@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+
+- **json**: Use `jsonc/jsonc` language for JSONC config — the `poupe/jsonc`
+  config incorrectly used `jsonc/json` (strict JSON), which rejected
+  comments before rules could run, breaking files like `.vscode/*.json`
+  and `tsconfig.json`
+
+### Changed
+
+- **json**: Added `jsconfig.json` and `jsconfig.*.json` to JSONC file
+  patterns — these use the same comment-supporting format as `tsconfig.json`
+- **json**: Exported `GLOB_JSONC_FILES` from `@poupe/eslint-config` for
+  consumers who need to reference or extend the JSONC file pattern list
+
 ## [0.8.1] - 2026-03-05
 
 ### Changed

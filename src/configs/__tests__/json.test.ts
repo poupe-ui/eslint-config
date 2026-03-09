@@ -28,13 +28,22 @@ describe('JSON Configuration', () => {
       expect(jsoncConfig.files).toContain('**/*.jsonc');
       expect(jsoncConfig.files).toContain('**/.vscode/*.json');
       expect(jsoncConfig.files).toContain('**/tsconfig.json');
+      expect(jsoncConfig.files).toContain('**/jsconfig.json');
     });
 
-    it('should include jsonc plugin and language for all configs', () => {
+    it('should include jsonc plugin for all configs', () => {
       for (const config of poupeJsonConfigs) {
         expect(config.plugins).toHaveProperty('jsonc');
-        expect(config.language).toBe('jsonc/json');
       }
+    });
+
+    it('should use jsonc/json language for strict JSON configs', () => {
+      expect(findConfig('poupe/json').language).toBe('jsonc/json');
+      expect(findConfig('poupe/package-json').language).toBe('jsonc/json');
+    });
+
+    it('should use jsonc/jsonc language for JSONC config', () => {
+      expect(findConfig('poupe/jsonc').language).toBe('jsonc/jsonc');
     });
 
     it('should disable comments rule for JSONC files', () => {

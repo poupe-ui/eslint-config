@@ -5,7 +5,7 @@ import {
   type Rules,
 
   GLOB_JSON,
-  GLOB_JSONC,
+  GLOB_JSONC_FILES,
 } from '../core';
 
 // v3: configs['recommended-with-json'] returns [plugins, language+files, rules]
@@ -13,13 +13,6 @@ const jsoncRecommendedConfigs = jsoncPlugin.configs['recommended-with-json'];
 const jsoncRecommendedRules = jsoncRecommendedConfigs[2].rules as Rules;
 
 const GLOB_PACKAGE_JSON = '**/package.json';
-
-const JSONC_FILES = [
-  GLOB_JSONC,
-  '**/.vscode/*.json',
-  '**/tsconfig.json',
-  '**/tsconfig.*.json',
-];
 
 const poupeJsonRules: Rules = {
   // Consistent formatting
@@ -117,11 +110,11 @@ export const poupeJsonConfigs: Config[] = [
   },
   {
     name: 'poupe/jsonc',
-    files: JSONC_FILES,
+    files: GLOB_JSONC_FILES,
     plugins: {
       jsonc: jsoncPlugin,
     },
-    language: 'jsonc/json',
+    language: 'jsonc/jsonc',
     rules: {
       ...jsoncRecommendedRules,
       ...poupeJsoncRules,
