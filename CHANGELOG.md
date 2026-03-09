@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.2] - 2026-03-09
+
+### Fixed
+
+- **json**: Use `jsonc/jsonc` language for JSONC config — the `poupe/jsonc`
+  config incorrectly used `jsonc/json` (strict JSON), which rejected
+  comments before rules could run, breaking files like `.vscode/*.json`
+  and `tsconfig.json`
+
+### Changed
+
+- **json**: Added `jsconfig.json` and `jsconfig.*.json` to JSONC file
+  patterns — these use the same comment-supporting format as `tsconfig.json`
+- **core**: Exported all `GLOB_*` file pattern constants (`GLOB_CSS`,
+  `GLOB_JSON`, `GLOB_JSONC`, `GLOB_JSONC_FILES`, `GLOB_SRC`, `GLOB_VUE`)
+  from `@poupe/eslint-config` for consumers composing custom configs
+- **markdown**: `md013` now exempts tables (`tables: false`) — table
+  rows often exceed 80 characters and can't be wrapped
+- **markdown**: `md024` set to `siblings_only: true` — allows reusing
+  heading names like "Usage" or "Examples" under different parents
+
 ## [0.8.1] - 2026-03-05
 
 ### Changed

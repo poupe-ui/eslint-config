@@ -259,7 +259,7 @@ custom rules:
 * Semicolons required
 * 1tbs (one true brace style)
 * 2-space indentation for web files
-* 80-character line limit for Markdown
+* 80-character line limit for Markdown (tables exempt)
 
 ## Migration Guide
 

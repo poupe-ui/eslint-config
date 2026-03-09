@@ -207,7 +207,9 @@ Follow these conventions (enforced by .editorconfig and ESLint):
 
 Custom markdownlint rules enforced:
 
-- **MD013**: 80-character line length limit
+- **MD007**: 2-space unordered list indentation
+- **MD013**: 80-character line length limit (tables exempt)
+- **MD024**: No duplicate headings (siblings only)
 - **MD041**: Disabled (first line heading requirement)
 
 ### JSON Linting Rules
@@ -215,7 +217,8 @@ Custom markdownlint rules enforced:
 JSON files are linted with specific formatting rules:
 
 - **General JSON files**: 2-space indentation, no trailing commas, no comments
-  (except tsconfig.json and .vscode/*.json which allow comments)
+  (except tsconfig.json, jsconfig.json, and .vscode/*.json which allow
+  comments)
 - **package.json files**: Additionally enforces standard key ordering,
   alphabetical dependency sorting, and alphabetical sorting of second-level
   objects (scripts, pnpm, exports, publishConfig)
