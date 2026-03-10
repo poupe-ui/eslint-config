@@ -21,7 +21,7 @@ import {
   withConfig,
 } from './core';
 
-export { withConfig } from './core';
+export { reconcilePlugins, withConfig } from './core';
 export * from './core/globs';
 
 export function defineConfig(...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] {

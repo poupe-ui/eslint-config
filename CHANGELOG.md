@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- **core**: New `reconcilePlugins` utility for deduplicating plugin instances
+  when combining ESLint configs from multiple sources — uses a first-wins
+  strategy to replace duplicate physical copies with the canonical instance,
+  resolving `FlatConfigComposer` plugin conflict errors
+
 ## [0.8.2] - 2026-03-09
 
 ### Fixed

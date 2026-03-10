@@ -1,5 +1,6 @@
 import { type Config, type Rules } from './config';
 
+type Plugin = NonNullable<Config['plugins']>[string];
 type Plugins = NonNullable<Config['plugins']>;
 
 /**
@@ -84,3 +85,58 @@ export const withoutPlugin = (pluginNames?: string | string[], ...configs: Confi
 
   return configs.map(config => removePluginsFromConfig(config, pluginsToRemove));
 };
+
+/**
+ * Reconciles duplicate plugin instances across an array of ESLint configs.
+ *
+ * When configs from multiple sources are combined, they may carry different
+ * physical copies of the same plugin (e.g. two instances of `eslint-plugin-unicorn`
+ * from separate `node_modules` trees). ESLint's `FlatConfigComposer` treats these
+ * as conflicts. This function deduplicates them using a first-wins strategy.
+ *
+ * For each plugin name encountered:
+ * - First occurrence: stored as the canonical instance
+ * - Subsequent occurrence with a different instance: replaced with the first
+ * - Same instance: no-op
+ *
+ * Only configs whose plugins were modified are cloned; all others pass through
+ * by reference.
+ *
+ * @param configs - Array of ESLint flat configs to reconcile
+ * @returns A new array with duplicate plugin instances replaced by their first occurrence
+ */
+export function reconcilePlugins(configs: Config[]): Config[] {
+  const canonical = new Map<string, Plugin>();
+  let changed = false;
+
+  const result = configs.map((config) => {
+    if (!config.plugins) {
+      return config;
+    }
+
+    // First pass — register canonical instances, detect conflicts
+    let configChanged = false;
+    for (const [name, plugin] of Object.entries(config.plugins)) {
+      if (!canonical.has(name)) {
+        canonical.set(name, plugin);
+      } else if (canonical.get(name) !== plugin) {
+        configChanged = true;
+      }
+    }
+
+    if (!configChanged) {
+      return config;
+    }
+
+    // Second pass — build reconciled plugins (only when conflicts exist)
+    changed = true;
+    const reconciled: Plugins = {};
+    for (const [name, plugin] of Object.entries(config.plugins)) {
+      reconciled[name] = canonical.get(name) ?? plugin;
+    }
+
+    return { ...config, plugins: reconciled };
+  });
+
+  return changed ? result : configs;
+}

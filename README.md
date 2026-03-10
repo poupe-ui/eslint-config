@@ -229,6 +229,26 @@ export default withConfig(
 );
 ```
 
+### Combining Configs from Multiple Sources
+
+When composing configs from different packages, duplicate plugin instances
+can cause `FlatConfigComposer` conflict errors. Use `reconcilePlugins` to
+deduplicate them:
+
+```js
+// @ts-check
+import { defineConfig, reconcilePlugins } from '@poupe/eslint-config';
+import someOtherConfig from 'some-other-eslint-config';
+
+export default reconcilePlugins([
+  ...someOtherConfig,
+  ...defineConfig(),
+]);
+```
+
+The first occurrence of each plugin wins — place higher-priority configs
+first in the array.
+
 ## Poupe UI Recommended Rules
 
 In addition to the rules from included plugins, this configuration adds these
