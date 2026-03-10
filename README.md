@@ -360,11 +360,11 @@ To debug ESLint configuration issues:
 # Show resolved configuration for a specific file
 eslint --print-config path/to/file.js
 
-# Enable ESLint debug output
-DEBUG=eslint:* eslint .
+# Verbose per-file linting trace
+env DEBUG=eslint:linter pnpm lint:check
 
-# Debug specific aspects
-DEBUG=eslint:eslint eslint .
+# Debug config resolution
+env DEBUG=eslint:eslint pnpm lint
 ```
 
 ## Development

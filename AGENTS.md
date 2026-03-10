@@ -10,6 +10,7 @@ this repository.
 - `pnpm build` - Build the package using unbuild (required before testing
   changes)
 - `pnpm lint` - Run ESLint with auto-fix enabled
+- `pnpm lint:check` - Run ESLint in read-only mode (no fixes)
 - `pnpm type-check` - Check TypeScript types without emitting files
 - `pnpm dev:prepare` - Create a fast stub build for development
 - `pnpm clean` - Remove dist folder and node_modules
@@ -18,7 +19,8 @@ this repository.
 
 ### Debugging
 
-- `DEBUG=eslint:eslint pnpm lint` - Debug ESLint configuration issues
+- `env DEBUG=eslint:linter pnpm lint:check` - Verbose per-file linting trace
+- `env DEBUG=eslint:eslint pnpm lint` - Debug ESLint configuration issues
 
 ### Testing Changes
 
@@ -473,7 +475,9 @@ dedupe resolves both dependencies to the same plugin instance, so
 
 1. **Build Issues**: Run `pnpm clean` then `pnpm build`
 2. **Type Errors**: Check `tsconfig.json` and ensure all imports have types
-3. **ESLint Not Working**: Use `DEBUG=eslint:eslint pnpm lint` for verbose output
+3. **ESLint Not Working**: Use `env DEBUG=eslint:linter pnpm lint:check` for
+   verbose per-file trace, or `env DEBUG=eslint:eslint pnpm lint` for config
+   resolution issues
 4. **Test Failures**: Check if config changes affect self-linting
 5. **Example Issues**: Each example has its own dependencies - check
    package.json
