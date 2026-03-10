@@ -45,8 +45,10 @@ format and is written in TypeScript.
 2. **Configuration Composition**: The package combines multiple ESLint plugins
    with custom rule overrides
 3. **Entry Points**:
-   - Main: `@poupe/eslint-config` for standard projects
-   - Nuxt: `@poupe/eslint-config/nuxt` for Nuxt.js projects
+   - Main: `@poupe/eslint-config` — `defineConfig`, `withPoupe`, `withConfig`,
+     `reconcilePlugins`, and all config presets
+   - Nuxt (deprecated): `@poupe/eslint-config/nuxt` — `forNuxt`,
+     `forNuxtModules` (use `withPoupe` from root instead, removed in 0.9)
 4. **Type Safety**: Full TypeScript support with proper type definitions
    exported from `src/core/config.ts`
 5. **Config Factory Pattern**: Uses typescript-eslint's `withConfig()` helper
@@ -289,10 +291,11 @@ type safety and integration with the typescript-eslint ecosystem. Key types:
 
 - `Config`: The main configuration type from typescript-eslint
 - `Rules`: Type-safe rule definitions
-- `withConfig()`: Helper function that flattens configs and resolves extends
+- `withConfig()`: Helper function that flattens configs, resolves extends,
+  and reconciles duplicate plugin instances (first-wins)
 
 All configuration modules return `Config[]` arrays, which are automatically
-flattened by `withConfig()`.
+flattened and reconciled by `withConfig()`.
 
 ## Usage Examples
 
@@ -310,19 +313,19 @@ export default defineConfig({
 });
 
 // Nuxt.js usage
-import { forNuxt } from '@poupe/eslint-config/nuxt';
+import { withPoupe } from '@poupe/eslint-config';
 import withNuxt from './.nuxt/eslint.config.mjs';
-export default withNuxt(...forNuxt());
+export default withPoupe(withNuxt());
 
 // Nuxt Module usage
 import { createConfigForNuxt } from '@nuxt/eslint-config/flat';
-import { forNuxtModules } from '@poupe/eslint-config/nuxt';
-export default createConfigForNuxt({
+import { withPoupe } from '@poupe/eslint-config';
+export default withPoupe(createConfigForNuxt({
   features: {
     tooling: true,
     stylistic: true,
   }
-}, ...forNuxtModules());
+}));
 
 // Custom composition with withConfig
 import { configs, withConfig } from '@poupe/eslint-config';
@@ -333,11 +336,20 @@ export default withConfig(
 );
 ```
 
-## Nuxt Configuration Complexity
+## Nuxt Configuration
 
-### Why Different Configs for Nuxt Apps vs Modules?
+### `withPoupe` API
 
-Nuxt applications and Nuxt modules have different ESLint setups:
+`withPoupe` composes Poupe configs on top of an upstream Nuxt config.
+It awaits the upstream `PromiseLike` (from `createConfigForNuxt` or
+`withNuxt`), appends the full Poupe config set via `defineConfig`,
+and reconciles duplicate plugin instances through `withConfig`.
+
+This avoids the plugin conflict that occurs when configs are passed
+directly into the Nuxt composer — `withPoupe` awaits resolution
+first, then combines and reconciles.
+
+### Nuxt Apps vs Modules
 
 1. **Nuxt Applications** use `@nuxt/eslint` which generates a config at
    `.nuxt/eslint.config.mjs`. This is integrated with the Nuxt build process.
@@ -346,25 +358,34 @@ Nuxt applications and Nuxt modules have different ESLint setups:
    `createConfigForNuxt`. The `tooling` feature enables module-author-specific
    rules including their own version of unicorn rules.
 
+Both use `withPoupe` from `@poupe/eslint-config` (root entry point).
+
 ### CSS Support in Nuxt
 
-CSS linting is enabled for Nuxt configurations. The `forNuxt()` function
-includes `poupeCSSConfigs` and applies `processCSSConfigs()` to disable
-JS-specific rules for CSS files.
+`withPoupe` delegates to `defineConfig` which includes the full config
+set and calls `processCSSConfigs()` to disable JS-specific rules for
+CSS files.
 
-This was disabled from v0.7.4 to v0.8.1 because `@nuxt/eslint-config`
-applied JS/TS-specific rules globally. With `@nuxt/eslint` v1.15.2,
-all tooling plugins are scoped to JS/TS/Vue files.
+CSS linting was disabled from v0.7.4 to v0.8.1 because
+`@nuxt/eslint-config` applied JS/TS-specific rules globally.
+With `@nuxt/eslint` v1.15.2, all tooling plugins are scoped to
+JS/TS/Vue files.
 
-### Unicorn Plugin Resolution (Historical)
+### Deprecated: `forNuxt` / `forNuxtModules`
+
+The `@poupe/eslint-config/nuxt` entry point exports `forNuxt` and
+`forNuxtModules`, both deprecated in favor of `withPoupe`. These
+use a limited config subset (`sharedNuxtConfigs`) that lacks some
+backing plugins. Will be removed in 0.9.
+
+### Plugin Resolution (Historical)
 
 Earlier versions of `@nuxt/eslint-config` (~1.4.1) loaded a different
 unicorn plugin instance, causing FlatConfigComposer identity conflicts.
-The workaround was `withoutPlugin('unicorn')` in `forNuxtModules`.
-
-With `@nuxt/eslint` ~1.15.2 and `eslint-plugin-unicorn` ^63.0.0, pnpm
-dedupe resolves both dependencies to the same plugin instance, so
-`forNuxtModules` is now a direct alias of `forNuxt`.
+The v0.7.x workaround was `withoutPlugin('unicorn')` in
+`forNuxtModules`. In v0.8.0 this was simplified to an alias, which
+broke external consumers. `withPoupe` + `reconcilePlugins` is the
+proper fix.
 
 ## Git Workflow
 

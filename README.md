@@ -42,14 +42,14 @@ For Nuxt.js applications (with @nuxt/eslint):
 
 ```js
 // @ts-check
-import { forNuxt } from '@poupe/eslint-config/nuxt';
+import { withPoupe } from '@poupe/eslint-config';
 import withNuxt from './.nuxt/eslint.config.mjs';
 
-export default withNuxt(...forNuxt({
+export default withPoupe(withNuxt(), {
   rules: {
     // custom rule overrides
   },
-}));
+});
 ```
 
 For Nuxt modules (with @nuxt/eslint-config):
@@ -57,14 +57,14 @@ For Nuxt modules (with @nuxt/eslint-config):
 ```js
 // @ts-check
 import { createConfigForNuxt } from '@nuxt/eslint-config/flat';
-import { forNuxtModules } from '@poupe/eslint-config/nuxt';
+import { withPoupe } from '@poupe/eslint-config';
 
-export default createConfigForNuxt({
+export default withPoupe(createConfigForNuxt({
   features: {
     tooling: true,    // Enables rules for module authors
     stylistic: true,  // Enables formatting rules
   },
-}, ...forNuxtModules());
+}));
 ```
 
 Custom configuration:
@@ -231,9 +231,20 @@ export default withConfig(
 
 ### Combining Configs from Multiple Sources
 
-When composing configs from different packages, duplicate plugin instances
-can cause `FlatConfigComposer` conflict errors. Use `reconcilePlugins` to
-deduplicate them:
+When composing configs from different packages, use `withPoupe` to
+layer Poupe configs on top of an upstream config. It handles async
+resolution and deduplicates plugin instances automatically:
+
+```js
+// @ts-check
+import { withPoupe } from '@poupe/eslint-config';
+import someOtherConfig from 'some-other-eslint-config';
+
+export default withPoupe(someOtherConfig);
+```
+
+For lower-level control, `reconcilePlugins` deduplicates plugin
+instances in a flat config array using a first-wins strategy:
 
 ```js
 // @ts-check
@@ -245,9 +256,6 @@ export default reconcilePlugins([
   ...defineConfig(),
 ]);
 ```
-
-The first occurrence of each plugin wins — place higher-priority configs
-first in the array.
 
 ## Poupe UI Recommended Rules
 
@@ -357,10 +365,10 @@ pnpm install -D @poupe/eslint-config
 
 #### "Plugin conflict" errors with Nuxt
 
-For Nuxt applications, make sure to use the appropriate helper:
+For Nuxt applications, use `withPoupe` from the root entry point:
 
-* Use `forNuxt()` for Nuxt applications
-* Use `forNuxtModules()` for Nuxt module development
+* Nuxt apps: `withPoupe(withNuxt())`
+* Nuxt modules: `withPoupe(createConfigForNuxt(...))`
 
 #### CSS rules applying to JavaScript files
 

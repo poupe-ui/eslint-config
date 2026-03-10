@@ -62,6 +62,7 @@
   "devDependencies": {
     "@kagal/cross-test": "~0.1.0",
     "@vitest/ui": "~4.0.18",
+    "eslint-flat-config-utils": "^3.0.2",
     "globals": "~17.4.0",
     "npm-run-all2": "^8.0.4",
     "pkg-pr-new": "~0.0.65",
