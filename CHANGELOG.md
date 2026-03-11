@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.3] - 2026-03-11
+
 ### Added
 
 - **core**: New `reconcilePlugins` utility for deduplicating plugin instances
