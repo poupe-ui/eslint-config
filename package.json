@@ -34,7 +34,7 @@
     "lint:examples": "pnpm -r --filter \"playground-*\" lint",
     "lint:examples:check": "pnpm -r --filter \"playground-*\" lint:check",
     "precommit": "run-s lint:all type-check test:all build",
-    "prepack": "run-s lint:all:check type-check test:all build publint",
+    "prepack": "eslint --fix package.json && run-s lint:all:check type-check test:all build publint",
     "prepare": "cross-test -s dist/index.mjs || unbuild --stub",
     "publint": "publint",
     "test": "pnpm -r dev:prepare && node test/config.test.mjs",
