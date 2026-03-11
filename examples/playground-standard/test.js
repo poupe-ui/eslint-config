@@ -1,4 +1,3 @@
-/* eslint-env node */
 // Test JavaScript file
 const greeting = 'Hello, world!';
 

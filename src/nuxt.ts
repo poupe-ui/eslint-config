@@ -26,7 +26,9 @@ const sharedNuxtConfigs: InfiniteDepthConfigWithExtends = [
   poupeConfigs,
 ];
 
-/** rules for nuxt projects */
+/**
+ * @deprecated Use `withPoupe` from `@poupe/eslint-config` instead. Will be removed in 0.9.
+ */
 export const forNuxt = (...userConfigs: InfiniteDepthConfigWithExtends[]): Config[] => {
   const configs = withConfig(
     sharedNuxtConfigs,
@@ -36,5 +38,7 @@ export const forNuxt = (...userConfigs: InfiniteDepthConfigWithExtends[]): Confi
   return processCSSConfigs(configs);
 };
 
-/** rules for nuxt modules */
+/**
+ * @deprecated Use `withPoupe` from `@poupe/eslint-config` instead. Will be removed in 0.9.
+ */
 export const forNuxtModules = forNuxt;

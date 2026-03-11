@@ -7,8 +7,8 @@
     "clean": "rimraf node_modules .nuxt .output",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "lint": "cross-env DEBUG=eslint:eslint eslint .",
-    "lint:fix": "cross-env DEBUG=eslint:eslint eslint --fix .",
+    "lint": "eslint --fix .",
+    "lint:check": "eslint .",
     "postinstall": "nuxt prepare",
     "preview": "nuxt preview"
   },
@@ -20,7 +20,6 @@
   "devDependencies": {
     "@nuxt/eslint": "~1.15.2",
     "@poupe/eslint-config": "workspace:*",
-    "cross-env": "^7.0.3",
     "rimraf": "^6.1.3"
   }
 }

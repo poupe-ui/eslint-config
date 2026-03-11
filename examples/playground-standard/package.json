@@ -5,12 +5,11 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf node_modules",
-    "lint": "cross-env DEBUG=eslint:eslint eslint .",
-    "lint:fix": "cross-env DEBUG=eslint:eslint eslint --fix ."
+    "lint": "eslint --fix .",
+    "lint:check": "eslint ."
   },
   "devDependencies": {
     "@poupe/eslint-config": "workspace:*",
-    "cross-env": "^7.0.3",
     "eslint": "^9.39.3",
     "rimraf": "^6.1.3"
   }

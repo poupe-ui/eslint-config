@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.3] - 2026-03-11
+
+### Added
+
+- **core**: New `reconcilePlugins` utility for deduplicating plugin instances
+  when combining ESLint configs from multiple sources — uses a first-wins
+  strategy to replace duplicate physical copies with the canonical instance,
+  resolving `FlatConfigComposer` plugin conflict errors
+- **core**: New `withPoupe` async function for composing Poupe configs on
+  top of an upstream config (e.g. `createConfigForNuxt`, `withNuxt`) —
+  awaits the upstream config, appends the full Poupe config set via
+  `defineConfig`, and reconciles duplicate plugins automatically.
+  Accepts both tseslint's `Config[]` and eslint core's `Linter.Config[]`
+  (including `FlatConfigComposer`) without casts
+
+### Changed
+
+- **core**: `withConfig` now wraps typescript-eslint's `config()` with
+  `reconcilePlugins` — every config composition gets automatic plugin
+  deduplication, transparent to all callers
+
+### Deprecated
+
+- **nuxt**: `forNuxt` and `forNuxtModules` — use `withPoupe` from
+  `@poupe/eslint-config` instead. Will be removed in 0.9
+
 ## [0.8.2] - 2026-03-09
 
 ### Fixed
