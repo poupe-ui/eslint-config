@@ -60,7 +60,7 @@
     "typescript-eslint": "^8.56.1"
   },
   "devDependencies": {
-    "@kagal/cross-test": "~0.1.0",
+    "@kagal/cross-test": "~0.1.2",
     "@vitest/ui": "~4.0.18",
     "eslint-flat-config-utils": "^3.0.2",
     "globals": "~17.4.0",
