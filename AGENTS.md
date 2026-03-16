@@ -15,7 +15,7 @@ this repository.
 - `pnpm dev:prepare` - Create a fast stub build for development
 - `pnpm clean` - Remove dist folder and node_modules
 - `pnpm prepack` - Full validation
-  (lint, type-check, test:all, build, publint)
+  (build, lint, type-check, test:all, publint)
 
 ### Debugging
 
