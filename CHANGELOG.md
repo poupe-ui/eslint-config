@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- **deps**: Updated `@eslint/js` ^9.39.3 → ^9.39.4,
+  `@stylistic/eslint-plugin` ^5.9.0 → ^5.10.0,
+  `@typescript-eslint/parser` ^8.56.1 → ^8.57.0,
+  `eslint` ^9.39.3 → ^9.39.4,
+  `eslint-plugin-jsonc` ^3.1.1 → ^3.1.2,
+  `typescript-eslint` ^8.56.1 → ^8.57.0,
+  `pkg-pr-new` ~0.0.65 → ~0.0.66
+- **packageManager**: pnpm 10.30.3 → 10.32.1
+- **scripts**: Reordered `precommit` and `prepack` to run `build`
+  before `lint` so all generated artifacts exist during linting
+
 ## [0.8.3] - 2026-03-11
 
 ### Added
