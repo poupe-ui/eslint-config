@@ -45,19 +45,19 @@
   },
   "dependencies": {
     "@eslint/css": "~0.14.1",
-    "@eslint/js": "^9.39.3",
-    "@stylistic/eslint-plugin": "^5.9.0",
-    "@typescript-eslint/parser": "^8.56.1",
+    "@eslint/js": "^9.39.4",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^8.57.0",
     "@vue/eslint-config-typescript": "^14.7.0",
-    "eslint": "^9.39.3",
-    "eslint-plugin-jsonc": "^3.1.1",
+    "eslint": "^9.39.4",
+    "eslint-plugin-jsonc": "^3.1.2",
     "eslint-plugin-markdownlint": "^0.9.0",
     "eslint-plugin-perfectionist": "^4.15.1",
     "eslint-plugin-tsdoc": "^0.5.2",
     "eslint-plugin-unicorn": "^63.0.0",
     "eslint-plugin-vue": "^10.8.0",
     "tailwind-csstree": "~0.1.4",
-    "typescript-eslint": "^8.56.1"
+    "typescript-eslint": "^8.57.0"
   },
   "devDependencies": {
     "@kagal/cross-test": "~0.1.2",
@@ -65,7 +65,7 @@
     "eslint-flat-config-utils": "^3.0.2",
     "globals": "~17.4.0",
     "npm-run-all2": "^8.0.4",
-    "pkg-pr-new": "~0.0.65",
+    "pkg-pr-new": "~0.0.66",
     "publint": "^0.3.18",
     "rimraf": "^6.1.3",
     "typescript": "~5.9.3",
@@ -81,5 +81,5 @@
     "node": ">= 20.19.0",
     "pnpm": ">= 10.30.3"
   },
-  "packageManager": "pnpm@10.30.3+sha512.c961d1e0a2d8e354ecaa5166b822516668b7f44cb5bd95122d590dd81922f606f5473b6d23ec4a5be05e7fcd18e8488d47d978bbe981872f1145d06e9a740017"
+  "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be"
 }
