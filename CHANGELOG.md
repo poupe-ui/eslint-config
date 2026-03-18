@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- **deps**: Updated `@eslint/css` ~0.14.1 → ^1.0.0 (breaking),
+  `tailwind-csstree` ~0.1.4 → ~0.1.5,
+  `@typescript-eslint/parser` ^8.57.0 → ^8.57.1,
+  `typescript-eslint` ^8.57.0 → ^8.57.1
+- **css**: Adapted `customSyntax` to `tailwind-csstree` 0.1.5's
+  `SyntaxExtensionCallback` API — `tailwind4` is now a callback
+  instead of a plain object (requires `@eslint/css` >= 1.0.0)
+
 ## [0.8.4] - 2026-03-24
 
 ### Added
