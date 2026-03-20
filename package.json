@@ -56,7 +56,7 @@
     "eslint-plugin-tsdoc": "^0.5.2",
     "eslint-plugin-unicorn": "^63.0.0",
     "eslint-plugin-vue": "^10.8.0",
-    "tailwind-csstree": "~0.1.4",
+    "tailwind-csstree": "~0.2.0",
     "typescript-eslint": "^8.57.0"
   },
   "devDependencies": {
