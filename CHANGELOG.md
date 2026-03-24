@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file.
   `SyntaxExtensionCallback` API — `tailwind4` is now a callback
   instead of a plain object (requires `@eslint/css` >= 1.0.0)
 
+### Removed
+
+- **nuxt**: Removed `@poupe/eslint-config/nuxt` entry point (`forNuxt`,
+  `forNuxtModules`), deprecated since 0.8.3 — use `withPoupe` from
+  `@poupe/eslint-config` instead
+
 ## [0.8.4] - 2026-03-24
 
 ### Added

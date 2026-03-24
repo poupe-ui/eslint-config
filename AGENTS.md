@@ -44,11 +44,8 @@ format and is written in TypeScript.
    (not legacy .eslintrc)
 2. **Configuration Composition**: The package combines multiple ESLint plugins
    with custom rule overrides
-3. **Entry Points**:
-   - Main: `@poupe/eslint-config` — `defineConfig`, `withPoupe`, `withConfig`,
-     `reconcilePlugins`, and all config presets
-   - Nuxt (deprecated): `@poupe/eslint-config/nuxt` — `forNuxt`,
-     `forNuxtModules` (use `withPoupe` from root instead, removed in 0.9)
+3. **Entry Point**: `@poupe/eslint-config` — `defineConfig`, `withPoupe`,
+   `withConfig`, `reconcilePlugins`, and all config presets
 4. **Type Safety**: Full TypeScript support with proper type definitions
    exported from `src/core/config.ts`
 5. **Config Factory Pattern**: Uses typescript-eslint's `withConfig()` helper
@@ -89,7 +86,6 @@ format and is written in TypeScript.
 │   ├── config.ts     # Main configuration builder (defineConfig)
 │   ├── configs.ts    # Configuration presets and exports
 │   ├── index.ts      # Main entry point (re-exports)
-│   ├── nuxt.ts       # Nuxt.js-specific configuration
 │   └── __tests__/    # Tests for main modules
 │       ├── config.test.ts    # Tests for defineConfig
 │       └── test-utils.ts     # Shared test utilities (mustConfigByName)
@@ -281,8 +277,7 @@ The package uses `unbuild` which:
 - Compiles TypeScript to both ESM (.mjs) and CommonJS (.cjs)
 - Generates TypeScript declaration files
 - Creates stub builds for faster development iteration
-- Outputs: `dist/index.mjs`, `dist/index.cjs`, `dist/nuxt.mjs`,
-  `dist/nuxt.cjs`
+- Outputs: `dist/index.mjs`, `dist/index.cjs`
 
 ## Type System
 
@@ -371,21 +366,11 @@ CSS linting was disabled from v0.7.4 to v0.8.1 because
 With `@nuxt/eslint` v1.15.2, all tooling plugins are scoped to
 JS/TS/Vue files.
 
-### Deprecated: `forNuxt` / `forNuxtModules`
-
-The `@poupe/eslint-config/nuxt` entry point exports `forNuxt` and
-`forNuxtModules`, both deprecated in favor of `withPoupe`. These
-use a limited config subset (`sharedNuxtConfigs`) that lacks some
-backing plugins. Will be removed in 0.9.
-
 ### Plugin Resolution (Historical)
 
 Earlier versions of `@nuxt/eslint-config` (~1.4.1) loaded a different
 unicorn plugin instance, causing FlatConfigComposer identity conflicts.
-The v0.7.x workaround was `withoutPlugin('unicorn')` in
-`forNuxtModules`. In v0.8.0 this was simplified to an alias, which
-broke external consumers. `withPoupe` + `reconcilePlugins` is the
-proper fix.
+`withPoupe` + `reconcilePlugins` is the proper fix.
 
 ## Git Workflow
 
