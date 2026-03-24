@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.4] - 2026-03-24
+
+### Added
+
+- **package.json**: Added `keywords` for npm discoverability and
+  `bugs` URL
+
 ### Changed
 
 - **deps**: Updated `@eslint/js` ^9.39.3 → ^9.39.4,
@@ -13,6 +20,10 @@ All notable changes to this project will be documented in this file.
   `eslint-plugin-jsonc` ^3.1.1 → ^3.1.2,
   `typescript-eslint` ^8.56.1 → ^8.57.0,
   `pkg-pr-new` ~0.0.65 → ~0.0.66
+- **stylistic**: Pinned `arrow-parens` to `['error', 'always']` —
+  `@stylistic/eslint-plugin` 5.1.0 changed its recommended preset
+  default from `"always"` to `"as-needed"`. Applied `(x) =>` parens
+  across the codebase
 - **packageManager**: pnpm 10.30.3 → 10.32.1
 - **scripts**: Reordered `precommit` and `prepack` to run `build`
   before `lint` so all generated artifacts exist during linting

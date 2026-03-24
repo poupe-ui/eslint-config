@@ -71,7 +71,7 @@ describe('withPoupe', () => {
 
   it('should include the full Poupe config set', async () => {
     const result = await withPoupe([]);
-    const names = result.map(c => c.name).filter(Boolean);
+    const names = result.map((c) => c.name).filter(Boolean);
 
     // spot-check a few standard Poupe config names
     expect(names).toContain('poupe/json');
@@ -89,8 +89,8 @@ describe('withPoupe', () => {
     expect(fromWithPoupe.length).toBe(fromDefine.length);
 
     // same config names in order
-    const defineNames = fromDefine.map(c => c.name);
-    const poupeNames = fromWithPoupe.map(c => c.name);
+    const defineNames = fromDefine.map((c) => c.name);
+    const poupeNames = fromWithPoupe.map((c) => c.name);
     expect(poupeNames).toEqual(defineNames);
   });
 
@@ -108,8 +108,8 @@ describe('withPoupe', () => {
 
     // collect all plugin instances registered under "a"
     const aPlugins = result
-      .filter(c => c.plugins?.a)
-      .map(c => c.plugins!.a);
+      .filter((c) => c.plugins?.a)
+      .map((c) => c.plugins!.a);
 
     // all should be the same reference (first-wins = upstream's pluginA1)
     for (const p of aPlugins) {
@@ -155,8 +155,8 @@ describe('withPoupe', () => {
 
     // all unicorn plugin references should be the same instance
     const unicornReferences = result
-      .filter(c => c.plugins?.unicorn)
-      .map(c => c.plugins!.unicorn);
+      .filter((c) => c.plugins?.unicorn)
+      .map((c) => c.plugins!.unicorn);
 
     expect(unicornReferences.length).toBeGreaterThan(1);
     const canonical = unicornReferences[0];
@@ -177,8 +177,8 @@ describe('withPoupe', () => {
 
     // the user override should appear as the last config with that rule
     const consolRules = result
-      .filter(c => c.rules?.['no-console'] !== undefined)
-      .map(c => c.rules!['no-console']);
+      .filter((c) => c.rules?.['no-console'] !== undefined)
+      .map((c) => c.rules!['no-console']);
 
     // last occurrence should be the user's override
     expect(consolRules.at(-1)).toBe('off');
@@ -224,8 +224,8 @@ describe('withPoupe', () => {
 
     // all "foo" plugin instances are upstream's v1 (first-wins)
     const fooPlugins = result
-      .filter(c => c.plugins?.foo)
-      .map(c => c.plugins!.foo);
+      .filter((c) => c.plugins?.foo)
+      .map((c) => c.plugins!.foo);
 
     for (const p of fooPlugins) {
       expect(p).toBe(pluginV1);
@@ -233,7 +233,7 @@ describe('withPoupe', () => {
 
     // user's rule reference is preserved in the config...
     const ruleXConfigs = result.filter(
-      c => c.rules?.['foo/rule-x'] !== undefined,
+      (c) => c.rules?.['foo/rule-x'] !== undefined,
     );
     expect(ruleXConfigs.length).toBeGreaterThan(0);
 

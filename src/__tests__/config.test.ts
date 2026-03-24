@@ -16,7 +16,7 @@ describe('ESLint Configuration', () => {
 
   it('should include base configurations', () => {
     const config = defineConfig();
-    const configNames = config.map(c => c.name).filter(Boolean);
+    const configNames = config.map((c) => c.name).filter(Boolean);
 
     // Check for some expected configurations
     expect(configNames).toContain('poupe/json');

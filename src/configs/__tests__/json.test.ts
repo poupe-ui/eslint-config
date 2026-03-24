@@ -153,7 +153,7 @@ describe('JSON Configuration', () => {
       const rules = findConfig('poupe/json').rules;
 
       // Should have both third-party rules (check by presence of many jsonc/ rules)
-      const jsoncRules = Object.keys(rules!).filter(key => key.startsWith('jsonc/'));
+      const jsoncRules = Object.keys(rules!).filter((key) => key.startsWith('jsonc/'));
       expect(jsoncRules.length).toBeGreaterThan(10); // Third-party provides many rules
 
       // And should have Poupe's specific overrides

@@ -11,7 +11,7 @@ import {
 export const stylisticRecommended: Config = stylisticPlugin.configs.recommended;
 
 const poupeStylisticRules: Rules = {
-  '@stylistic/arrow-parens': 'error',
+  '@stylistic/arrow-parens': ['error', 'always'],
   '@stylistic/brace-style': ['error', '1tbs'],
   '@stylistic/indent': ['error', 2],
   '@stylistic/quotes': ['error', 'single'],
