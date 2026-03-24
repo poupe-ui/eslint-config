@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- **package.json**: Added `keywords` for npm discoverability and
+  `bugs` URL
+
 ### Changed
 
 - **deps**: Updated `@eslint/js` ^9.39.3 → ^9.39.4,

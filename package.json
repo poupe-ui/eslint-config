@@ -7,6 +7,23 @@
   "license": "MIT",
   "homepage": "https://github.com/poupe-ui/eslint-config",
   "repository": "github:poupe-ui/eslint-config",
+  "bugs": "https://github.com/poupe-ui/eslint-config/issues",
+  "keywords": [
+    "eslint",
+    "eslintconfig",
+    "eslint-config",
+    "flat-config",
+    "typescript",
+    "vue",
+    "css",
+    "tailwindcss",
+    "markdown",
+    "json",
+    "stylistic",
+    "unicorn",
+    "perfectionist",
+    "tsdoc"
+  ],
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
   "exports": {
