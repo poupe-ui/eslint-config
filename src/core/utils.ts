@@ -83,7 +83,7 @@ export const withoutPlugin = (pluginNames?: string | string[], ...configs: Confi
     (Array.isArray(pluginNames) ? pluginNames : [pluginNames]) :
     undefined;
 
-  return configs.map(config => removePluginsFromConfig(config, pluginsToRemove));
+  return configs.map((config) => removePluginsFromConfig(config, pluginsToRemove));
 };
 
 /**

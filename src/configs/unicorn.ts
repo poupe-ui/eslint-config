@@ -37,11 +37,11 @@ const abbreviations = [
 const omitReplacementList = new Set(['i', 'j', 'k']);
 
 const allowList = Object.fromEntries(
-  abbreviations.map(s => [s, true]),
+  abbreviations.map((s) => [s, true]),
 );
 
 const replacements = Object.fromEntries(
-  abbreviations.filter(s => !(omitReplacementList.has(s))).map(s => [s, false]),
+  abbreviations.filter((s) => !(omitReplacementList.has(s))).map((s) => [s, false]),
 );
 
 // Poupe Rules

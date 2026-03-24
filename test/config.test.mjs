@@ -38,7 +38,7 @@ function getRuleSeverity(ruleConfig) {
 function hasUppercaseFileIgnorePattern(config) {
   if (!Array.isArray(config)) return false;
   const [, options] = config;
-  return options?.ignore?.some(pattern =>
+  return options?.ignore?.some((pattern) =>
     pattern.includes('[A-Z]') && pattern.includes('md') && pattern.includes('txt'),
   );
 }
@@ -46,7 +46,7 @@ function hasUppercaseFileIgnorePattern(config) {
 // Rules we expect to be configured
 const expectedRules = {
   'unicorn/filename-case': {
-    test: config => hasUppercaseFileIgnorePattern(config),
+    test: (config) => hasUppercaseFileIgnorePattern(config),
     description: 'should have ignore pattern for uppercase .md and .txt files',
   },
   'unicorn/no-array-for-each': {
@@ -213,20 +213,20 @@ function testExample(exampleName) {
   for (const [ruleName, expected] of Object.entries(expectedRules)) {
     const ruleConfig = config.rules[ruleName];
     const ruleErrors = testRule(ruleName, expected, ruleConfig);
-    errors.push(...ruleErrors.map(error => `  ❌ ${error}`));
+    errors.push(...ruleErrors.map((error) => `  ❌ ${error}`));
   }
 
   // Test markdown-specific configuration
   const mdErrors = testMarkdownRules(exampleName);
-  errors.push(...mdErrors.map(error => `  ❌ ${error}`));
+  errors.push(...mdErrors.map((error) => `  ❌ ${error}`));
 
   // Test JSON-specific configuration
   const jsonErrors = testJsonRules(exampleName);
-  errors.push(...jsonErrors.map(error => `  ❌ ${error}`));
+  errors.push(...jsonErrors.map((error) => `  ❌ ${error}`));
 
   // Test CSS-specific configuration
   const cssErrors = testCssRules(exampleName);
-  errors.push(...cssErrors.map(error => `  ❌ ${error}`));
+  errors.push(...cssErrors.map((error) => `  ❌ ${error}`));
 
   return errors;
 }

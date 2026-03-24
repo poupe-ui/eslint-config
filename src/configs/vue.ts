@@ -41,7 +41,7 @@ export const vueSetupConfig: Config = {
 };
 
 export const vueRecommended: Config[] = withConfig(
-  vueConfigs['flat/recommended'].map(config => restrictVueRulesToVueFiles(config)),
+  vueConfigs['flat/recommended'].map((config) => restrictVueRulesToVueFiles(config)),
 );
 
 export const poupeVueConfigs: Config[] = [{

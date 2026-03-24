@@ -294,12 +294,12 @@ function analyzeConfigForCSSRules(
       }
 
       // Check keep patterns
-      if (pluginConfig.alwaysKeepPatterns.some(pattern => pattern.test(rulePart))) {
+      if (pluginConfig.alwaysKeepPatterns.some((pattern) => pattern.test(rulePart))) {
         continue;
       }
 
       // Check disable patterns
-      if (pluginConfig.alwaysDisablePatterns.some(pattern => pattern.test(rulePart))) {
+      if (pluginConfig.alwaysDisablePatterns.some((pattern) => pattern.test(rulePart))) {
         rulesToDisable.add(ruleName);
         continue;
       }
@@ -335,7 +335,7 @@ export function getJavaScriptRulesToDisable(): Record<string, 'off'> {
       // Create a fake config with all plugin rules enabled
       const allRulesConfig = {
         rules: Object.fromEntries(
-          Object.keys(plugin.rules).map(ruleName => [`${name}/${ruleName}`, 'error']),
+          Object.keys(plugin.rules).map((ruleName) => [`${name}/${ruleName}`, 'error']),
         ),
       };
       analyzeConfigForCSSRules(allRulesConfig, rulesToDisable);
