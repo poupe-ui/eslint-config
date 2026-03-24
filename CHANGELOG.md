@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.8.4] - 2026-03-24
+
 ### Added
 
 - **package.json**: Added `keywords` for npm discoverability and
