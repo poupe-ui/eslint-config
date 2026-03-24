@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- **exports**: `Plugin`, `InfiniteDepthConfigWithExtends`, and
+  `Linter` are now importable from `@poupe/eslint-config`
+
 ### Changed
 
 - **deps**: Updated `@eslint/css` ~0.14.1 → ^1.0.0 (breaking),
@@ -13,6 +18,18 @@ All notable changes to this project will be documented in this file.
 - **css**: Adapted `customSyntax` to `tailwind-csstree` 0.1.5's
   `SyntaxExtensionCallback` API — `tailwind4` is now a callback
   instead of a plain object (requires `@eslint/css` >= 1.0.0)
+- **core**: Migrated config factory from `typescript-eslint`'s
+  deprecated `config()` to `eslint/config`'s `defineConfig()`.
+  `Config` and `InfiniteDepthConfigWithExtends` types now derive
+  from `@eslint/core` instead of `@typescript-eslint/utils` —
+  the `plugins` field is stricter (language-specific plugins need
+  `as unknown as Plugin` casts)
+
+### Fixed
+
+- **exports**: `Config` and `Rules` type exports were unreachable
+  from the package entry point (`export type` combined with
+  `export *` in the same barrel was silently dropped by unbuild)
 
 ### Removed
 

@@ -3,6 +3,7 @@ import { tailwind4 } from 'tailwind-csstree';
 
 import {
   type Config,
+  type Plugin,
   type Rules,
 
   GLOB_CSS,
@@ -47,7 +48,7 @@ export const poupeCSSConfigs: Config[] = [{
   name: 'poupe/css',
   files: [GLOB_CSS],
   plugins: {
-    css,
+    css: css as unknown as Plugin,
   },
   language: 'css/css',
   languageOptions: { tolerant: true, customSyntax } as Config['languageOptions'],

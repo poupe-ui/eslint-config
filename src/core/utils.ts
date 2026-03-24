@@ -1,6 +1,5 @@
-import { type Config, type Rules } from './config';
+import { type Config, type Plugin, type Rules } from './config';
 
-type Plugin = NonNullable<Config['plugins']>[string];
 type Plugins = NonNullable<Config['plugins']>;
 
 /**

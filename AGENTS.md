@@ -48,8 +48,8 @@ format and is written in TypeScript.
    `withConfig`, `reconcilePlugins`, and all config presets
 4. **Type Safety**: Full TypeScript support with proper type definitions
    exported from `src/core/config.ts`
-5. **Config Factory Pattern**: Uses typescript-eslint's `withConfig()` helper
-   for proper config flattening and extends resolution
+5. **Config Factory Pattern**: Uses `eslint/config`'s `defineConfig()` for
+   proper config flattening and extends resolution
 6. **Self-Dogfooding**: Package uses its own ESLint configuration for
    validation
 
@@ -281,11 +281,19 @@ The package uses `unbuild` which:
 
 ## Type System
 
-The package uses typescript-eslint's `Config` type throughout, providing better
-type safety and integration with the typescript-eslint ecosystem. Key types:
+The package uses `@eslint/core`'s `ConfigObject` type (via `eslint/config`'s
+`defineConfig()`) throughout. Key types:
 
-- `Config`: The main configuration type from typescript-eslint
+- `Config`: The main configuration type (`@eslint/core.ConfigObject`)
+- `InfiniteDepthConfigWithExtends`: Input type for `withConfig()`,
+  `defineConfig()`, and `withPoupe()` — supports nested arrays and
+  `extends`
 - `Rules`: Type-safe rule definitions
+- `Plugin`: Convenience type for plugin casts — `@eslint/core`'s `Plugin`
+  type is contravariant with language-specific rule contexts, so real
+  plugins need `as unknown as Plugin` casts
+- `Linter`: Re-exported namespace from `eslint` — provides `Linter.Config`
+  for Nuxt interop
 - `withConfig()`: Helper function that flattens configs, resolves extends,
   and reconciles duplicate plugin instances (first-wins)
 

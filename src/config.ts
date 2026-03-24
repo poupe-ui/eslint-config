@@ -17,12 +17,12 @@ import {
 import {
   type Config,
   type InfiniteDepthConfigWithExtends,
-  type Linter,
 
   withConfig,
 } from './core';
 
-export { reconcilePlugins, withConfig } from './core';
+export type { Config, InfiniteDepthConfigWithExtends, Plugin, Rules } from './core';
+export { Linter, reconcilePlugins, withConfig } from './core';
 export * from './core/globs';
 
 /**
@@ -40,13 +40,9 @@ export * from './core/globs';
 export async function withPoupe(
   upstream:
     Config[] |
-    Linter.Config[] |
-    PromiseLike<Config[]> |
-    PromiseLike<Linter.Config[]>,
+    PromiseLike<Config[]>,
   ...userConfigs: InfiniteDepthConfigWithExtends[]
 ): Promise<Config[]> {
-  // Cast: Linter.Config and tseslint's Config are structurally identical
-  // at runtime but distinct types. Resolved by migrating to eslint/config.
   const upstreamConfigs = await upstream as Config[];
   return withConfig(upstreamConfigs, ...defineConfig(...userConfigs));
 }

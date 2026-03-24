@@ -201,11 +201,11 @@ describe('withPoupe', () => {
     // Simulate: upstream ships plugin v1 (missing "rule-x"),
     // user depends on plugin v2 (has "rule-x").
     // first-wins means upstream's v1 becomes canonical.
-    const pluginV1 = { rules: { 'rule-a': { meta: { type: 'problem' }, create: () => ({}) } } };
+    const pluginV1 = { rules: { 'rule-a': { meta: { type: 'problem' as const }, create: () => ({}) } } };
     const pluginV2 = {
       rules: {
-        'rule-a': { meta: { type: 'problem' }, create: () => ({}) },
-        'rule-x': { meta: { type: 'suggestion' }, create: () => ({}) },
+        'rule-a': { meta: { type: 'problem' as const }, create: () => ({}) },
+        'rule-x': { meta: { type: 'suggestion' as const }, create: () => ({}) },
       },
     };
 
