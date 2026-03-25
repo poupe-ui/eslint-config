@@ -1,8 +1,3 @@
-export type {
-  Config,
-  Rules,
-} from '../core';
-
 export * from './css';
 export * from './eslint';
 export * from './json';

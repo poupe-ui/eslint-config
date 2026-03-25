@@ -2,6 +2,7 @@ import jsoncPlugin from 'eslint-plugin-jsonc';
 
 import {
   type Config,
+  type Plugin,
   type Rules,
 
   GLOB_JSON,
@@ -12,6 +13,7 @@ import {
 const jsoncRecommendedConfigs = jsoncPlugin.configs['recommended-with-json'];
 const jsoncRecommendedRules = jsoncRecommendedConfigs[2].rules as Rules;
 
+const jsoncPlugins = { jsonc: jsoncPlugin as unknown as Plugin };
 const GLOB_PACKAGE_JSON = '**/package.json';
 
 const poupeJsonRules: Rules = {
@@ -87,9 +89,7 @@ export const poupeJsonConfigs: Config[] = [
     name: 'poupe/json',
     files: [GLOB_JSON],
     ignores: [GLOB_PACKAGE_JSON, ...GLOB_JSONC_FILES],
-    plugins: {
-      jsonc: jsoncPlugin,
-    },
+    plugins: jsoncPlugins,
     language: 'jsonc/json',
     rules: {
       ...jsoncRecommendedRules,
@@ -99,9 +99,7 @@ export const poupeJsonConfigs: Config[] = [
   {
     name: 'poupe/package-json',
     files: [GLOB_PACKAGE_JSON],
-    plugins: {
-      jsonc: jsoncPlugin,
-    },
+    plugins: jsoncPlugins,
     language: 'jsonc/json',
     rules: {
       ...jsoncRecommendedRules,
@@ -111,9 +109,7 @@ export const poupeJsonConfigs: Config[] = [
   {
     name: 'poupe/jsonc',
     files: GLOB_JSONC_FILES,
-    plugins: {
-      jsonc: jsoncPlugin,
-    },
+    plugins: jsoncPlugins,
     language: 'jsonc/jsonc',
     rules: {
       ...jsoncRecommendedRules,

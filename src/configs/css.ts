@@ -1,14 +1,13 @@
-import css, { type CSSLanguageOptions } from '@eslint/css';
+import css from '@eslint/css';
 import { tailwind4 } from 'tailwind-csstree';
 
 import {
   type Config,
+  type Plugin,
   type Rules,
 
   GLOB_CSS,
 } from '../core';
-
-type SyntaxConfig = NonNullable<CSSLanguageOptions['customSyntax']>;
 
 const { configs: cssConfigs } = css;
 
@@ -26,30 +25,33 @@ export const poupeCssRules: Rules = {
 //   @apply, @import, @config, @theme, @source,
 //   @utility, @variant, @custom-variant, @plugin, @reference
 //
-// We extend with @tailwind for legacy v3 compatibility
-const customSyntax: Partial<SyntaxConfig> = {
-  ...tailwind4,
-  atrules: {
-    ...tailwind4.atrules,
-    tailwind: {
-      prelude: 'base | components | utilities | variants',
-    },
-  },
-};
+// We extend with @tailwind for legacy v3 compatibility.
+//
+// tailwind-csstree 0.1.5 changed tailwind4 from Partial<SyntaxConfig>
+// to SyntaxExtensionCallback (requires @eslint/css >= 1.0.0).
+type SyntaxExtensionCallback = typeof tailwind4;
 
-const languageOptions: CSSLanguageOptions = {
-  tolerant: true, // Enable tolerant mode for Tailwind CSS compatibility
-  customSyntax: customSyntax as SyntaxConfig,
+const customSyntax: SyntaxExtensionCallback = (previous, assign) => {
+  const tw = tailwind4(previous, assign);
+  return {
+    ...tw,
+    atrules: {
+      ...tw.atrules,
+      tailwind: {
+        prelude: 'base | components | utilities | variants',
+      },
+    },
+  };
 };
 
 export const poupeCSSConfigs: Config[] = [{
   name: 'poupe/css',
   files: [GLOB_CSS],
   plugins: {
-    css,
+    css: css as unknown as Plugin,
   },
   language: 'css/css',
-  languageOptions: languageOptions as Config['languageOptions'],
+  languageOptions: { tolerant: true, customSyntax } as Config['languageOptions'],
   rules: {
     ...cssConfigs.recommended.rules,
     ...poupeCssRules,

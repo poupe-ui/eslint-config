@@ -408,8 +408,7 @@ src/
 ├── core/           # Core utilities and type definitions
 ├── config.ts       # Main configuration builder
 ├── configs.ts      # Configuration presets
-├── index.ts        # Main entry point
-└── nuxt.ts         # Nuxt-specific configurations
+└── index.ts        # Main entry point
 ```
 
 ### Contributing

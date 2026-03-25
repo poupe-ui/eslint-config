@@ -17,9 +17,9 @@ export default defineConfig();
 Integration with Nuxt.js applications.
 
 ```js
-import { forNuxt } from '@poupe/eslint-config/nuxt';
+import { withPoupe } from '@poupe/eslint-config';
 import withNuxt from './.nuxt/eslint.config.mjs';
-export default withNuxt(...forNuxt());
+export default withPoupe(withNuxt());
 ```
 
 ## playground-nuxt-module
@@ -28,8 +28,10 @@ Configuration for Nuxt module development.
 
 ```js
 import { createConfigForNuxt } from '@nuxt/eslint-config/flat';
-import { forNuxtModules } from '@poupe/eslint-config/nuxt';
-export default createConfigForNuxt({...}, ...forNuxtModules());
+import { withPoupe } from '@poupe/eslint-config';
+export default withPoupe(createConfigForNuxt({
+  features: { tooling: true, stylistic: true },
+}));
 ```
 
 ## Running Examples
