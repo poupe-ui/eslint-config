@@ -9,3 +9,10 @@
 const title = 'Nuxt Test';
 const message = 'Testing Vue component linting';
 </script>
+
+<style scoped>
+.container {
+  padding: 1rem;
+  color: inherit;
+}
+</style>

@@ -1,4 +1,6 @@
+import { mergeProcessors } from 'eslint-merge-processors';
 import vuePlugin from 'eslint-plugin-vue';
+import processorVueBlocks from 'eslint-processor-vue-blocks';
 
 import {
   type Config,
@@ -31,6 +33,10 @@ function restrictVueRulesToVueFiles(config: Config): Config {
 export const vueSetupConfig: Config = {
   name: 'poupe/vue-setup',
   files: [GLOB_VUE],
+  processor: mergeProcessors([
+    vuePlugin.processors['.vue'],
+    processorVueBlocks({ blocks: { styles: true } }),
+  ]),
   languageOptions: {
     parserOptions: {
       parser: '@typescript-eslint/parser',

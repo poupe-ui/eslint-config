@@ -199,6 +199,25 @@ function testCssRules(exampleName) {
     errors.push(`Failed to get CSS config: ${error.message}`);
   }
 
+  // Test CSS config resolves for Vue <style> virtual files.
+  // At runtime the index is 1 (vue processor=0, vue-blocks=1),
+  // but --print-config only does glob matching — any *.css path works.
+  for (const extension of ['css', 'postcss']) {
+    try {
+      const vueCssConfig = getESLintConfig(exampleName, `test.vue/1_style.${extension}`);
+
+      if (vueCssConfig.language !== 'css/css') {
+        errors.push(`Vue <style> blocks (.${extension}): language is not css/css`);
+      } else if (vueCssConfig.rules['css/no-empty-blocks'] === undefined) {
+        errors.push(`Vue <style> blocks (.${extension}): CSS rules not applied`);
+      } else {
+        console.log(`  ✅ CSS linting is configured for Vue <style> blocks (.${extension})`);
+      }
+    } catch (error) {
+      errors.push(`Failed to get Vue CSS config (.${extension}): ${error.message}`);
+    }
+  }
+
   return errors;
 }
 

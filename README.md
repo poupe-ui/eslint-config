@@ -103,7 +103,8 @@ This configuration automatically lints the following file types:
 * **Vue.js**: `.vue` (Single File Components)
 * **JSON/JSONC**: `.json`, `.jsonc`, `package.json`
 * **Markdown**: `.md`
-* **CSS**: `.css` (with Tailwind CSS v4 syntax support)
+* **CSS**: `.css`, `.postcss`, Vue `<style>` blocks (with Tailwind CSS v4
+  syntax support)
 
 ## Features
 

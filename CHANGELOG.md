@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 
 - **exports**: `Plugin`, `InfiniteDepthConfigWithExtends`, and
   `Linter` are now importable from `@poupe/eslint-config`
+- **vue**: CSS linting for Vue `<style>` blocks via merged
+  processors (`eslint-merge-processors`, `eslint-processor-vue-blocks`)
+  — same pattern as `@nuxt/eslint-config` and `@antfu/eslint-config`
+- **css**: `GLOB_CSS` extended from `**/*.css` to `**/*.?(post)css`
+  so `<style lang="postcss">` blocks and standalone `.postcss` files
+  are also linted
 
 ### Changed
 
