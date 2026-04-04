@@ -42,6 +42,9 @@ All notable changes to this project will be documented in this file.
 - **nuxt**: Removed `@poupe/eslint-config/nuxt` entry point (`forNuxt`,
   `forNuxtModules`), deprecated since 0.8.3 — use `withPoupe` from
   `@poupe/eslint-config` instead
+- **deps**: Dropped `eslint-flat-config-utils` devDependency — only
+  used for its `FlatConfigComposer` type in a test, replaced with a
+  local structural alias
 
 ## [0.8.4] - 2026-03-24
 

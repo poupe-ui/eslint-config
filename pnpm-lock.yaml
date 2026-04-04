@@ -60,9 +60,6 @@ importers:
       '@vitest/ui':
         specifier: ~4.1.2
         version: 4.1.2(vitest@4.1.2)
-      eslint-flat-config-utils:
-        specifier: ^3.0.2
-        version: 3.0.2
       globals:
         specifier: ~17.4.0
         version: 17.4.0
