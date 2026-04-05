@@ -53,6 +53,7 @@
     "publint": "publint",
     "test": "pnpm -r dev:prepare && node test/config.test.mjs",
     "test:all": "run-s test:unit test",
+    "test:compat": "node test/compat.test.mjs",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest watch",
     "type-check": "tsc --noEmit"
