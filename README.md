@@ -21,7 +21,7 @@ Vue.js, and Tailwind CSS support.
 
 > [!NOTE]
 > This preset uses the new [ESLint flat config][flat-config] format and
-> requires ESLint v9+ and Node.js v20.19.0+.
+> requires ESLint v9+ and Node.js v20.20.2+.
 
 Install dependencies:
 

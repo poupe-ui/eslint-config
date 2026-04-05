@@ -11,13 +11,19 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- **deps**: Updated `@eslint/css` ~0.14.1 → ^1.0.0 (breaking),
-  `tailwind-csstree` ~0.1.4 → ~0.1.5,
-  `@typescript-eslint/parser` ^8.57.0 → ^8.57.1,
-  `typescript-eslint` ^8.57.0 → ^8.57.1
+- **deps**: Updated `@eslint/css` ~0.14.1 → ^1.1.0 (breaking),
+  `tailwind-csstree` ~0.1.4 → ~0.3.0,
+  `@typescript-eslint/parser` ^8.57.0 → ^8.58.0,
+  `typescript-eslint` ^8.57.0 → ^8.58.0,
+  `@kagal/cross-test` ~0.1.2 → ~0.1.3,
+  `vitest` ~4.0.18 → ~4.1.2,
+  `oxc-parser` override 0.116.0 → 0.123.0
 - **css**: Adapted `customSyntax` to `tailwind-csstree` 0.1.5's
   `SyntaxExtensionCallback` API — `tailwind4` is now a callback
   instead of a plain object (requires `@eslint/css` >= 1.0.0)
+- **packageManager**: pnpm 10.32.1 → 10.33.0
+- **engines**: Bumped minimum Node.js from >= 20.19.0 to >= 20.20.2
+- **CI**: Updated `pnpm/action-setup` action to v5
 - **core**: Migrated config factory from `typescript-eslint`'s
   deprecated `config()` to `eslint/config`'s `defineConfig()`.
   `Config` and `InfiniteDepthConfigWithExtends` types now derive
