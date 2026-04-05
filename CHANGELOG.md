@@ -12,7 +12,8 @@ All notable changes to this project will be documented in this file.
   `Linter` are now importable from `@poupe/eslint-config`
 - **vue**: CSS linting for Vue `<style>` blocks via merged
   processors (`eslint-merge-processors`, `eslint-processor-vue-blocks`)
-  — same pattern as `@nuxt/eslint-config` and `@antfu/eslint-config`
+  — same pattern as `@nuxt/eslint-config` and `@antfu/eslint-config`.
+  New peer dependency: `@vue/compiler-sfc ^3.3.0`
 - **css**: `GLOB_CSS` extended from `**/*.css` to `**/*.?(post)css`
   so `<style lang="postcss">` blocks and standalone `.postcss` files
   are also linted
@@ -44,6 +45,9 @@ All notable changes to this project will be documented in this file.
 - **exports**: `Config` and `Rules` type exports were unreachable
   from the package entry point (`export type` combined with
   `export *` in the same barrel was silently dropped by unbuild)
+- **ci**: Publish workflow switched from Node 22 + `npm install -g
+  npm@^11` to Node 24 (bundles npm 11 natively) — Node 22's
+  bundled npm 10 could not self-upgrade (`promise-retry` not found)
 
 ### Removed
 
