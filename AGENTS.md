@@ -440,7 +440,7 @@ unicorn plugin instance, causing FlatConfigComposer identity conflicts.
 - Including package.json/pnpm-lock.yaml updates without thinking if they belong
 - Mixing example updates with core library changes
 - Forgetting to delete commit message files after use
-- Using `cd` in bash commands instead of absolute paths
+- Using `cd` or unnecessary absolute paths in bash commands
 - Committing generated files (.nuxt/, dist/) or editor files (.vscode/)
 
 ## Development Practices
@@ -466,7 +466,8 @@ unicorn plugin instance, causing FlatConfigComposer identity conflicts.
 - Mix tabs and spaces - follow the .editorconfig rules for each file type
 - Use `git commit -m` (use `-F` with a file instead)
 - Rely on staged files - always specify files explicitly in commits
-- Use `cd` in bash commands - use absolute paths or `pnpm --filter`
+- Use `cd` in bash commands — use relative paths or `pnpm --filter`
+- Use absolute paths when a relative path or no path does the same
 - Delete files without explicit permission
 
 ## Agent-Specific Instructions
@@ -485,7 +486,8 @@ unicorn plugin instance, causing FlatConfigComposer identity conflicts.
 - Follow the pre-commit checklist strictly
 - Use Write tool for commit messages, not echo, -m, or heredocs
 - Create commit message files with descriptive slugs: `.commit-msg-<descriptive-slug>`
-- NEVER USE `cd` IN BASH COMMANDS - use absolute paths
+- NEVER USE `cd` IN BASH COMMANDS — use relative paths or `pnpm --filter`
+- Prefer relative paths over absolute paths for readability
 - When testing examples, use `pnpm --filter` instead of changing directories
 
 ## Debugging Tips
