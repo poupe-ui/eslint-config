@@ -61,8 +61,8 @@ importers:
         specifier: ~4.1.2
         version: 4.1.2(vitest@4.1.2)
       eslint-flat-config-utils:
-        specifier: ^3.0.2
-        version: 3.0.2
+        specifier: ^3.1.0
+        version: 3.1.0
       globals:
         specifier: ~17.4.0
         version: 17.4.0
@@ -2971,8 +2971,8 @@ packages:
     peerDependencies:
       eslint: ^9.5.0 || ^10.0.0
 
-  eslint-flat-config-utils@3.0.2:
-    resolution: {integrity: sha512-mPvevWSDQFwgABvyCurwIu6ZdKxGI5NW22/BGDwA1T49NO6bXuxbV9VfJK/tkQoNyPogT6Yu1d57iM0jnZVWmg==}
+  eslint-flat-config-utils@3.1.0:
+    resolution: {integrity: sha512-lM+Nwo2CzpuTS/RASQExlEIwk/BQoKqJWX6VbDlLMb/mveqvt9MMrRXFEkG3bseuK6g8noKZLeX82epkILtv4A==}
 
   eslint-import-context@0.1.9:
     resolution: {integrity: sha512-K9Hb+yRaGAGUbwjhFNHvSmmkZs9+zbuoe3kFQ4V1wYjrepUFYM2dZAfNtjbbj3qsPfUfsA68Bx/ICWQMi+C8Eg==}
@@ -6412,7 +6412,7 @@ snapshots:
       '@typescript-eslint/parser': 8.57.2(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)
       eslint: 9.39.4(jiti@2.6.1)
       eslint-config-flat-gitignore: 2.2.1(eslint@9.39.4(jiti@2.6.1))
-      eslint-flat-config-utils: 3.0.2
+      eslint-flat-config-utils: 3.1.0
       eslint-merge-processors: 2.0.0(eslint@9.39.4(jiti@2.6.1))
       eslint-plugin-import-lite: 0.5.2(eslint@9.39.4(jiti@2.6.1))
       eslint-plugin-import-x: 4.16.1(@typescript-eslint/utils@8.57.2(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))
@@ -6450,7 +6450,7 @@ snapshots:
       '@nuxt/kit': 4.4.2(magicast@0.5.2)
       chokidar: 5.0.0
       eslint: 9.39.4(jiti@2.6.1)
-      eslint-flat-config-utils: 3.0.2
+      eslint-flat-config-utils: 3.1.0
       eslint-typegen: 2.3.1(eslint@9.39.4(jiti@2.6.1))
       find-up: 8.0.0
       get-port-please: 3.2.0
@@ -8572,7 +8572,7 @@ snapshots:
       '@eslint/compat': 2.0.2(eslint@9.39.4(jiti@2.6.1))
       eslint: 9.39.4(jiti@2.6.1)
 
-  eslint-flat-config-utils@3.0.2:
+  eslint-flat-config-utils@3.1.0:
     dependencies:
       '@eslint/config-helpers': 0.5.3
       pathe: 2.0.3
