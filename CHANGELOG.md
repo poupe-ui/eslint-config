@@ -48,6 +48,8 @@ All notable changes to this project will be documented in this file.
 - **ci**: Publish workflow switched from Node 22 + `npm install -g
   npm@^11` to Node 24 (bundles npm 11 natively) — Node 22's
   bundled npm 10 could not self-upgrade (`promise-retry` not found)
+- **ci**: Added explicit `permissions: contents: read` to all
+  workflows (CodeQL security hardening)
 
 ### Removed
 
