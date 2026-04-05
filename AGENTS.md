@@ -105,6 +105,8 @@ format and is written in TypeScript.
 - **@stylistic/eslint-plugin**: Code formatting and style consistency
 - **typescript-eslint**: TypeScript-specific linting and type checking
 - **eslint-plugin-vue**: Vue.js template and script linting
+- **eslint-processor-vue-blocks**: Extracts Vue `<style>` blocks as
+  virtual CSS files for `@eslint/css` linting
 - **eslint-plugin-unicorn**: Modern JavaScript best practices
 - **eslint-plugin-perfectionist**: Import/export and union type sorting
 - **eslint-plugin-tsdoc**: TypeScript documentation standards
@@ -120,7 +122,8 @@ The configuration automatically lints the following file types:
 - **Vue.js**: `.vue` (SFC)
 - **JSON/JSONC**: `.json`, `.jsonc`, `package.json`
 - **Markdown**: `.md`
-- **CSS**: `.css` (with Tailwind CSS syntax support)
+- **CSS**: `.css`, `.postcss`, Vue `<style>` blocks
+  (with Tailwind CSS syntax support)
 
 ### CSS Configuration System
 

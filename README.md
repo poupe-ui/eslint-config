@@ -21,7 +21,7 @@ Vue.js, and Tailwind CSS support.
 
 > [!NOTE]
 > This preset uses the new [ESLint flat config][flat-config] format and
-> requires ESLint v9+ and Node.js v20.19.0+.
+> requires ESLint v9+ and Node.js v20.20.2+.
 
 Install dependencies:
 
@@ -103,7 +103,8 @@ This configuration automatically lints the following file types:
 * **Vue.js**: `.vue` (Single File Components)
 * **JSON/JSONC**: `.json`, `.jsonc`, `package.json`
 * **Markdown**: `.md`
-* **CSS**: `.css` (with Tailwind CSS v4 syntax support)
+* **CSS**: `.css`, `.postcss`, Vue `<style>` blocks (with Tailwind CSS v4
+  syntax support)
 
 ## Features
 

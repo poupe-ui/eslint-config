@@ -2,6 +2,7 @@ import { ESLint, type Linter } from 'eslint';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { defineConfig } from '../../index';
+import { getJavaScriptRulesToDisable } from '../css-filter';
 
 // Strip trailing whitespace from each line in template literals
 // to avoid triggering @stylistic/no-trailing-spaces
@@ -543,6 +544,126 @@ describe('CSS Configuration', () => {
 
       const results = await eslint.lintText(code, { filePath: 'test.css' });
       expect(results[0].errorCount).toBe(0);
+    });
+  });
+
+  describe('Vue <style> blocks', () => {
+    // Use the actual CSS filter as source of truth for JS-only rules
+    const jsRulesToDisable = getJavaScriptRulesToDisable();
+
+    it('should detect css/no-empty-blocks in a <style> block', async () => {
+      const code = trim(`
+        <template>
+          <div>Test</div>
+        </template>
+
+        <style>
+        .empty {}
+        </style>
+      `);
+
+      const results = await eslint.lintText(code, { filePath: 'test.vue' });
+      const cssMessages = results
+        .flatMap((r) => r.messages)
+        .filter((m) => m.ruleId === 'css/no-empty-blocks');
+      expect(cssMessages.length).toBeGreaterThan(0);
+    });
+
+    it('should map CSS error lines back to .vue positions', async () => {
+      // .empty {} is on line 7 of this SFC
+      const code = [
+        '<template>',
+        '  <div>Test</div>',
+        '</template>',
+        '',
+        '<style>',
+        '',
+        '.empty {}',
+        '</style>',
+        '',
+      ].join('\n');
+
+      const results = await eslint.lintText(code, { filePath: 'test.vue' });
+      const cssMessages = results
+        .flatMap((r) => r.messages)
+        .filter((m) => m.ruleId === 'css/no-empty-blocks');
+      expect(cssMessages).toHaveLength(1);
+      expect(cssMessages[0].line).toBe(7);
+    });
+
+    it('should not apply JS-specific rules to <style> blocks', async () => {
+      // Assert at the config level: resolved rules for the virtual CSS
+      // file must not include any JS-only rules that css-filter disables.
+      const config = await eslint.calculateConfigForFile('test.vue/1_style.css');
+      const enabledRules = Object.entries(config.rules ?? {})
+        .filter(([, value]) => {
+          const severity = Array.isArray(value) ? value[0] : value;
+          return severity !== 'off' && severity !== 0;
+        })
+        .map(([key]) => key);
+
+      const jsRulesEnabled = enabledRules.filter((rule) => rule in jsRulesToDisable);
+      expect(jsRulesEnabled).toHaveLength(0);
+    });
+
+    it('should apply Tailwind customSyntax to <style> blocks', async () => {
+      const code = trim(`
+        <template>
+          <div class="button">Click</div>
+        </template>
+
+        <style>
+        .button {
+          @apply rounded-md px-4 py-2;
+        }
+        </style>
+      `);
+
+      const results = await eslint.lintText(code, { filePath: 'test.vue' });
+      const cssErrors = results
+        .flatMap((r) => r.messages)
+        .filter((m) => m.ruleId?.startsWith('css/'));
+      expect(cssErrors).toHaveLength(0);
+    });
+
+    it('should lint <style lang="postcss"> as CSS', async () => {
+      const code = trim(`
+        <template>
+          <div>Test</div>
+        </template>
+
+        <style lang="postcss">
+        .empty {}
+        </style>
+      `);
+
+      const results = await eslint.lintText(code, { filePath: 'test.vue' });
+      const cssMessages = results
+        .flatMap((r) => r.messages)
+        .filter((m) => m.ruleId === 'css/no-empty-blocks');
+      expect(cssMessages.length).toBeGreaterThan(0);
+    });
+
+    it('should not lint <style lang="scss"> as CSS', async () => {
+      const code = trim(`
+        <template>
+          <div>Test</div>
+        </template>
+
+        <style lang="scss">
+        $primary: red;
+        .box { color: $primary; }
+        </style>
+      `);
+
+      // Find where the style block starts, then assert nothing lints it
+      // (not just css/* — no rules at all should match a .scss virtual file)
+      const styleLine = code.split('\n').findIndex((l) => l.includes('<style')) + 1;
+      const results = await eslint.lintText(code, { filePath: 'test.vue' });
+      const styleMessages = results
+        .flatMap((r) => r.messages)
+        .filter((m) => m.line >= styleLine);
+      expect(styleMessages).toHaveLength(0);
     });
   });
 });

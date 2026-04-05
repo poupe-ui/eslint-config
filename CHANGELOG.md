@@ -4,20 +4,34 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-04-05
+
 ### Added
 
 - **exports**: `Plugin`, `InfiniteDepthConfigWithExtends`, and
   `Linter` are now importable from `@poupe/eslint-config`
+- **vue**: CSS linting for Vue `<style>` blocks via merged
+  processors (`eslint-merge-processors`, `eslint-processor-vue-blocks`)
+  — same pattern as `@nuxt/eslint-config` and `@antfu/eslint-config`
+- **css**: `GLOB_CSS` extended from `**/*.css` to `**/*.?(post)css`
+  so `<style lang="postcss">` blocks and standalone `.postcss` files
+  are also linted
 
 ### Changed
 
-- **deps**: Updated `@eslint/css` ~0.14.1 → ^1.0.0 (breaking),
-  `tailwind-csstree` ~0.1.4 → ~0.1.5,
-  `@typescript-eslint/parser` ^8.57.0 → ^8.57.1,
-  `typescript-eslint` ^8.57.0 → ^8.57.1
+- **deps**: Updated `@eslint/css` ~0.14.1 → ^1.1.0 (breaking),
+  `tailwind-csstree` ~0.1.4 → ~0.3.0,
+  `@typescript-eslint/parser` ^8.57.0 → ^8.58.0,
+  `typescript-eslint` ^8.57.0 → ^8.58.0,
+  `@kagal/cross-test` ~0.1.2 → ~0.1.3,
+  `vitest` ~4.0.18 → ~4.1.2,
+  `oxc-parser` override 0.116.0 → 0.123.0
 - **css**: Adapted `customSyntax` to `tailwind-csstree` 0.1.5's
   `SyntaxExtensionCallback` API — `tailwind4` is now a callback
   instead of a plain object (requires `@eslint/css` >= 1.0.0)
+- **packageManager**: pnpm 10.32.1 → 10.33.0
+- **engines**: Bumped minimum Node.js from >= 20.19.0 to >= 20.20.2
+- **CI**: Updated `pnpm/action-setup` action to v5
 - **core**: Migrated config factory from `typescript-eslint`'s
   deprecated `config()` to `eslint/config`'s `defineConfig()`.
   `Config` and `InfiniteDepthConfigWithExtends` types now derive
@@ -36,6 +50,9 @@ All notable changes to this project will be documented in this file.
 - **nuxt**: Removed `@poupe/eslint-config/nuxt` entry point (`forNuxt`,
   `forNuxtModules`), deprecated since 0.8.3 — use `withPoupe` from
   `@poupe/eslint-config` instead
+- **deps**: Dropped `eslint-flat-config-utils` devDependency — only
+  used for its `FlatConfigComposer` type in a test, replaced with a
+  local structural alias
 
 ## [0.8.4] - 2026-03-24
 

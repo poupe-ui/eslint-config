@@ -2,6 +2,7 @@ import stylisticPlugin from '@stylistic/eslint-plugin';
 import unicornPlugin from 'eslint-plugin-unicorn';
 
 import { type Config, Linter } from '../core/config';
+import { GLOB_CSS } from '../core/globs';
 import { eslintRecommended } from './eslint';
 import { poupeStylisticConfigs } from './stylistic';
 import { poupeUnicornConfigs } from './unicorn';
@@ -368,7 +369,7 @@ export function processCSSConfigs(configs: Config[]): Config[] {
     ...configs,
     {
       name: 'poupe/css-disable-js-rules',
-      files: ['**/*.css'],
+      files: [GLOB_CSS],
       rules: getJavaScriptRulesToDisable(),
     },
   ];
