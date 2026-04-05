@@ -89,7 +89,7 @@
     "vitest": "~4.1.2"
   },
   "peerDependencies": {
-    "@vue/compiler-sfc": "^3.3.0"
+    "@vue/compiler-sfc": "^3.5.32"
   },
   "pnpm": {
     "overrides": {
