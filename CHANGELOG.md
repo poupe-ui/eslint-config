@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- **deps**: Updated `eslint-plugin-perfectionist` ^4.15.1 → ^5.8.0
+- **perfectionist**: Migrated `sort-imports` to v5 format — groups
+  from `-type` suffix to `type-` prefix selectors, `'object'` →
+  `'ts-equals-import'`, added `newlinesInside: 'newlinesBetween'`
+  (required by v5 when `partitionByNewLine` is enabled)
+- **perfectionist**: Removed unused `react`/`vue` `customGroups`
+  from `sort-imports` — they were defined but never referenced in
+  the `groups` array, so they had no effect
+- **perfectionist**: Removed `groupKind: 'mixed'` from
+  `sort-named-imports` and `sort-named-exports` (option removed
+  in v5, mixed is the default behaviour)
+
+### Fixed
+
+- **perfectionist**: Enabled `partitionByNewLine` for `sort-exports`
+  and `sort-named-exports` — was only set on the import rules,
+  causing blank lines between export groups to be collapsed
+
+### Internal
+
+- Added perfectionist configuration tests
+
 ## [0.9.0] - 2026-04-05
 
 ### Added

@@ -72,10 +72,12 @@ format and is written in TypeScript.
 │   │   ├── unicorn.ts    # Modern JavaScript best practices
 │   │   ├── vue.ts        # Vue.js framework rules
 │   │   └── __tests__/    # Tests for config modules
-│   │       ├── css.test.ts      # CSS configuration tests
-│   │       ├── json.test.ts     # JSON configuration tests
-│   │       ├── test-utils.ts    # Re-exports shared test utilities
-│   │       └── unicorn.test.ts  # Unicorn configuration tests
+│   │       ├── css.test.ts           # CSS configuration tests
+│   │       ├── json.test.ts          # JSON configuration tests
+│   │       ├── perfectionist.test.ts # Perfectionist configuration tests
+│   │       ├── stylistic.test.ts     # Stylistic configuration tests
+│   │       ├── test-utils.ts         # Re-exports shared test utilities
+│   │       └── unicorn.test.ts       # Unicorn configuration tests
 │   ├── core/         # Core configuration utilities
 │   │   ├── index.ts     # Barrel re-exports
 │   │   ├── config.ts    # TypeScript type definitions and withConfig export
