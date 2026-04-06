@@ -62,6 +62,22 @@ const poupePerfectionistRules: Rules = {
       partitionByNewLine: true,
     },
   ],
+  'perfectionist/sort-import-attributes': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+    },
+  ],
+  'perfectionist/sort-export-attributes': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+    },
+  ],
   'perfectionist/sort-union-types': [
     'error',
     {
@@ -71,6 +87,70 @@ const poupePerfectionistRules: Rules = {
       specialCharacters: 'keep',
       partitionByComment: true,
       partitionByNewLine: false,
+    },
+  ],
+  'perfectionist/sort-intersection-types': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+      specialCharacters: 'keep',
+      partitionByComment: true,
+      partitionByNewLine: false,
+    },
+  ],
+  'perfectionist/sort-classes': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+      partitionByNewLine: true,
+    },
+  ],
+  'perfectionist/sort-enums': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+      partitionByNewLine: true,
+    },
+  ],
+  'perfectionist/sort-heritage-clauses': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+    },
+  ],
+  'perfectionist/sort-interfaces': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+      partitionByNewLine: true,
+    },
+  ],
+  'perfectionist/sort-object-types': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+      partitionByNewLine: true,
+    },
+  ],
+  'perfectionist/sort-variable-declarations': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+      partitionByNewLine: true,
     },
   ],
 };

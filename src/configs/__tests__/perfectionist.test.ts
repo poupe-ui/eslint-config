@@ -73,6 +73,24 @@ describe('perfectionist configuration', () => {
     });
   });
 
+  describe('sort-import-attributes', () => {
+    const rule = rules['perfectionist/sort-import-attributes'] as [string, Record<string, unknown>];
+
+    it('should be set to error with natural sorting', () => {
+      expect(rule[0]).toBe('error');
+      expect(rule[1].type).toBe('natural');
+    });
+  });
+
+  describe('sort-export-attributes', () => {
+    const rule = rules['perfectionist/sort-export-attributes'] as [string, Record<string, unknown>];
+
+    it('should be set to error with natural sorting', () => {
+      expect(rule[0]).toBe('error');
+      expect(rule[1].type).toBe('natural');
+    });
+  });
+
   describe('sort-union-types', () => {
     const rule = rules['perfectionist/sort-union-types'] as [string, Record<string, unknown>];
 
@@ -86,6 +104,43 @@ describe('perfectionist configuration', () => {
 
     it('should disable partitionByNewLine', () => {
       expect(rule[1].partitionByNewLine).toBe(false);
+    });
+  });
+
+  describe('sort-intersection-types', () => {
+    const rule = rules['perfectionist/sort-intersection-types'] as [string, Record<string, unknown>];
+
+    it('should mirror sort-union-types options', () => {
+      const unionRule = rules['perfectionist/sort-union-types'] as [string, Record<string, unknown>];
+      expect(rule[0]).toBe(unionRule[0]);
+      expect(rule[1]).toEqual(unionRule[1]);
+    });
+  });
+
+  describe.each([
+    'sort-classes',
+    'sort-enums',
+    'sort-interfaces',
+    'sort-object-types',
+    'sort-variable-declarations',
+  ] as const)('%s', (ruleName) => {
+    const rule = rules[`perfectionist/${ruleName}`] as [string, Record<string, unknown>];
+
+    it('should be set to error with natural sorting and partitionByNewLine', () => {
+      expect(rule[0]).toBe('error');
+      expect(rule[1].type).toBe('natural');
+      expect(rule[1].ignoreCase).toBe(true);
+      expect(rule[1].partitionByNewLine).toBe(true);
+    });
+  });
+
+  describe('sort-heritage-clauses', () => {
+    const rule = rules['perfectionist/sort-heritage-clauses'] as [string, Record<string, unknown>];
+
+    it('should be set to error with natural sorting', () => {
+      expect(rule[0]).toBe('error');
+      expect(rule[1].type).toBe('natural');
+      expect(rule[1].ignoreCase).toBe(true);
     });
   });
 });

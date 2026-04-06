@@ -204,9 +204,10 @@ Follow these conventions (enforced by .editorconfig and ESLint):
   - Natural alphabetical ordering
   - Groups: types, builtin/external, internal, parent/sibling/index
   - Newlines between import groups
-  - Sorted named imports and exports
-- **Union Type Sorting**: Automatic sorting of TypeScript union types with
-  comment-based grouping support
+  - Sorted named imports, exports, and import/export attributes
+- **TypeScript Sorting**: Automatic sorting of union/intersection types
+  (comment-based grouping), interfaces, object types, enums, classes,
+  heritage clauses, and variable declarations (blank-line grouping)
 
 ### Markdown Linting Rules
 

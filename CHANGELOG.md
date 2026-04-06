@@ -17,6 +17,14 @@ All notable changes to this project will be documented in this file.
 - **perfectionist**: Removed `groupKind: 'mixed'` from
   `sort-named-imports` and `sort-named-exports` (option removed
   in v5, mixed is the default behaviour)
+- **perfectionist**: Enabled 9 additional recommended rules with
+  `type: 'natural'` sorting: `sort-intersection-types` (mirrors
+  `sort-union-types`), `sort-import-attributes`,
+  `sort-export-attributes`, `sort-classes`, `sort-enums`,
+  `sort-heritage-clauses`, `sort-interfaces`, `sort-object-types`,
+  `sort-variable-declarations`. Blank-line semantic grouping
+  (`partitionByNewLine`) enabled on classes, enums, interfaces,
+  object types, and variable declarations
 
 ### Fixed
 

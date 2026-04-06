@@ -77,7 +77,7 @@ describe('JSON Configuration', () => {
     const packageRules = packageJsonConfig.rules || {};
     const jsonRules = jsonConfig.rules || {};
 
-    type SortKeysPattern = { pathPattern: string; order: string[] | { type: string } };
+    type SortKeysPattern = { order: string[] | { type: string }; pathPattern: string };
     const sortKeysRule = packageRules['jsonc/sort-keys'] as [string, SortKeysPattern, SortKeysPattern, SortKeysPattern];
 
     it('should include all general JSON rules', () => {
