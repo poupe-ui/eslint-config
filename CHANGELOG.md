@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.9.1] - 2026-04-06
+
 ### Changed
 
 - **deps**: Updated `eslint-plugin-perfectionist` ^4.15.1 → ^5.8.0
