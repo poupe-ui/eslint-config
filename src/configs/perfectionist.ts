@@ -48,6 +48,7 @@ const poupePerfectionistRules: Rules = {
       type: 'natural',
       order: 'asc',
       ignoreCase: true,
+      partitionByNewLine: true,
     },
   ],
   'perfectionist/sort-named-imports': [
@@ -69,6 +70,7 @@ const poupePerfectionistRules: Rules = {
       order: 'asc',
       ignoreCase: true,
       groupKind: 'mixed',
+      partitionByNewLine: true,
     },
   ],
   'perfectionist/sort-union-types': [
