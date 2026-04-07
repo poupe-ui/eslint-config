@@ -72,10 +72,12 @@ format and is written in TypeScript.
 │   │   ├── unicorn.ts    # Modern JavaScript best practices
 │   │   ├── vue.ts        # Vue.js framework rules
 │   │   └── __tests__/    # Tests for config modules
-│   │       ├── css.test.ts      # CSS configuration tests
-│   │       ├── json.test.ts     # JSON configuration tests
-│   │       ├── test-utils.ts    # Re-exports shared test utilities
-│   │       └── unicorn.test.ts  # Unicorn configuration tests
+│   │       ├── css.test.ts           # CSS configuration tests
+│   │       ├── json.test.ts          # JSON configuration tests
+│   │       ├── perfectionist.test.ts # Perfectionist configuration tests
+│   │       ├── stylistic.test.ts     # Stylistic configuration tests
+│   │       ├── test-utils.ts         # Re-exports shared test utilities
+│   │       └── unicorn.test.ts       # Unicorn configuration tests
 │   ├── core/         # Core configuration utilities
 │   │   ├── index.ts     # Barrel re-exports
 │   │   ├── config.ts    # TypeScript type definitions and withConfig export
@@ -202,9 +204,10 @@ Follow these conventions (enforced by .editorconfig and ESLint):
   - Natural alphabetical ordering
   - Groups: types, builtin/external, internal, parent/sibling/index
   - Newlines between import groups
-  - Sorted named imports and exports
-- **Union Type Sorting**: Automatic sorting of TypeScript union types with
-  comment-based grouping support
+  - Sorted named imports, exports, and import/export attributes
+- **TypeScript Sorting**: Automatic sorting of union/intersection types
+  (comment-based grouping), interfaces, object types, enums, classes,
+  heritage clauses, and variable declarations (blank-line grouping)
 
 ### Markdown Linting Rules
 

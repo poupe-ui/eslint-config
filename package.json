@@ -1,6 +1,6 @@
 {
   "name": "@poupe/eslint-config",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "type": "module",
   "description": "Sharable ESLint configuration preset for Poupe UI projects with TypeScript, Vue.js, and Tailwind CSS support",
   "author": "Alejandro Mery <amery@apptly.co>",
@@ -68,7 +68,7 @@
     "eslint-merge-processors": "^2.0.0",
     "eslint-plugin-jsonc": "^3.1.2",
     "eslint-plugin-markdownlint": "^0.9.0",
-    "eslint-plugin-perfectionist": "^4.15.1",
+    "eslint-plugin-perfectionist": "^5.8.0",
     "eslint-plugin-tsdoc": "^0.5.2",
     "eslint-plugin-unicorn": "^63.0.0",
     "eslint-plugin-vue": "^10.8.0",

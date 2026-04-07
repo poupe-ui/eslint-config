@@ -18,14 +18,15 @@ function warn(message: string): void {
 interface PluginRuleConfig {
   // Plugin name for prefixing rules
   pluginName: string
-  // Rules to always keep enabled (without plugin prefix)
-  alwaysKeepRules: Set<string>
+
+  // Rule patterns to disable (RegExp, tested against rule name without prefix)
+  alwaysDisablePatterns: RegExp[]
   // Rules to always disable (without plugin prefix)
   alwaysDisableRules: Set<string>
   // Rule patterns to keep enabled (RegExp, tested against rule name without prefix)
   alwaysKeepPatterns: RegExp[]
-  // Rule patterns to disable (RegExp, tested against rule name without prefix)
-  alwaysDisablePatterns: RegExp[]
+  // Rules to always keep enabled (without plugin prefix)
+  alwaysKeepRules: Set<string>
 }
 
 // Factory function to create PluginRuleConfig

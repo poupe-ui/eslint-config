@@ -9,7 +9,8 @@ Vue.js, and Tailwind CSS support.
 * [stylistic recommended formatting rules][stylistic]
 * [typescript-eslint integration][typescript-eslint]
 * [unicorn rules][unicorn]
-* [perfectionist rules][perfectionist] for import/export and union type sorting
+* [perfectionist rules][perfectionist] for sorting imports, exports, types,
+  and more
 * [vue recommended rules][vue-rules] with TypeScript support
 * [tsdoc rules][tsdoc] for TypeScript documentation
 * [markdownlint rules][markdownlint] for Markdown files
@@ -163,11 +164,10 @@ import { Button } from './components/Button';
 Each group separated by empty lines is sorted independently, preserving your
 intended organization while maintaining consistent ordering within each group.
 
-### Union Type Sorting
+### Union and Intersection Type Sorting
 
-The configuration also includes automatic sorting of TypeScript union types with
-`perfectionist/sort-union-types`. Union members are sorted in natural order,
-and you can use comments to create logical groups:
+Union and intersection types are sorted in natural order. Use comments to
+create logical groups:
 
 ```ts
 // Before
@@ -186,6 +186,20 @@ type Status =
   | 'idle'
   | 'success';
 ```
+
+### Additional Sorting Rules
+
+The configuration also sorts these constructs in natural alphabetical order,
+all auto-fixable via `eslint --fix`:
+
+* **Interfaces and object types** — sorted by property name, with blank-line
+  grouping support
+* **Enums** — sorted by member name (numeric enums sorted by value)
+* **Classes** — sorted by member type and visibility (static first, then
+  instance, public before private), with blank-line grouping
+* **Heritage clauses** — `extends` and `implements` lists
+* **Variable declarations** — destructured bindings
+* **Import/export attributes** — `import ... with { ... }` keys
 
 ## Advanced Configuration
 

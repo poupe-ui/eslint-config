@@ -17,28 +17,19 @@ const poupePerfectionistRules: Rules = {
       ignoreCase: true,
       internalPattern: ['^~/.+', '^@/.+', String.raw`^\.\./.+`, String.raw`^\./.+`],
       newlinesBetween: 'ignore',
+      newlinesInside: 'newlinesBetween',
       maxLineLength: undefined,
       partitionByNewLine: true,
       groups: [
-        'type',
-        ['builtin', 'external'],
-        'internal-type',
-        'internal',
-        ['parent-type', 'sibling-type', 'index-type'],
-        ['parent', 'sibling', 'index'],
-        'object',
+        'type-import',
+        ['value-builtin', 'value-external'],
+        'type-internal',
+        'value-internal',
+        ['type-parent', 'type-sibling', 'type-index'],
+        ['value-parent', 'value-sibling', 'value-index'],
+        'ts-equals-import',
         'unknown',
       ],
-      customGroups: {
-        type: {
-          react: 'react',
-          vue: 'vue',
-        },
-        value: {
-          react: ['react', 'react-*'],
-          vue: ['vue', 'vue-*', '@vue/*'],
-        },
-      },
       environment: 'node',
     },
   ],
@@ -48,6 +39,7 @@ const poupePerfectionistRules: Rules = {
       type: 'natural',
       order: 'asc',
       ignoreCase: true,
+      partitionByNewLine: true,
     },
   ],
   'perfectionist/sort-named-imports': [
@@ -58,7 +50,6 @@ const poupePerfectionistRules: Rules = {
       ignoreCase: true,
       ignoreAlias: false,
       specialCharacters: 'keep',
-      groupKind: 'mixed',
       partitionByNewLine: true,
     },
   ],
@@ -68,7 +59,23 @@ const poupePerfectionistRules: Rules = {
       type: 'natural',
       order: 'asc',
       ignoreCase: true,
-      groupKind: 'mixed',
+      partitionByNewLine: true,
+    },
+  ],
+  'perfectionist/sort-import-attributes': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+    },
+  ],
+  'perfectionist/sort-export-attributes': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
     },
   ],
   'perfectionist/sort-union-types': [
@@ -80,6 +87,70 @@ const poupePerfectionistRules: Rules = {
       specialCharacters: 'keep',
       partitionByComment: true,
       partitionByNewLine: false,
+    },
+  ],
+  'perfectionist/sort-intersection-types': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+      specialCharacters: 'keep',
+      partitionByComment: true,
+      partitionByNewLine: false,
+    },
+  ],
+  'perfectionist/sort-classes': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+      partitionByNewLine: true,
+    },
+  ],
+  'perfectionist/sort-enums': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+      partitionByNewLine: true,
+    },
+  ],
+  'perfectionist/sort-heritage-clauses': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+    },
+  ],
+  'perfectionist/sort-interfaces': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+      partitionByNewLine: true,
+    },
+  ],
+  'perfectionist/sort-object-types': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+      partitionByNewLine: true,
+    },
+  ],
+  'perfectionist/sort-variable-declarations': [
+    'error',
+    {
+      type: 'natural',
+      order: 'asc',
+      ignoreCase: true,
+      partitionByNewLine: true,
     },
   ],
 };
