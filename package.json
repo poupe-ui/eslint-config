@@ -60,11 +60,11 @@
   },
   "dependencies": {
     "@eslint/css": "^1.1.0",
-    "@eslint/js": "^9.39.4",
+    "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^8.58.0",
     "@vue/eslint-config-typescript": "^14.7.0",
-    "eslint": "^9.39.4",
+    "eslint": "^10.2.0",
     "eslint-merge-processors": "^2.0.0",
     "eslint-plugin-jsonc": "^3.1.2",
     "eslint-plugin-markdownlint": "^0.9.0",
