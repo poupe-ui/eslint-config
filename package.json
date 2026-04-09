@@ -93,7 +93,7 @@
   },
   "pnpm": {
     "overrides": {
-      "oxc-parser": "0.123.0"
+      "oxc-parser": "0.124.0"
     }
   },
   "engines": {
