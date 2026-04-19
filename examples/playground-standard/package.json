@@ -6,11 +6,16 @@
   "scripts": {
     "clean": "rimraf node_modules",
     "lint": "eslint --fix .",
-    "lint:check": "eslint ."
+    "lint:check": "eslint .",
+    "type-check": "run-s type-check:main type-check:tools",
+    "type-check:main": "tsc --noEmit",
+    "type-check:tools": "tsc --noEmit -p tsconfig.tools.json"
   },
   "devDependencies": {
     "@poupe/eslint-config": "workspace:^",
     "eslint": "^9.39.4",
-    "rimraf": "^6.1.3"
+    "npm-run-all2": "^8.0.4",
+    "rimraf": "^6.1.3",
+    "typescript": "^5.9.3"
   }
 }

@@ -9,8 +9,11 @@
     "generate": "nuxt generate",
     "lint": "eslint --fix .",
     "lint:check": "eslint .",
-    "postinstall": "nuxt prepare",
-    "preview": "nuxt preview"
+    "prepare": "nuxt prepare",
+    "preview": "nuxt preview",
+    "type-check": "run-s type-check:main type-check:tools",
+    "type-check:main": "tsc --noEmit",
+    "type-check:tools": "tsc --noEmit -p tsconfig.tools.json"
   },
   "dependencies": {
     "nuxt": "^4.4.7",
@@ -20,6 +23,7 @@
   "devDependencies": {
     "@nuxt/eslint": "^1.15.2",
     "@poupe/eslint-config": "workspace:^",
+    "npm-run-all2": "^8.0.4",
     "rimraf": "^6.1.3"
   }
 }

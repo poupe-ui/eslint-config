@@ -48,8 +48,8 @@
     "lint:check": "eslint .",
     "lint:examples": "pnpm -r lint",
     "lint:examples:check": "pnpm -r lint:check",
-    "precommit": "run-s dev:prepare lint:all type-check build test:compat test",
-    "prepack": "run-s lint:_pkg-pr-new build lint:all:check type-check test:compat test publint",
+    "precommit": "run-s dev:prepare lint:all type-check:all build test:compat test",
+    "prepack": "run-s lint:_pkg-pr-new build lint:all:check type-check:all test:compat test publint",
     "prepare": "cross-test -s dist/index.mjs || pnpm dev:prepare",
     "publint": "publint",
     "test": "run-s dev:prepare:examples test:unit test:config",
@@ -57,7 +57,9 @@
     "test:config": "node src/__tests__/config.mjs",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest watch",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "type-check:all": "run-s type-check type-check:examples",
+    "type-check:examples": "pnpm -r type-check"
   },
   "dependencies": {
     "@eslint/css": "^1.1.0",
