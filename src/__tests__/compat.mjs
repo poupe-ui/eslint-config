@@ -4,7 +4,9 @@
  * on the current Node version.
  */
 
-import { defineConfig, reconcilePlugins, withConfig, withPoupe } from '../dist/index.mjs';
+/* global console, process */
+
+import { defineConfig, reconcilePlugins, withConfig, withPoupe } from '../../dist/index.mjs';
 
 let failures = 0;
 
