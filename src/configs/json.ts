@@ -7,11 +7,11 @@ import {
 
   GLOB_JSON,
   GLOB_JSONC_FILES,
+
+  mergeRules,
 } from '../core';
 
-// v3: configs['recommended-with-json'] returns [plugins, language+files, rules]
-const jsoncRecommendedConfigs = jsoncPlugin.configs['recommended-with-json'];
-const jsoncRecommendedRules = jsoncRecommendedConfigs[2].rules as Rules;
+const jsoncRecommendedRules = mergeRules(jsoncPlugin.configs['recommended-with-json']);
 
 const jsoncPlugins = { jsonc: jsoncPlugin as unknown as Plugin };
 const GLOB_PACKAGE_JSON = '**/package.json';

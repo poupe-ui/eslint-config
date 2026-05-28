@@ -161,4 +161,22 @@ describe('JSON Configuration', () => {
       expect(rules!['jsonc/no-comments']).toBe('error'); // Poupe override
     });
   });
+
+  describe('upstream recommended-with-json entry-1 disables', () => {
+    it('should disable core ESLint rules that misfire on JSON ASTs', () => {
+      // eslint-plugin-jsonc's `recommended-with-json` splits its rules
+      // across two entries: entry 1 disables `strict`,
+      // `no-unused-expressions` and `no-unused-vars` (core rules that
+      // misfire on JSON ASTs), entry 2 holds the jsonc/* recommendations.
+      // Indexing `[2].rules` dropped the entry-1 disables; `mergeRules`
+      // restores them across all configs.
+      for (const config of poupeJsonConfigs) {
+        expect(config.rules).toMatchObject({
+          'strict': 'off',
+          'no-unused-expressions': 'off',
+          'no-unused-vars': 'off',
+        });
+      }
+    });
+  });
 });
