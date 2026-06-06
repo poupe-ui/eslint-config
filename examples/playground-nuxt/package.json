@@ -13,13 +13,13 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "nuxt": "latest",
+    "nuxt": "^4.4.7",
     "vue": "^3.5.16",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@nuxt/eslint": "~1.15.2",
-    "@poupe/eslint-config": "workspace:*",
+    "@nuxt/eslint": "^1.15.2",
+    "@poupe/eslint-config": "workspace:^",
     "rimraf": "^6.1.3"
   }
 }

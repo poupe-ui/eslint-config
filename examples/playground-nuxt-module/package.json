@@ -27,13 +27,13 @@
     "@nuxt/kit": "^3.17.5"
   },
   "devDependencies": {
-    "@nuxt/devtools": "latest",
-    "@nuxt/eslint": "~1.15.2",
-    "@nuxt/eslint-config": "~1.15.2",
-    "@nuxt/module-builder": "latest",
-    "@nuxt/test-utils": "latest",
-    "@poupe/eslint-config": "workspace:*",
-    "nuxt": "latest",
+    "@nuxt/devtools": "^3.2.4",
+    "@nuxt/eslint": "^1.15.2",
+    "@nuxt/eslint-config": "^1.15.2",
+    "@nuxt/module-builder": "^1.0.2",
+    "@nuxt/test-utils": "^4.0.3",
+    "@poupe/eslint-config": "workspace:^",
+    "nuxt": "^4.4.7",
     "rimraf": "^6.1.3"
   }
 }
