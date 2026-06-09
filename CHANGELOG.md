@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.9.2] - 2026-06-09
+
+### Added
+
+- **unicorn**: New `withAbbreviations(tokens)` export — extends
+  `unicorn/prevent-abbreviations` with project-specific allowed
+  identifiers, re-emitting the complete merged rule options (ESLint
+  replaces rule options wholesale rather than deep-merging)
+
+### Fixed
+
+- **json**: Restored the `recommended-with-json` entry-1 core-rule
+  disables (`strict`, `no-unused-expressions`, `no-unused-vars`) that
+  a positional `[2].rules` read silently dropped — these core rules
+  leaked onto JSON/JSONC files when enabled globally. Added a
+  `mergeRules` core helper that folds rules across every config entry
+
+### Changed
+
+- **deps**: Dropped the obsolete `oxc-parser` override (a Jul-2025
+  CI native-bindings workaround, confirmed no longer needed);
+  normalised version ranges to `^` for non-`0.0.x` dependencies
+  (shipped `tailwind-csstree` `~0.3.0` → `^0.3.0`)
+
+### Internal
+
+- **deps**: Deduplicated `semver` onto a single 7.8.3 instance,
+  dropping the redundant 7.8.2 copy
+
 ## [0.9.1] - 2026-04-06
 
 ### Changed
