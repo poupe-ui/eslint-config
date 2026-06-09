@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Internal
+
+- **deps**: Deduplicated `semver` onto a single 7.8.3 instance,
+  dropping the redundant 7.8.2 copy
+
 ## [0.9.1] - 2026-04-06
 
 ### Changed
