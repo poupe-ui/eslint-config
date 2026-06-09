@@ -35,6 +35,18 @@ export const without = <T extends object, K extends keyof T & string>(
 export const withoutRules = (rules: Rules = {}, ...keys: string[]): Rules => without(rules, ...keys);
 
 /**
+ * Merges `rules` entries from an array of configs into a single rules object.
+ * Later configs override earlier ones for duplicate rule keys.
+ */
+export const mergeRules = (configs: readonly Config[]): Rules => {
+  const merged: Rules = {};
+  for (const config of configs) {
+    if (config.rules) Object.assign(merged, config.rules);
+  }
+  return merged;
+};
+
+/**
  * Helper function to remove plugins from a single config
  */
 const removePluginsFromConfig = (config: Config, pluginsToRemove?: string[]): Config => {

@@ -9,17 +9,21 @@
     "generate": "nuxt generate",
     "lint": "eslint --fix .",
     "lint:check": "eslint .",
-    "postinstall": "nuxt prepare",
-    "preview": "nuxt preview"
+    "prepare": "nuxt prepare",
+    "preview": "nuxt preview",
+    "type-check": "run-s type-check:main type-check:tools",
+    "type-check:main": "tsc --noEmit",
+    "type-check:tools": "tsc --noEmit -p tsconfig.tools.json"
   },
   "dependencies": {
-    "nuxt": "latest",
+    "nuxt": "^4.4.7",
     "vue": "^3.5.16",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@nuxt/eslint": "~1.15.2",
-    "@poupe/eslint-config": "workspace:*",
+    "@nuxt/eslint": "^1.15.2",
+    "@poupe/eslint-config": "workspace:^",
+    "npm-run-all2": "^8.0.4",
     "rimraf": "^6.1.3"
   }
 }

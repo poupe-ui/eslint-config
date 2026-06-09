@@ -1,4 +1,3 @@
-// @ts-check
 import { withPoupe } from '@poupe/eslint-config';
 
 import withNuxt from './.nuxt/eslint.config.mjs';

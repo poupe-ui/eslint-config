@@ -1,4 +1,3 @@
-// @ts-check
 import { createConfigForNuxt } from '@nuxt/eslint-config/flat';
 import { withPoupe } from '@poupe/eslint-config';
 

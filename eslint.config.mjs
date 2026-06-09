@@ -1,5 +1,3 @@
-import globals from 'globals';
-
 // @ts-check
 import { defineConfig } from './dist/index.mjs';
 
@@ -9,12 +7,6 @@ export default defineConfig(
       '.claude/**/memory',
       'examples/**',
     ],
-  },
-  {
-    files: ['test/**/*.mjs'],
-    languageOptions: {
-      globals: globals.node,
-    },
   },
   {
     files: ['CHANGELOG.md'],
