@@ -21,6 +21,7 @@ import {
   withConfig,
 } from './core';
 
+export { withAbbreviations } from './configs/unicorn';
 export type { Config, InfiniteDepthConfigWithExtends, Plugin, Rules } from './core';
 export { Linter, reconcilePlugins, withConfig } from './core';
 export * from './core/globs';
