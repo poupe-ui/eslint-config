@@ -73,13 +73,53 @@ const poupeUnicornRules: Rules = {
   'unicorn/switch-case-braces': 'off',
 };
 
+// Source and Vue files share the prevent-abbreviations scope; extension
+// primitives reuse this so their blocks stay aligned with the preset.
+const poupeUnicornFiles = [GLOB_SRC, GLOB_VUE];
+
 export const poupeUnicornConfigs: Config[] = [
   {
     name: 'poupe/unicorn-filename',
     rules: poupeUnicornFilenameRules,
   }, {
     name: 'poupe/unicorn',
-    files: [GLOB_SRC, GLOB_VUE],
+    files: poupeUnicornFiles,
     rules: poupeUnicornRules,
   },
 ];
+
+/**
+ * Extends `unicorn/prevent-abbreviations` with additional allowed tokens.
+ *
+ * Each token is whitelisted (`allowList`) and has any upstream substring
+ * replacement neutralised (`replacements`), then merged over Poupe's base
+ * options. ESLint replaces a rule's options wholesale rather than merging
+ * them, so the returned block re-declares the rule with the *complete*
+ * combined configuration — Poupe's defaults plus the new tokens.
+ *
+ * Append it after the preset (e.g. as a `defineConfig` user config) to
+ * allow project-specific proper-noun identifiers (`Doc`, `Dir`, …) whose
+ * substrings collide with the upstream abbreviation map, without losing
+ * Poupe's own allowances.
+ *
+ * @param tokens - Identifiers to allow (e.g. `['doc', 'docs', 'dir']`)
+ * @returns A config block re-emitting `unicorn/prevent-abbreviations`
+ */
+export function withAbbreviations(tokens: readonly string[]): Config {
+  const allowed = Object.fromEntries(tokens.map((s) => [s, true]));
+  const neutralised = Object.fromEntries(tokens.map((s) => [s, false]));
+
+  return {
+    name: 'poupe/unicorn-abbreviations',
+    files: poupeUnicornFiles,
+    rules: {
+      'unicorn/prevent-abbreviations': [
+        'error',
+        {
+          allowList: { ...allowList, ...allowed },
+          replacements: { ...replacements, ...neutralised },
+        },
+      ],
+    },
+  };
+}
