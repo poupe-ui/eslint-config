@@ -1,6 +1,4 @@
-// @ts-expect-error - no types available
 import markdownlintPlugin from 'eslint-plugin-markdownlint';
-// @ts-expect-error - no types available
 import markdownlintParser from 'eslint-plugin-markdownlint/parser.js';
 
 import type {
