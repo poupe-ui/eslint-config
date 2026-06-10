@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.9.3] - 2026-06-10
+
+### Changed
+
+- **deps**: Updated `eslint-plugin-markdownlint` ^0.9.0 → ^0.10.1,
+  vendoring markdownlint 0.40.0 (full ESM, bundled TypeScript types).
+  The recommended preset gains rules MD051–MD060: link integrity
+  (valid fragments, defined reference labels, descriptive text) and
+  table consistency (pipe style, column count and style, surrounding
+  blank lines)
+
+### Internal
+
+- **build**: Integrated `@kagal/build-tsdoc` into the unbuild
+  pipeline via `newUnbuildHooks()`. The build now emits an
+  api-extractor manifest at `dist/index.api.json` describing the
+  public API surface, shipped with the package via `files: ["dist"]`
+- **markdown**: Dropped the two `@ts-expect-error` directives in
+  `src/configs/markdown.ts` — 0.10.1 ships its own types
+
 ## [0.9.2] - 2026-06-09
 
 ### Added

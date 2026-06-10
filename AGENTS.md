@@ -282,8 +282,10 @@ The package uses `unbuild` which:
 
 - Compiles TypeScript to both ESM (.mjs) and CommonJS (.cjs)
 - Generates TypeScript declaration files
+- Emits an api-extractor manifest (`dist/index.api.json`) via the
+  `@kagal/build-tsdoc` unbuild hooks, describing the public API surface
 - Creates stub builds for faster development iteration
-- Outputs: `dist/index.mjs`, `dist/index.cjs`
+- Outputs: `dist/index.mjs`, `dist/index.cjs`, `dist/index.api.json`
 
 ## Type System
 

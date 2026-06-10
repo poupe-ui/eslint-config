@@ -13,7 +13,8 @@ Vue.js, and Tailwind CSS support.
   and more
 * [vue recommended rules][vue-rules] with TypeScript support
 * [tsdoc rules][tsdoc] for TypeScript documentation
-* [markdownlint rules][markdownlint] for Markdown files
+* [markdownlint rules][markdownlint] for Markdown files, including
+  link and table-consistency checks
 * [jsonc rules][jsonc] for JSON and package.json files
 * [css rules][css] for CSS files with Tailwind CSS support
 * Poupe UI recommended rules
@@ -346,7 +347,8 @@ this ESLint configuration in different scenarios:
 * **[playground-standard](./examples/playground-standard)** - Basic
   JavaScript/TypeScript projects
 * **[playground-nuxt](./examples/playground-nuxt)** - Nuxt.js applications
-* **[playground-nuxt-module](./examples/playground-nuxt-module)** - Nuxt module development
+* **[playground-nuxt-module](./examples/playground-nuxt-module)** - Nuxt
+  module development
 
 ### Running Examples
 
