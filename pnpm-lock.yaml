@@ -76,7 +76,7 @@ importers:
         specifier: ~0.0.75
         version: 0.0.75
       publint:
-        specifier: ^0.3.18
+        specifier: ^0.3.21
         version: 0.3.21
       rimraf:
         specifier: ^6.1.3
