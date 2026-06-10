@@ -15,6 +15,10 @@ All notable changes to this project will be documented in this file.
 
 ### Internal
 
+- **build**: Integrated `@kagal/build-tsdoc` into the unbuild
+  pipeline via `newUnbuildHooks()`. The build now emits an
+  api-extractor manifest at `dist/index.api.json` describing the
+  public API surface, shipped with the package via `files: ["dist"]`
 - **markdown**: Dropped the two `@ts-expect-error` directives in
   `src/configs/markdown.ts` — 0.10.1 ships its own types
 
