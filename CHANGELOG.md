@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.9.3] - 2026-06-10
+
 ### Changed
 
 - **deps**: Updated `eslint-plugin-markdownlint` ^0.9.0 → ^0.10.1,
