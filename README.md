@@ -23,12 +23,13 @@ Vue.js, and Tailwind CSS support.
 
 > [!NOTE]
 > This preset uses the new [ESLint flat config][flat-config] format and
-> requires ESLint v9+ and Node.js v20.20.2+.
+> supports ESLint v9 or v10 on Node.js 20.19+, 22.13+, or 24+.
 
-Install dependencies:
+`eslint` and `@eslint/js` are **peer dependencies** — the preset does not
+bundle them, so you must install them yourself alongside it:
 
 ```sh
-pnpm install -D eslint typescript @poupe/eslint-config
+pnpm install -D eslint @eslint/js typescript @poupe/eslint-config
 ```
 
 Create `eslint.config.mjs` in your project root:
@@ -318,12 +319,12 @@ If you're migrating from a legacy `.eslintrc` configuration:
 
    ```sh
    pnpm remove eslint-config-* eslint-plugin-*
-   pnpm install -D eslint@^9 typescript @poupe/eslint-config
+   pnpm install -D eslint @eslint/js typescript @poupe/eslint-config
    ```
 
 3. **Create new config**: Add `eslint.config.mjs` as shown in Getting Started
 
-4. **Update scripts**: ESLint v9 automatically finds `eslint.config.mjs`
+4. **Update scripts**: ESLint automatically finds `eslint.config.mjs`
 
    ```json
    {
