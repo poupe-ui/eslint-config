@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Documentation
+
+- Corrected the documented command examples — the read-only step is
+  `lint:check` (no package defines `lint:fix`), and the `pnpm
+  --filter` targets use the real workspace names (`playground-*`).
+  The migration guide's suggested consumer scripts follow the same
+  `lint`/`lint:check` convention
+
 ## [0.9.3] - 2026-06-10
 
 ### Changed

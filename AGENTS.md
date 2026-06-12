@@ -260,14 +260,14 @@ To test changes:
 # Build the package
 pnpm build
 
-# Lint all examples
+# Check all examples without fixing
+pnpm -r --filter "./examples/*" lint:check
+
+# Lint and fix all examples
 pnpm -r --filter "./examples/*" lint
 
-# Fix issues in all examples
-pnpm -r --filter "./examples/*" lint:fix
-
 # Run specific example
-pnpm --filter "@poupe/eslint-config-playground-nuxt" lint
+pnpm --filter "playground-nuxt" lint
 ```
 
 ### Testing in External Projects
