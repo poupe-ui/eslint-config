@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- **deps**: Moved `eslint` and `@eslint/js` from `dependencies` to
+  `peerDependencies` (`^9.39.4 || ^10`) — the preset now supports
+  ESLint 9 or 10, and consumers must install both alongside it. Both
+  are pinned at v10 in `devDependencies` for the local toolchain
+- **deps**: Updated `@eslint/css` ^1.1.0 → ^1.3.0
+- **engines**: Bumped `node` from `>= 20.20.2` to
+  `^20.19.0 || ^22.13.0 || >=24`, aligning with ESLint 10's support
+  matrix
+
 ### Documentation
 
 - Corrected the documented command examples — the read-only step is
