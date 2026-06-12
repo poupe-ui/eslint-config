@@ -328,8 +328,8 @@ If you're migrating from a legacy `.eslintrc` configuration:
    ```json
    {
      "scripts": {
-       "lint": "eslint .",
-       "lint:fix": "eslint . --fix"
+       "lint": "eslint --fix .",
+       "lint:check": "eslint ."
      }
    }
    ```
@@ -358,14 +358,14 @@ This project uses pnpm workspaces. You can run commands on all examples:
 # Install dependencies for all workspaces
 pnpm install
 
-# Lint all examples
+# Check all examples without fixing
+pnpm -r --filter "./examples/*" lint:check
+
+# Lint and fix all examples
 pnpm -r --filter "./examples/*" lint
 
-# Fix lint issues in all examples
-pnpm -r --filter "./examples/*" lint:fix
-
 # Run a specific example
-pnpm --filter "@poupe/eslint-config-playground-standard" lint
+pnpm --filter "playground-standard" lint
 ```
 
 ## Troubleshooting
