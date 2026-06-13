@@ -5,12 +5,18 @@ This directory contains example projects demonstrating how to use
 
 ## playground-standard
 
-Basic usage with standard JavaScript/TypeScript projects.
+Basic usage with standard JavaScript/TypeScript projects. Inherits
+`eslint`/`@eslint/js` from the workspace (currently ESLint 10).
 
 ```js
 import { defineConfig } from '@poupe/eslint-config';
 export default defineConfig();
 ```
+
+## playground-eslint9
+
+Same setup as `playground-standard`, pinned to ESLint 9 — the lower
+bound of the peer range — so both supported majors stay exercised.
 
 ## playground-nuxt
 

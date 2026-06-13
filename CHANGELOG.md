@@ -23,6 +23,14 @@ All notable changes to this project will be documented in this file.
   The migration guide's suggested consumer scripts follow the same
   `lint`/`lint:check` convention
 
+### Internal
+
+- **examples**: Added `playground-eslint9`, a mirror of
+  `playground-standard` pinned to ESLint 9, so the example suite
+  exercises both ends of the supported peer range. The nuxt
+  playgrounds pin ESLint 10 explicitly; `playground-standard`
+  inherits the workspace major
+
 ## [0.9.3] - 2026-06-10
 
 ### Changed

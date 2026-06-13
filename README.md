@@ -346,7 +346,9 @@ The `examples/` directory contains working examples demonstrating how to use
 this ESLint configuration in different scenarios:
 
 * **[playground-standard](./examples/playground-standard)** - Basic
-  JavaScript/TypeScript projects
+  JavaScript/TypeScript projects (inherits the workspace ESLint, currently v10)
+* **[playground-eslint9](./examples/playground-eslint9)** - Basic
+  JavaScript/TypeScript projects (pinned to ESLint 9)
 * **[playground-nuxt](./examples/playground-nuxt)** - Nuxt.js applications
 * **[playground-nuxt-module](./examples/playground-nuxt-module)** - Nuxt
   module development

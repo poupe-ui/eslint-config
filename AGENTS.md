@@ -251,8 +251,11 @@ The project includes example workspaces in the `examples/` directory for
 testing different usage scenarios:
 
 1. **playground-standard**: Basic JavaScript/TypeScript project
-2. **playground-nuxt**: Nuxt.js application using `@nuxt/eslint`
-3. **playground-nuxt-module**: Nuxt module development setup
+   (inherits the workspace ESLint, currently v10)
+2. **playground-eslint9**: Same setup pinned to ESLint 9, the lower
+   bound of the peer range
+3. **playground-nuxt**: Nuxt.js application using `@nuxt/eslint`
+4. **playground-nuxt-module**: Nuxt module development setup
 
 To test changes:
 
