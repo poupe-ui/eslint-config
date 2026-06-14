@@ -15,6 +15,13 @@ All notable changes to this project will be documented in this file.
   `^20.19.0 || ^22.13.0 || >=24`, aligning with ESLint 10's support
   matrix
 
+### Removed
+
+- **deps**: Dropped the vestigial `@vue/eslint-config-typescript`
+  dependency — declared since the initial import but never imported;
+  Vue with TypeScript is handled directly by `eslint-plugin-vue`,
+  `@typescript-eslint/parser`, and the `typescript-eslint` preset
+
 ### Documentation
 
 - Corrected the documented command examples — the read-only step is
