@@ -5,12 +5,18 @@ This directory contains example projects demonstrating how to use
 
 ## playground-standard
 
-Basic usage with standard JavaScript/TypeScript projects.
+Basic usage with standard JavaScript/TypeScript projects. Inherits
+`eslint`/`@eslint/js` from the workspace (currently ESLint 10).
 
 ```js
 import { defineConfig } from '@poupe/eslint-config';
 export default defineConfig();
 ```
+
+## playground-eslint9
+
+Same setup as `playground-standard`, pinned to ESLint 9 — the lower
+bound of the peer range — so both supported majors stay exercised.
 
 ## playground-nuxt
 
@@ -39,12 +45,12 @@ export default withPoupe(createConfigForNuxt({
 From the root directory, you can use pnpm workspace commands:
 
 ```bash
-# Lint all examples
+# Check all examples without fixing
+pnpm -r --filter "./examples/*" lint:check
+
+# Lint and fix all examples
 pnpm -r --filter "./examples/*" lint
 
-# Fix lint issues in all examples
-pnpm -r --filter "./examples/*" lint:fix
-
 # Run a specific example
-pnpm --filter "@poupe/eslint-config-playground-standard" lint
+pnpm --filter "playground-standard" lint
 ```

@@ -251,8 +251,11 @@ The project includes example workspaces in the `examples/` directory for
 testing different usage scenarios:
 
 1. **playground-standard**: Basic JavaScript/TypeScript project
-2. **playground-nuxt**: Nuxt.js application using `@nuxt/eslint`
-3. **playground-nuxt-module**: Nuxt module development setup
+   (inherits the workspace ESLint, currently v10)
+2. **playground-eslint9**: Same setup pinned to ESLint 9, the lower
+   bound of the peer range
+3. **playground-nuxt**: Nuxt.js application using `@nuxt/eslint`
+4. **playground-nuxt-module**: Nuxt module development setup
 
 To test changes:
 
@@ -260,14 +263,14 @@ To test changes:
 # Build the package
 pnpm build
 
-# Lint all examples
+# Check all examples without fixing
+pnpm -r --filter "./examples/*" lint:check
+
+# Lint and fix all examples
 pnpm -r --filter "./examples/*" lint
 
-# Fix issues in all examples
-pnpm -r --filter "./examples/*" lint:fix
-
 # Run specific example
-pnpm --filter "@poupe/eslint-config-playground-nuxt" lint
+pnpm --filter "playground-nuxt" lint
 ```
 
 ### Testing in External Projects

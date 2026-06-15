@@ -4,6 +4,42 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-06-15
+
+### Changed
+
+- **deps**: Moved `eslint` and `@eslint/js` from `dependencies` to
+  `peerDependencies` (`^9.39.4 || ^10`) — the preset now supports
+  ESLint 9 or 10, and consumers must install both alongside it. Both
+  are pinned at v10 in `devDependencies` for the local toolchain
+- **deps**: Updated `@eslint/css` ^1.1.0 → ^1.3.0
+- **engines**: Bumped `node` from `>= 20.20.2` to
+  `^20.19.0 || ^22.13.0 || >=24`, aligning with ESLint 10's support
+  matrix
+
+### Removed
+
+- **deps**: Dropped the vestigial `@vue/eslint-config-typescript`
+  dependency — declared since the initial import but never imported;
+  Vue with TypeScript is handled directly by `eslint-plugin-vue`,
+  `@typescript-eslint/parser`, and the `typescript-eslint` preset
+
+### Documentation
+
+- Corrected the documented command examples — the read-only step is
+  `lint:check` (no package defines `lint:fix`), and the `pnpm
+  --filter` targets use the real workspace names (`playground-*`).
+  The migration guide's suggested consumer scripts follow the same
+  `lint`/`lint:check` convention
+
+### Internal
+
+- **examples**: Added `playground-eslint9`, a mirror of
+  `playground-standard` pinned to ESLint 9, so the example suite
+  exercises both ends of the supported peer range. The nuxt
+  playgrounds pin ESLint 10 explicitly; `playground-standard`
+  inherits the workspace major
+
 ## [0.9.3] - 2026-06-10
 
 ### Changed

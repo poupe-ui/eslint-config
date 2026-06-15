@@ -23,12 +23,13 @@ Vue.js, and Tailwind CSS support.
 
 > [!NOTE]
 > This preset uses the new [ESLint flat config][flat-config] format and
-> requires ESLint v9+ and Node.js v20.20.2+.
+> supports ESLint v9 or v10 on Node.js 20.19+, 22.13+, or 24+.
 
-Install dependencies:
+`eslint` and `@eslint/js` are **peer dependencies** — the preset does not
+bundle them, so you must install them yourself alongside it:
 
 ```sh
-pnpm install -D eslint typescript @poupe/eslint-config
+pnpm install -D eslint @eslint/js typescript @poupe/eslint-config
 ```
 
 Create `eslint.config.mjs` in your project root:
@@ -318,18 +319,18 @@ If you're migrating from a legacy `.eslintrc` configuration:
 
    ```sh
    pnpm remove eslint-config-* eslint-plugin-*
-   pnpm install -D eslint@^9 typescript @poupe/eslint-config
+   pnpm install -D eslint @eslint/js typescript @poupe/eslint-config
    ```
 
 3. **Create new config**: Add `eslint.config.mjs` as shown in Getting Started
 
-4. **Update scripts**: ESLint v9 automatically finds `eslint.config.mjs`
+4. **Update scripts**: ESLint automatically finds `eslint.config.mjs`
 
    ```json
    {
      "scripts": {
-       "lint": "eslint .",
-       "lint:fix": "eslint . --fix"
+       "lint": "eslint --fix .",
+       "lint:check": "eslint ."
      }
    }
    ```
@@ -345,7 +346,9 @@ The `examples/` directory contains working examples demonstrating how to use
 this ESLint configuration in different scenarios:
 
 * **[playground-standard](./examples/playground-standard)** - Basic
-  JavaScript/TypeScript projects
+  JavaScript/TypeScript projects (inherits the workspace ESLint, currently v10)
+* **[playground-eslint9](./examples/playground-eslint9)** - Basic
+  JavaScript/TypeScript projects (pinned to ESLint 9)
 * **[playground-nuxt](./examples/playground-nuxt)** - Nuxt.js applications
 * **[playground-nuxt-module](./examples/playground-nuxt-module)** - Nuxt
   module development
@@ -358,14 +361,14 @@ This project uses pnpm workspaces. You can run commands on all examples:
 # Install dependencies for all workspaces
 pnpm install
 
-# Lint all examples
+# Check all examples without fixing
+pnpm -r --filter "./examples/*" lint:check
+
+# Lint and fix all examples
 pnpm -r --filter "./examples/*" lint
 
-# Fix lint issues in all examples
-pnpm -r --filter "./examples/*" lint:fix
-
 # Run a specific example
-pnpm --filter "@poupe/eslint-config-playground-standard" lint
+pnpm --filter "playground-standard" lint
 ```
 
 ## Troubleshooting
