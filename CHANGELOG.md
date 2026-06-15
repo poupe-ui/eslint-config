@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-06-15
+
 ### Changed
 
 - **deps**: Moved `eslint` and `@eslint/js` from `dependencies` to
