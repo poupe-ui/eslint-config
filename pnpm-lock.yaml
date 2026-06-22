@@ -55,8 +55,8 @@ importers:
         specifier: ^10.0.1
         version: 10.0.1(eslint@10.5.0(jiti@2.7.0))
       '@kagal/build-tsdoc':
-        specifier: ^0.2.0
-        version: 0.2.0(@types/node@24.0.3)
+        specifier: ^0.2.1
+        version: 0.2.1(@types/node@24.0.3)
       '@kagal/cross-test':
         specifier: ^0.1.3
         version: 0.1.3
@@ -1039,8 +1039,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@kagal/build-tsdoc@0.2.0':
-    resolution: {integrity: sha512-1Nu4eX0+A7/UVZr6TN/kgsZWUTxqy9N5jYzu1ID16MCe/jk701Q6GtFzCxkMaSlIYEvCzPbO2u4SXandilFFDA==}
+  '@kagal/build-tsdoc@0.2.1':
+    resolution: {integrity: sha512-jaRcDGn6w+YgX4pWQEWJUkH++ZMAdrzBqsIpSu+4Bx6fGPTMP/LnZGnui+Vk1eThPdb8sG3Bi6FuwtDP3DhVtQ==}
     engines: {node: '>= 20.20.1', pnpm: '>= 10.33.4'}
 
   '@kagal/cross-test@0.1.3':
@@ -6646,7 +6646,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@kagal/build-tsdoc@0.2.0(@types/node@24.0.3)':
+  '@kagal/build-tsdoc@0.2.1(@types/node@24.0.3)':
     dependencies:
       '@microsoft/api-extractor': 7.58.8(@types/node@24.0.3)
       '@microsoft/api-extractor-model': 7.33.8(@types/node@24.0.3)
