@@ -92,7 +92,8 @@ format and is written in TypeScript.
 │       ├── config.test.ts    # Tests for defineConfig
 │       └── test-utils.ts     # Shared test utilities (mustConfigByName)
 ├── examples/         # Example implementations
-│   ├── playground-standard/     # Basic JS/TS example
+│   ├── playground-standard/     # Basic JS/TS example (ESLint 10, TS 6)
+│   ├── playground-eslint9/      # Basic JS/TS example (ESLint 9, TS 5.9)
 │   ├── playground-nuxt/         # Nuxt.js application example
 │   └── playground-nuxt-module/  # Nuxt module development example
 ├── test/             # Integration test files
@@ -251,9 +252,9 @@ The project includes example workspaces in the `examples/` directory for
 testing different usage scenarios:
 
 1. **playground-standard**: Basic JavaScript/TypeScript project
-   (inherits the workspace ESLint, currently v10)
-2. **playground-eslint9**: Same setup pinned to ESLint 9, the lower
-   bound of the peer range
+   (inherits the workspace ESLint, currently v10; pins TypeScript 6)
+2. **playground-eslint9**: Same project pinned to ESLint 9 and
+   TypeScript 5.9 — the lower bounds of the peer ranges
 3. **playground-nuxt**: Nuxt.js application using `@nuxt/eslint`
 4. **playground-nuxt-module**: Nuxt module development setup
 

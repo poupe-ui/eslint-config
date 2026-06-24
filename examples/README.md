@@ -6,7 +6,8 @@ This directory contains example projects demonstrating how to use
 ## playground-standard
 
 Basic usage with standard JavaScript/TypeScript projects. Inherits
-`eslint`/`@eslint/js` from the workspace (currently ESLint 10).
+`eslint`/`@eslint/js` from the workspace (currently ESLint 10) and pins
+TypeScript 6 — the upper bound of the supported range.
 
 ```js
 import { defineConfig } from '@poupe/eslint-config';
@@ -15,8 +16,9 @@ export default defineConfig();
 
 ## playground-eslint9
 
-Same setup as `playground-standard`, pinned to ESLint 9 — the lower
-bound of the peer range — so both supported majors stay exercised.
+Like `playground-standard`, but pinned to ESLint 9 and TypeScript 5.9 — the
+lower bounds of the supported ranges — so both ends of each peer range stay
+exercised.
 
 ## playground-nuxt
 

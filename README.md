@@ -23,10 +23,11 @@ Vue.js, and Tailwind CSS support.
 
 > [!NOTE]
 > This preset uses the new [ESLint flat config][flat-config] format and
-> supports ESLint v9 or v10 on Node.js 20.19+, 22.13+, or 24+.
+> supports ESLint v9 or v10 and TypeScript 5.9 or 6.0 on Node.js 20.19+,
+> 22.13+, or 24+.
 
-`eslint` and `@eslint/js` are **peer dependencies** — the preset does not
-bundle them, so you must install them yourself alongside it:
+`eslint`, `@eslint/js`, and `typescript` are **peer dependencies** — the
+preset does not bundle them, so you must install them yourself alongside it:
 
 ```sh
 pnpm install -D eslint @eslint/js typescript @poupe/eslint-config
@@ -346,9 +347,11 @@ The `examples/` directory contains working examples demonstrating how to use
 this ESLint configuration in different scenarios:
 
 * **[playground-standard](./examples/playground-standard)** - Basic
-  JavaScript/TypeScript projects (inherits the workspace ESLint, currently v10)
+  JavaScript/TypeScript projects (inherits the workspace ESLint, currently
+  v10; pinned to TypeScript 6, the upper bound of the supported range)
 * **[playground-eslint9](./examples/playground-eslint9)** - Basic
-  JavaScript/TypeScript projects (pinned to ESLint 9)
+  JavaScript/TypeScript projects (pinned to ESLint 9 and TypeScript 5.9, the
+  lower bounds of the supported ranges)
 * **[playground-nuxt](./examples/playground-nuxt)** - Nuxt.js applications
 * **[playground-nuxt-module](./examples/playground-nuxt-module)** - Nuxt
   module development
@@ -399,6 +402,26 @@ you're using the latest version and report an issue.
 
 These warnings help the CSS filtering system learn about new rules. They're
 informational and don't affect functionality.
+
+#### Peer warning from `eslint-plugin-tsdoc` on TypeScript 6
+
+`eslint-plugin-tsdoc` still pulls an older `@typescript-eslint/utils` whose
+peer range stops below TypeScript 6, so on TypeScript 6 you may see a
+harmless peer-dependency warning. To silence it, override the package in
+your project root:
+
+```jsonc
+// package.json — pnpm
+{
+  "pnpm": {
+    "overrides": {
+      "@typescript-eslint/utils": "^8.62.0"
+    }
+  }
+}
+```
+
+npm and Yarn users can use the equivalent `overrides` / `resolutions` field.
 
 ### Debugging
 

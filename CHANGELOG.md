@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- **deps**: Updated `typescript-eslint` and `@typescript-eslint/parser`
+  ^8.58.0 → ^8.62.0, whose `typescript` peer range now reaches TypeScript 6
+  (`>=4.8.4 <6.1.0`)
+- **deps**: Declared `typescript` as a `peerDependency`
+  (`>=5.9.0 <6.1.0`) — the preset now supports TypeScript 5.9 or 6.0.
+  TypeScript was already required transitively; the explicit peer makes the
+  supported range first-class. The local toolchain is pinned to TypeScript 6
+
+### Internal
+
+- **examples**: Pinned `playground-standard` to TypeScript 6 and
+  `playground-eslint9` to TypeScript 5.9, so the suite type-checks the
+  generated declarations against both ends of the supported TypeScript range
+- **deps**: Added a `pnpm.overrides` entry forcing
+  `@typescript-eslint/utils` to ^8.62.0, deduping the older copy that
+  `eslint-plugin-tsdoc` pulls in (its peer range stops below TypeScript 6)
+  within the workspace
+
 ## [0.10.0] - 2026-06-15
 
 ### Changed
