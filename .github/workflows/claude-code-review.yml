@@ -6,7 +6,14 @@ on:
 
 jobs:
   claude-review:
-    if: github.actor != 'renovate[bot]' && !github.event.pull_request.draft
+    # claude-code-action refuses bot-initiated runs, and fails the job
+    # instead of skipping it, so every bot has to be filtered out here.
+    # sender.type is the same field the action checks; the login suffix
+    # is a second reading of it in case the payload shape differs.
+    if: |
+      github.event.sender.type != 'Bot' &&
+      !endsWith(github.actor, '[bot]') &&
+      !github.event.pull_request.draft
     runs-on: ubuntu-latest
     permissions:
       contents: read
