@@ -6,6 +6,27 @@
   "labels": ["dependencies"],
   "packageRules": [
     {
+      "description": "Build, test and packaging tooling. Nothing here reaches a consumer's rule set, so a green gate is the whole review. Majors stay individual so one broken tool cannot hold up the rest.",
+      "groupName": "dev tooling",
+      "groupSlug": "dev-tooling",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["digest", "minor", "patch", "pin"],
+      "matchPackageNames": [
+        "!@eslint/js",
+        "!@vue/compiler-sfc",
+        "!eslint",
+        "!typescript"
+      ]
+    },
+    {
+      "description": "Workflow actions cannot change lint output at all. Majors stay individual: publish.yml only runs on release, so an actions major can pass every build and still break publishing.",
+      "groupName": "GitHub Actions",
+      "groupSlug": "github-actions",
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["digest", "minor", "patch", "pin", "pinDigest"],
+      "matchPackageNames": ["!node"]
+    },
+    {
       "groupName": "Nuxt.js",
       "groupSlug": "nuxt",
       "matchPackageNames": [
@@ -14,6 +35,12 @@
         "nuxt",
         "/^nuxt-.*$/"
       ]
+    },
+    {
+      "description": "playground-eslint9 pins the lower bound of the eslint and typescript peer ranges deliberately. Bumping it would leave nothing exercising the floor.",
+      "matchFileNames": ["examples/playground-eslint9/package.json"],
+      "matchPackageNames": ["@eslint/js", "eslint", "typescript"],
+      "enabled": false
     }
   ],
   "postUpdateOptions": [
