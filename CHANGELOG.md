@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Internal
+
+- **examples**: Declared `typescript` in both Nuxt playgrounds — they
+  type-check with `tsc` but resolved it from whatever the workspace
+  happened to provide, which only holds while a single TypeScript major
+  is installed
+
 ## [0.10.1] - 2026-06-24
 
 ### Changed
