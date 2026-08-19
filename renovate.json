@@ -41,6 +41,13 @@
       "matchFileNames": ["examples/playground-eslint9/package.json"],
       "matchPackageNames": ["@eslint/js", "eslint", "typescript"],
       "enabled": false
+    },
+    {
+      "description": "The playgrounds pin different TypeScript majors on purpose, so the example suite exercises more than one compiler against a single preset. A major bump would collapse that spread rather than update anything. The root is not covered and keeps tracking TypeScript normally.",
+      "matchFileNames": ["examples/*/package.json"],
+      "matchPackageNames": ["typescript"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
     }
   ],
   "postUpdateOptions": [
