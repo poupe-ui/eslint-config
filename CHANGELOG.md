@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+
+- **deps**: Moved `@vue/compiler-sfc` from `peerDependencies` to
+  `dependencies`. The Vue style-block processor imports it at the top
+  level, so the preset needs it in order to load, in a project with no Vue
+  as much as in one with Vue. As a peer it was the consumer's to install,
+  and the README's install command never listed it
+
 ### Internal
 
 - **examples**: Declared `typescript` in both Nuxt playgrounds — they

@@ -109,7 +109,9 @@ format and is written in TypeScript.
 - **typescript-eslint**: TypeScript-specific linting and type checking
 - **eslint-plugin-vue**: Vue.js template and script linting
 - **eslint-processor-vue-blocks**: Extracts Vue `<style>` blocks as
-  virtual CSS files for `@eslint/css` linting
+  virtual CSS files for `@eslint/css` linting. It imports
+  `@vue/compiler-sfc` at the top level, so that package is a runtime
+  dependency here even though nothing in `src/` imports it directly
 - **eslint-plugin-unicorn**: Modern JavaScript best practices
 - **eslint-plugin-perfectionist**: Import/export and union type sorting
 - **eslint-plugin-tsdoc**: TypeScript documentation standards

@@ -13,7 +13,6 @@
       "matchUpdateTypes": ["digest", "minor", "patch", "pin"],
       "matchPackageNames": [
         "!@eslint/js",
-        "!@vue/compiler-sfc",
         "!eslint",
         "!typescript"
       ]
