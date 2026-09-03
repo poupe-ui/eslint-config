@@ -36,7 +36,7 @@
       ]
     },
     {
-      "description": "playground-eslint9 pins the lower bound of the eslint and typescript peer ranges deliberately. Bumping it would leave nothing exercising the floor.",
+      "description": "playground-eslint9 pins the lower bound of the eslint peer range, and a TypeScript older than the one the preset declares, deliberately. Bumping it would leave nothing exercising the floor.",
       "matchFileNames": ["examples/playground-eslint9/package.json"],
       "matchPackageNames": ["@eslint/js", "eslint", "typescript"],
       "enabled": false
