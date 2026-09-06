@@ -33,6 +33,8 @@ All notable changes to this project will be documented in this file.
 
 ### Internal
 
+- **examples**: Added `playground-ts7`, a mirror of `playground-standard`
+  whose only compiler is TypeScript 7
 - **examples**: Declared `typescript` in both Nuxt playgrounds — they
   type-check with `tsc` but resolved it from whatever the workspace
   happened to provide, which only holds while a single TypeScript major

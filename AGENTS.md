@@ -94,6 +94,7 @@ format and is written in TypeScript.
 ├── examples/         # Example implementations
 │   ├── playground-standard/     # Basic JS/TS example (ESLint 10, TS 6)
 │   ├── playground-eslint9/      # Basic JS/TS example (ESLint 9, TS 5.9)
+│   ├── playground-ts7/          # Basic JS/TS example (TS 7)
 │   ├── playground-nuxt/         # Nuxt.js application example
 │   └── playground-nuxt-module/  # Nuxt module development example
 ├── test/             # Integration test files
@@ -260,8 +261,11 @@ testing different usage scenarios:
    (inherits the workspace ESLint, currently v10; pins TypeScript 6)
 2. **playground-eslint9**: Same project pinned to ESLint 9 — the lower
    bound of the peer range — and to TypeScript 5.9
-3. **playground-nuxt**: Nuxt.js application using `@nuxt/eslint`
-4. **playground-nuxt-module**: Nuxt module development setup
+3. **playground-ts7**: Same project with TypeScript 7 as its only
+   compiler — `tsc` is the native compiler, while ESLint parses through
+   the TypeScript 6 API the preset declares
+4. **playground-nuxt**: Nuxt.js application using `@nuxt/eslint`
+5. **playground-nuxt-module**: Nuxt module development setup
 
 To test changes:
 

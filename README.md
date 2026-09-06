@@ -355,6 +355,8 @@ this ESLint configuration in different scenarios:
 * **[playground-eslint9](./examples/playground-eslint9)** - Basic
   JavaScript/TypeScript projects (pinned to ESLint 9, the lower bound of the
   peer range, and to TypeScript 5.9)
+* **[playground-ts7](./examples/playground-ts7)** - Basic
+  JavaScript/TypeScript projects (TypeScript 7 as the only compiler)
 * **[playground-nuxt](./examples/playground-nuxt)** - Nuxt.js applications
 * **[playground-nuxt-module](./examples/playground-nuxt-module)** - Nuxt
   module development

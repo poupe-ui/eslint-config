@@ -20,6 +20,13 @@ Like `playground-standard`, but pinned to ESLint 9 — the lower bound of the
 peer range — and to TypeScript 5.9, so the suite lints at both ends of the
 ESLint range and type-checks the declarations with both compilers.
 
+## playground-ts7
+
+Like `playground-standard`, but with TypeScript 7 as its only compiler.
+`tsc` is the native compiler; ESLint parses through the TypeScript 6 API
+the preset declares. Its README states what the example does and does not
+establish.
+
 ## playground-nuxt
 
 Integration with Nuxt.js applications.
