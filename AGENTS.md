@@ -84,20 +84,26 @@ format and is written in TypeScript.
 │   │   ├── globs.ts     # Centralised file pattern constants
 │   │   ├── utils.ts     # Configuration helper functions
 │   │   └── __tests__/   # Tests for core utilities
-│   │       └── without-plugin.test.ts  # Tests for withoutPlugin helper
+│   │       ├── merge-rules.test.ts         # Tests for mergeRules helper
+│   │       ├── reconcile-plugins.test.ts   # Tests for reconcilePlugins helper
+│   │       └── without-plugin.test.ts      # Tests for withoutPlugin helper
 │   ├── config.ts     # Main configuration builder (defineConfig)
 │   ├── configs.ts    # Configuration presets and exports
 │   ├── index.ts      # Main entry point (re-exports)
 │   └── __tests__/    # Tests for main modules
-│       ├── config.test.ts    # Tests for defineConfig
-│       └── test-utils.ts     # Shared test utilities (mustConfigByName)
+│       ├── compat.mjs           # Standalone dist load check (no framework)
+│       ├── config.mjs           # Asserts resolved rules in each example
+│       ├── config.test.ts       # Tests for defineConfig
+│       ├── exports.types.ts     # Type-level tests for public type exports
+│       ├── test-utils.ts        # Shared test utilities (mustConfigByName)
+│       ├── with-poupe.test.ts   # Tests for withPoupe
+│       └── with-poupe.types.ts  # Type-level tests for withPoupe
 ├── examples/         # Example implementations
 │   ├── playground-standard/     # Basic JS/TS example (ESLint 10, TS 6)
 │   ├── playground-eslint9/      # Basic JS/TS example (ESLint 9, TS 5.9)
 │   ├── playground-ts7/          # Basic JS/TS example (TS 7)
 │   ├── playground-nuxt/         # Nuxt.js application example
 │   └── playground-nuxt-module/  # Nuxt module development example
-├── test/             # Integration test files
 └── pnpm-workspace.yaml         # Workspace configuration
 ```
 
