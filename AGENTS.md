@@ -12,10 +12,16 @@ this repository.
 - `pnpm lint` - Run ESLint with auto-fix enabled
 - `pnpm lint:check` - Run ESLint in read-only mode (no fixes)
 - `pnpm type-check` - Check TypeScript types without emitting files
+- `pnpm test` - Run the unit tests, then assert the resolved
+  configuration in every example
+- `pnpm test:unit` - Run the Vitest suite alone
 - `pnpm dev:prepare` - Create a fast stub build for development
 - `pnpm clean` - Remove dist folder and node_modules
-- `pnpm prepack` - Full validation
-  (build, lint, type-check, test:compat, test, publint)
+- `pnpm precommit` - Pre-commit gate (stub build, lint with fixes,
+  type-check, build, test:compat, test)
+- `pnpm prepack` - Full validation (package.json lint, build, lint and
+  type-check across the root and every example, test:compat, test,
+  publint)
 
 ### Debugging
 
@@ -45,7 +51,8 @@ format and is written in TypeScript.
 2. **Configuration Composition**: The package combines multiple ESLint plugins
    with custom rule overrides
 3. **Entry Point**: `@poupe/eslint-config` — `defineConfig`, `withPoupe`,
-   `withConfig`, `reconcilePlugins`, and all config presets
+   `withConfig`, `reconcilePlugins`, `withAbbreviations`, the `GLOB_*`
+   file-pattern constants, and all config presets
 4. **Type Safety**: Full TypeScript support with proper type definitions
    exported from `src/core/config.ts`
 5. **Config Factory Pattern**: Uses `eslint/config`'s `defineConfig()` for
@@ -498,7 +505,6 @@ unicorn plugin instance, causing FlatConfigComposer identity conflicts.
 
 ### Claude Code-Specific Instructions
 
-- Use the TaskCreate tool for complex multi-step tasks
 - **CRITICAL: Always enumerate files explicitly in git commit commands**
 - **NEVER use bare `git commit` without file arguments**
 - Fix issues immediately without commentary
