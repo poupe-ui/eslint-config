@@ -18,6 +18,15 @@ All notable changes to this project will be documented in this file.
   project installs, since the preset supplies 6.x to that chain itself.
   It warns about a range rather than failing; Troubleshooting in the
   README carries the override that silences it
+- **deps**: Updated the rule-bearing dependencies. Perfectionist minors
+  can change sorting output, so read a diff after upgrading:
+  - `typescript-eslint` and `@typescript-eslint/parser` ^8.62.0 → ^8.67.0
+  - `eslint-plugin-vue` ^10.8.0 → ^10.10.0
+  - `eslint-plugin-jsonc` ^3.1.2 → ^3.4.1
+  - `eslint-plugin-perfectionist` ^5.8.0 → ^5.9.1
+  - `@eslint/css` ^1.3.0 → ^1.4.0
+  - `tailwind-csstree` ^0.3.0 → ^0.3.3
+- **engines**: Raised the `pnpm` floor `>= 10.33.0` → `>= 10.34.5`
 
 ### Removed
 
@@ -41,6 +50,20 @@ All notable changes to this project will be documented in this file.
   type-check with `tsc` but resolved it from whatever the workspace
   happened to provide, which only holds while a single TypeScript major
   is installed
+- **deps**: Updated the toolchain. None of these reaches a consumer:
+  - `eslint` ^10.5.0 → ^10.8.1
+  - `vitest` and `@vitest/ui` ^4.1.3 → ^4.1.10
+  - `npm-run-all2` ^8.0.4 → ^9.0.3
+  - `@kagal/build-tsdoc` ^0.2.0 → ^0.3.0
+  - `publint` ^0.3.18 → ^0.3.23
+  - `pkg-pr-new` ~0.0.75 → ~0.0.87
+  - the workspace-local `@typescript-eslint/utils` override
+    ^8.62.0 → ^8.67.0
+- **ci**: Updated the workflows and their automation:
+  - Renovate groups updates that cannot change lint output
+  - Renovate no longer tracks TypeScript majors in the examples
+  - The Claude review job skips bot pull requests
+  - `actions/checkout` and `actions/setup-node` moved to v7
 
 ## [0.10.1] - 2026-06-24
 
