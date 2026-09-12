@@ -1,13 +1,15 @@
 # ESLint 9 Playground
 
-Standard JavaScript/TypeScript example pinned to **ESLint 9** and
-**TypeScript 5.9** — the lower bounds of the `@poupe/eslint-config` peer
-ranges (`eslint@^9.39.4 || ^10`, `typescript@>=5.9.0 <6.1.0`).
+Standard JavaScript/TypeScript example pinned to **ESLint 9** — the lower
+bound of the `@poupe/eslint-config` peer range (`eslint@^9.39.4 || ^10`) —
+and to **TypeScript 5.9**.
 
 It pairs with [`playground-standard`](../playground-standard) (which tracks
-the current default, ESLint 10, and pins TypeScript 6) so that linting and
-type-checking the suite exercise the configuration and its generated
-declarations across both ends of each range.
+the current default, ESLint 10, and pins TypeScript 6) so that linting the
+suite exercises the configuration at both ends of the ESLint range. The
+TypeScript pins serve `type-check`, which reads each playground's own
+compiler, so the generated declarations are checked against both. Linting
+parses through the compiler the preset resolves in either playground.
 
 ## Usage
 

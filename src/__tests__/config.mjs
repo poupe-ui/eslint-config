@@ -7,6 +7,7 @@ import path from 'node:path';
 const examples = [
   'playground-standard',
   'playground-eslint9',
+  'playground-ts7',
   'playground-nuxt',
   'playground-nuxt-module',
 ];

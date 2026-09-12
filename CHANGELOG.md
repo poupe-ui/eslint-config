@@ -4,6 +4,44 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.10.2] - 2026-09-07
+
+### Changed
+
+- **deps**: The preset declares its own `typescript` (`>=6.0.3 <6.1.0`)
+  in `dependencies` rather than requiring one through `peerDependencies`.
+  The ceiling matches `typescript-eslint`'s own `typescript` peer. Tools
+  that depend on `typescript-eslint` themselves, such as `@nuxt/eslint`,
+  still resolve TypeScript from the project
+- **deps**: The install-time peer warning that `@typescript-eslint/utils`
+  wants a TypeScript below 6.0.0 no longer depends on the version the
+  project installs, since the preset supplies 6.x to that chain itself.
+  It warns about a range rather than failing; Troubleshooting in the
+  README carries the override that silences it
+
+### Removed
+
+- **deps**: Dropped the `typescript` peer dependency (`>=5.9.0 <6.1.0`,
+  added in 0.10.1). A project no longer installs a compiler on the
+  preset's behalf, and carries both when its own major differs
+
+### Fixed
+
+- **deps**: Moved `@vue/compiler-sfc` from `peerDependencies` to
+  `dependencies`. The Vue style-block processor imports it at the top
+  level, so the preset needs it in order to load, in a project with no Vue
+  as much as in one with Vue. As a peer it was the consumer's to install,
+  and the README's install command never listed it
+
+### Internal
+
+- **examples**: Added `playground-ts7`, a mirror of `playground-standard`
+  whose only compiler is TypeScript 7
+- **examples**: Declared `typescript` in both Nuxt playgrounds — they
+  type-check with `tsc` but resolved it from whatever the workspace
+  happened to provide, which only holds while a single TypeScript major
+  is installed
+
 ## [0.10.1] - 2026-06-24
 
 ### Changed

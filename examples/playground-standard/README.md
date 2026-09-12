@@ -4,10 +4,10 @@ Example of a standard JavaScript/TypeScript project using
 `@poupe/eslint-config`. Unlike the other playgrounds, it does **not** pin
 `eslint`/`@eslint/js`; it inherits them from the workspace as the peer
 dependencies they are, so it always exercises whatever ESLint major the
-repo ships (currently **v10**). It does pin **TypeScript 6**, the upper
-bound of the supported range, so the generated type declarations are
-type-checked against the newest supported compiler. For the lower bounds of
-both ranges, see [`playground-eslint9`](../playground-eslint9).
+repo ships (currently **v10**). It does pin **TypeScript 6**, the major the
+preset declares for its own parsing, so the generated type declarations are
+type-checked against that compiler. For the lower bound of the ESLint peer
+range, see [`playground-eslint9`](../playground-eslint9).
 
 ## Usage
 

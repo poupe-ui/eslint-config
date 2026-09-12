@@ -12,10 +12,16 @@ this repository.
 - `pnpm lint` - Run ESLint with auto-fix enabled
 - `pnpm lint:check` - Run ESLint in read-only mode (no fixes)
 - `pnpm type-check` - Check TypeScript types without emitting files
+- `pnpm test` - Run the unit tests, then assert the resolved
+  configuration in every example
+- `pnpm test:unit` - Run the Vitest suite alone
 - `pnpm dev:prepare` - Create a fast stub build for development
 - `pnpm clean` - Remove dist folder and node_modules
-- `pnpm prepack` - Full validation
-  (build, lint, type-check, test:compat, test, publint)
+- `pnpm precommit` - Pre-commit gate (stub build, lint with fixes,
+  type-check, build, test:compat, test)
+- `pnpm prepack` - Full validation (package.json lint, build, lint and
+  type-check across the root and every example, test:compat, test,
+  publint)
 
 ### Debugging
 
@@ -45,7 +51,8 @@ format and is written in TypeScript.
 2. **Configuration Composition**: The package combines multiple ESLint plugins
    with custom rule overrides
 3. **Entry Point**: `@poupe/eslint-config` — `defineConfig`, `withPoupe`,
-   `withConfig`, `reconcilePlugins`, and all config presets
+   `withConfig`, `reconcilePlugins`, `withAbbreviations`, the `GLOB_*`
+   file-pattern constants, and all config presets
 4. **Type Safety**: Full TypeScript support with proper type definitions
    exported from `src/core/config.ts`
 5. **Config Factory Pattern**: Uses `eslint/config`'s `defineConfig()` for
@@ -84,19 +91,26 @@ format and is written in TypeScript.
 │   │   ├── globs.ts     # Centralised file pattern constants
 │   │   ├── utils.ts     # Configuration helper functions
 │   │   └── __tests__/   # Tests for core utilities
-│   │       └── without-plugin.test.ts  # Tests for withoutPlugin helper
+│   │       ├── merge-rules.test.ts         # Tests for mergeRules helper
+│   │       ├── reconcile-plugins.test.ts   # Tests for reconcilePlugins helper
+│   │       └── without-plugin.test.ts      # Tests for withoutPlugin helper
 │   ├── config.ts     # Main configuration builder (defineConfig)
 │   ├── configs.ts    # Configuration presets and exports
 │   ├── index.ts      # Main entry point (re-exports)
 │   └── __tests__/    # Tests for main modules
-│       ├── config.test.ts    # Tests for defineConfig
-│       └── test-utils.ts     # Shared test utilities (mustConfigByName)
+│       ├── compat.mjs           # Standalone dist load check (no framework)
+│       ├── config.mjs           # Asserts resolved rules in each example
+│       ├── config.test.ts       # Tests for defineConfig
+│       ├── exports.types.ts     # Type-level tests for public type exports
+│       ├── test-utils.ts        # Shared test utilities (mustConfigByName)
+│       ├── with-poupe.test.ts   # Tests for withPoupe
+│       └── with-poupe.types.ts  # Type-level tests for withPoupe
 ├── examples/         # Example implementations
 │   ├── playground-standard/     # Basic JS/TS example (ESLint 10, TS 6)
 │   ├── playground-eslint9/      # Basic JS/TS example (ESLint 9, TS 5.9)
+│   ├── playground-ts7/          # Basic JS/TS example (TS 7)
 │   ├── playground-nuxt/         # Nuxt.js application example
 │   └── playground-nuxt-module/  # Nuxt module development example
-├── test/             # Integration test files
 └── pnpm-workspace.yaml         # Workspace configuration
 ```
 
@@ -106,10 +120,15 @@ format and is written in TypeScript.
 - **@eslint/css**: CSS linting with Tailwind CSS v4 syntax
   via `tailwind-csstree`
 - **@stylistic/eslint-plugin**: Code formatting and style consistency
-- **typescript-eslint**: TypeScript-specific linting and type checking
+- **typescript-eslint**: TypeScript-specific linting and type checking. It
+  takes `typescript` as a peer dependency, and a peer resolves from the
+  nearest dependent that provides it, so `typescript` is a runtime
+  dependency here even though nothing in `src/` imports it directly
 - **eslint-plugin-vue**: Vue.js template and script linting
 - **eslint-processor-vue-blocks**: Extracts Vue `<style>` blocks as
-  virtual CSS files for `@eslint/css` linting
+  virtual CSS files for `@eslint/css` linting. It imports
+  `@vue/compiler-sfc` at the top level, so that package is a runtime
+  dependency here even though nothing in `src/` imports it directly
 - **eslint-plugin-unicorn**: Modern JavaScript best practices
 - **eslint-plugin-perfectionist**: Import/export and union type sorting
 - **eslint-plugin-tsdoc**: TypeScript documentation standards
@@ -253,10 +272,13 @@ testing different usage scenarios:
 
 1. **playground-standard**: Basic JavaScript/TypeScript project
    (inherits the workspace ESLint, currently v10; pins TypeScript 6)
-2. **playground-eslint9**: Same project pinned to ESLint 9 and
-   TypeScript 5.9 — the lower bounds of the peer ranges
-3. **playground-nuxt**: Nuxt.js application using `@nuxt/eslint`
-4. **playground-nuxt-module**: Nuxt module development setup
+2. **playground-eslint9**: Same project pinned to ESLint 9 — the lower
+   bound of the peer range — and to TypeScript 5.9
+3. **playground-ts7**: Same project with TypeScript 7 as its only
+   compiler — `tsc` is the native compiler, while ESLint parses through
+   the TypeScript 6 API the preset declares
+4. **playground-nuxt**: Nuxt.js application using `@nuxt/eslint`
+5. **playground-nuxt-module**: Nuxt module development setup
 
 To test changes:
 
@@ -483,7 +505,6 @@ unicorn plugin instance, causing FlatConfigComposer identity conflicts.
 
 ### Claude Code-Specific Instructions
 
-- Use the TaskCreate tool for complex multi-step tasks
 - **CRITICAL: Always enumerate files explicitly in git commit commands**
 - **NEVER use bare `git commit` without file arguments**
 - Fix issues immediately without commentary

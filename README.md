@@ -23,14 +23,17 @@ Vue.js, and Tailwind CSS support.
 
 > [!NOTE]
 > This preset uses the new [ESLint flat config][flat-config] format and
-> supports ESLint v9 or v10 and TypeScript 5.9 or 6.0 on Node.js 20.19+,
-> 22.13+, or 24+.
+> supports ESLint v9 or v10 on Node.js 20.19+, 22.13+, or 24+.
+>
+> ESLint parses your TypeScript with the compiler the preset brings,
+> currently TypeScript 6 — not the one your project builds with, which is
+> your own choice.
 
-`eslint`, `@eslint/js`, and `typescript` are **peer dependencies** — the
-preset does not bundle them, so you must install them yourself alongside it:
+`eslint` and `@eslint/js` are **peer dependencies** — the preset does not
+bundle them, so you must install them yourself alongside it:
 
 ```sh
-pnpm install -D eslint @eslint/js typescript @poupe/eslint-config
+pnpm install -D eslint @eslint/js @poupe/eslint-config
 ```
 
 Create `eslint.config.mjs` in your project root:
@@ -320,7 +323,7 @@ If you're migrating from a legacy `.eslintrc` configuration:
 
    ```sh
    pnpm remove eslint-config-* eslint-plugin-*
-   pnpm install -D eslint @eslint/js typescript @poupe/eslint-config
+   pnpm install -D eslint @eslint/js @poupe/eslint-config
    ```
 
 3. **Create new config**: Add `eslint.config.mjs` as shown in Getting Started
@@ -348,10 +351,12 @@ this ESLint configuration in different scenarios:
 
 * **[playground-standard](./examples/playground-standard)** - Basic
   JavaScript/TypeScript projects (inherits the workspace ESLint, currently
-  v10; pinned to TypeScript 6, the upper bound of the supported range)
+  v10; pins TypeScript 6, the major the preset declares for its own parsing)
 * **[playground-eslint9](./examples/playground-eslint9)** - Basic
-  JavaScript/TypeScript projects (pinned to ESLint 9 and TypeScript 5.9, the
-  lower bounds of the supported ranges)
+  JavaScript/TypeScript projects (pinned to ESLint 9, the lower bound of the
+  peer range, and to TypeScript 5.9)
+* **[playground-ts7](./examples/playground-ts7)** - Basic
+  JavaScript/TypeScript projects (TypeScript 7 as the only compiler)
 * **[playground-nuxt](./examples/playground-nuxt)** - Nuxt.js applications
 * **[playground-nuxt-module](./examples/playground-nuxt-module)** - Nuxt
   module development
@@ -403,19 +408,20 @@ you're using the latest version and report an issue.
 These warnings help the CSS filtering system learn about new rules. They're
 informational and don't affect functionality.
 
-#### Peer warning from `eslint-plugin-tsdoc` on TypeScript 6
+#### Peer warning from `eslint-plugin-tsdoc`
 
-`eslint-plugin-tsdoc` still pulls an older `@typescript-eslint/utils` whose
-peer range stops below TypeScript 6, so on TypeScript 6 you may see a
-harmless peer-dependency warning. To silence it, override the package in
-your project root:
+`eslint-plugin-tsdoc` pins `@typescript-eslint/utils` to `~8.56.0`, whose
+`typescript` peer range stops below 6.0.0, and the preset supplies
+TypeScript 6 to its own dependency chain. It is an install-time warning
+about a range, not a failure. To silence it, override the package in your
+project root:
 
 ```jsonc
 // package.json — pnpm
 {
   "pnpm": {
     "overrides": {
-      "@typescript-eslint/utils": "^8.62.0"
+      "@typescript-eslint/utils": "^8.67.0"
     }
   }
 }
