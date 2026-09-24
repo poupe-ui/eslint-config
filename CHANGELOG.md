@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Documentation
+
+- Documented the TypeScript versions the preset is tested with, and the
+  caveats for TypeScript 7 projects
+
 ## [0.10.2] - 2026-09-07
 
 ### Changed

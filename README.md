@@ -27,7 +27,7 @@ Vue.js, and Tailwind CSS support.
 >
 > ESLint parses your TypeScript with the compiler the preset brings,
 > currently TypeScript 6 — not the one your project builds with, which is
-> your own choice.
+> your own choice. See [TypeScript](#typescript) for the tested versions.
 
 `eslint` and `@eslint/js` are **peer dependencies** — the preset does not
 bundle them, so you must install them yourself alongside it:
@@ -86,6 +86,38 @@ export default defineConfig({
   },
 });
 ```
+
+## TypeScript
+
+The preset installs its own TypeScript, `>=6.0.3 <6.1.0`, and ESLint
+parses your sources through it. The version your project declares is the
+one your build and your editor use; it does not change what ESLint
+parses with. Nuxt is the exception: `@nuxt/eslint` and
+`@nuxt/eslint-config` bring their own `@typescript-eslint/parser`, which
+resolves TypeScript from your project rather than from this preset.
+
+| Your TypeScript | ESLint | Tested                                       |
+| --------------- | ------ | -------------------------------------------- |
+| 5.9             | 9      | Yes                                          |
+| 6.0             | 10     | Yes, including Nuxt applications and modules |
+| 7.0             | 10     | Yes, with pnpm, from 0.10.2                  |
+
+Versions below 5.9 and combinations not listed are untested.
+
+Caveats with TypeScript 7:
+
+* **Use 0.10.2 or later.** Earlier releases took TypeScript as a peer
+  dependency, so the package manager handed them your TypeScript 7, and
+  ESLint stops while loading the configuration with "typescript-eslint
+  does not support TS 7.0".
+* **Syntax is read through the TypeScript 6 API.** Anything TypeScript 7
+  accepts that TypeScript 6 does not will not parse.
+* **Nuxt is untested on TypeScript 7.** Its parser would receive your
+  TypeScript 7, not the preset's TypeScript 6.
+* **npm and Yarn are untested.** pnpm gives each package its own
+  dependencies, so the preset's TypeScript 6 cannot be confused with
+  yours. npm and Yarn hoist packages into a shared tree, and whether
+  `typescript-eslint` then finds TypeScript 6 or 7 has not been checked.
 
 ## CSS Support
 
