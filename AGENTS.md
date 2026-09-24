@@ -132,7 +132,7 @@ format and is written in TypeScript.
 - **eslint-plugin-unicorn**: Modern JavaScript best practices
 - **eslint-plugin-perfectionist**: Import/export and union type sorting
 - **eslint-plugin-tsdoc**: TypeScript documentation standards
-- **eslint-plugin-markdownlint**: Markdown file linting (MD001-MD050 rules)
+- **eslint-plugin-markdownlint**: Markdown file linting (MD001-MD060 rules)
 - **eslint-plugin-jsonc**: JSON and JSONC file linting with package.json sorting
 
 ### Supported File Types
