@@ -30,8 +30,8 @@ importers:
         specifier: ^3.4.1
         version: 3.4.1(eslint@10.11.0(jiti@2.7.0))
       eslint-plugin-markdownlint:
-        specifier: ^0.10.1
-        version: 0.10.1(eslint@10.11.0(jiti@2.7.0))
+        specifier: ^1.0.0
+        version: 1.0.0(eslint@10.11.0(jiti@2.7.0))
       eslint-plugin-perfectionist:
         specifier: ^5.9.1
         version: 5.9.1(eslint@10.11.0(jiti@2.7.0))(typescript@6.0.3)
@@ -3132,9 +3132,9 @@ packages:
     peerDependencies:
       eslint: '>=9.38.0'
 
-  eslint-plugin-markdownlint@0.10.1:
-    resolution: {integrity: sha512-nqVsGxZQcnvTAZ70Zim9xjv3zDhi8URf7X7CCv13yBacb/UkqZrPlw96FEgbYFTiAYFrHUpzOmgGuoq7zipE0w==}
-    engines: {node: '>=14'}
+  eslint-plugin-markdownlint@1.0.0:
+    resolution: {integrity: sha512-Fvchv0FgKKoxWdymQvk/QCCxApMMn0ehaOzg5MS7RF9zrOCHqH/KbHI8UzznLLXzXLkQX5DTYSnpa7vmxHDtAw==}
+    engines: {node: '>=22'}
     peerDependencies:
       eslint: '>=7.5.0'
 
@@ -3968,9 +3968,9 @@ packages:
   magicast@0.5.4:
     resolution: {integrity: sha512-llBEhWm1SacoRwgHUoQJYtwp4PBLF4faQi5TCpIGyGs9n4y5+juI0tDgyKIfpqxckRHaHzouUEph3THklWh03w==}
 
-  markdownlint@0.40.0:
-    resolution: {integrity: sha512-UKybllYNheWac61Ia7T6fzuQNDZimFIpCg2w6hHjgV1Qu0w1TV0LlSgryUGzM0bkKQCBhy2FDhEELB73Kb0kAg==}
-    engines: {node: '>=20'}
+  markdownlint@0.41.1:
+    resolution: {integrity: sha512-qHKeU2E1bdyNAT077go2FVTNXvYcktN5IHtF6XyeD1l0PClxzSp2tUApAV14ORI8DGX4H9bNKZEzelZp4qn8IA==}
+    engines: {node: '>=22'}
 
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
@@ -5189,8 +5189,8 @@ packages:
     resolution: {integrity: sha512-tsaTIkKW9b4N+AEj+SVA+WhJzV7/zMhcSu78mLKWSk7cXMOSHsBKFWUs0fWwq8QyK3MgJBQRX6Gbi4kYbdvGkQ==}
     engines: {node: '>=18'}
 
-  string-width@8.1.0:
-    resolution: {integrity: sha512-Kxl3KJGb/gxkaUMOjRsQ8IrXiGW75O4E3RPjFIINOVH8AMl2SQ/yWdTzWwF3FevIX9LcMAjJW+GRwAlAbTSXdg==}
+  string-width@8.2.1:
+    resolution: {integrity: sha512-IIaP0g3iy9Cyy18w3M9YcaDudujEAVHKt3a3QJg1+sr/oX96TbaGUubG0hJyCjCBThFH+tFpcIyoUHUn1ogaLA==}
     engines: {node: '>=20'}
 
   string-width@8.2.2:
@@ -9547,11 +9547,11 @@ snapshots:
     transitivePeerDependencies:
       - '@eslint/json'
 
-  eslint-plugin-markdownlint@0.10.1(eslint@10.11.0(jiti@2.7.0)):
+  eslint-plugin-markdownlint@1.0.0(eslint@10.11.0(jiti@2.7.0)):
     dependencies:
       eslint: 10.11.0(jiti@2.7.0)
       json5: 2.2.3
-      markdownlint: 0.40.0
+      markdownlint: 0.41.1
     transitivePeerDependencies:
       - supports-color
 
@@ -10456,7 +10456,7 @@ snapshots:
       '@babel/types': 7.29.8
       source-map-js: 1.2.1
 
-  markdownlint@0.40.0:
+  markdownlint@0.41.1:
     dependencies:
       micromark: 4.0.2
       micromark-core-commonmark: 2.0.3
@@ -10466,7 +10466,7 @@ snapshots:
       micromark-extension-gfm-table: 2.1.1
       micromark-extension-math: 3.1.0
       micromark-util-types: 2.0.2
-      string-width: 8.1.0
+      string-width: 8.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -12227,7 +12227,7 @@ snapshots:
       get-east-asian-width: 1.6.0
       strip-ansi: 7.2.0
 
-  string-width@8.1.0:
+  string-width@8.2.1:
     dependencies:
       get-east-asian-width: 1.6.0
       strip-ansi: 7.2.0
