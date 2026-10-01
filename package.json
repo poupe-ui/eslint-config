@@ -72,7 +72,7 @@
     "eslint-plugin-perfectionist": "^5.9.1",
     "eslint-plugin-tsdoc": "^0.5.2",
     "eslint-plugin-unicorn": "^63.0.0",
-    "eslint-plugin-vue": "^10.10.0",
+    "eslint-plugin-vue": "^10.11.1",
     "eslint-processor-vue-blocks": "^2.0.0",
     "tailwind-csstree": "^0.3.3",
     "typescript": ">=6.0.3 <6.1.0",
