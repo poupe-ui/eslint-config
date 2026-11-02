@@ -3,6 +3,15 @@
   "extends": [
     "config:recommended"
   ],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**",
+    "**/__tests__/**",
+    "**/test/**",
+    "**/tests/**",
+    "**/__fixtures__/**"
+  ],
   "labels": ["dependencies"],
   "packageRules": [
     {
@@ -26,14 +35,30 @@
       "matchPackageNames": ["!node"]
     },
     {
+      "description": "Nuxt pins @nuxt/kit to its own version and depends on vue-router directly, so a playground declaring either on its own resolves a second copy beside the one Nuxt runs.",
       "groupName": "Nuxt.js",
       "groupSlug": "nuxt",
       "matchPackageNames": [
         "@nuxt/**",
         "@nuxtjs/**",
         "nuxt",
-        "/^nuxt-.*$/"
+        "/^nuxt-.*$/",
+        "vue-router"
       ]
+    },
+    {
+      "description": "tailwind-csstree extends the syntax @eslint/css parses and declares it as a peer, so the two only move as a pair.",
+      "groupName": "CSS parser",
+      "groupSlug": "css-parser",
+      "matchPackageNames": ["@eslint/css", "tailwind-csstree"],
+      "separateMajorMinor": false
+    },
+    {
+      "description": "The root's typescript range stops at the ceiling of typescript-eslint's own peer, and is raised by hand when that peer is. A widened range would admit two compilers while CI exercised only the one the lockfile pins, so renovate only moves the lockfile within the range.",
+      "matchFileNames": ["package.json"],
+      "matchDepTypes": ["dependencies"],
+      "matchPackageNames": ["typescript"],
+      "rangeStrategy": "in-range-only"
     },
     {
       "description": "playground-eslint9 pins the lower bound of the eslint peer range, and a TypeScript older than the one the preset declares, deliberately. Bumping it would leave nothing exercising the floor.",
@@ -42,7 +67,7 @@
       "enabled": false
     },
     {
-      "description": "The playgrounds pin different TypeScript majors on purpose, so the example suite exercises more than one compiler against a single preset. A major bump would collapse that spread rather than update anything. The root is not covered and keeps tracking TypeScript normally.",
+      "description": "The playgrounds pin different TypeScript majors on purpose, so the example suite exercises more than one compiler against a single preset. A major bump would collapse that spread rather than update anything.",
       "matchFileNames": ["examples/*/package.json"],
       "matchPackageNames": ["typescript"],
       "matchUpdateTypes": ["major"],
